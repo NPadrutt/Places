@@ -133,6 +133,24 @@ namespace MyTravelHistory.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to all locations.
+        /// </summary>
+        public static string LocationsTitle {
+            get {
+                return ResourceManager.GetString("LocationsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to location.
+        /// </summary>
+        public static string LocationTitle {
+            get {
+                return ResourceManager.GetString("LocationTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rate MyMedi!.
         /// </summary>
         public static string RateAppLabel {

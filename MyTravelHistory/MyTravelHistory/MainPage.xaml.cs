@@ -26,5 +26,10 @@ namespace MyTravelHistory
 			//Shows the rate reminder message, according to the settings of the RateReminder.
             (App.Current as App).rateReminder.Notify();
         }
+
+        private void btnAdd_Click(object sender, System.EventArgs e)
+        {
+        	NavigationService.Navigate(new Uri("/AddLocation.xaml", UriKind.Relative));
+        }
     }
 }

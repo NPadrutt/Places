@@ -163,4 +163,10 @@ I'm looking forward to receive your feedback! =)</value>
   <data name="WhatsNewTitle" xml:space="preserve">
     <value>what's new?</value>
   </data>
+  <data name="LocationTitle" xml:space="preserve">
+    <value>location</value>
+  </data>
+  <data name="LocationsTitle" xml:space="preserve">
+    <value>all locations</value>
+  </data>
 </root>

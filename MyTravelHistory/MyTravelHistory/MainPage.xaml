@@ -41,8 +41,8 @@
 
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="ApplicationTitle" Text="MY APPLICATION" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock x:Name="PageTitle" Text="page name" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock x:Name="ApplicationTitle" Text="{Binding Path=LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock x:Name="PageTitle" Text="{Binding Path=LocalizedResources.LocationsTitle, Source={StaticResource LocalizedStrings}}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
@@ -62,12 +62,7 @@
 	<!--Sample code showing usage of ApplicationBar-->
 	<phone:PhoneApplicationPage.ApplicationBar>
 		<shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-			<shell:ApplicationBarIconButton IconUri="/Images/appbar_button1.png" Text="Button 1"/>
-			<shell:ApplicationBarIconButton IconUri="/Images/appbar_button2.png" Text="Button 2"/>
-			<shell:ApplicationBar.MenuItems>
-				<shell:ApplicationBarMenuItem Text="MenuItem 1"/>
-				<shell:ApplicationBarMenuItem Text="MenuItem 2"/>
-			</shell:ApplicationBar.MenuItems>
+			<shell:ApplicationBarIconButton x:Name="btnAdd" IconUri="/Assets/AppBar/add.png" Text="add" Click="btnAdd_Click"/>
 		</shell:ApplicationBar>
 	</phone:PhoneApplicationPage.ApplicationBar>
 
