@@ -29,7 +29,7 @@ namespace MyTravelHistory
 
         private void btnAdd_Click(object sender, System.EventArgs e)
         {
-        	NavigationService.Navigate(new Uri("/AddLocation.xaml", UriKind.Relative));
+        	NavigationService.Navigate(new Uri("/Views/AddLocation.xaml", UriKind.Relative));
         }
     }
 }

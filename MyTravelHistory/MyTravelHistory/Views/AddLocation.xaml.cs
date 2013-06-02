@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using Windows.Devices.Geolocation;
 
 namespace MyTravelHistory
 {
@@ -15,6 +16,14 @@ namespace MyTravelHistory
         public AddLocation()
         {
             InitializeComponent();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+
+            
+                        
         }
     }
 }
