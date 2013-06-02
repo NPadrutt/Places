@@ -22,6 +22,10 @@ namespace MyTravelHistory
         public AddLocation()
         {
             InitializeComponent();
+
+            GetPosition();
+
+            this.DataContext = App.ViewModel.SelectedLocations;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -53,8 +57,47 @@ namespace MyTravelHistory
                     PageTitle.Text = AppResources.EditTitle;
                 }
             }
+        }
 
-            App.positionHelper.GetPosition();                        
+        private async void GetPosition()
+        {
+            Geolocator geolocater = new Geolocator();
+            geolocater.DesiredAccuracy = PositionAccuracy.High;
+
+            try
+            {
+                Geoposition geoposition = await geolocater.GetGeopositionAsync(
+                    maximumAge: TimeSpan.FromMinutes(2),
+                    timeout: TimeSpan.FromSeconds(10)
+                    );
+
+                txtLatitude.Text = geoposition.Coordinate.Latitude.ToString();
+                txtLongtitude.Text = geoposition.Coordinate.Longitude.ToString();
+            }
+            catch (Exception ex)
+            {
+                if ((uint)ex.HResult == 0x80004004)
+                {
+                    // the application does not have the right capability or the location master switch is off
+                    MessageBox.Show("location  is disabled in phone settings.");
+                }
+            }
+        }
+
+        private void btnDone_Click(object sender, System.EventArgs e)
+        {
+            App.ViewModel.SelectedLocations.Name = txtName.Text;
+            App.ViewModel.SelectedLocations.Latitude = txtLatitude.Text;
+            App.ViewModel.SelectedLocations.Longtitude = txtLongtitude.Text;
+
+            App.ViewModel.AddLocation(App.ViewModel.SelectedLocations);
+
+            NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
+        }
+
+        private void btnCancel_Click(object sender, System.EventArgs e)
+        {
+            NavigationService.GoBack();
         }
     }
 }

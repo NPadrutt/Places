@@ -124,6 +124,15 @@ namespace MyTravelHistory.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to your current position.
+        /// </summary>
+        public static string CurrentPositionLabel {
+            get {
+                return ResourceManager.GetString("CurrentPositionLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to developer:.
         /// </summary>
         public static string DeveloperLabel {
@@ -165,6 +174,15 @@ namespace MyTravelHistory.Resources {
         public static string LocationTitle {
             get {
                 return ResourceManager.GetString("LocationTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to name.
+        /// </summary>
+        public static string NameLabel {
+            get {
+                return ResourceManager.GetString("NameLabel", resourceCulture);
             }
         }
         

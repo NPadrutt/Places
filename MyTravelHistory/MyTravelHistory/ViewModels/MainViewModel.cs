@@ -73,6 +73,31 @@ namespace MyTravelHistory.ViewModels
             }
         }
 
+        public void AddLocation(Location newLocation)
+        {
+            AllLocations.Add(newLocation);
+            db.Locations.InsertOnSubmit(newLocation);
+
+            db.SubmitChanges();
+        }
+
+        public void DeleteLocation(Location LocationToDelete)
+        {
+            AllLocations.Remove(LocationToDelete);
+            db.Locations.DeleteOnSubmit(LocationToDelete);
+
+            db.SubmitChanges();
+        }
+
+        public void LoadLocations()
+        {
+            var locationItemsInDb = from Location location in db.Locations
+                                    orderby location.Name
+                                    select location;
+
+            AllLocations = new ObservableCollection<Location>(locationItemsInDb);
+        }
+
         #endregion
 
         #region INotifyPropertyChanged Members

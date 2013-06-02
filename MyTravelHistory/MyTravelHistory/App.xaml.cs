@@ -26,8 +26,6 @@ namespace MyTravelHistory
             get { return _viewModel; }
         }
 
-        public static PositionHelper positionHelper;
-
         /// <summary>
         /// Component used to handle unhandle exceptions, to collect runtime info and to send email to developer.
         /// </summary>
@@ -108,9 +106,8 @@ namespace MyTravelHistory
             //Sets how often the rate reminder is displayed.
             rateReminder.RecurrencePerUsageCount = 2;
 
-            positionHelper = new PositionHelper();
-
             _viewModel = new MainViewModel();
+            _viewModel.LoadLocations();
         }
 
         // Code to execute when the application is launching (eg, from Start)
