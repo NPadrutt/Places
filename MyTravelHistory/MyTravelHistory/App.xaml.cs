@@ -13,11 +13,21 @@ using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Telerik.Windows.Controls;
+using MyTravelHistory.Src;
+using MyTravelHistory.ViewModels;
 
 namespace MyTravelHistory
 {
     public partial class App : Application
     {
+        private static MainViewModel _viewModel;
+        public static MainViewModel ViewModel
+        {
+            get { return _viewModel; }
+        }
+
+        public static PositionHelper positionHelper;
+
         /// <summary>
         /// Component used to handle unhandle exceptions, to collect runtime info and to send email to developer.
         /// </summary>
@@ -66,13 +76,12 @@ namespace MyTravelHistory
                 // which shows areas of a page that are being GPU accelerated with a colored overlay.
                 //Application.Current.Host.Settings.EnableCacheVisualization = true;
 
-				// Disable the application idle detection by setting the UserIdleDetectionMode property of the
+                // Disable the application idle detection by setting the UserIdleDetectionMode property of the
                 // application's PhoneApplicationService object to Disabled.
                 // Caution:- Use this under debug mode only. Application that disables user idle detection will continue to run
                 // and consume battery power when the user is not using the phone.
                 PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Disabled;
             }
-
 			//Creates an instance of the Diagnostics component.
             diagnostics = new RadDiagnostics();
 
@@ -98,7 +107,10 @@ namespace MyTravelHistory
 
             //Sets how often the rate reminder is displayed.
             rateReminder.RecurrencePerUsageCount = 2;
-    
+
+            positionHelper = new PositionHelper();
+
+            _viewModel = new MainViewModel();
         }
 
         // Code to execute when the application is launching (eg, from Start)

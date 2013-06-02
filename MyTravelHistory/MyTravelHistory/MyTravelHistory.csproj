@@ -110,7 +110,9 @@
       <DependentUpon>LocationSampleDataSource.xaml</DependentUpon>
     </Compile>
     <Compile Include="Src\PositionHelper.cs" />
+    <Compile Include="Src\UpdateHelper.cs" />
     <Compile Include="Src\Utilities.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Views\About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
     </Compile>

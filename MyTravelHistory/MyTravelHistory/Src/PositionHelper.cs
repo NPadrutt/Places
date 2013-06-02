@@ -8,7 +8,7 @@ using Windows.Devices.Geolocation;
 
 namespace MyTravelHistory.Src
 {
-    class PositionHelper
+    public class PositionHelper
     {
         public async void GetPosition()
         {
@@ -20,7 +20,10 @@ namespace MyTravelHistory.Src
                 Geoposition geoposition = await geolocater.GetGeopositionAsync(
                     maximumAge: TimeSpan.FromMinutes(2),
                     timeout: TimeSpan.FromSeconds(10)
-                    );                
+                    );
+
+                App.ViewModel.SelectedLocations.Latitude = geoposition.Coordinate.Latitude.ToString();
+                App.ViewModel.SelectedLocations.Longtitude = geoposition.Coordinate.Longitude.ToString();
             }
             catch (Exception ex)
             {

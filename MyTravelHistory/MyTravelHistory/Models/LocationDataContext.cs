@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace MyTravelHistory.Models
 {
     [Table]
-    public class LocationDataContext : INotifyPropertyChanged, INotifyPropertyChanging
+    public class Location : INotifyPropertyChanged, INotifyPropertyChanging
     {
         private int _id;
 

@@ -169,4 +169,10 @@ I'm looking forward to receive your feedback! =)</value>
   <data name="LocationsTitle" xml:space="preserve">
     <value>all locations</value>
   </data>
+  <data name="AddTitle" xml:space="preserve">
+    <value>add</value>
+  </data>
+  <data name="EditTitle" xml:space="preserve">
+    <value>edit</value>
+  </data>
 </root>
