@@ -184,4 +184,10 @@ I'm looking forward to receive your feedback! =)</value>
   <data name="DetailsTitle" xml:space="preserve">
     <value>details</value>
   </data>
+  <data name="DeleteMessage" xml:space="preserve">
+    <value>Do you really want to delete this location?</value>
+  </data>
+  <data name="DeleteMessageTitle" xml:space="preserve">
+    <value>Delete?</value>
+  </data>
 </root>

@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using MyTravelHistory.Resources;
 
 namespace MyTravelHistory.Views
 {
@@ -19,12 +20,19 @@ namespace MyTravelHistory.Views
 
         private void btnDelete_Click(object sender, System.EventArgs e)
         {
-        	// TODO: Add event handler implementation here.
+            MessageBoxResult result = MessageBox.Show(AppResources.DeleteMessage, AppResources.DeleteMessageTitle, MessageBoxButton.OKCancel);
+
+            if (result == MessageBoxResult.OK)
+            {
+                App.ViewModel.DeleteLocation(App.ViewModel.SelectedLocations);
+            }
+
+            NavigationService.GoBack();
         }
 
         private void btnEdit_Click(object sender, System.EventArgs e)
         {
-        	// TODO: Add event handler implementation here.
+            NavigationService.Navigate(new Uri("/Views/EditLocation.xaml", UriKind.Relative));
         }
     }
 }

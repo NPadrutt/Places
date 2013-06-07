@@ -133,6 +133,24 @@ namespace MyTravelHistory.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Do you really want to delete this location?.
+        /// </summary>
+        public static string DeleteMessage {
+            get {
+                return ResourceManager.GetString("DeleteMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete?.
+        /// </summary>
+        public static string DeleteMessageTitle {
+            get {
+                return ResourceManager.GetString("DeleteMessageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to details.
         /// </summary>
         public static string DetailsTitle {
