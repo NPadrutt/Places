@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
+using MyTravelHistory.Models;
 
 namespace MyTravelHistory
 {
@@ -29,9 +30,24 @@ namespace MyTravelHistory
             (App.Current as App).rateReminder.Notify();
         }
 
+        private void ListboxLocations_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (ListboxLocations.SelectedItem != null)
+            {
+                App.ViewModel.SelectedLocations = ListboxLocations.SelectedItem as Location;
+                NavigationService.Navigate(new Uri("/Views/DetailsLocation.xaml", UriKind.Relative));
+                ListboxLocations.SelectedItem = null;
+            }
+        }
+
         private void btnAdd_Click(object sender, System.EventArgs e)
         {
         	NavigationService.Navigate(new Uri("/Views/AddLocation.xaml", UriKind.Relative));
+        }
+
+        private void mAbout_Click(object sender, System.EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Views/About.xaml", UriKind.Relative));
         }
     }
 }
