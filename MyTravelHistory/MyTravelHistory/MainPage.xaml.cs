@@ -20,6 +20,8 @@ namespace MyTravelHistory
         {
             InitializeComponent();
 
+            this.DataContext = App.ViewModel;
+
 			//Shows the trial reminder message, according to the settings of the TrialReminder.
             (App.Current as App).trialReminder.Notify();
 

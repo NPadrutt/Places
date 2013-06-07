@@ -32,7 +32,7 @@ namespace MyTravelHistory.Views
 
         private void btnEdit_Click(object sender, System.EventArgs e)
         {
-            NavigationService.Navigate(new Uri("/Views/EditLocation.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/Views/AddLocation.xaml", UriKind.Relative));
         }
     }
 }
