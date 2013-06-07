@@ -16,6 +16,21 @@ namespace MyTravelHistory.Views
         public DetailsLocation()
         {
             InitializeComponent();
+
+            this.DataContext = App.ViewModel.SelectedLocations;
+        }
+
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+
+            if (this.NavigationContext.QueryString != null && this.NavigationContext.QueryString.Count > 0)
+            {
+                if (this.NavigationContext.QueryString.ContainsKey("RemoveBackstack") && Convert.ToBoolean(this.NavigationContext.QueryString["RemoveBackstack"]))
+                {
+                    NavigationService.RemoveBackEntry();
+                }
+            }
         }
 
         private void btnDelete_Click(object sender, System.EventArgs e)

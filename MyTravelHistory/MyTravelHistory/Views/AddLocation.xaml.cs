@@ -16,7 +16,6 @@ namespace MyTravelHistory
 {
     public partial class AddLocation : PhoneApplicationPage
     {
-        private bool AddInContext;
         private bool NewElement;
 
         public AddLocation()
@@ -31,18 +30,6 @@ namespace MyTravelHistory
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-
-            if (this.NavigationContext.QueryString != null && this.NavigationContext.QueryString.Count > 0)
-            {
-                if (Convert.ToBoolean(this.NavigationContext.QueryString["AddInContext"]))
-                {
-                    AddInContext = true;
-                }
-                else
-                {
-                    AddInContext = false;
-                }
-            }
 
             if (e.NavigationMode != NavigationMode.Back)
             {
@@ -88,11 +75,18 @@ namespace MyTravelHistory
         {
             App.ViewModel.SelectedLocations.Name = txtName.Text;
             App.ViewModel.SelectedLocations.Latitude = txtLatitude.Text;
-            App.ViewModel.SelectedLocations.Longtitude = txtLongtitude.Text;
+            App.ViewModel.SelectedLocations.Longtitude = txtLongtitude.Text;            
 
-            App.ViewModel.AddLocation(App.ViewModel.SelectedLocations);
+            if (NewElement)
+            {
+                App.ViewModel.AddLocation(App.ViewModel.SelectedLocations);
+            }
+            else
+            {
+                App.ViewModel.SaveChangesToDB();
+            }
 
-            NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/Views/DetailsLocation.xaml?RemoveBackstack=true", UriKind.Relative));
         }
 
         private void btnCancel_Click(object sender, System.EventArgs e)
