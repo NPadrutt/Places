@@ -84,7 +84,7 @@ namespace MyTravelHistory
             diagnostics = new RadDiagnostics();
 
             //Defines the default email where the diagnostics info will be send.
-            diagnostics.EmailTo = "Me@MyCompany.com";
+            diagnostics.EmailTo = "nino.padrutt@hotmail.com";
 
             //Initializes this instance.
             diagnostics.Init();
@@ -98,13 +98,14 @@ namespace MyTravelHistory
             trialReminder.OccurrenceUsageCount = 2;
 
             //The reminder is shown only if the application is in trial mode. When this property is set to true the application will simulate that it is in trial mode.
-            trialReminder.SimulateTrialForTests = true;
+            trialReminder.SimulateTrialForTests = false;
         
 		      //Creates a new instance of the RadRateApplicationReminder component.
             rateReminder = new RadRateApplicationReminder();
 
             //Sets how often the rate reminder is displayed.
             rateReminder.RecurrencePerUsageCount = 2;
+            rateReminder.AllowUsersToSkipFurtherReminders = true;
 
             _viewModel = new MainViewModel();
             _viewModel.LoadLocations();

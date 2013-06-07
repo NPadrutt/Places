@@ -51,6 +51,9 @@ namespace MyTravelHistory
             Geolocator geolocater = new Geolocator();
             geolocater.DesiredAccuracy = PositionAccuracy.High;
 
+            progressionbarGetLocation.IsIndeterminate = true;
+            progressionbarGetLocation.Visibility = Visibility.Visible;
+
             try
             {
                 Geoposition geoposition = await geolocater.GetGeopositionAsync(
@@ -68,6 +71,11 @@ namespace MyTravelHistory
                     // the application does not have the right capability or the location master switch is off
                     MessageBox.Show("location  is disabled in phone settings.");
                 }
+            }
+            finally
+            {
+                progressionbarGetLocation.IsIndeterminate = false;
+                progressionbarGetLocation.Visibility = Visibility.Collapsed;
             }
         }
 
