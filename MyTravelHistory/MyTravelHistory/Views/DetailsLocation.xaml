@@ -37,10 +37,10 @@
 
         	<TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Text="Location" Margin="12,0,0,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
         	<StackPanel Margin="0,0,0,12" Orientation="Horizontal">
-        		<TextBlock Text="{Binding Latitude}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextLargeStyle}"/>
+        		<TextBlock Text="{Binding Latitude}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextLargeStyle}" Margin="12,0,0,0"/>
 
-        		<TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Text=" / " Style="{StaticResource PhoneTextLargeStyle}"/>
-        		<TextBlock Text="{Binding Longtitude}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextLargeStyle}"/>
+        		<TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Text="/" Style="{StaticResource PhoneTextLargeStyle}"/>
+        		<TextBlock Text="{Binding Longtitude}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextLargeStyle}" Margin="0,0,12,0"/>
 
         	</StackPanel>
 
