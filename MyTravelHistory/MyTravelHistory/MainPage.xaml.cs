@@ -30,16 +30,6 @@ namespace MyTravelHistory
             (App.Current as App).rateReminder.Notify();
         }
 
-        private void ListboxLocations_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (ListboxLocations.SelectedItem != null)
-            {
-                App.ViewModel.SelectedLocations = ListboxLocations.SelectedItem as Location;
-                NavigationService.Navigate(new Uri("/Views/DetailsLocation.xaml", UriKind.Relative));
-                ListboxLocations.SelectedItem = null;
-            }
-        }
-
         private void btnAdd_Click(object sender, System.EventArgs e)
         {
         	NavigationService.Navigate(new Uri("/Views/AddLocation.xaml", UriKind.Relative));
