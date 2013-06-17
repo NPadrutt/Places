@@ -11,6 +11,7 @@ using Windows.Devices.Geolocation;
 using System.Threading.Tasks;
 using MyTravelHistory.Resources;
 using MyTravelHistory.Models;
+using System.Globalization;
 
 namespace MyTravelHistory
 {
@@ -82,8 +83,8 @@ namespace MyTravelHistory
         private void btnDone_Click(object sender, System.EventArgs e)
         {
             App.ViewModel.SelectedLocations.Name = txtName.Text;
-            App.ViewModel.SelectedLocations.Latitude = txtLatitude.Text;
-            App.ViewModel.SelectedLocations.Longtitude = txtLongtitude.Text;            
+            App.ViewModel.SelectedLocations.Latitude = double.Parse(txtLatitude.Text, CultureInfo.CurrentCulture);
+            App.ViewModel.SelectedLocations.Longtitude = double.Parse(txtLongtitude.Text, CultureInfo.CurrentCulture);           
 
             if (NewElement)
             {

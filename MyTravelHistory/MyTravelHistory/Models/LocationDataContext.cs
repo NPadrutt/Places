@@ -46,10 +46,10 @@ namespace MyTravelHistory.Models
             }
         }
 
-        private string _latitude;
+        private double _latitude;
 
         [Column]
-        public string Latitude
+        public double Latitude
         {
             get { return _latitude; }
             set
@@ -63,10 +63,10 @@ namespace MyTravelHistory.Models
             }
         }
 
-        private string _longtitude;
+        private double _longtitude;
 
         [Column]
-        public string Longtitude
+        public double Longtitude
         {
             get { return _longtitude; }
             set
