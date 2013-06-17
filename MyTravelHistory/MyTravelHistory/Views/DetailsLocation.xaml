@@ -36,7 +36,7 @@
         	<TextBlock Text="{Binding Name}" VerticalAlignment="Top" Style="{StaticResource PhoneTextLargeStyle}" Margin="12,0,12,12"/>
 
         	<TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Text="Location" Margin="12,0,0,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
-        	<StackPanel Margin="0,0,0,12" Orientation="Horizontal">
+        	<StackPanel Margin="0,0,0,12" Orientation="Horizontal" Tap="StackPanel_Tap">
         		<TextBlock Text="{Binding Latitude}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextLargeStyle}" Margin="12,0,0,0"/>
 
         		<TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Text="/" Style="{StaticResource PhoneTextLargeStyle}"/>

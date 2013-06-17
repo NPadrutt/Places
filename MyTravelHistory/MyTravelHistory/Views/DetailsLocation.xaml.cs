@@ -49,5 +49,10 @@ namespace MyTravelHistory.Views
         {
             NavigationService.Navigate(new Uri("/Views/AddLocation.xaml", UriKind.Relative));
         }
+
+        private void StackPanel_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Views/MapView.xaml", UriKind.Relative));
+        }
     }
 }
