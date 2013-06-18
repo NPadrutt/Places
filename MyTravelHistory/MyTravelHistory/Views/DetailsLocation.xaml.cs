@@ -18,6 +18,9 @@ namespace MyTravelHistory.Views
             InitializeComponent();
 
             this.DataContext = App.ViewModel.SelectedLocation;
+
+            (ApplicationBar.Buttons[0] as ApplicationBarIconButton).Text = AppResources.EditLabel;
+            (ApplicationBar.Buttons[1] as ApplicationBarIconButton).Text = AppResources.DeleteLabel;
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)

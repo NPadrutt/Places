@@ -190,4 +190,16 @@ I'm looking forward to receive your feedback! =)</value>
   <data name="DeleteMessageTitle" xml:space="preserve">
     <value>Delete?</value>
   </data>
+  <data name="ShowAllOnMapLabel" xml:space="preserve">
+    <value>show all on Map</value>
+  </data>
+  <data name="CancelLabel" xml:space="preserve">
+    <value>cancel</value>
+  </data>
+  <data name="DeleteLabel" xml:space="preserve">
+    <value>delete</value>
+  </data>
+  <data name="EditLabel" xml:space="preserve">
+    <value>edit</value>
+  </data>
 </root>

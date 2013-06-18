@@ -106,6 +106,15 @@ namespace MyTravelHistory.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to cancel.
+        /// </summary>
+        public static string CancelLabel {
+            get {
+                return ResourceManager.GetString("CancelLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to changelog:.
         /// </summary>
         public static string ChangelogLabel {
@@ -129,6 +138,15 @@ namespace MyTravelHistory.Resources {
         public static string CurrentPositionLabel {
             get {
                 return ResourceManager.GetString("CurrentPositionLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to delete.
+        /// </summary>
+        public static string DeleteLabel {
+            get {
+                return ResourceManager.GetString("DeleteLabel", resourceCulture);
             }
         }
         
@@ -174,6 +192,15 @@ namespace MyTravelHistory.Resources {
         public static string DoneLabel {
             get {
                 return ResourceManager.GetString("DoneLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to edit.
+        /// </summary>
+        public static string EditLabel {
+            get {
+                return ResourceManager.GetString("EditLabel", resourceCulture);
             }
         }
         
@@ -238,6 +265,15 @@ namespace MyTravelHistory.Resources {
         public static string ReleaseMessageText {
             get {
                 return ResourceManager.GetString("ReleaseMessageText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to show all on Map.
+        /// </summary>
+        public static string ShowAllOnMapLabel {
+            get {
+                return ResourceManager.GetString("ShowAllOnMapLabel", resourceCulture);
             }
         }
         

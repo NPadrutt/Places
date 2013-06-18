@@ -32,6 +32,7 @@
 	<phone:PhoneApplicationPage.ApplicationBar>
 		<shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
 			<shell:ApplicationBar.MenuItems>
+				<shell:ApplicationBarMenuItem x:Name="mShowOnMap" Text="Show all on Map" Click="mShowOnMap_Click"/>
 				<shell:ApplicationBarMenuItem x:Name="mAbout" Text="About" Click="mAbout_Click"/>
 			</shell:ApplicationBar.MenuItems>
 			<shell:ApplicationBarIconButton x:Name="btnAdd" IconUri="/Assets/AppBar/add.png" Text="add" Click="btnAdd_Click"/>

@@ -11,6 +11,9 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using MyTravelHistory.Models;
+using Microsoft.Phone.Shell;
+using MyTravelHistory.Resources;
+using System.Collections.ObjectModel;
 
 namespace MyTravelHistory
 {
@@ -28,6 +31,11 @@ namespace MyTravelHistory
 
 			//Shows the rate reminder message, according to the settings of the RateReminder.
             (App.Current as App).rateReminder.Notify();
+
+            (ApplicationBar.Buttons[0] as ApplicationBarIconButton).Text = AppResources.AddLabel;
+
+            (ApplicationBar.MenuItems[0] as ApplicationBarMenuItem).Text = AppResources.ShowAllOnMapLabel;
+            (ApplicationBar.MenuItems[1] as ApplicationBarMenuItem).Text = AppResources.AboutLabel;
         }
 
         private void btnAdd_Click(object sender, System.EventArgs e)
@@ -40,6 +48,18 @@ namespace MyTravelHistory
         private void mAbout_Click(object sender, System.EventArgs e)
         {
             NavigationService.Navigate(new Uri("/Views/About.xaml", UriKind.Relative));
+        }
+
+        private void mShowOnMap_Click(object sender, System.EventArgs e)
+        {
+            App.ViewModel.SelectedLocations = new ObservableCollection<Location>();
+
+            foreach (Location location in App.ViewModel.AllLocations)
+            {
+                App.ViewModel.SelectedLocations.Add(location);
+            }
+
+            NavigationService.Navigate(new Uri("/Views/MapView.xaml?MultipleLocations=true", UriKind.Relative));
         }
     }
 }

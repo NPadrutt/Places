@@ -26,6 +26,9 @@ namespace MyTravelHistory
             GetPosition();
 
             this.DataContext = App.ViewModel.SelectedLocation;
+
+            (ApplicationBar.Buttons[0] as ApplicationBarIconButton).Text = AppResources.DoneLabel;
+            (ApplicationBar.Buttons[1] as ApplicationBarIconButton).Text = AppResources.CancelLabel;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
