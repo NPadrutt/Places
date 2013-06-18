@@ -32,7 +32,7 @@ namespace MyTravelHistory
 
         private void btnAdd_Click(object sender, System.EventArgs e)
         {
-            App.ViewModel.SelectedLocations = null;
+            App.ViewModel.SelectedLocation = null;
 
         	NavigationService.Navigate(new Uri("/Views/AddLocation.xaml", UriKind.Relative));
         }

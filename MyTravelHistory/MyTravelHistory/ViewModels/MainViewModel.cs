@@ -51,8 +51,19 @@ namespace MyTravelHistory.ViewModels
 
         #region Location
 
-        private Location _selectedLocations;
-        public Location SelectedLocations
+        private Location _selectedLocation;
+        public Location SelectedLocation
+        {
+            get { return _selectedLocation; }
+            set
+            {
+                _selectedLocation = value;
+                NotifyPropertyChanged("SelectedLocation");
+            }
+        }
+
+        private ObservableCollection<Location> _selectedLocations;
+        public ObservableCollection<Location> SelectedLocations
         {
             get { return _selectedLocations; }
             set

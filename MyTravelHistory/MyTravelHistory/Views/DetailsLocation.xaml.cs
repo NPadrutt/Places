@@ -17,7 +17,7 @@ namespace MyTravelHistory.Views
         {
             InitializeComponent();
 
-            this.DataContext = App.ViewModel.SelectedLocations;
+            this.DataContext = App.ViewModel.SelectedLocation;
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
@@ -39,7 +39,7 @@ namespace MyTravelHistory.Views
 
             if (result == MessageBoxResult.OK)
             {
-                App.ViewModel.DeleteLocation(App.ViewModel.SelectedLocations);
+                App.ViewModel.DeleteLocation(App.ViewModel.SelectedLocation);
             }
 
             NavigationService.GoBack();

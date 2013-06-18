@@ -25,7 +25,7 @@ namespace MyTravelHistory
 
             GetPosition();
 
-            this.DataContext = App.ViewModel.SelectedLocations;
+            this.DataContext = App.ViewModel.SelectedLocation;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -34,9 +34,9 @@ namespace MyTravelHistory
 
             if (e.NavigationMode != NavigationMode.Back)
             {
-                if (App.ViewModel.SelectedLocations == null)
+                if (App.ViewModel.SelectedLocation == null)
                 {
-                    App.ViewModel.SelectedLocations = new Location();
+                    App.ViewModel.SelectedLocation = new Location();
                     PageTitle.Text = AppResources.AddTitle;
                     NewElement = true;
                 }
@@ -82,13 +82,13 @@ namespace MyTravelHistory
 
         private void btnDone_Click(object sender, System.EventArgs e)
         {
-            App.ViewModel.SelectedLocations.Name = txtName.Text;
-            App.ViewModel.SelectedLocations.Latitude = double.Parse(txtLatitude.Text, CultureInfo.CurrentCulture);
-            App.ViewModel.SelectedLocations.Longtitude = double.Parse(txtLongtitude.Text, CultureInfo.CurrentCulture);           
+            App.ViewModel.SelectedLocation.Name = txtName.Text;
+            App.ViewModel.SelectedLocation.Latitude = double.Parse(txtLatitude.Text, CultureInfo.CurrentCulture);
+            App.ViewModel.SelectedLocation.Longtitude = double.Parse(txtLongtitude.Text, CultureInfo.CurrentCulture);           
 
             if (NewElement)
             {
-                App.ViewModel.AddLocation(App.ViewModel.SelectedLocations);
+                App.ViewModel.AddLocation(App.ViewModel.SelectedLocation);
             }
             else
             {
