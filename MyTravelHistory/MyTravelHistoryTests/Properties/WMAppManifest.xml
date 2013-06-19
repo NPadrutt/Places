@@ -2,7 +2,7 @@
 
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2012/deployment" AppPlatformVersion="8.0">
   <DefaultLanguage xmlns="" code="en-US"/>
-  <App xmlns="" ProductID="{9a0f2844-7090-4a66-b705-7f5d44ad1b61}" Title="MyTravelHistoryTests" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal"  Author="MyTravelHistoryTests author" Description="Sample description" Publisher="MyTravelHistoryTests" PublisherID="{d327b9ce-0ea1-49ef-a8a2-d892ae489aaa}">
+  <App xmlns="" ProductID="{3c053978-91f9-40d9-b15c-43d876bb81b7}" Title="MyTravelHistoryTests" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal"  Author="MyTravelHistoryTests author" Description="Sample description" Publisher="MyTravelHistoryTests" PublisherID="{2e1393c8-942b-4a29-903b-c4d74d5be291}">
     <IconPath IsRelative="true" IsResource="false">Assets\ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING"/>
@@ -29,6 +29,14 @@
         </TemplateFlip>
       </PrimaryToken>
     </Tokens>
+    <ActivatableClasses>
+      <InProcessServer>
+        <Path>vstest_executionengine_platformbridge.dll</Path>
+        <ActivatableClass ActivatableClassId="vstest_executionengine_platformbridge.ServiceMain" ThreadingModel="both" />
+        <ActivatableClass ActivatableClassId="vstest_executionengine_platformbridge.MessageTransmitter" ThreadingModel="both" />
+        <ActivatableClass ActivatableClassId="vstest_executionengine_platformbridge.NativeMethods" ThreadingModel="both" />
+      </InProcessServer>
+    </ActivatableClasses>
     <ScreenResolutions>
       <ScreenResolution Name="ID_RESOLUTION_WVGA"/>
       <ScreenResolution Name="ID_RESOLUTION_WXGA"/>

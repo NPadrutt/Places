@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyTravelHistory.Src
 {
-    class Utilities
+    public class Utilities
     {
         public static string GetVersion()
         {

@@ -8,7 +8,11 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using MyTravelHistoryTests.Resources;
-using Microsoft.Phone.Testing;
+using System.Threading;
+using Microsoft.VisualStudio.TestPlatform.Core;
+using vstest_executionengine_platformbridge;
+using Microsoft.VisualStudio.TestPlatform.TestExecutor;
+using System.Reflection;
 
 namespace MyTravelHistoryTests
 {
@@ -19,7 +23,9 @@ namespace MyTravelHistoryTests
         {
             InitializeComponent();
 
-            this.Content = UnitTestSystem.CreateTestPage();
+            var wrapper = new TestExecutorServiceWrapper();
+            new Thread(new ServiceMain((param0, param1) => wrapper.SendMessage((ContractName)param0, param1)).Run).Start();
+
         }
     }
 }
