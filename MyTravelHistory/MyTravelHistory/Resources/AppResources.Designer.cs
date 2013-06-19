@@ -106,6 +106,33 @@ namespace MyTravelHistory.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your backup was created succesfully!.
+        /// </summary>
+        public static string BackupCreatedMessage {
+            get {
+                return ResourceManager.GetString("BackupCreatedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to backup / restore.
+        /// </summary>
+        public static string BackupLabel {
+            get {
+                return ResourceManager.GetString("BackupLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to backup / restore.
+        /// </summary>
+        public static string BackupTitle {
+            get {
+                return ResourceManager.GetString("BackupTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to cancel.
         /// </summary>
         public static string CancelLabel {
@@ -129,6 +156,33 @@ namespace MyTravelHistory.Resources {
         public static string ChangelogText {
             get {
                 return ResourceManager.GetString("ChangelogText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string ConfirmRestoreBackupMessage {
+            get {
+                return ResourceManager.GetString("ConfirmRestoreBackupMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Restore Backup?.
+        /// </summary>
+        public static string ConfirmRestoreBackupMessageTitle {
+            get {
+                return ResourceManager.GetString("ConfirmRestoreBackupMessageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to create backup.
+        /// </summary>
+        public static string CreateBackupLabel {
+            get {
+                return ResourceManager.GetString("CreateBackupLabel", resourceCulture);
             }
         }
         
@@ -196,6 +250,15 @@ namespace MyTravelHistory.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Done!.
+        /// </summary>
+        public static string DoneMessageTitle {
+            get {
+                return ResourceManager.GetString("DoneMessageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to edit.
         /// </summary>
         public static string EditLabel {
@@ -210,6 +273,24 @@ namespace MyTravelHistory.Resources {
         public static string EditTitle {
             get {
                 return ResourceManager.GetString("EditTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sorry, there went something Wrong..
+        /// </summary>
+        public static string GeneralErrorMessage {
+            get {
+                return ResourceManager.GetString("GeneralErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to load backup.
+        /// </summary>
+        public static string LoadBackupLabel {
+            get {
+                return ResourceManager.GetString("LoadBackupLabel", resourceCulture);
             }
         }
         
@@ -241,6 +322,25 @@ namespace MyTravelHistory.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to If you continue the existing backup on skydrive will be overwritten.
+        ///Do you wanna proceed?.
+        /// </summary>
+        public static string OverwriteBackupMessage {
+            get {
+                return ResourceManager.GetString("OverwriteBackupMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Overwrite backup?.
+        /// </summary>
+        public static string OverwriteBackupTitle {
+            get {
+                return ResourceManager.GetString("OverwriteBackupTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rate MyMedi!.
         /// </summary>
         public static string RateAppLabel {
@@ -265,6 +365,33 @@ namespace MyTravelHistory.Resources {
         public static string ReleaseMessageText {
             get {
                 return ResourceManager.GetString("ReleaseMessageText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to restore backup.
+        /// </summary>
+        public static string RestoreBackupLabel {
+            get {
+                return ResourceManager.GetString("RestoreBackupLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Backup successful restored! I will take you to your MainPage..
+        /// </summary>
+        public static string RestoreCompletedMessage {
+            get {
+                return ResourceManager.GetString("RestoreCompletedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to restore.
+        /// </summary>
+        public static string RestoreTitle {
+            get {
+                return ResourceManager.GetString("RestoreTitle", resourceCulture);
             }
         }
         

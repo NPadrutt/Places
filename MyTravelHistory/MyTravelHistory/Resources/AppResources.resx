@@ -202,4 +202,47 @@ I'm looking forward to receive your feedback! =)</value>
   <data name="EditLabel" xml:space="preserve">
     <value>edit</value>
   </data>
+  <data name="BackupTitle" xml:space="preserve">
+    <value>backup / restore</value>
+  </data>
+  <data name="BackupLabel" xml:space="preserve">
+    <value>backup / restore</value>
+  </data>
+  <data name="CreateBackupLabel" xml:space="preserve">
+    <value>create backup</value>
+  </data>
+  <data name="LoadBackupLabel" xml:space="preserve">
+    <value>load backup</value>
+  </data>
+  <data name="RestoreBackupLabel" xml:space="preserve">
+    <value>restore backup</value>
+  </data>
+  <data name="RestoreTitle" xml:space="preserve">
+    <value>restore</value>
+  </data>
+  <data name="BackupCreatedMessage" xml:space="preserve">
+    <value>Your backup was created succesfully!</value>
+  </data>
+  <data name="ConfirmRestoreBackupMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ConfirmRestoreBackupMessageTitle" xml:space="preserve">
+    <value>Restore Backup?</value>
+  </data>
+  <data name="DoneMessageTitle" xml:space="preserve">
+    <value>Done!</value>
+  </data>
+  <data name="GeneralErrorMessage" xml:space="preserve">
+    <value>Sorry, there went something Wrong.</value>
+  </data>
+  <data name="OverwriteBackupMessage" xml:space="preserve">
+    <value>If you continue the existing backup on skydrive will be overwritten.
+Do you wanna proceed?</value>
+  </data>
+  <data name="OverwriteBackupTitle" xml:space="preserve">
+    <value>Overwrite backup?</value>
+  </data>
+  <data name="RestoreCompletedMessage" xml:space="preserve">
+    <value>Backup successful restored! I will take you to your MainPage.</value>
+  </data>
 </root>

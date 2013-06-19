@@ -9,8 +9,8 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using System.Device.Location;
 using Microsoft.Phone.Maps.Controls;
-using Microsoft.Phone.Maps.Toolkit;
 using MyTravelHistory.Models;
+using Microsoft.Phone.Maps.Toolkit;
 
 namespace MyTravelHistory.Views
 {

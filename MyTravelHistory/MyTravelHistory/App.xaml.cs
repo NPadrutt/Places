@@ -24,6 +24,10 @@ namespace MyTravelHistory
         public static MainViewModel ViewModel
         {
             get { return _viewModel; }
+            set
+            {
+                _viewModel = value;
+            }
         }
 
         /// <summary>
