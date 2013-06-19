@@ -119,9 +119,10 @@ namespace MyTravelHistory
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
-            //Before using any of the ApplicationBuildingBlocks, this class should be initialized with the version of the application.
-            ApplicationUsageHelper.Init("1.0");
-        
+#if !DEBUG
+                FlurryWP8SDK.Api.StartSession("HKN24VVBRHX4833D8VCR");
+#endif
+            ApplicationUsageHelper.Init(System.Reflection.Assembly.GetExecutingAssembly().FullName.Split('=')[1].Split(',')[0]);
 		}
 
         // Code to execute when the application is activated (brought to foreground)

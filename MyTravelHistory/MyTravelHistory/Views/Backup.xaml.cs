@@ -26,6 +26,7 @@ namespace MyTravelHistory.Views
         private static string backupId;
 
         private const string BACKUPNAME = "MyTravelHistoryBackup";
+        private const string DATABASENAME = "MyTravelHistory";
 
         public Backup()
         {
@@ -34,8 +35,8 @@ namespace MyTravelHistory.Views
             busyProceedAction.Content = AppResources.LoadBackupLabel;
             busyProceedAction.IsRunning = true;
 
-            //Api.LogEvent("CreateBackUp()");
-            //Api.LogEvent("RestoreBackUp()");
+            Api.LogEvent("CreateBackUp()");
+            Api.LogEvent("RestoreBackUp()");
         }
 
         private async void SignInButton_SessionChanged(object sender, Microsoft.Live.Controls.LiveConnectSessionChangedEventArgs e)
@@ -136,7 +137,7 @@ namespace MyTravelHistory.Views
 
             using (IsolatedStorageFile store = IsolatedStorageFile.GetUserStoreForApplication())
             {
-                fileStream = store.OpenFile("MyTravelHistory.sdf", FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+                fileStream = store.OpenFile(DATABASENAME + ".sdf", FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
                 LiveOperationResult operationResult = await liveClient.UploadAsync(folderId, BACKUPNAME + ".sdf", fileStream, OverwriteOption.Overwrite);
                 dynamic result = operationResult.Result;
                 folderId = result.id;
@@ -244,7 +245,7 @@ namespace MyTravelHistory.Views
                         // Obtain the virtual store for the application.
                         IsolatedStorageFile myStore = IsolatedStorageFile.GetUserStoreForApplication();
 
-                        IsolatedStorageFileStream myStream = myStore.CreateFile("MyTravelHistory.sdf");
+                        IsolatedStorageFileStream myStream = myStore.CreateFile(DATABASENAME + ".sdf");
                         myStream.Write(stream.GetBuffer(), 0, (int)stream.Length);
                         stream.Flush();
                         myStream.Close();

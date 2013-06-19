@@ -350,6 +350,15 @@ namespace MyTravelHistory.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You must be logged in to backup or restore your data..
+        /// </summary>
+        public static string PleaseLogInText {
+            get {
+                return ResourceManager.GetString("PleaseLogInText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rate MyMedi!.
         /// </summary>
         public static string RateAppLabel {

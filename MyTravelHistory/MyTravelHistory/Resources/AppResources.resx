@@ -248,4 +248,7 @@ Do you wanna proceed?</value>
   <data name="RestoreCompletedMessage" xml:space="preserve">
     <value>Backup successful restored! I will take you to your MainPage.</value>
   </data>
+  <data name="PleaseLogInText" xml:space="preserve">
+    <value>You must be logged in to backup or restore your data.</value>
+  </data>
 </root>
