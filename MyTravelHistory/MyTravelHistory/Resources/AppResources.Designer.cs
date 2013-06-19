@@ -160,7 +160,7 @@ namespace MyTravelHistory.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Do you wanna restore your backup? Your current data will be overwritten.
         /// </summary>
         public static string ConfirmRestoreBackupMessage {
             get {
@@ -282,6 +282,15 @@ namespace MyTravelHistory.Resources {
         public static string GeneralErrorMessage {
             get {
                 return ResourceManager.GetString("GeneralErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your last backup was created at: .
+        /// </summary>
+        public static string LastBackupLabel {
+            get {
+                return ResourceManager.GetString("LastBackupLabel", resourceCulture);
             }
         }
         

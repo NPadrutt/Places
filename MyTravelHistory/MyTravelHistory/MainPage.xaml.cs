@@ -35,7 +35,8 @@ namespace MyTravelHistory
             (ApplicationBar.Buttons[0] as ApplicationBarIconButton).Text = AppResources.AddLabel;
 
             (ApplicationBar.MenuItems[0] as ApplicationBarMenuItem).Text = AppResources.ShowAllOnMapLabel;
-            (ApplicationBar.MenuItems[1] as ApplicationBarMenuItem).Text = AppResources.AboutLabel;
+            (ApplicationBar.MenuItems[1] as ApplicationBarMenuItem).Text = AppResources.BackupLabel;
+            (ApplicationBar.MenuItems[2] as ApplicationBarMenuItem).Text = AppResources.AboutLabel;
         }
 
         private void btnAdd_Click(object sender, System.EventArgs e)
@@ -60,6 +61,11 @@ namespace MyTravelHistory
             }
 
             NavigationService.Navigate(new Uri("/Views/MapView.xaml?MultipleLocations=true", UriKind.Relative));
+        }
+
+        private void mBackup_Click(object sender, System.EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Views/Backup.xaml", UriKind.Relative));
         }
     }
 }

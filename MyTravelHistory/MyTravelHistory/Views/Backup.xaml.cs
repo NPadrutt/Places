@@ -17,13 +17,15 @@ using FlurryWP8SDK;
 using MyTravelHistory;
 using MyTravelHistory.ViewModels;
 
-namespace SleepTracker
+namespace MyTravelHistory.Views
 {
     public partial class Backup : PhoneApplicationPage
     {
         private LiveConnectClient liveClient;
         private static string folderId;
         private static string backupId;
+
+        private const string BACKUPNAME = "MyTravelHistoryBackup";
 
         public Backup()
         {
@@ -93,7 +95,7 @@ namespace SleepTracker
                 {
                     foreach (var file in data)
                     {
-                        if (file.name == "SleeptrackerBackup.sdf")
+                        if (file.name == BACKUPNAME + ".sdf")
                         {
                             backupId = file.id;
                         }
@@ -134,8 +136,8 @@ namespace SleepTracker
 
             using (IsolatedStorageFile store = IsolatedStorageFile.GetUserStoreForApplication())
             {
-                fileStream = store.OpenFile("Sleeptracker.sdf", FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
-                LiveOperationResult operationResult = await liveClient.UploadAsync(folderId, "MyTravelHistoryBackup" + ".sdf", fileStream, OverwriteOption.Overwrite);
+                fileStream = store.OpenFile("MyTravelHistory.sdf", FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+                LiveOperationResult operationResult = await liveClient.UploadAsync(folderId, BACKUPNAME + ".sdf", fileStream, OverwriteOption.Overwrite);
                 dynamic result = operationResult.Result;
                 folderId = result.id;
                 fileStream.Flush();
