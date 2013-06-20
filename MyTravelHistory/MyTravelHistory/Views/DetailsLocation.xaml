@@ -6,6 +6,7 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:telerikSlideView="clr-namespace:Telerik.Windows.Controls.SlideView;assembly=Telerik.Windows.Controls.Primitives"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
@@ -32,7 +33,11 @@
             <TextBlock Text="{Binding LocalizedResources.DetailsTitle, Source={StaticResource LocalizedStrings}}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
         <StackPanel x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0" d:DataContext="{Binding AllLocations[0]}">
-        	<TextBlock VerticalAlignment="Top" Text="Name" Style="{StaticResource PhoneTextSubtleStyle}"/>
+            <telerikPrimitives:RadWindow x:Name="ImageViewer" IsFullScreen="true" IsClosedOnOutsideTap="True">
+                <telerikSlideView:PanAndZoomImage x:Name="LocationImageLarge" Loaded="" Stretch="UniformToFill" MaximumZoom="8" ZoomMode="Free" ImageHorizontalAlignment="Stretch" ImageVerticalAlignment="Stretch" />
+            </telerikPrimitives:RadWindow>
+            <Image x:Name="medicineImage" HorizontalAlignment="Left" Height="171" VerticalAlignment="Center" Tap="medicineImage_Tap" Margin="0" Stretch="UniformToFill" Width="171" Loaded="medicineImage_Loaded"/>
+            <TextBlock VerticalAlignment="Top" Text="Name" Style="{StaticResource PhoneTextSubtleStyle}"/>
         	<TextBlock Text="{Binding Name}" VerticalAlignment="Top" Style="{StaticResource PhoneTextLargeStyle}" Margin="12,0,12,12"/>
 
         	<TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Text="Location" Margin="12,0,0,0" Style="{StaticResource PhoneTextSubtleStyle}"/>

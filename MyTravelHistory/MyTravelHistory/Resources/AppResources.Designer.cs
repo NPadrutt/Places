@@ -79,6 +79,15 @@ namespace MyTravelHistory.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to add image.
+        /// </summary>
+        public static string AddImageLabel {
+            get {
+                return ResourceManager.GetString("AddImageLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to add.
         /// </summary>
         public static string AddLabel {

@@ -29,6 +29,23 @@ namespace MyTravelHistory.Models
             }
         }
 
+        private byte[] _locationImage;
+
+        [Column(DbType = "image")]
+        public byte[] LocationImage
+        {
+            get { return _locationImage; }
+            set
+            {
+                if (_locationImage != value)
+                {
+                    NotifyPropertyChanging("LocationImage");
+                    _locationImage = value;
+                    NotifyPropertyChanged("LocationImage");
+                }
+            }
+        }
+
         private string _name;
 
         [Column]

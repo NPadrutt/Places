@@ -12,6 +12,9 @@ using System.Threading.Tasks;
 using MyTravelHistory.Resources;
 using MyTravelHistory.Models;
 using System.Globalization;
+using MyTravelHistory.Src;
+using Microsoft.Phone.Tasks;
+using System.Windows.Media.Imaging;
 
 namespace MyTravelHistory
 {
@@ -19,11 +22,11 @@ namespace MyTravelHistory
     {
         private bool NewElement;
 
+        CameraCaptureTask cameraCaptureTask;
+
         public AddLocation()
         {
             InitializeComponent();
-
-            GetPosition();
 
             this.DataContext = App.ViewModel.SelectedLocation;
 
@@ -41,6 +44,7 @@ namespace MyTravelHistory
                 {
                     App.ViewModel.SelectedLocation = new Location();
                     PageTitle.Text = AppResources.AddTitle;
+                    GetPosition();
                     NewElement = true;
                 }
                 else
@@ -104,6 +108,33 @@ namespace MyTravelHistory
         private void btnCancel_Click(object sender, System.EventArgs e)
         {
             NavigationService.GoBack();
+        }
+
+        private void Grid_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            cameraCaptureTask = new CameraCaptureTask();
+            cameraCaptureTask.Completed += new EventHandler<PhotoResult>(cameraCaptureTask_Completed);
+            cameraCaptureTask.Show();
+        }
+
+        void cameraCaptureTask_Completed(object sender, PhotoResult e)
+        {
+            if (e.TaskResult == TaskResult.OK)
+            {
+                WriteableBitmap bmp = new WriteableBitmap(1000, 2000);
+                bmp.LoadJpeg(e.ChosenPhoto);
+                medicineImage.Source = bmp;
+
+                App.ViewModel.SelectedLocation.LocationImage = Utilities.ConvertToBytes(bmp);
+            }
+        }
+
+        private void LocationImage_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            if (App.ViewModel.SelectedLocation.LocationImage != null)
+            {
+                medicineImage.Source = Utilities.ConvertToImage(App.ViewModel.SelectedLocation.LocationImage);
+            }
         }
     }
 }

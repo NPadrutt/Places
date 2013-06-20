@@ -33,9 +33,13 @@
 			<TextBlock x:Name="PageTitle" Text="Add / Edit" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
 		</StackPanel>
 		<StackPanel x:Name="ContentPanel" Grid.Row="1" Margin="10,0,14,0" d:DataContext="{Binding AllLocations[0]}">
-            <telerikPrimitives:RadTextBox x:Name="txtName" Text="{Binding Name}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0" Header="{Binding Path=LocalizedResources.NameLabel, Source={StaticResource LocalizedStrings}}"/>
+            <Grid Margin="0,0,285,0" Background="{StaticResource PhoneAccentBrush}" Tap="Grid_Tap">
+				<Image x:Name="LocationImage" HorizontalAlignment="Left" Height="171" VerticalAlignment="Center" Margin="0" Stretch="UniformToFill" Width="171" Loaded="LocationImage_Loaded"/>
+				<TextBlock x:Name="lblAddImage" TextWrapping="Wrap" Text="{Binding LocalizedResources.AddImageLabel, Source={StaticResource LocalizedStrings}}" VerticalAlignment="Bottom" Style="{StaticResource PhoneTextTitle3Style}" Margin="0"/>
+			</Grid>
+            <telerikPrimitives:RadTextBox x:Name="txtName" Text="{Binding Name}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0" Header="{Binding LocalizedResources.NameLabel, Source={StaticResource LocalizedStrings}}"/>
             <ProgressBar x:Name="progressionbarGetLocation" Height="10" Margin="0" IsIndeterminate="True"/>
-            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Text="{Binding Path=LocalizedResources.CurrentPositionLabel, Source={StaticResource LocalizedStrings}}" Margin="12,0,0,0" Style="{StaticResource PhoneTextSmallStyle}"/>
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Text="{Binding LocalizedResources.CurrentPositionLabel, Source={StaticResource LocalizedStrings}}" Margin="12,0,0,0" Style="{StaticResource PhoneTextSmallStyle}"/>
 			<StackPanel Margin="12,0,0,0" Orientation="Horizontal">
 				<TextBlock x:Name="txtLatitude" Text="{Binding Latitude}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Style="{StaticResource PhoneTextNormalStyle}"/>
 				<TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Text=" / " Margin="0" Style="{StaticResource PhoneTextNormalStyle}"/>
