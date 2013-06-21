@@ -114,6 +114,23 @@ namespace MyTravelHistory.Models
             }
         }
 
+        private string _comment;
+
+        [Column]
+        public string Comment
+        {
+            get { return _comment; }
+            set
+            {
+                if (_comment != value)
+                {
+                    NotifyPropertyChanging("Comment");
+                    _comment = value;
+                    NotifyPropertyChanged("Comment");
+                }
+            }
+        }
+
         [Column(IsVersion = true)]
         private Binary _version;
 
