@@ -33,7 +33,7 @@
 			<TextBlock x:Name="PageTitle" Text="Add / Edit" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
 		</StackPanel>
 		<StackPanel x:Name="ContentPanel" Grid.Row="1" Margin="10,0,14,0" d:DataContext="{Binding AllLocations[0]}">
-            <Grid Margin="0,0,285,0" Background="{StaticResource PhoneAccentBrush}" Tap="Grid_Tap">
+            <Grid Margin="12,0,0,0" Background="{StaticResource PhoneAccentBrush}" Tap="Grid_Tap" HorizontalAlignment="Left" Width="171" Height="171">
 				<Image x:Name="LocationImage" HorizontalAlignment="Left" Height="171" VerticalAlignment="Center" Margin="0" Stretch="UniformToFill" Width="171" Loaded="LocationImage_Loaded"/>
 				<TextBlock x:Name="lblAddImage" TextWrapping="Wrap" Text="{Binding LocalizedResources.AddImageLabel, Source={StaticResource LocalizedStrings}}" VerticalAlignment="Bottom" Style="{StaticResource PhoneTextTitle3Style}" Margin="0"/>
 			</Grid>
