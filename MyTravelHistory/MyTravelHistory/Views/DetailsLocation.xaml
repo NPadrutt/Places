@@ -39,7 +39,7 @@
             <telerikPrimitives:RadWindow x:Name="ImageViewer" IsFullScreen="true" IsClosedOnOutsideTap="True" MaxWidth="171" MaxHeight="171">
                 <telerikSlideView:PanAndZoomImage x:Name="locationImageLarge" Loaded="LocationImageLarge_Loaded" Stretch="UniformToFill" MaximumZoom="8" ZoomMode="Free" ImageHorizontalAlignment="Stretch" ImageVerticalAlignment="Stretch" />
             </telerikPrimitives:RadWindow>
-            <Image x:Name="locationImage" HorizontalAlignment="Left" VerticalAlignment="Center" Tap="locationImage_Tap" Margin="12,0,0,0" Stretch="UniformToFill" Loaded="locationImage_Loaded" MaxWidth="171" MaxHeight="171"/>
+            <Image x:Name="locationImage" HorizontalAlignment="Left" VerticalAlignment="Center" Tap="locationImage_Tap" Margin="12,0,0,12" Stretch="UniformToFill" Loaded="locationImage_Loaded" MaxWidth="171" MaxHeight="171"/>
         	<TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Text="Location" Margin="12,0,0,0" Style="{StaticResource PhoneTextLargeStyle}"/>
         	<StackPanel Margin="0,0,0,12" Orientation="Horizontal" Tap="StackPanel_Tap">
         		<TextBlock Text="{Binding Latitude}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextAccentStyle}" Margin="12,0,0,0"/>
