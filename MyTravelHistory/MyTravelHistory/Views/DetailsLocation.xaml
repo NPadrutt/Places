@@ -16,8 +16,10 @@
     shell:SystemTray.IsVisible="True">
 	<phone:PhoneApplicationPage.ApplicationBar>
 		<shell:ApplicationBar>
+			<shell:ApplicationBar.MenuItems>
+				<shell:ApplicationBarMenuItem x:Name="mDelete" Text="delete" Click="mDelete_Click"/>
+			</shell:ApplicationBar.MenuItems>
 			<shell:ApplicationBarIconButton x:Name="btnEdit" IconUri="/Assets/AppBar/edit.png" Text="edit" Click="btnEdit_Click"/>
-			<shell:ApplicationBarIconButton x:Name="btnDelete" IconUri="/Assets/AppBar/delete.png" Text="delete" Click="btnDelete_Click"/>
 		</shell:ApplicationBar>
 	</phone:PhoneApplicationPage.ApplicationBar>
 
@@ -31,22 +33,19 @@
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel Grid.Row="0" Margin="12,17,0,28">
             <TextBlock Text="{Binding LocalizedResources.LocationTitle, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock Text="{Binding LocalizedResources.DetailsTitle, Source={StaticResource LocalizedStrings}}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock Text="{Binding Name}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
         <StackPanel x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0" d:DataContext="{Binding AllLocations[0]}">
             <telerikPrimitives:RadWindow x:Name="ImageViewer" IsFullScreen="true" IsClosedOnOutsideTap="True" MaxWidth="171" MaxHeight="171">
                 <telerikSlideView:PanAndZoomImage x:Name="locationImageLarge" Loaded="LocationImageLarge_Loaded" Stretch="UniformToFill" MaximumZoom="8" ZoomMode="Free" ImageHorizontalAlignment="Stretch" ImageVerticalAlignment="Stretch" />
             </telerikPrimitives:RadWindow>
             <Image x:Name="locationImage" HorizontalAlignment="Left" VerticalAlignment="Center" Tap="locationImage_Tap" Margin="12,0,0,0" Stretch="UniformToFill" Loaded="locationImage_Loaded" MaxWidth="171" MaxHeight="171"/>
-            <TextBlock VerticalAlignment="Top" Text="Name" Style="{StaticResource PhoneTextSubtleStyle}"/>
-        	<TextBlock Text="{Binding Name}" VerticalAlignment="Top" Style="{StaticResource PhoneTextLargeStyle}" Margin="12,0,12,12"/>
-
-        	<TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Text="Location" Margin="12,0,0,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+        	<TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Text="Location" Margin="12,0,0,0" Style="{StaticResource PhoneTextLargeStyle}"/>
         	<StackPanel Margin="0,0,0,12" Orientation="Horizontal" Tap="StackPanel_Tap">
-        		<TextBlock Text="{Binding Latitude}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextLargeStyle}" Margin="12,0,0,0"/>
+        		<TextBlock Text="{Binding Latitude}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextAccentStyle}" Margin="12,0,0,0"/>
 
-        		<TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Text="/" Style="{StaticResource PhoneTextLargeStyle}"/>
-        		<TextBlock Text="{Binding Longtitude}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextLargeStyle}" Margin="0,0,12,0"/>
+        		<TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Text="/" Style="{StaticResource PhoneTextAccentStyle}"/>
+        		<TextBlock Text="{Binding Longtitude}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextAccentStyle}" Margin="0,0,12,0"/>
 
         	</StackPanel>
 

@@ -21,7 +21,8 @@ namespace MyTravelHistory.Views
             this.DataContext = App.ViewModel.SelectedLocation;
 
             (ApplicationBar.Buttons[0] as ApplicationBarIconButton).Text = AppResources.EditLabel;
-            (ApplicationBar.Buttons[1] as ApplicationBarIconButton).Text = AppResources.DeleteLabel;
+            
+			(ApplicationBar.MenuItems[0] as ApplicationBarMenuItem).Text = AppResources.DeleteLabel;
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
@@ -36,19 +37,7 @@ namespace MyTravelHistory.Views
                 }
             }
         }
-
-        private void btnDelete_Click(object sender, System.EventArgs e)
-        {
-            MessageBoxResult result = MessageBox.Show(AppResources.DeleteMessage, AppResources.DeleteMessageTitle, MessageBoxButton.OKCancel);
-
-            if (result == MessageBoxResult.OK)
-            {
-                App.ViewModel.DeleteLocation(App.ViewModel.SelectedLocation);
-            }
-
-            NavigationService.GoBack();
-        }
-
+		
         private void btnEdit_Click(object sender, System.EventArgs e)
         {
             NavigationService.Navigate(new Uri("/Views/AddLocation.xaml", UriKind.Relative));
@@ -79,5 +68,17 @@ namespace MyTravelHistory.Views
                 locationImageLarge.Source = Utilities.ConvertToImage(App.ViewModel.SelectedLocation.LocationImage);
             }
         }
+
+        private void mDelete_Click(object sender, System.EventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show(AppResources.DeleteMessage, AppResources.DeleteMessageTitle, MessageBoxButton.OKCancel);
+
+            if (result == MessageBoxResult.OK)
+            {
+                App.ViewModel.DeleteLocation(App.ViewModel.SelectedLocation);
+            }
+
+            NavigationService.GoBack();        
+		}
     }
 }
