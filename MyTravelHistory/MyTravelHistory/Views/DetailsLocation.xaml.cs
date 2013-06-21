@@ -8,6 +8,7 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using MyTravelHistory.Resources;
+using MyTravelHistory.Src;
 
 namespace MyTravelHistory.Views
 {
@@ -56,6 +57,27 @@ namespace MyTravelHistory.Views
         private void StackPanel_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             NavigationService.Navigate(new Uri("/Views/MapView.xaml", UriKind.Relative));
+        }
+
+        private void locationImage_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            ImageViewer.IsOpen = true;
+        }
+
+        private void locationImage_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (App.ViewModel.SelectedLocation.LocationImage != null)
+            {
+                locationImage.Source = Utilities.ConvertToImage(App.ViewModel.SelectedLocation.LocationImage);
+            }
+        }
+
+        private void LocationImageLarge_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (App.ViewModel.SelectedLocation.LocationImage != null)
+            {
+                locationImageLarge.Source = Utilities.ConvertToImage(App.ViewModel.SelectedLocation.LocationImage);
+            }
         }
     }
 }

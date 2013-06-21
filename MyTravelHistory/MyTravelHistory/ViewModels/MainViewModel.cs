@@ -33,6 +33,11 @@ namespace MyTravelHistory.ViewModels
                 schemaUpdate.DatabaseSchemaVersion = db.SCHEMAVERSION;
                 schemaUpdate.Execute();
             }
+            else
+            {
+                UpdateHelper updateHelper = new UpdateHelper();
+                updateHelper.UpdateDatabase(db);
+            }
         }
 
         public void SaveChangesToDB()

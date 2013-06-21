@@ -90,8 +90,14 @@ namespace MyTravelHistory
         private void btnDone_Click(object sender, System.EventArgs e)
         {
             App.ViewModel.SelectedLocation.Name = txtName.Text;
-            App.ViewModel.SelectedLocation.Latitude = double.Parse(txtLatitude.Text, CultureInfo.CurrentCulture);
-            App.ViewModel.SelectedLocation.Longtitude = double.Parse(txtLongtitude.Text, CultureInfo.CurrentCulture);           
+            if (txtLatitude.Text != string.Empty)
+            {
+                App.ViewModel.SelectedLocation.Latitude = double.Parse(txtLatitude.Text, CultureInfo.CurrentCulture);
+            }
+            if (txtLongtitude.Text != string.Empty)
+            {
+                App.ViewModel.SelectedLocation.Longtitude = double.Parse(txtLongtitude.Text, CultureInfo.CurrentCulture);
+            }
 
             if (NewElement)
             {
@@ -123,7 +129,8 @@ namespace MyTravelHistory
             {
                 WriteableBitmap bmp = new WriteableBitmap(1000, 2000);
                 bmp.LoadJpeg(e.ChosenPhoto);
-                medicineImage.Source = bmp;
+                LocationImage.Source = bmp;
+                lblAddImage.Visibility = Visibility.Collapsed;
 
                 App.ViewModel.SelectedLocation.LocationImage = Utilities.ConvertToBytes(bmp);
             }
@@ -131,9 +138,10 @@ namespace MyTravelHistory
 
         private void LocationImage_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            if (App.ViewModel.SelectedLocation.LocationImage != null)
+            if (!NewElement && App.ViewModel.SelectedLocation.LocationImage != null)
             {
-                medicineImage.Source = Utilities.ConvertToImage(App.ViewModel.SelectedLocation.LocationImage);
+                LocationImage.Source = Utilities.ConvertToImage(App.ViewModel.SelectedLocation.LocationImage);
+                lblAddImage.Visibility = Visibility.Collapsed;
             }
         }
     }

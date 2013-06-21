@@ -7,6 +7,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:telerikSlideView="clr-namespace:Telerik.Windows.Controls.SlideView;assembly=Telerik.Windows.Controls.Primitives"
+    xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
@@ -33,10 +34,10 @@
             <TextBlock Text="{Binding LocalizedResources.DetailsTitle, Source={StaticResource LocalizedStrings}}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
         <StackPanel x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0" d:DataContext="{Binding AllLocations[0]}">
-            <telerikPrimitives:RadWindow x:Name="ImageViewer" IsFullScreen="true" IsClosedOnOutsideTap="True">
-                <telerikSlideView:PanAndZoomImage x:Name="LocationImageLarge" Loaded="" Stretch="UniformToFill" MaximumZoom="8" ZoomMode="Free" ImageHorizontalAlignment="Stretch" ImageVerticalAlignment="Stretch" />
+            <telerikPrimitives:RadWindow x:Name="ImageViewer" IsFullScreen="true" IsClosedOnOutsideTap="True" MaxWidth="171" MaxHeight="171">
+                <telerikSlideView:PanAndZoomImage x:Name="locationImageLarge" Loaded="LocationImageLarge_Loaded" Stretch="UniformToFill" MaximumZoom="8" ZoomMode="Free" ImageHorizontalAlignment="Stretch" ImageVerticalAlignment="Stretch" />
             </telerikPrimitives:RadWindow>
-            <Image x:Name="medicineImage" HorizontalAlignment="Left" Height="171" VerticalAlignment="Center" Tap="medicineImage_Tap" Margin="0" Stretch="UniformToFill" Width="171" Loaded="medicineImage_Loaded"/>
+            <Image x:Name="locationImage" HorizontalAlignment="Left" VerticalAlignment="Center" Tap="locationImage_Tap" Margin="12,0,0,0" Stretch="UniformToFill" Loaded="locationImage_Loaded" MaxWidth="171" MaxHeight="171"/>
             <TextBlock VerticalAlignment="Top" Text="Name" Style="{StaticResource PhoneTextSubtleStyle}"/>
         	<TextBlock Text="{Binding Name}" VerticalAlignment="Top" Style="{StaticResource PhoneTextLargeStyle}" Margin="12,0,12,12"/>
 
