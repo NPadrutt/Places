@@ -96,6 +96,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\AddressDataContext.cs" />
     <Compile Include="UserControls\LocationList.xaml.cs">
       <DependentUpon>LocationList.xaml</DependentUpon>
     </Compile>

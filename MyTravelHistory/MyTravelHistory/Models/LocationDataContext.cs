@@ -97,6 +97,22 @@ namespace MyTravelHistory.Models
             }
         }
 
+        private double _accuracy;
+
+        [Column]
+        public double Accuracy
+        {
+            get { return _accuracy; }
+            set
+            {
+                if (_accuracy != value)
+                {
+                    NotifyPropertyChanging("Accuracy");
+                    _accuracy = value;
+                    NotifyPropertyChanged("Accuracy");
+                }
+            }
+        }
 
         [Column(IsVersion = true)]
         private Binary _version;

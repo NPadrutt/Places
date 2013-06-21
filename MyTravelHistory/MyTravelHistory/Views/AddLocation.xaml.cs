@@ -15,6 +15,8 @@ using System.Globalization;
 using MyTravelHistory.Src;
 using Microsoft.Phone.Tasks;
 using System.Windows.Media.Imaging;
+using Microsoft.Phone.Maps.Services;
+using System.Device.Location;
 
 namespace MyTravelHistory
 {
@@ -71,6 +73,8 @@ namespace MyTravelHistory
 
                 txtLatitude.Text = geoposition.Coordinate.Latitude.ToString();
                 txtLongtitude.Text = geoposition.Coordinate.Longitude.ToString();
+
+                GetAddress(geoposition.Coordinate.Latitude, geoposition.Coordinate.Longitude);
             }
             catch (Exception ex)
             {
@@ -85,6 +89,13 @@ namespace MyTravelHistory
                 progressionbarGetLocation.IsIndeterminate = false;
                 progressionbarGetLocation.Visibility = Visibility.Collapsed;
             }
+        }
+
+        private async void GetAddress(double latitude, double longtitude)
+        {
+            ReverseGeocodeQuery myReverseGeocodeQuery = new ReverseGeocodeQuery();
+            myReverseGeocodeQuery.GeoCoordinate = new GeoCoordinate(latitude, longtitude);
+            IList<MapLocation> locations = await myReverseGeocodeQuery.GetMapLocationsAsync();
         }
 
         private void btnDone_Click(object sender, System.EventArgs e)
