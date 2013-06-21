@@ -49,6 +49,10 @@ namespace Expression.Blend.SampleData.LocationSampleDataSource
 		}
 	}
 
+	public class AllLocations : System.Collections.ObjectModel.ObservableCollection<AllLocationsItem>
+	{ 
+	}
+
 	public class AllLocationsItem : System.ComponentModel.INotifyPropertyChanged
 	{
 		public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
@@ -117,9 +121,146 @@ namespace Expression.Blend.SampleData.LocationSampleDataSource
 				}
 			}
 		}
+
+		private Address _Address = new Address();
+
+		public Address Address
+		{
+			get
+			{
+				return this._Address;
+			}
+		}
 	}
 
-	public class AllLocations : System.Collections.ObjectModel.ObservableCollection<AllLocationsItem>
+	public class AddressItem : System.ComponentModel.INotifyPropertyChanged
+	{
+		public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+
+		protected virtual void OnPropertyChanged(string propertyName)
+		{
+			if (this.PropertyChanged != null)
+			{
+				this.PropertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+			}
+		}
+
+		private string _Street = string.Empty;
+
+		public string Street
+		{
+			get
+			{
+				return this._Street;
+			}
+
+			set
+			{
+				if (this._Street != value)
+				{
+					this._Street = value;
+					this.OnPropertyChanged("Street");
+				}
+			}
+		}
+
+		private double _HouseNumber = 0;
+
+		public double HouseNumber
+		{
+			get
+			{
+				return this._HouseNumber;
+			}
+
+			set
+			{
+				if (this._HouseNumber != value)
+				{
+					this._HouseNumber = value;
+					this.OnPropertyChanged("HouseNumber");
+				}
+			}
+		}
+
+		private double _PostalCode = 0;
+
+		public double PostalCode
+		{
+			get
+			{
+				return this._PostalCode;
+			}
+
+			set
+			{
+				if (this._PostalCode != value)
+				{
+					this._PostalCode = value;
+					this.OnPropertyChanged("PostalCode");
+				}
+			}
+		}
+
+		private string _City = string.Empty;
+
+		public string City
+		{
+			get
+			{
+				return this._City;
+			}
+
+			set
+			{
+				if (this._City != value)
+				{
+					this._City = value;
+					this.OnPropertyChanged("City");
+				}
+			}
+		}
+
+		private string _District = string.Empty;
+
+		public string District
+		{
+			get
+			{
+				return this._District;
+			}
+
+			set
+			{
+				if (this._District != value)
+				{
+					this._District = value;
+					this.OnPropertyChanged("District");
+				}
+			}
+		}
+
+		private string _State = string.Empty;
+
+		public string State
+		{
+			get
+			{
+				return this._State;
+			}
+
+			set
+			{
+				if (this._State != value)
+				{
+					this._State = value;
+					this.OnPropertyChanged("State");
+				}
+			}
+		}
+	}
+
+	public class Address : System.Collections.ObjectModel.ObservableCollection<AddressItem>
 	{ 
 	}
 #endif

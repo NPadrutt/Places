@@ -17,8 +17,24 @@
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="AllLocationsItem">
+    <xs:sequence>
+      <xs:element name="Address" type="tns:Address" />
+    </xs:sequence>
     <xs:attribute name="Name" type="xs:string" />
     <xs:attribute blend:Format="Address" name="Latitude" type="xs:string" />
     <xs:attribute name="Longtitude" type="xs:string" />
+  </xs:complexType>
+  <xs:complexType name="Address">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="AddressItem" type="tns:AddressItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AddressItem">
+    <xs:attribute blend:Format="Address" name="Street" type="xs:string" />
+    <xs:attribute blend:FormatParameters="3" name="HouseNumber" type="xs:double" />
+    <xs:attribute blend:FormatParameters="4" name="PostalCode" type="xs:double" />
+    <xs:attribute blend:Format="Company Name" name="City" type="xs:string" />
+    <xs:attribute blend:FormatParameters="2,8" name="District" type="xs:string" />
+    <xs:attribute blend:FormatParameters="1,8" name="State" type="xs:string" />
   </xs:complexType>
 </xs:schema>

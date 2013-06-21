@@ -71,8 +71,8 @@ namespace MyTravelHistory
                     timeout: TimeSpan.FromSeconds(10)
                     );
 
-                txtLatitude.Text = geoposition.Coordinate.Latitude.ToString();
-                txtLongtitude.Text = geoposition.Coordinate.Longitude.ToString();
+                App.ViewModel.SelectedLocation.Latitude = geoposition.Coordinate.Latitude;
+                App.ViewModel.SelectedLocation.Longtitude = geoposition.Coordinate.Longitude;
 
                 GetAddress(geoposition.Coordinate.Latitude, geoposition.Coordinate.Longitude);
             }
@@ -96,30 +96,38 @@ namespace MyTravelHistory
             ReverseGeocodeQuery myReverseGeocodeQuery = new ReverseGeocodeQuery();
             myReverseGeocodeQuery.GeoCoordinate = new GeoCoordinate(latitude, longtitude);
             IList<MapLocation> locations = await myReverseGeocodeQuery.GetMapLocationsAsync();
+            MapAddress address = locations.First<MapLocation>().Information.Address;
+
+            App.ViewModel.SelectedLocation.Address.Street = address.Street;
+            App.ViewModel.SelectedLocation.Address.HouseNumber = address.HouseNumber;
+            App.ViewModel.SelectedLocation.Address.PostalCode = address.PostalCode;
+            App.ViewModel.SelectedLocation.Address.City = address.City;
+            App.ViewModel.SelectedLocation.Address.District = address.District;
+            App.ViewModel.SelectedLocation.Address.State = address.State;
+            App.ViewModel.SelectedLocation.Address.Country = address.Country;
         }
 
         private void btnDone_Click(object sender, System.EventArgs e)
         {
-            App.ViewModel.SelectedLocation.Name = txtName.Text;
-            if (txtLatitude.Text != string.Empty)
+            if (App.ViewModel.SelectedLocation.Latitude != 0 && App.ViewModel.SelectedLocation.Longtitude != 0)
             {
-                App.ViewModel.SelectedLocation.Latitude = double.Parse(txtLatitude.Text, CultureInfo.CurrentCulture);
-            }
-            if (txtLongtitude.Text != string.Empty)
-            {
-                App.ViewModel.SelectedLocation.Longtitude = double.Parse(txtLongtitude.Text, CultureInfo.CurrentCulture);
-            }
+                App.ViewModel.SelectedLocation.Name = txtName.Text;
 
-            if (NewElement)
-            {
-                App.ViewModel.AddLocation(App.ViewModel.SelectedLocation);
+                if (NewElement)
+                {
+                    App.ViewModel.AddLocation(App.ViewModel.SelectedLocation);
+                }
+                else
+                {
+                    App.ViewModel.SaveChangesToDB();
+                }
+
+                NavigationService.Navigate(new Uri("/Views/DetailsLocation.xaml?RemoveBackstack=true", UriKind.Relative));
             }
             else
             {
-                App.ViewModel.SaveChangesToDB();
+                MessageBox.Show(AppResources.NoPositionMessage, AppResources.NoPositionMessageTitle, MessageBoxButton.OK);
             }
-
-            NavigationService.Navigate(new Uri("/Views/DetailsLocation.xaml?RemoveBackstack=true", UriKind.Relative));
         }
 
         private void btnCancel_Click(object sender, System.EventArgs e)

@@ -254,4 +254,16 @@ Do you wanna proceed?</value>
   <data name="AddImageLabel" xml:space="preserve">
     <value>add image</value>
   </data>
+  <data name="AddressLabel" xml:space="preserve">
+    <value>address</value>
+  </data>
+  <data name="LocationLabel" xml:space="preserve">
+    <value>location</value>
+  </data>
+  <data name="NoPositionMessage" xml:space="preserve">
+    <value>We still trying to fetch get your current position. Please wait a second before you save your entry.</value>
+  </data>
+  <data name="NoPositionMessageTitle" xml:space="preserve">
+    <value>Unknown position!</value>
+  </data>
 </root>

@@ -97,6 +97,15 @@ namespace MyTravelHistory.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to address.
+        /// </summary>
+        public static string AddressLabel {
+            get {
+                return ResourceManager.GetString("AddressLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to add.
         /// </summary>
         public static string AddTitle {
@@ -313,6 +322,15 @@ namespace MyTravelHistory.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to location.
+        /// </summary>
+        public static string LocationLabel {
+            get {
+                return ResourceManager.GetString("LocationLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to all locations.
         /// </summary>
         public static string LocationsTitle {
@@ -336,6 +354,24 @@ namespace MyTravelHistory.Resources {
         public static string NameLabel {
             get {
                 return ResourceManager.GetString("NameLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We still trying to fetch get your current position. Please wait a second before you save your entry..
+        /// </summary>
+        public static string NoPositionMessage {
+            get {
+                return ResourceManager.GetString("NoPositionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unknown position!.
+        /// </summary>
+        public static string NoPositionMessageTitle {
+            get {
+                return ResourceManager.GetString("NoPositionMessageTitle", resourceCulture);
             }
         }
         
