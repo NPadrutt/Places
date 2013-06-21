@@ -148,8 +148,42 @@ namespace MyTravelHistory.Models
             }
         }
 
+        #region Foreign Keys
+
+        private EntitySet<Location> _location;
+
+        [Association(Storage = "_location", OtherKey = "_addressId", ThisKey = "Id")]
+        public EntitySet<Location> Location
+        {
+            get { return this._location; }
+            set { this._location.Assign(value); }
+        }
+
+        public Address()
+        {
+            _location = new EntitySet<Location>(
+                new Action<Location>(this.attach_Location),
+                new Action<Location>(this.detach_Location)
+                );
+        }
+
+        private void attach_Location(Location location)
+        {
+            NotifyPropertyChanging("Location");
+            location.Address = this;
+        }
+
+        private void detach_Location(Location location)
+        {
+            NotifyPropertyChanging("Location");
+            location.Address = null;
+        }
+
+        #endregion
+
         [Column(IsVersion = true)]
         private Binary _version;
+
 
         #region INotifyPropertyChanged Members
 

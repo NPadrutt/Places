@@ -131,6 +131,33 @@ namespace MyTravelHistory.Models
             }
         }
 
+        #region Foreign Keys
+        
+        [Column]
+        private int? _addressId;
+
+        private EntityRef<Address> _address;
+
+        [Association(Storage = "_address", ThisKey = "_addressId", OtherKey = "Id", IsForeignKey = true)]
+        public Address Address
+        {
+            get { return _address.Entity; }
+            set
+            {
+                NotifyPropertyChanging("Address");
+                _address.Entity = value;
+
+                if (value != null)
+                {
+                    _addressId = value.Id;
+                }
+
+                NotifyPropertyChanging("AddressAddress");
+            }
+        }
+
+        #endregion
+
         [Column(IsVersion = true)]
         private Binary _version;
 
