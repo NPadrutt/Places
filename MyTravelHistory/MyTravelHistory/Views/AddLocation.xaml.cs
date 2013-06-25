@@ -179,5 +179,10 @@ namespace MyTravelHistory
                 lblAddImage.Visibility = Visibility.Collapsed;
             }
         }
+
+        private void btnRefreshPosition_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            GetPosition();
+        }
     }
 }
