@@ -17,6 +17,6 @@ namespace MyTravelHistory.Models
         { }
 
         public Table<Location> Locations;
-        public Table<Address> Addresses;
+        public Table<LocationAddress> LocationAddresses;
     }
 }

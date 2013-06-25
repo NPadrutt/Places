@@ -358,6 +358,15 @@ namespace MyTravelHistory.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to [empty name].
+        /// </summary>
+        public static string NoNameDefaultEntry {
+            get {
+                return ResourceManager.GetString("NoNameDefaultEntry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to We still trying to fetch get your current position. Please wait a second before you save your entry..
         /// </summary>
         public static string NoPositionMessage {

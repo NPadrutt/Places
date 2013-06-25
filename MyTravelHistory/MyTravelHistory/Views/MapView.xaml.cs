@@ -61,7 +61,7 @@ namespace MyTravelHistory.Views
         public void PinMap(GeoCoordinate geoPosition, string Name)
         {
             MyMap.Center = geoPosition;
-            MyMap.ZoomLevel = 13;
+            MyMap.ZoomLevel = 16;
 
             var mapOverlay = new MapOverlay();
             Pushpin pin = new Pushpin()

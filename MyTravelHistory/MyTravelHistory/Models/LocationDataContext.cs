@@ -136,23 +136,23 @@ namespace MyTravelHistory.Models
         [Column]
         private int? _addressId;
 
-        private EntityRef<Address> _address;
+        private EntityRef<LocationAddress> _locationAddress;
 
-        [Association(Storage = "_address", ThisKey = "_addressId", OtherKey = "Id", IsForeignKey = true)]
-        public Address Address
+        [Association(Storage = "_locationAddress", ThisKey = "_addressId", OtherKey = "Id", IsForeignKey = true)]
+        public LocationAddress LocationAddress
         {
-            get { return _address.Entity; }
+            get { return _locationAddress.Entity; }
             set
             {
-                NotifyPropertyChanging("Address");
-                _address.Entity = value;
+                NotifyPropertyChanging("LocationAddress");
+                _locationAddress.Entity = value;
 
                 if (value != null)
                 {
                     _addressId = value.Id;
                 }
 
-                NotifyPropertyChanging("AddressAddress");
+                NotifyPropertyChanging("LocationAddress");
             }
         }
 

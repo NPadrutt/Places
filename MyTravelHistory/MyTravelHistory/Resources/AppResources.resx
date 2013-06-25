@@ -266,4 +266,7 @@ Do you wanna proceed?</value>
   <data name="NoPositionMessageTitle" xml:space="preserve">
     <value>Unknown position!</value>
   </data>
+  <data name="NoNameDefaultEntry" xml:space="preserve">
+    <value>[empty name]</value>
+  </data>
 </root>

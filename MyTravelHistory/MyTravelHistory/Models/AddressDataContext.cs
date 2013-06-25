@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace MyTravelHistory.Models
 {
     [Table]
-    public class Address : INotifyPropertyChanged, INotifyPropertyChanging
+    public class LocationAddress : INotifyPropertyChanged, INotifyPropertyChanging
     {
         private int _id;
 
@@ -159,7 +159,7 @@ namespace MyTravelHistory.Models
             set { this._location.Assign(value); }
         }
 
-        public Address()
+        public LocationAddress()
         {
             _location = new EntitySet<Location>(
                 new Action<Location>(this.attach_Location),
@@ -170,13 +170,13 @@ namespace MyTravelHistory.Models
         private void attach_Location(Location location)
         {
             NotifyPropertyChanging("Location");
-            location.Address = this;
+            location.LocationAddress = this;
         }
 
         private void detach_Location(Location location)
         {
             NotifyPropertyChanging("Location");
-            location.Address = null;
+            location.LocationAddress = null;
         }
 
         #endregion

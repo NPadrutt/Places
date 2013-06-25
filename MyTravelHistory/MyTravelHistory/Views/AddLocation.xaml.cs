@@ -30,7 +30,7 @@ namespace MyTravelHistory
         {
             InitializeComponent();
 
-            this.DataContext = App.ViewModel.SelectedLocation;
+            DataContext = App.ViewModel.SelectedLocation;
 
             (ApplicationBar.Buttons[0] as ApplicationBarIconButton).Text = AppResources.DoneLabel;
             (ApplicationBar.Buttons[1] as ApplicationBarIconButton).Text = AppResources.CancelLabel;
@@ -96,22 +96,36 @@ namespace MyTravelHistory
             ReverseGeocodeQuery myReverseGeocodeQuery = new ReverseGeocodeQuery();
             myReverseGeocodeQuery.GeoCoordinate = new GeoCoordinate(latitude, longtitude);
             IList<MapLocation> locations = await myReverseGeocodeQuery.GetMapLocationsAsync();
-            MapAddress address = locations.First<MapLocation>().Information.Address;
-
-            App.ViewModel.SelectedLocation.Address.Street = address.Street;
-            App.ViewModel.SelectedLocation.Address.HouseNumber = address.HouseNumber;
-            App.ViewModel.SelectedLocation.Address.PostalCode = address.PostalCode;
-            App.ViewModel.SelectedLocation.Address.City = address.City;
-            App.ViewModel.SelectedLocation.Address.District = address.District;
-            App.ViewModel.SelectedLocation.Address.State = address.State;
-            App.ViewModel.SelectedLocation.Address.Country = address.Country;
+            if (locations.Count > 0)
+            {
+                MapAddress address = locations.First<MapLocation>().Information.Address;
+                App.ViewModel.SelectedLocation.LocationAddress = new LocationAddress()
+                {
+                    Street = address.Street,
+                    HouseNumber = address.HouseNumber,
+                    PostalCode = address.PostalCode,
+                    City = address.City,
+                    District = address.District,
+                    State = address.State,
+                    Country = address.Country
+                };
+                DataContext = App.ViewModel.SelectedLocation;
+            }
         }
 
         private void btnDone_Click(object sender, System.EventArgs e)
         {
             if (App.ViewModel.SelectedLocation.Latitude != 0 && App.ViewModel.SelectedLocation.Longtitude != 0)
             {
-                App.ViewModel.SelectedLocation.Name = txtName.Text;
+                if (txtName.Text == string.Empty)
+                {
+                    App.ViewModel.SelectedLocation.Name = AppResources.NoNameDefaultEntry;
+                }
+                else
+                {
+                    App.ViewModel.SelectedLocation.Name = txtName.Text;
+                }
+                    
 
                 if (NewElement)
                 {
