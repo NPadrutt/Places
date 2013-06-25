@@ -52,6 +52,8 @@ namespace MyTravelHistory
                 else
                 {
                     PageTitle.Text = AppResources.EditTitle;
+                    progressionbarGetLocation.IsIndeterminate = false;
+                    progressionbarGetLocation.Visibility = Visibility.Collapsed;
                 }
             }
         }
