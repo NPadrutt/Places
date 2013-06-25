@@ -413,7 +413,7 @@ namespace MyTravelHistory.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rate MyMedi!.
+        ///   Looks up a localized string similar to Rate MyTravelHistory!.
         /// </summary>
         public static string RateAppLabel {
             get {
