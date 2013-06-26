@@ -127,7 +127,8 @@ namespace MyTravelHistory
                 {
                     App.ViewModel.SelectedLocation.Name = txtName.Text;
                 }
-                    
+
+                App.ViewModel.SelectedLocation.Comment = txtComment.Text;
 
                 if (NewElement)
                 {
