@@ -178,6 +178,15 @@ namespace MyTravelHistory.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to comment.
+        /// </summary>
+        public static string CommentLabel {
+            get {
+                return ResourceManager.GetString("CommentLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Do you wanna restore your backup? Your current data will be overwritten.
         /// </summary>
         public static string ConfirmRestoreBackupMessage {
