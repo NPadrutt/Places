@@ -13,13 +13,18 @@
 	<UserControl.Resources>
 		<DataTemplate x:Key="AllLocationsItemTemplate">
 			<StackPanel Width="455" Background="{StaticResource PhoneAccentBrush}" Margin="0,0,0,12">
-				<TextBlock Text="{Binding Name}" Style="{StaticResource PhoneTextTitle2Style}" Margin="12,0"/>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="{Binding LocationAddress.Country}" Style="{StaticResource PhoneTextSmallStyle}" />
-                    <TextBlock Text=","  Style="{StaticResource PhoneTextSmallStyle}" Margin="-10,0,0,0" />
-                    <TextBlock Text="{Binding LocationAddress.City}" Style="{StaticResource PhoneTextSmallStyle}" Margin="-2,0,0,0" />
-                </StackPanel>
-            </StackPanel>
+				<StackPanel Orientation="Horizontal">
+					<Image Source="{Binding Thumbnail}" MaxHeight="68" MaxWidth="68"/>
+					<StackPanel>
+						<TextBlock Text="{Binding Name}" Style="{StaticResource PhoneTextTitle2Style}" Margin="0"/>
+						<StackPanel Orientation="Horizontal">
+							<TextBlock Text="{Binding LocationAddress.Country}" Style="{StaticResource PhoneTextSmallStyle}" />
+							<TextBlock Text=","  Style="{StaticResource PhoneTextSmallStyle}" Margin="-10,0,0,0" />
+							<TextBlock Text="{Binding LocationAddress.City}" Style="{StaticResource PhoneTextSmallStyle}" Margin="-2,0,0,0" />
+						</StackPanel>
+					</StackPanel>
+				</StackPanel>
+			</StackPanel>
 		</DataTemplate>
 	</UserControl.Resources>
     

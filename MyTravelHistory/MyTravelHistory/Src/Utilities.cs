@@ -25,7 +25,17 @@ namespace MyTravelHistory.Src
 
         public static WriteableBitmap ConvertToImage(byte[] inputBytes)
         {
-            WriteableBitmap img = new WriteableBitmap(1000, 2000);
+            return GetImage(inputBytes, 1000, 2000);
+        }
+
+        public static WriteableBitmap ConvertToImage(byte[] inputBytes, int width, int height)
+        {
+            return GetImage(inputBytes, width, height);
+        }
+
+        private static WriteableBitmap GetImage(byte[] inputBytes, int width, int height)
+        {
+            WriteableBitmap img = new WriteableBitmap(width, height);
 
             var ms = new MemoryStream(inputBytes);
             img.LoadJpeg(ms);

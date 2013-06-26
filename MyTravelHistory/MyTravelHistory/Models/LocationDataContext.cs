@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyTravelHistory.Src;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data.Linq;
@@ -6,6 +7,7 @@ using System.Data.Linq.Mapping;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 
 namespace MyTravelHistory.Models
 {
@@ -44,6 +46,15 @@ namespace MyTravelHistory.Models
                     NotifyPropertyChanged("LocationImage");
                 }
             }
+        }
+
+        public WriteableBitmap Thumbnail
+        {
+            get
+            {
+                return Utilities.ConvertToImage(this._locationImage, 100, 200);
+            }
+           
         }
 
         private string _name;
