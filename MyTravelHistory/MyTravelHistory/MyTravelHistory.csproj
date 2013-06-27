@@ -96,6 +96,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\AddressDataContext.cs" />
+    <Compile Include="Models\SettingsDataContext.cs" />
     <Compile Include="UserControls\LocationList.xaml.cs">
       <DependentUpon>LocationList.xaml</DependentUpon>
     </Compile>
@@ -117,6 +118,7 @@
     <Compile Include="Src\UpdateHelper.cs" />
     <Compile Include="Src\Utilities.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\SettingViewModel.cs" />
     <Compile Include="Views\About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
     </Compile>
