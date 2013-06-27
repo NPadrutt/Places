@@ -96,6 +96,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\AddressDataContext.cs" />
+    <Compile Include="Models\PositionDataContext.cs" />
     <Compile Include="Models\SettingsDataContext.cs" />
     <Compile Include="UserControls\LocationList.xaml.cs">
       <DependentUpon>LocationList.xaml</DependentUpon>

@@ -116,6 +116,21 @@ namespace MyTravelHistory.ViewModels
 
         #endregion
 
+        #region Position
+
+        private Position _selectedPosition;
+        public Position SelectedPosition
+        {
+            get { return _selectedPosition; }
+            set
+            {
+                _selectedPosition = value;
+                NotifyPropertyChanged("SelectedPosition");
+            }
+        }
+
+        #endregion
+
         #region INotifyPropertyChanged Members
 
         public event PropertyChangedEventHandler PropertyChanged;
