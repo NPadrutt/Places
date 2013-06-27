@@ -52,7 +52,12 @@ namespace MyTravelHistory.Models
         {
             get
             {
-                return Utilities.ConvertToImage(this._locationImage, 100, 200);
+                if (this._locationImage != null)
+                {
+                    return Utilities.ConvertToImage(this._locationImage, 100, 200);
+                }
+                
+                return new WriteableBitmap(0,0);
             }
            
         }
