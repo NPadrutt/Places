@@ -19,7 +19,6 @@ namespace MyTravelHistory.Src
             {
                 if (schemaUpdate.DatabaseSchemaVersion == 1)
                 {
-                    schemaUpdate.AddTable<Setting>();
                 }
 
                 schemaUpdate.DatabaseSchemaVersion = db.SCHEMAVERSION;
