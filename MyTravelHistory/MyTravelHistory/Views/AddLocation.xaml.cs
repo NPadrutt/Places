@@ -95,7 +95,7 @@ namespace MyTravelHistory
 
         private void btnDone_Click(object sender, System.EventArgs e)
         {
-            if (App.ViewModel.SelectedLocation.Latitude != 0 && App.ViewModel.SelectedLocation.Longitude != 0)
+            if (App.ViewModel.CurrentPosition.Latitude != 0 && App.ViewModel.CurrentPosition.Longitude != 0)
             {
                 if (txtName.Text == string.Empty)
                 {
