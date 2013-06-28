@@ -118,14 +118,14 @@ namespace MyTravelHistory.ViewModels
 
         #region Position
 
-        private Position _selectedPosition;
-        public Position SelectedPosition
+        private Position _currentPosition;
+        public Position CurrentPosition
         {
-            get { return _selectedPosition; }
+            get { return _currentPosition; }
             set
             {
-                _selectedPosition = value;
-                NotifyPropertyChanged("SelectedPosition");
+                _currentPosition = value;
+                NotifyPropertyChanged("CurrentPosition");
             }
         }
 

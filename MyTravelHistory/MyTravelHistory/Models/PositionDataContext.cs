@@ -52,7 +52,7 @@ namespace MyTravelHistory.Models
         }
 
         private DateTime _timeStamp;
-        public DateTime TimeStamp
+        public DateTime Timestamp
         {
             get { return _timeStamp; }
             set
