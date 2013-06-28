@@ -267,4 +267,7 @@
   <data name="CommentLabel" xml:space="preserve">
     <value>Bemerkung</value>
   </data>
+  <data name="AccuracyLabel" xml:space="preserve">
+    <value>Genauigkeit: </value>
+  </data>
 </root>
