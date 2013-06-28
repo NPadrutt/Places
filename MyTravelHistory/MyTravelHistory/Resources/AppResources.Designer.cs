@@ -529,5 +529,14 @@ namespace MyTravelHistory.Resources {
                 return ResourceManager.GetString("WhatsNewTitle", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to you are here.
+        /// </summary>
+        public static string YouAreHereText {
+            get {
+                return ResourceManager.GetString("YouAreHereText", resourceCulture);
+            }
+        }
     }
 }

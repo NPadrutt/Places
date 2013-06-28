@@ -63,7 +63,7 @@
 					</StackPanel>
                     <TextBlock x:Name="lblState" Text="{Binding LocationAddress.State}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextNormalStyle}" Margin="0"/>
                     <TextBlock x:Name="lblDistrict" Text="{Binding LocationAddress.District}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextNormalStyle}" Margin="0"/>
-					<TextBlock x:Name="lblCountry" Text="{Binding LocationAddress.Country}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextNormalStyle}" Margin="0"/>
+                    <TextBlock x:Name="lblCountry" Text="{Binding LocationAddress.Country}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextNormalStyle}" Margin="0"/>
 				</StackPanel>
 				<telerikPrimitives:RadTextBox x:Name="txtComment" Text="{Binding Comment}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Header="{Binding LocalizedResources.CommentLabel, Source={StaticResource LocalizedStrings}}"/>
 			</StackPanel>

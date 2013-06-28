@@ -14,6 +14,7 @@ using MyTravelHistory.Models;
 using Microsoft.Phone.Shell;
 using MyTravelHistory.Resources;
 using System.Collections.ObjectModel;
+using MyTravelHistory.Src;
 
 namespace MyTravelHistory
 {

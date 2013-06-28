@@ -270,4 +270,7 @@
   <data name="AccuracyLabel" xml:space="preserve">
     <value>Genauigkeit: </value>
   </data>
+  <data name="YouAreHereText" xml:space="preserve">
+    <value>Du bist hier</value>
+  </data>
 </root>

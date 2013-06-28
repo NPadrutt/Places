@@ -60,6 +60,7 @@
         		</StackPanel>
                 <TextBlock x:Name="lblDistrict" Text="{Binding LocationAddress.District}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextSubtleStyle}" Margin="0"/>
                 <TextBlock x:Name="lblState" Text="{Binding LocationAddress.State}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextSubtleStyle}" Margin="0"/>
+                <TextBlock x:Name="lblCountry" Text="{Binding LocationAddress.Country}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextSubtleStyle}" Margin="0"/>
         	</StackPanel>
         	<TextBlock x:Name="lblCommentCaption" HorizontalAlignment="Left" VerticalAlignment="Top" Text="{Binding LocalizedResources.CommentLabel, Source={StaticResource LocalizedStrings}}" Margin="12,0,0,0" Style="{StaticResource PhoneTextGroupHeaderStyle}"/>
         	<TextBlock x:Name="lblComment" Text="{Binding Comment}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextSmallStyle}" Margin="12,0,0,0"/>

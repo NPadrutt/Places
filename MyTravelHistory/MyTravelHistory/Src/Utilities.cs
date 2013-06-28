@@ -48,7 +48,7 @@ namespace MyTravelHistory.Src
             return img;
         }
 
-        public static async void GetPosition()
+        public static async Task GetPosition()
         {
             Geolocator geolocater = new Geolocator();
             geolocater.DesiredAccuracy = PositionAccuracy.High;
@@ -57,11 +57,12 @@ namespace MyTravelHistory.Src
             {
                 Geoposition geoposition = await geolocater.GetGeopositionAsync(
                     maximumAge: TimeSpan.FromMinutes(2),
-                    timeout: TimeSpan.FromSeconds(10)
+                    timeout: TimeSpan.FromSeconds(30)
                     );
 
-                App.ViewModel.CurrentPosition.Latitude= geoposition.Coordinate.Latitude;
-                App.ViewModel.CurrentPosition.Longtitude = geoposition.Coordinate.Longitude;
+                App.ViewModel.CurrentPosition = new Position();
+                App.ViewModel.CurrentPosition.Latitude = geoposition.Coordinate.Latitude;
+                App.ViewModel.CurrentPosition.Longitude = geoposition.Coordinate.Longitude;
                 App.ViewModel.CurrentPosition.Accuracy = geoposition.Coordinate.Accuracy;
                 App.ViewModel.CurrentPosition.Timestamp = Convert.ToDateTime(geoposition.Coordinate.Timestamp);
             }

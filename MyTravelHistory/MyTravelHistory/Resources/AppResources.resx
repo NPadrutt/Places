@@ -275,4 +275,7 @@ Do you wanna proceed?</value>
   <data name="AccuracyLabel" xml:space="preserve">
     <value>accuracy: </value>
   </data>
+  <data name="YouAreHereText" xml:space="preserve">
+    <value>you are here</value>
+  </data>
 </root>

@@ -74,7 +74,7 @@ namespace MyTravelHistory
                     );
 
                 App.ViewModel.SelectedLocation.Latitude = geoposition.Coordinate.Latitude;
-                App.ViewModel.SelectedLocation.Longtitude = geoposition.Coordinate.Longitude;
+                App.ViewModel.SelectedLocation.Longitude = geoposition.Coordinate.Longitude;
                 App.ViewModel.SelectedLocation.Accuracy = geoposition.Coordinate.Accuracy;
 
                 GetAddress(geoposition.Coordinate.Latitude, geoposition.Coordinate.Longitude);
@@ -118,7 +118,7 @@ namespace MyTravelHistory
 
         private void btnDone_Click(object sender, System.EventArgs e)
         {
-            if (App.ViewModel.SelectedLocation.Latitude != 0 && App.ViewModel.SelectedLocation.Longtitude != 0)
+            if (App.ViewModel.SelectedLocation.Latitude != 0 && App.ViewModel.SelectedLocation.Longitude != 0)
             {
                 if (txtName.Text == string.Empty)
                 {

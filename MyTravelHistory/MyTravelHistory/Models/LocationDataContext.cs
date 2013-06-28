@@ -96,19 +96,19 @@ namespace MyTravelHistory.Models
             }
         }
 
-        private double _longtitude;
+        private double _longitude;
 
         [Column]
-        public double Longtitude
+        public double Longitude
         {
-            get { return _longtitude; }
+            get { return _longitude; }
             set
             {
-                if (_longtitude != value)
+                if (_longitude != value)
                 {
-                    NotifyPropertyChanging("Longtitude");
-                    _longtitude = value;
-                    NotifyPropertyChanged("Longtitude");
+                    NotifyPropertyChanging("Longitude");
+                    _longitude = value;
+                    NotifyPropertyChanged("Longitude");
                 }
             }
         }
