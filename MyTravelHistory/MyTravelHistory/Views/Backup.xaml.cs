@@ -89,7 +89,7 @@ namespace MyTravelHistory.Views
                     await GetFolderId();
                 }
 
-                LiveOperationResult operationResultFolder = await liveClient.GetAsync(folderId + "/files");
+                var operationResultFolder = await liveClient.GetAsync(folderId + "/files");
                 dynamic files = operationResultFolder.Result.Values;
 
                 foreach (var data in files)
@@ -113,7 +113,7 @@ namespace MyTravelHistory.Views
         {
             if (backupId != null)
             {
-                MessageBoxResult result = MessageBox.Show(AppResources.OverwriteBackupMessage, AppResources.OverwriteBackupTitle, MessageBoxButton.OKCancel);
+                var result = MessageBox.Show(AppResources.OverwriteBackupMessage, AppResources.OverwriteBackupTitle, MessageBoxButton.OKCancel);
 
                 if (result == MessageBoxResult.Cancel)
                 {
@@ -130,15 +130,15 @@ namespace MyTravelHistory.Views
             }
             else if (backupId != null)
             {
-                LiveOperationResult operationResult = await liveClient.DeleteAsync(backupId);
+                var operationResult = await liveClient.DeleteAsync(backupId);
             }
 
             IsolatedStorageFileStream fileStream = null;
 
-            using (IsolatedStorageFile store = IsolatedStorageFile.GetUserStoreForApplication())
+            using (var store = IsolatedStorageFile.GetUserStoreForApplication())
             {
                 fileStream = store.OpenFile(DATABASENAME + ".sdf", FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
-                LiveOperationResult operationResult = await liveClient.UploadAsync(folderId, BACKUPNAME + ".sdf", fileStream, OverwriteOption.Overwrite);
+                var operationResult = await liveClient.UploadAsync(folderId, BACKUPNAME + ".sdf", fileStream, OverwriteOption.Overwrite);
                 dynamic result = operationResult.Result;
                 folderId = result.id;
                 fileStream.Flush();
@@ -155,7 +155,7 @@ namespace MyTravelHistory.Views
         {
             try
             {
-                LiveOperationResult operationResultFolder = await liveClient.GetAsync("me/skydrive/");
+                var operationResultFolder = await liveClient.GetAsync("me/skydrive/");
                 dynamic toplevelfolder = operationResultFolder.Result;
 
                 operationResultFolder = await liveClient.GetAsync(toplevelfolder.id + "/files");
@@ -184,7 +184,7 @@ namespace MyTravelHistory.Views
             {
                 try
                 {
-                    LiveOperationResult operationResult =
+                    var operationResult =
                         await liveClient.GetAsync(backupId);
                     dynamic result = operationResult.Result;
                     DateTime createdAt = Convert.ToDateTime(result.created_time);
@@ -205,7 +205,7 @@ namespace MyTravelHistory.Views
                 {
                     var folderData = new Dictionary<string, object>();
                     folderData.Add("name", "Backups");
-                    LiveOperationResult operationResult = await liveClient.PostAsync("me/skydrive", folderData);
+                    var operationResult = await liveClient.PostAsync("me/skydrive", folderData);
                     dynamic result = operationResult.Result;
                     folderId = result.id;
                 }
@@ -218,7 +218,7 @@ namespace MyTravelHistory.Views
 
         public async void RestoreBackUp()
         {
-            MessageBoxResult result = MessageBox.Show(AppResources.ConfirmRestoreBackupMessage, AppResources.ConfirmRestoreBackupMessageTitle, MessageBoxButton.OKCancel);
+            var result = MessageBox.Show(AppResources.ConfirmRestoreBackupMessage, AppResources.ConfirmRestoreBackupMessageTitle, MessageBoxButton.OKCancel);
 
             if (result == MessageBoxResult.OK)
             {
@@ -231,21 +231,21 @@ namespace MyTravelHistory.Views
                     {
                         await GetBackupId();
                     }
-                    LiveDownloadOperationResult downloadResult = await liveClient.DownloadAsync(backupId + "/content");
+                    var downloadResult = await liveClient.DownloadAsync(backupId + "/content");
 
                     busyProceedAction.Content = AppResources.RestoreBackupLabel;
 
                     App.ViewModel.DeleteDatabase();
 
-                    MemoryStream stream = new MemoryStream();
+                    var stream = new MemoryStream();
                     stream = downloadResult.Stream as MemoryStream;
 
-                    using (IsolatedStorageFile myIsolatedStorage = IsolatedStorageFile.GetUserStoreForApplication())
+                    using (var myIsolatedStorage = IsolatedStorageFile.GetUserStoreForApplication())
                     {
                         // Obtain the virtual store for the application.
-                        IsolatedStorageFile myStore = IsolatedStorageFile.GetUserStoreForApplication();
+                        var myStore = IsolatedStorageFile.GetUserStoreForApplication();
 
-                        IsolatedStorageFileStream myStream = myStore.CreateFile(DATABASENAME + ".sdf");
+                        var myStream = myStore.CreateFile(DATABASENAME + ".sdf");
                         myStream.Write(stream.GetBuffer(), 0, (int)stream.Length);
                         stream.Flush();
                         myStream.Close();

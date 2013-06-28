@@ -29,14 +29,14 @@ namespace MyTravelHistory.Views
 
         private void lblSupportAddress_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            EmailComposeTask mail = new EmailComposeTask();
+            var mail = new EmailComposeTask();
             mail.To = AppResources.SupportAddressMail;
             mail.Show();
         }
 
         private void btnRateApp_Click(object sender, RoutedEventArgs e)
         {
-            MarketplaceReviewTask marketPlaceReviewTask = new MarketplaceReviewTask();
+            var marketPlaceReviewTask = new MarketplaceReviewTask();
             marketPlaceReviewTask.Show();
         }
     }

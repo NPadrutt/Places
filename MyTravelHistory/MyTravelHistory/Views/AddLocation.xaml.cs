@@ -61,7 +61,7 @@ namespace MyTravelHistory
 
         private async void GetPosition()
         {
-            Geolocator geolocater = new Geolocator();
+            var geolocater = new Geolocator();
             geolocater.DesiredAccuracy = PositionAccuracy.High;
 
             progressionbarGetLocation.IsIndeterminate = true;
@@ -160,7 +160,7 @@ namespace MyTravelHistory
         {
             if (e.TaskResult == TaskResult.OK)
             {
-                WriteableBitmap bmp = new WriteableBitmap(1000, 2000);
+                var bmp = new WriteableBitmap(1000, 2000);
                 bmp.LoadJpeg(e.ChosenPhoto);
                 LocationImage.Source = bmp;
                 lblAddImage.Visibility = Visibility.Collapsed;

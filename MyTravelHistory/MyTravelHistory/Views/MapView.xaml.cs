@@ -61,7 +61,7 @@ namespace MyTravelHistory.Views
 
             if (MultipleLocations)
             {
-                foreach (Location location in App.ViewModel.SelectedLocations)
+                foreach (var location in App.ViewModel.SelectedLocations)
                 {
                     PinMap(new GeoCoordinate(location.Latitude, location.Longitude), location.Name);
                 }
@@ -81,7 +81,7 @@ namespace MyTravelHistory.Views
             MyMap.ZoomLevel = 16;
 
             var mapOverlay = new MapOverlay();
-            Pushpin pin = new Pushpin()
+            var pin = new Pushpin()
             {
                 Content = Name
             };
@@ -127,8 +127,8 @@ namespace MyTravelHistory.Views
         {
             if (e.Error == null)
             {
-                Route MyRoute = e.Result;
-                MapRoute MyMapRoute = new MapRoute(MyRoute);
+                var MyRoute = e.Result;
+                var MyMapRoute = new MapRoute(MyRoute);
                 MyMap.AddRoute(MyMapRoute);
                 MyQuery.Dispose();
             }

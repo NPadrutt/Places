@@ -22,7 +22,7 @@ namespace MyTravelHistory.Src
 
         public static byte[] ConvertToBytes(WriteableBitmap image)
         {
-            MemoryStream ms = new MemoryStream();
+            var ms = new MemoryStream();
             image.SaveJpeg(ms, 1000, 2000, 0, 100);
 
             return ms.GetBuffer();
@@ -40,7 +40,7 @@ namespace MyTravelHistory.Src
 
         private static WriteableBitmap GetImage(byte[] inputBytes, int width, int height)
         {
-            WriteableBitmap img = new WriteableBitmap(width, height);
+            var img = new WriteableBitmap(width, height);
 
             var ms = new MemoryStream(inputBytes);
             img.LoadJpeg(ms);
@@ -50,12 +50,11 @@ namespace MyTravelHistory.Src
 
         public static async Task GetPosition()
         {
-            Geolocator geolocater = new Geolocator();
-            geolocater.DesiredAccuracy = PositionAccuracy.High;
+            var geolocater = new Geolocator { DesiredAccuracy = PositionAccuracy.High };
 
             try
             {
-                Geoposition geoposition = await geolocater.GetGeopositionAsync(
+                var geoposition = await geolocater.GetGeopositionAsync(
                     maximumAge: TimeSpan.FromMinutes(2),
                     timeout: TimeSpan.FromSeconds(30)
                     );
@@ -78,14 +77,14 @@ namespace MyTravelHistory.Src
 
         public static async Task<LocationAddress> GetAddress(double latitude, double longtitude)
         {
-            ReverseGeocodeQuery myReverseGeocodeQuery = new ReverseGeocodeQuery();
+            var myReverseGeocodeQuery = new ReverseGeocodeQuery();
             myReverseGeocodeQuery.GeoCoordinate = new GeoCoordinate(latitude, longtitude);
             IList<MapLocation> locations = await myReverseGeocodeQuery.GetMapLocationsAsync();
-            LocationAddress locationAddress = new LocationAddress();
+            var locationAddress = new LocationAddress();
 
             if (locations.Count > 0)
             {
-                MapAddress address = locations.First<MapLocation>().Information.Address;
+                var address = locations.First<MapLocation>().Information.Address;
                 locationAddress = new LocationAddress()
                 {
                     Street = address.Street,

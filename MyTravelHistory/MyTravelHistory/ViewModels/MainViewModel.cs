@@ -35,7 +35,7 @@ namespace MyTravelHistory.ViewModels
             }
             else
             {
-                UpdateHelper updateHelper = new UpdateHelper();
+                var updateHelper = new UpdateHelper();
                 updateHelper.UpdateDatabase(db);
             }
         }

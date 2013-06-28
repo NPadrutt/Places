@@ -56,7 +56,7 @@ namespace MyTravelHistory
         {
             App.ViewModel.SelectedLocations = new ObservableCollection<Location>();
 
-            foreach (Location location in App.ViewModel.AllLocations)
+            foreach (var location in App.ViewModel.AllLocations)
             {
                 App.ViewModel.SelectedLocations.Add(location);
             }

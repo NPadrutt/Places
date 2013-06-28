@@ -22,7 +22,7 @@ namespace MyTravelHistoryTests
         public void ConvertToBytesTest()
         {
             WriteableBitmap bmp = null;
-            using (AutoResetEvent are = new AutoResetEvent(false))
+            using (var are = new AutoResetEvent(false))
             {
                 System.Windows.Deployment.Current.Dispatcher.BeginInvoke(() =>
                 {
