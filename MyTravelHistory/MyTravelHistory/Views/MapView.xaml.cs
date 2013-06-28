@@ -1,22 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Navigation;
-using Microsoft.Phone.Controls;
-using Microsoft.Phone.Shell;
-using System.Device.Location;
+﻿using Microsoft.Phone.Controls;
 using Microsoft.Phone.Maps.Controls;
-using MyTravelHistory.Models;
-using Microsoft.Phone.Maps.Toolkit;
 using Microsoft.Phone.Maps.Services;
-using Windows.Devices.Geolocation;
-using FlurryWP8SDK;
-using MyTravelHistory.Src;
-using System.Threading.Tasks;
+using Microsoft.Phone.Shell;
+using MyTravelHistory.Models;
 using MyTravelHistory.Resources;
+using MyTravelHistory.Src;
+using System;
+using System.Collections.Generic;
+using System.Device.Location;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Navigation;
+using Microsoft.Phone.Maps.Toolkit;
+
 
 namespace MyTravelHistory.Views
 {
@@ -33,15 +29,16 @@ namespace MyTravelHistory.Views
             InitializeComponent();
 
             (ApplicationBar.Buttons[0] as ApplicationBarIconButton).Text = AppResources.NavigateLabel;
+
         }
 
-        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
 
-            if (this.NavigationContext.QueryString != null || this.NavigationContext.QueryString.Count > 0)
+            if (NavigationContext.QueryString != null || NavigationContext.QueryString.Count > 0)
             {
-                if (Convert.ToBoolean(this.NavigationContext.QueryString["MultipleLocations"]))
+                if (Convert.ToBoolean(NavigationContext.QueryString["MultipleLocations"]))
                 {
                     MultipleLocations = true;
                     ApplicationBar.IsVisible = false;
@@ -54,14 +51,14 @@ namespace MyTravelHistory.Views
             }
         }
 
-        private async void Map_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        private async void Map_Loaded(object sender, RoutedEventArgs e)
         {
             Microsoft.Phone.Maps.MapsSettings.ApplicationContext.ApplicationId = "ApplicationID";
             Microsoft.Phone.Maps.MapsSettings.ApplicationContext.AuthenticationToken = "AuthenticationToken";
 
             if (MultipleLocations)
             {
-                foreach (var location in App.ViewModel.SelectedLocations)
+                foreach (Location location in App.ViewModel.SelectedLocations)
                 {
                     PinMap(new GeoCoordinate(location.Latitude, location.Longitude), location.Name);
                 }
@@ -81,7 +78,7 @@ namespace MyTravelHistory.Views
             MyMap.ZoomLevel = 16;
 
             var mapOverlay = new MapOverlay();
-            var pin = new Pushpin()
+            Pushpin pin = new Pushpin()
             {
                 Content = Name
             };
@@ -127,8 +124,8 @@ namespace MyTravelHistory.Views
         {
             if (e.Error == null)
             {
-                var MyRoute = e.Result;
-                var MyMapRoute = new MapRoute(MyRoute);
+                Route MyRoute = e.Result;
+                MapRoute MyMapRoute = new MapRoute(MyRoute);
                 MyMap.AddRoute(MyMapRoute);
                 MyQuery.Dispose();
             }

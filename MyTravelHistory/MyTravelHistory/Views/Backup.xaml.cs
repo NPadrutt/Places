@@ -133,11 +133,9 @@ namespace MyTravelHistory.Views
                 var operationResult = await liveClient.DeleteAsync(backupId);
             }
 
-            IsolatedStorageFileStream fileStream = null;
-
             using (var store = IsolatedStorageFile.GetUserStoreForApplication())
             {
-                fileStream = store.OpenFile(DATABASENAME + ".sdf", FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+                IsolatedStorageFileStream fileStream = store.OpenFile(DATABASENAME + ".sdf", FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
                 var operationResult = await liveClient.UploadAsync(folderId, BACKUPNAME + ".sdf", fileStream, OverwriteOption.Overwrite);
                 dynamic result = operationResult.Result;
                 folderId = result.id;

@@ -82,20 +82,19 @@ namespace MyTravelHistory.Src
             IList<MapLocation> locations = await myReverseGeocodeQuery.GetMapLocationsAsync();
             var locationAddress = new LocationAddress();
 
-            if (locations.Count > 0)
+            if (locations.Count <= 0) return locationAddress;
+
+            var address = locations.First().Information.Address;
+            locationAddress = new LocationAddress()
             {
-                var address = locations.First<MapLocation>().Information.Address;
-                locationAddress = new LocationAddress()
-                {
-                    Street = address.Street,
-                    HouseNumber = address.HouseNumber,
-                    PostalCode = address.PostalCode,
-                    City = address.City,
-                    District = address.District,
-                    State = address.State,
-                    Country = address.Country
-                };
-            }
+                Street = address.Street,
+                HouseNumber = address.HouseNumber,
+                PostalCode = address.PostalCode,
+                City = address.City,
+                District = address.District,
+                State = address.State,
+                Country = address.Country
+            };
 
             return locationAddress;
         }

@@ -85,31 +85,35 @@ namespace MyTravelHistory
                 PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Disabled;
             }
 			//Creates an instance of the Diagnostics component.
-            diagnostics = new RadDiagnostics();
+            diagnostics = new RadDiagnostics {EmailTo = "nino.padrutt@hotmail.com"};
 
             //Defines the default email where the diagnostics info will be send.
-            diagnostics.EmailTo = "nino.padrutt@hotmail.com";
 
             //Initializes this instance.
             diagnostics.Init();
 		    //Creates an instance of the RadTrialApplicationReminder component.
-            trialReminder = new RadTrialApplicationReminder();
+            trialReminder = new RadTrialApplicationReminder
+            {
+                AllowedTrialUsageCount = 30,
+                OccurrenceUsageCount = 2,
+                SimulateTrialForTests = false
+            };
 
             //Sets the lenght of the trial period.
-            trialReminder.AllowedTrialUsageCount = 30;
 
             //Sets how often the trial reminder is displayed.
-            trialReminder.OccurrenceUsageCount = 2;
 
             //The reminder is shown only if the application is in trial mode. When this property is set to true the application will simulate that it is in trial mode.
-            trialReminder.SimulateTrialForTests = false;
-        
-		      //Creates a new instance of the RadRateApplicationReminder component.
-            rateReminder = new RadRateApplicationReminder();
+
+            //Creates a new instance of the RadRateApplicationReminder component.
+            rateReminder = new RadRateApplicationReminder()
+            {
+                RecurrencePerUsageCount = 2,
+                AllowUsersToSkipFurtherReminders = true,
+            };
 
             //Sets how often the rate reminder is displayed.
-            rateReminder.RecurrencePerUsageCount = 2;
-            rateReminder.AllowUsersToSkipFurtherReminders = true;
+            
 
             _viewModel = new MainViewModel();
             _viewModel.LoadLocations();
