@@ -10,6 +10,7 @@ using Microsoft.Phone.Shell;
 using Microsoft.Phone.Tasks;
 using MyTravelHistory.Resources;
 using MyTravelHistory.Src;
+using GestureEventArgs = System.Windows.Input.GestureEventArgs;
 
 namespace MyTravelHistory.Views
 {
@@ -27,7 +28,7 @@ namespace MyTravelHistory.Views
             lblVersion.Text = Utilities.GetVersion();
         }
 
-        private void lblSupportAddress_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        private void lblSupportAddress_Tap(object sender, GestureEventArgs e)
         {
             var mail = new EmailComposeTask();
             mail.To = AppResources.SupportAddressMail;

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using System.ComponentModel;
 using MyTravelHistory.Src;
@@ -24,7 +25,7 @@ namespace MyTravelHistoryTests
             WriteableBitmap bmp = null;
             using (var are = new AutoResetEvent(false))
             {
-                System.Windows.Deployment.Current.Dispatcher.BeginInvoke(() =>
+                Deployment.Current.Dispatcher.BeginInvoke(() =>
                 {
                     bmp = new WriteableBitmap(10, 10);
                     are.Set();

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
@@ -17,7 +18,7 @@ namespace MyTravelHistory.Src
     {
         public static string GetVersion()
         {
-            return System.Reflection.Assembly.GetExecutingAssembly().FullName.Split('=')[1].Split(',')[0];
+            return Assembly.GetExecutingAssembly().FullName.Split('=')[1].Split(',')[0];
         }
 
         public static byte[] ConvertToBytes(WriteableBitmap image)

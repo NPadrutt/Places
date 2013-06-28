@@ -1,4 +1,5 @@
 ﻿using Microsoft.Phone.Controls;
+using Microsoft.Phone.Maps;
 using Microsoft.Phone.Maps.Controls;
 using Microsoft.Phone.Maps.Services;
 using Microsoft.Phone.Shell;
@@ -53,8 +54,8 @@ namespace MyTravelHistory.Views
 
         private async void Map_Loaded(object sender, RoutedEventArgs e)
         {
-            Microsoft.Phone.Maps.MapsSettings.ApplicationContext.ApplicationId = "ApplicationID";
-            Microsoft.Phone.Maps.MapsSettings.ApplicationContext.AuthenticationToken = "AuthenticationToken";
+            MapsSettings.ApplicationContext.ApplicationId = "ApplicationID";
+            MapsSettings.ApplicationContext.AuthenticationToken = "AuthenticationToken";
 
             if (MultipleLocations)
             {
@@ -91,7 +92,7 @@ namespace MyTravelHistory.Views
             MyMap.Layers.Add(mapLayer);
         }
 
-        private async void btnNavigation_Click(object sender, System.EventArgs e)
+        private async void btnNavigation_Click(object sender, EventArgs e)
         {            
             Mygeocodequery = new GeocodeQuery();
             Mygeocodequery.SearchTerm = App.ViewModel.SelectedLocation.Name;

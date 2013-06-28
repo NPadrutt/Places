@@ -25,7 +25,7 @@ namespace MyTravelHistory
         {
             InitializeComponent();
 
-            this.DataContext = App.ViewModel;
+            DataContext = App.ViewModel;
 
 			//Shows the trial reminder message, according to the settings of the TrialReminder.
             (App.Current as App).trialReminder.Notify();
@@ -40,19 +40,19 @@ namespace MyTravelHistory
             (ApplicationBar.MenuItems[2] as ApplicationBarMenuItem).Text = AppResources.AboutLabel;
         }
 
-        private void btnAdd_Click(object sender, System.EventArgs e)
+        private void btnAdd_Click(object sender, EventArgs e)
         {
             App.ViewModel.SelectedLocation = null;
 
         	NavigationService.Navigate(new Uri("/Views/AddLocation.xaml", UriKind.Relative));
         }
 
-        private void mAbout_Click(object sender, System.EventArgs e)
+        private void mAbout_Click(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/Views/About.xaml", UriKind.Relative));
         }
 
-        private void mShowOnMap_Click(object sender, System.EventArgs e)
+        private void mShowOnMap_Click(object sender, EventArgs e)
         {
             App.ViewModel.SelectedLocations = new ObservableCollection<Location>();
 
@@ -64,7 +64,7 @@ namespace MyTravelHistory
             NavigationService.Navigate(new Uri("/Views/MapView.xaml?MultipleLocations=true", UriKind.Relative));
         }
 
-        private void mBackup_Click(object sender, System.EventArgs e)
+        private void mBackup_Click(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/Views/Backup.xaml", UriKind.Relative));
         }

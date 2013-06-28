@@ -17,6 +17,7 @@ using Microsoft.Phone.Tasks;
 using System.Windows.Media.Imaging;
 using Microsoft.Phone.Maps.Services;
 using System.Device.Location;
+using GestureEventArgs = System.Windows.Input.GestureEventArgs;
 
 namespace MyTravelHistory
 {
@@ -75,7 +76,7 @@ namespace MyTravelHistory
             locationAddress = await Utilities.GetAddress(App.ViewModel.CurrentPosition.Latitude, App.ViewModel.CurrentPosition.Longitude);
 
             //FillInAddressData();
-            stackpanelAddress.DataContext = this.locationAddress;
+            stackpanelAddress.DataContext = locationAddress;
             stackpanelPosition.DataContext = App.ViewModel.CurrentPosition;
 
             progressionbarGetLocation.IsIndeterminate = false;
@@ -93,7 +94,7 @@ namespace MyTravelHistory
             lblCountry.Text = locationAddress.Country;
         }      
 
-        private void btnDone_Click(object sender, System.EventArgs e)
+        private void btnDone_Click(object sender, EventArgs e)
         {
             if (App.ViewModel.CurrentPosition.Latitude != 0 && App.ViewModel.CurrentPosition.Longitude != 0)
             {
@@ -144,12 +145,12 @@ namespace MyTravelHistory
             };
         }
 
-        private void btnCancel_Click(object sender, System.EventArgs e)
+        private void btnCancel_Click(object sender, EventArgs e)
         {
             NavigationService.GoBack();
         }
 
-        private void Grid_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        private void Grid_Tap(object sender, GestureEventArgs e)
         {
             cameraCaptureTask = new CameraCaptureTask();
             cameraCaptureTask.Completed += new EventHandler<PhotoResult>(cameraCaptureTask_Completed);
@@ -169,7 +170,7 @@ namespace MyTravelHistory
             }
         }
 
-        private void LocationImage_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        private void LocationImage_Loaded(object sender, RoutedEventArgs e)
         {
             if (!NewElement && App.ViewModel.SelectedLocation.LocationImage != null)
             {
@@ -178,7 +179,7 @@ namespace MyTravelHistory
             }
         }
 
-        private void btnRefreshPosition_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void btnRefreshPosition_Click(object sender, RoutedEventArgs e)
         {
             App.ViewModel.CurrentPosition = null;
             GetPosition();

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
@@ -66,10 +68,10 @@ namespace MyTravelHistory
             InitializePhoneApplication();
 
             // Show graphics profiling information while debugging.
-            if (System.Diagnostics.Debugger.IsAttached)
+            if (Debugger.IsAttached)
             {
                 // Display the current frame rate counters.
-                Application.Current.Host.Settings.EnableFrameRateCounter = true;
+                Current.Host.Settings.EnableFrameRateCounter = true;
 
                 // Show the areas of the app that are being redrawn in each frame.
                 //Application.Current.Host.Settings.EnableRedrawRegions = true;
@@ -126,7 +128,7 @@ namespace MyTravelHistory
 #if !DEBUG
                 FlurryWP8SDK.Api.StartSession("HKN24VVBRHX4833D8VCR");
 #endif
-            ApplicationUsageHelper.Init(System.Reflection.Assembly.GetExecutingAssembly().FullName.Split('=')[1].Split(',')[0]);
+            ApplicationUsageHelper.Init(Assembly.GetExecutingAssembly().FullName.Split('=')[1].Split(',')[0]);
 		}
 
         // Code to execute when the application is activated (brought to foreground)
@@ -157,20 +159,20 @@ namespace MyTravelHistory
         // Code to execute if a navigation fails
         private void RootFrame_NavigationFailed(object sender, NavigationFailedEventArgs e)
         {
-            if (System.Diagnostics.Debugger.IsAttached)
+            if (Debugger.IsAttached)
             {
                 // A navigation has failed; break into the debugger
-                System.Diagnostics.Debugger.Break();
+                Debugger.Break();
             }
         }
 
         // Code to execute on Unhandled Exceptions
         private void Application_UnhandledException(object sender, ApplicationUnhandledExceptionEventArgs e)
         {
-            if (System.Diagnostics.Debugger.IsAttached)
+            if (Debugger.IsAttached)
             {
                 // An unhandled exception has occurred; break into the debugger
-                System.Diagnostics.Debugger.Break();
+                Debugger.Break();
             }
         }
 

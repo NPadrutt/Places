@@ -155,15 +155,15 @@ namespace MyTravelHistory.Models
         [Association(Storage = "_location", OtherKey = "_addressId", ThisKey = "Id")]
         public EntitySet<Location> Location
         {
-            get { return this._location; }
-            set { this._location.Assign(value); }
+            get { return _location; }
+            set { _location.Assign(value); }
         }
 
         public LocationAddress()
         {
             _location = new EntitySet<Location>(
-                new Action<Location>(this.attach_Location),
-                new Action<Location>(this.detach_Location)
+                new Action<Location>(attach_Location),
+                new Action<Location>(detach_Location)
                 );
         }
 

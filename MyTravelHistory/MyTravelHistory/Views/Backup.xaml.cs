@@ -5,6 +5,7 @@ using System.Net;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
+using Microsoft.Live.Controls;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Microsoft.Live;
@@ -39,7 +40,7 @@ namespace MyTravelHistory.Views
             Api.LogEvent("RestoreBackUp()");
         }
 
-        private async void SignInButton_SessionChanged(object sender, Microsoft.Live.Controls.LiveConnectSessionChangedEventArgs e)
+        private async void SignInButton_SessionChanged(object sender, LiveConnectSessionChangedEventArgs e)
         {
             if (e.Status == LiveConnectSessionStatus.Connected)
             {
@@ -190,7 +191,7 @@ namespace MyTravelHistory.Views
                 }
                 catch (LiveConnectException exception)
                 {
-                    FlurryWP8SDK.Api.LogError("Error getting file info: " + exception.Message, exception);
+                    Api.LogError("Error getting file info: " + exception.Message, exception);
                 }
             }
         }
@@ -269,12 +270,12 @@ namespace MyTravelHistory.Views
             }
         }
 
-        private void btnBackup_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void btnBackup_Click(object sender, RoutedEventArgs e)
         {
             CreateBackUp();
         }
 
-        private void btnRestore_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void btnRestore_Click(object sender, RoutedEventArgs e)
         {
             RestoreBackUp();
         }
