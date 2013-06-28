@@ -25,6 +25,7 @@ namespace MyTravelHistory
         private bool NewElement;
 
         CameraCaptureTask cameraCaptureTask;
+        LocationAddress locationAddress;
 
         public AddLocation()
         {
@@ -66,55 +67,31 @@ namespace MyTravelHistory
             progressionbarGetLocation.IsIndeterminate = true;
             progressionbarGetLocation.Visibility = Visibility.Visible;
 
-            try
+            if (App.ViewModel.CurrentPosition == null || App.ViewModel.CurrentPosition.Timestamp <= DateTime.Now.AddMinutes(1))
             {
-                Geoposition geoposition = await geolocater.GetGeopositionAsync(
-                    maximumAge: TimeSpan.FromMinutes(2),
-                    timeout: TimeSpan.FromSeconds(10)
-                    );
+                await Utilities.GetPosition();
+            }
 
-                App.ViewModel.SelectedLocation.Latitude = geoposition.Coordinate.Latitude;
-                App.ViewModel.SelectedLocation.Longitude = geoposition.Coordinate.Longitude;
-                App.ViewModel.SelectedLocation.Accuracy = geoposition.Coordinate.Accuracy;
+            locationAddress = await Utilities.GetAddress(App.ViewModel.CurrentPosition.Latitude, App.ViewModel.CurrentPosition.Longitude);
 
-                GetAddress(geoposition.Coordinate.Latitude, geoposition.Coordinate.Longitude);
-            }
-            catch (Exception ex)
-            {
-                if ((uint)ex.HResult == 0x80004004)
-                {
-                    // the application does not have the right capability or the location master switch is off
-                    MessageBox.Show("location  is disabled in phone settings.");
-                }
-            }
-            finally
-            {
-                progressionbarGetLocation.IsIndeterminate = false;
-                progressionbarGetLocation.Visibility = Visibility.Collapsed;
-            }
+            //FillInAddressData();
+            stackpanelAddress.DataContext = this.locationAddress;
+            stackpanelPosition.DataContext = App.ViewModel.CurrentPosition;
+
+            progressionbarGetLocation.IsIndeterminate = false;
+            progressionbarGetLocation.Visibility = Visibility.Collapsed;            
         }
 
-        private async void GetAddress(double latitude, double longtitude)
-        {
-            ReverseGeocodeQuery myReverseGeocodeQuery = new ReverseGeocodeQuery();
-            myReverseGeocodeQuery.GeoCoordinate = new GeoCoordinate(latitude, longtitude);
-            IList<MapLocation> locations = await myReverseGeocodeQuery.GetMapLocationsAsync();
-            if (locations.Count > 0)
-            {
-                MapAddress address = locations.First<MapLocation>().Information.Address;
-                App.ViewModel.SelectedLocation.LocationAddress = new LocationAddress()
-                {
-                    Street = address.Street,
-                    HouseNumber = address.HouseNumber,
-                    PostalCode = address.PostalCode,
-                    City = address.City,
-                    District = address.District,
-                    State = address.State,
-                    Country = address.Country
-                };
-                DataContext = App.ViewModel.SelectedLocation;
-            }
-        }
+        private void FillInAddressData()
+        {          
+            lblStreet.Text = locationAddress.Street;
+            lblHousenumber.Text = locationAddress.HouseNumber;
+            lblPostalCode.Text = locationAddress.PostalCode;
+            lblCity.Text = locationAddress.City;
+            lblState.Text = locationAddress.State;
+            lblDistrict.Text = locationAddress.District;
+            lblCountry.Text = locationAddress.Country;
+        }      
 
         private void btnDone_Click(object sender, System.EventArgs e)
         {
@@ -129,7 +106,12 @@ namespace MyTravelHistory
                     App.ViewModel.SelectedLocation.Name = txtName.Text;
                 }
 
+                App.ViewModel.SelectedLocation.Latitude = Convert.ToDouble(lblLatitude.Text);
+                App.ViewModel.SelectedLocation.Longitude = Convert.ToDouble(lblLongtitude.Text);
+                App.ViewModel.SelectedLocation.Accuracy = Convert.ToDouble(lblAccuracy.Text);
                 App.ViewModel.SelectedLocation.Comment = txtComment.Text;
+
+                App.ViewModel.SelectedLocation.LocationAddress = locationAddress;
 
                 if (NewElement)
                 {
@@ -146,6 +128,20 @@ namespace MyTravelHistory
             {
                 MessageBox.Show(AppResources.NoPositionMessage, AppResources.NoPositionMessageTitle, MessageBoxButton.OK);
             }
+        }
+
+        private LocationAddress ReadOutAddress()
+        {
+            return new LocationAddress()
+            {
+                Street = lblStreet.Text,
+                HouseNumber = lblHousenumber.Text,
+                PostalCode = lblPostalCode.Text,
+                City = lblCity.Text,
+                District = lblDistrict.Text,
+                State = lblState.Text,
+                Country = lblCountry.Text
+            };
         }
 
         private void btnCancel_Click(object sender, System.EventArgs e)
@@ -184,6 +180,7 @@ namespace MyTravelHistory
 
         private void btnRefreshPosition_Click(object sender, System.Windows.RoutedEventArgs e)
         {
+            App.ViewModel.CurrentPosition = null;
             GetPosition();
         }
     }

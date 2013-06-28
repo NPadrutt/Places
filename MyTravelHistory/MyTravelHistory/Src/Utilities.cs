@@ -76,7 +76,7 @@ namespace MyTravelHistory.Src
             }
         }
 
-        private async Task<LocationAddress> GetAddress(double latitude, double longtitude)
+        public static async Task<LocationAddress> GetAddress(double latitude, double longtitude)
         {
             ReverseGeocodeQuery myReverseGeocodeQuery = new ReverseGeocodeQuery();
             myReverseGeocodeQuery.GeoCoordinate = new GeoCoordinate(latitude, longtitude);

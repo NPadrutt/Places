@@ -376,6 +376,15 @@ namespace MyTravelHistory.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to navigate.
+        /// </summary>
+        public static string NavigateLabel {
+            get {
+                return ResourceManager.GetString("NavigateLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to [empty name].
         /// </summary>
         public static string NoNameDefaultEntry {

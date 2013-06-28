@@ -278,4 +278,7 @@ Do you wanna proceed?</value>
   <data name="YouAreHereText" xml:space="preserve">
     <value>you are here</value>
   </data>
+  <data name="NavigateLabel" xml:space="preserve">
+    <value>navigate</value>
+  </data>
 </root>

@@ -273,4 +273,7 @@
   <data name="YouAreHereText" xml:space="preserve">
     <value>Du bist hier</value>
   </data>
+  <data name="NavigateLabel" xml:space="preserve">
+    <value>Navigieren</value>
+  </data>
 </root>

@@ -41,11 +41,11 @@
 				<telerikPrimitives:RadTextBox x:Name="txtName" Text="{Binding Name}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0" Header="{Binding LocalizedResources.NameLabel, Source={StaticResource LocalizedStrings}}"/>
 				<ProgressBar x:Name="progressionbarGetLocation" Height="10" Margin="0" IsIndeterminate="True"/>
 				<TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Text="{Binding LocalizedResources.CurrentPositionLabel, Source={StaticResource LocalizedStrings}}" Margin="12,0,0,0" Style="{StaticResource PhoneTextSmallStyle}"/>
-                <StackPanel Margin="12,0,0,5" Orientation="Vertical">
+                <StackPanel Margin="12,0,0,5" Orientation="Vertical" Name="stackpanelPosition">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock x:Name="txtLatitude" Text="{Binding Latitude}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Style="{StaticResource PhoneTextNormalStyle}"/>
+                        <TextBlock x:Name="lblLatitude" Text="{Binding Latitude}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Style="{StaticResource PhoneTextNormalStyle}"/>
                         <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Text=" / " Margin="0" Style="{StaticResource PhoneTextNormalStyle}"/>
-                        <TextBlock x:Name="txtLongtitude" Text="{Binding Longtitude}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Style="{StaticResource PhoneTextNormalStyle}"/>
+                        <TextBlock x:Name="lblLongtitude" Text="{Binding Longitude}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Style="{StaticResource PhoneTextNormalStyle}"/>
                         <telerikPrimitives:RadImageButton x:Name="btnRefreshPosition" Content="" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ButtonType="Custom" RestStateImageSource="/MyTravelHistory;component/Assets/Refresh.png" PressedStateImageSource="/MyTravelHistory;component/Assets/Refresh.png" DisabledStateImageSource="/MyTravelHistory;component/Assets/Refresh.png" Click="btnRefreshPosition_Click" Margin="0,-20,0,0"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0,-12,0,0">
@@ -57,16 +57,16 @@
                 <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Text="{Binding LocalizedResources.AddressLabel, Mode=OneWay, Source={StaticResource LocalizedStrings}}" Margin="12,0,0,0" Style="{StaticResource PhoneTextSmallStyle}"/>
 				<StackPanel x:Name="stackpanelAddress" Margin="12,0,12,12" >
 					<StackPanel Margin="0" Orientation="Horizontal">
-						<TextBlock x:Name="lblStreet" Text="{Binding LocationAddress.Street}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextNormalStyle}" Margin="0,0,5,0"/>
-						<TextBlock x:Name="lblHousenumber" Text="{Binding LocationAddress.HouseNumber}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextNormalStyle}" Margin="0"/>
+						<TextBlock x:Name="lblStreet" Text="{Binding Street}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextNormalStyle}" Margin="0,0,5,0"/>
+						<TextBlock x:Name="lblHousenumber" Text="{Binding HouseNumber}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextNormalStyle}" Margin="0"/>
 					</StackPanel>
 					<StackPanel Margin="0" Orientation="Horizontal">
-						<TextBlock x:Name="lblPostalCode" Text="{Binding LocationAddress.PostalCode}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextNormalStyle}" Margin="0,0,5,0"/>
-						<TextBlock x:Name="lblCity" Text="{Binding LocationAddress.City}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextNormalStyle}" Margin="0"/>
+						<TextBlock x:Name="lblPostalCode" Text="{Binding PostalCode}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextNormalStyle}" Margin="0,0,5,0"/>
+						<TextBlock x:Name="lblCity" Text="{Binding City}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextNormalStyle}" Margin="0"/>
 					</StackPanel>
-                    <TextBlock x:Name="lblState" Text="{Binding LocationAddress.State}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextNormalStyle}" Margin="0"/>
-                    <TextBlock x:Name="lblDistrict" Text="{Binding LocationAddress.District}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextNormalStyle}" Margin="0"/>
-                    <TextBlock x:Name="lblCountry" Text="{Binding LocationAddress.Country}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextNormalStyle}" Margin="0"/>
+                    <TextBlock x:Name="lblState" Text="{Binding State}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextNormalStyle}" Margin="0"/>
+                    <TextBlock x:Name="lblDistrict" Text="{Binding District}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextNormalStyle}" Margin="0"/>
+                    <TextBlock x:Name="lblCountry" Text="{Binding Country}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextNormalStyle}" Margin="0"/>
 				</StackPanel>
 				<telerikPrimitives:RadTextBox x:Name="txtComment" Text="{Binding Comment}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Header="{Binding LocalizedResources.CommentLabel, Source={StaticResource LocalizedStrings}}"/>
 			</StackPanel>

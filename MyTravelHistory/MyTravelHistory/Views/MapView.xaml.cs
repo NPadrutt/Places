@@ -31,13 +31,15 @@ namespace MyTravelHistory.Views
         public MapView()
         {
             InitializeComponent();
+
+            (ApplicationBar.Buttons[0] as ApplicationBarIconButton).Text = AppResources.NavigateLabel;
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
 
-            if (this.NavigationContext.QueryString != null && this.NavigationContext.QueryString.Count > 0)
+            if (this.NavigationContext.QueryString != null || this.NavigationContext.QueryString.Count > 0)
             {
                 if (Convert.ToBoolean(this.NavigationContext.QueryString["MultipleLocations"]))
                 {
@@ -113,7 +115,7 @@ namespace MyTravelHistory.Views
 
         private async Task FetchCurrentPosition()
         {
-            if (App.ViewModel.CurrentPosition == null)
+            if (App.ViewModel.CurrentPosition == null && App.ViewModel.CurrentPosition.Timestamp <= DateTime.Now.AddMinutes(1))
             {
                 busyProceedAction.IsRunning = true;
                 await Utilities.GetPosition();
