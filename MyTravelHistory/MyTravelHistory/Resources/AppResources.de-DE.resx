@@ -276,4 +276,7 @@
   <data name="NavigateLabel" xml:space="preserve">
     <value>Navigieren</value>
   </data>
+  <data name="PintToStartLabel" xml:space="preserve">
+    <value>An den start heften</value>
+  </data>
 </root>

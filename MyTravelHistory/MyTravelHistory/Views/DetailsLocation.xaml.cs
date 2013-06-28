@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
@@ -23,7 +20,8 @@ namespace MyTravelHistory.Views
 
             (ApplicationBar.Buttons[0] as ApplicationBarIconButton).Text = AppResources.EditLabel;
             
-			(ApplicationBar.MenuItems[0] as ApplicationBarMenuItem).Text = AppResources.DeleteLabel;
+			(ApplicationBar.MenuItems[0] as ApplicationBarMenuItem).Text = AppResources.PintToStartLabel;
+			(ApplicationBar.MenuItems[1] as ApplicationBarMenuItem).Text = AppResources.DeleteLabel;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -35,6 +33,14 @@ namespace MyTravelHistory.Views
                 if (NavigationContext.QueryString.ContainsKey("RemoveBackstack") && Convert.ToBoolean(NavigationContext.QueryString["RemoveBackstack"]))
                 {
                     NavigationService.RemoveBackEntry();
+                }
+
+                if (NavigationContext.QueryString.ContainsKey("id"))
+                {
+                    foreach (var location in App.ViewModel.AllLocations.Where(location => location.Id == Convert.ToInt32(NavigationContext.QueryString["id"])))
+                    {
+                        App.ViewModel.SelectedLocation = location;
+                    }
                 }
             }
         }
@@ -81,5 +87,10 @@ namespace MyTravelHistory.Views
 
             NavigationService.GoBack();        
 		}
+
+        private void mPinToStart_Click(object sender, System.EventArgs e)
+        {
+        	Utilities.CreateTile();
+        }
     }
 }

@@ -431,6 +431,15 @@ namespace MyTravelHistory.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to pin to start.
+        /// </summary>
+        public static string PintToStartLabel {
+            get {
+                return ResourceManager.GetString("PintToStartLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You must be logged in to backup or restore your data..
         /// </summary>
         public static string PleaseLogInText {

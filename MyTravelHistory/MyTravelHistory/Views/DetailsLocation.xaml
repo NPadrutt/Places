@@ -17,6 +17,7 @@
 	<phone:PhoneApplicationPage.ApplicationBar>
 		<shell:ApplicationBar>
 			<shell:ApplicationBar.MenuItems>
+				<shell:ApplicationBarMenuItem x:Name="mPinToStart" Text="pin to start" Click="mPinToStart_Click"/>
 				<shell:ApplicationBarMenuItem x:Name="mDelete" Text="delete" Click="mDelete_Click"/>
 			</shell:ApplicationBar.MenuItems>
 			<shell:ApplicationBarIconButton x:Name="btnEdit" IconUri="/Assets/AppBar/edit.png" Text="edit" Click="btnEdit_Click"/>

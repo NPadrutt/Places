@@ -11,6 +11,7 @@ using Windows.Devices.Geolocation;
 using Microsoft.Phone.Maps.Services;
 using System.Device.Location;
 using MyTravelHistory.Models;
+using Telerik.Windows.Controls;
 
 namespace MyTravelHistory.Src
 {
@@ -60,11 +61,13 @@ namespace MyTravelHistory.Src
                     timeout: TimeSpan.FromSeconds(30)
                     );
 
-                App.ViewModel.CurrentPosition = new Position();
-                App.ViewModel.CurrentPosition.Latitude = geoposition.Coordinate.Latitude;
-                App.ViewModel.CurrentPosition.Longitude = geoposition.Coordinate.Longitude;
-                App.ViewModel.CurrentPosition.Accuracy = geoposition.Coordinate.Accuracy;
-                App.ViewModel.CurrentPosition.Timestamp = Convert.ToDateTime(geoposition.Coordinate.Timestamp);
+                App.ViewModel.CurrentPosition = new Position
+                {
+                    Latitude = geoposition.Coordinate.Latitude,
+                    Longitude = geoposition.Coordinate.Longitude,
+                    Accuracy = geoposition.Coordinate.Accuracy,
+                    Timestamp = geoposition.Coordinate.Timestamp.DateTime
+                };
             }
             catch (Exception ex)
             {
@@ -78,8 +81,10 @@ namespace MyTravelHistory.Src
 
         public static async Task<LocationAddress> GetAddress(double latitude, double longtitude)
         {
-            var myReverseGeocodeQuery = new ReverseGeocodeQuery();
-            myReverseGeocodeQuery.GeoCoordinate = new GeoCoordinate(latitude, longtitude);
+            var myReverseGeocodeQuery = new ReverseGeocodeQuery
+            {
+                GeoCoordinate = new GeoCoordinate(latitude, longtitude)
+            };
             IList<MapLocation> locations = await myReverseGeocodeQuery.GetMapLocationsAsync();
             var locationAddress = new LocationAddress();
 
@@ -98,6 +103,16 @@ namespace MyTravelHistory.Src
             };
 
             return locationAddress;
+        }
+
+        public static void CreateTile()
+        {
+            var tileData = new RadExtendedTileData()
+            {
+                Title = App.ViewModel.SelectedLocation.Name
+            };
+
+            LiveTileHelper.CreateOrUpdateTile(tileData, new Uri("/Views/DetailsLocation.xaml?id=" + App.ViewModel.SelectedLocation.Id, UriKind.RelativeOrAbsolute));
         }
     }
 }
