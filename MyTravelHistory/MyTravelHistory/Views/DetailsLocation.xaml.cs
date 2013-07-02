@@ -18,29 +18,29 @@ namespace MyTravelHistory.Views
 
             DataContext = App.ViewModel.SelectedLocation;
 
-            (ApplicationBar.Buttons[0] as ApplicationBarIconButton).Text = AppResources.EditLabel;
+            ((ApplicationBarIconButton)this.ApplicationBar.Buttons[0]).Text = AppResources.EditLabel;
             
-			(ApplicationBar.MenuItems[0] as ApplicationBarMenuItem).Text = AppResources.PintToStartLabel;
-			(ApplicationBar.MenuItems[1] as ApplicationBarMenuItem).Text = AppResources.DeleteLabel;
+			((ApplicationBarMenuItem)this.ApplicationBar.MenuItems[0]).Text = AppResources.PintToStartLabel;
+			((ApplicationBarMenuItem)this.ApplicationBar.MenuItems[1]).Text = AppResources.DeleteLabel;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
 
-            if (NavigationContext.QueryString != null && NavigationContext.QueryString.Count > 0)
+            if (this.NavigationContext.QueryString == null || this.NavigationContext.QueryString.Count <= 0) return;
+            
+            //Readout Querystrings
+            if (this.NavigationContext.QueryString.ContainsKey("RemoveBackstack") && Convert.ToBoolean(this.NavigationContext.QueryString["RemoveBackstack"]))
             {
-                if (NavigationContext.QueryString.ContainsKey("RemoveBackstack") && Convert.ToBoolean(NavigationContext.QueryString["RemoveBackstack"]))
-                {
-                    NavigationService.RemoveBackEntry();
-                }
+                this.NavigationService.RemoveBackEntry();
+            }
 
-                if (NavigationContext.QueryString.ContainsKey("id"))
+            if (this.NavigationContext.QueryString.ContainsKey("id"))
+            {
+                foreach (var location in App.ViewModel.AllLocations.Where(location => location.Id == Convert.ToInt32(this.NavigationContext.QueryString["id"])))
                 {
-                    foreach (var location in App.ViewModel.AllLocations.Where(location => location.Id == Convert.ToInt32(NavigationContext.QueryString["id"])))
-                    {
-                        App.ViewModel.SelectedLocation = location;
-                    }
+                    App.ViewModel.SelectedLocation = location;
                 }
             }
         }
@@ -88,7 +88,7 @@ namespace MyTravelHistory.Views
             NavigationService.GoBack();        
 		}
 
-        private void mPinToStart_Click(object sender, System.EventArgs e)
+        private void mPinToStart_Click(object sender, EventArgs e)
         {
         	Utilities.CreateTile();
         }

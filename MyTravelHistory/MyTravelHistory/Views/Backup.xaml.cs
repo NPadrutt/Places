@@ -1,13 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Navigation;
 using Microsoft.Live.Controls;
 using Microsoft.Phone.Controls;
-using Microsoft.Phone.Shell;
 using Microsoft.Live;
 using System.IO.IsolatedStorage;
 using System.IO;
@@ -15,7 +10,6 @@ using System.Threading.Tasks;
 using System.Globalization;
 using MyTravelHistory.Resources;
 using FlurryWP8SDK;
-using MyTravelHistory;
 using MyTravelHistory.ViewModels;
 
 namespace MyTravelHistory.Views
@@ -23,11 +17,11 @@ namespace MyTravelHistory.Views
     public partial class Backup : PhoneApplicationPage
     {
         private LiveConnectClient liveClient;
-        private static string folderId;
-        private static string backupId;
+        private static string _folderId;
+        private static string _backupId;
 
-        private const string BACKUPNAME = "MyTravelHistoryBackup";
-        private const string DATABASENAME = "MyTravelHistory";
+        private const string Backupname = "MyTravelHistoryBackup";
+        private const string Databasename = "MyTravelHistory";
 
         public Backup()
         {
@@ -63,10 +57,10 @@ namespace MyTravelHistory.Views
 
         private async Task CheckForBackup()
         {
-            if (folderId != null)
+            if (_folderId != null)
             {
                 await GetBackupId();
-                if (backupId != null)
+                if (_backupId != null)
                 {
 
                     btnRestore.IsEnabled = true;
@@ -85,21 +79,21 @@ namespace MyTravelHistory.Views
         {
             try
             {
-                if (folderId == null)
+                if (_folderId == null)
                 {
                     await GetFolderId();
                 }
 
-                var operationResultFolder = await liveClient.GetAsync(folderId + "/files");
+                var operationResultFolder = await liveClient.GetAsync(_folderId + "/files");
                 dynamic files = operationResultFolder.Result.Values;
 
                 foreach (var data in files)
                 {
                     foreach (var file in data)
                     {
-                        if (file.name == BACKUPNAME + ".sdf")
+                        if (file.name == Backupname + ".sdf")
                         {
-                            backupId = file.id;
+                            _backupId = file.id;
                         }
                     }
                 }
@@ -110,9 +104,9 @@ namespace MyTravelHistory.Views
             }
         }
 
-        public async void CreateBackUp()
+        private async void CreateBackUp()
         {
-            if (backupId != null)
+            if (_backupId != null)
             {
                 var result = MessageBox.Show(AppResources.OverwriteBackupMessage, AppResources.OverwriteBackupTitle, MessageBoxButton.OKCancel);
 
@@ -125,21 +119,21 @@ namespace MyTravelHistory.Views
             busyProceedAction.IsRunning = true;
 
             await GetFolderId();
-            if (folderId == null)
+            if (_folderId == null)
             {
                 await CreateBackupFolder();
             }
-            else if (backupId != null)
+            else if (_backupId != null)
             {
-                var operationResult = await liveClient.DeleteAsync(backupId);
+                await liveClient.DeleteAsync(_backupId);
             }
 
             using (var store = IsolatedStorageFile.GetUserStoreForApplication())
             {
-                IsolatedStorageFileStream fileStream = store.OpenFile(DATABASENAME + ".sdf", FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
-                var operationResult = await liveClient.UploadAsync(folderId, BACKUPNAME + ".sdf", fileStream, OverwriteOption.Overwrite);
+                IsolatedStorageFileStream fileStream = store.OpenFile(Databasename + ".sdf", FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+                var operationResult = await liveClient.UploadAsync(_folderId, Backupname + ".sdf", fileStream, OverwriteOption.Overwrite);
                 dynamic result = operationResult.Result;
-                folderId = result.id;
+                _folderId = result.id;
                 fileStream.Flush();
                 fileStream.Close();
             }
@@ -166,7 +160,7 @@ namespace MyTravelHistory.Views
                     {
                         if (folder.name == "Backups")
                         {
-                            folderId = folder.id;
+                            _folderId = folder.id;
                         }
                     }
                 }
@@ -179,12 +173,12 @@ namespace MyTravelHistory.Views
 
         private async Task GetBackupCreationDate()
         {
-            if (backupId != null)
+            if (_backupId != null)
             {
                 try
                 {
                     var operationResult =
-                        await liveClient.GetAsync(backupId);
+                        await liveClient.GetAsync(_backupId);
                     dynamic result = operationResult.Result;
                     DateTime createdAt = Convert.ToDateTime(result.created_time);
                     lblLastBackupDate.Text = createdAt.ToString("f", new CultureInfo(CultureInfo.CurrentCulture.TwoLetterISOLanguageName));
@@ -196,17 +190,16 @@ namespace MyTravelHistory.Views
             }
         }
 
-        public async Task CreateBackupFolder()
+        private async Task CreateBackupFolder()
         {
             if (liveClient != null)
             {
                 try
                 {
-                    var folderData = new Dictionary<string, object>();
-                    folderData.Add("name", "Backups");
+                    var folderData = new Dictionary<string, object> { { "name", "Backups" } };
                     var operationResult = await liveClient.PostAsync("me/skydrive", folderData);
                     dynamic result = operationResult.Result;
-                    folderId = result.id;
+                    _folderId = result.id;
                 }
                 catch (LiveConnectException exception)
                 {
@@ -215,58 +208,57 @@ namespace MyTravelHistory.Views
             }
         }
 
-        public async void RestoreBackUp()
+        private async void RestoreBackUp()
         {
             var result = MessageBox.Show(AppResources.ConfirmRestoreBackupMessage, AppResources.ConfirmRestoreBackupMessageTitle, MessageBoxButton.OKCancel);
 
-            if (result == MessageBoxResult.OK)
+            if (result != MessageBoxResult.OK)
             {
-                try
+                return;
+            }
+
+            try
+            {
+                this.busyProceedAction.Content = AppResources.LoadBackupLabel;
+                this.busyProceedAction.IsRunning = true;
+
+                if (_backupId == null)
                 {
-                    busyProceedAction.Content = AppResources.LoadBackupLabel;
-                    busyProceedAction.IsRunning = true;
-
-                    if (backupId == null)
-                    {
-                        await GetBackupId();
-                    }
-                    var downloadResult = await liveClient.DownloadAsync(backupId + "/content");
-
-                    busyProceedAction.Content = AppResources.RestoreBackupLabel;
-
-                    App.ViewModel.DeleteDatabase();
-
-                    var stream = new MemoryStream();
-                    stream = downloadResult.Stream as MemoryStream;
-
-                    using (var myIsolatedStorage = IsolatedStorageFile.GetUserStoreForApplication())
-                    {
-                        // Obtain the virtual store for the application.
-                        var myStore = IsolatedStorageFile.GetUserStoreForApplication();
-
-                        var myStream = myStore.CreateFile(DATABASENAME + ".sdf");
-                        myStream.Write(stream.GetBuffer(), 0, (int)stream.Length);
-                        stream.Flush();
-                        myStream.Close();
-                    }
-
-                    App.ViewModel = new MainViewModel();
-                    App.ViewModel.LoadLocations();
-                    result = MessageBox.Show(AppResources.RestoreCompletedMessage, AppResources.DoneMessageTitle, MessageBoxButton.OKCancel);
-                    if (result == MessageBoxResult.OK)
-                    {
-                        NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
-                    }
+                    await this.GetBackupId();
                 }
-                catch (Exception exception)
+                var downloadResult = await this.liveClient.DownloadAsync(_backupId + "/content");
+
+                this.busyProceedAction.Content = AppResources.RestoreBackupLabel;
+
+                App.ViewModel.DeleteDatabase();
+
+                var stream = downloadResult.Stream as MemoryStream;
+                using (IsolatedStorageFile.GetUserStoreForApplication())
                 {
-                    MessageBox.Show(AppResources.GeneralErrorMessage);
-                    Api.LogError(exception.Message, exception);
+                    // Obtain the virtual store for the application.
+                    var myStore = IsolatedStorageFile.GetUserStoreForApplication();
+                    var myStream = myStore.CreateFile(Databasename + ".sdf");
+                    myStream.Write(stream.GetBuffer(), 0, (int)stream.Length);
+                    stream.Flush();
+                    myStream.Close();
                 }
-                finally
+
+                App.ViewModel = new MainViewModel();
+                App.ViewModel.LoadLocations();
+                result = MessageBox.Show(AppResources.RestoreCompletedMessage, AppResources.DoneMessageTitle, MessageBoxButton.OKCancel);
+                if (result == MessageBoxResult.OK)
                 {
-                    busyProceedAction.IsRunning = false;
+                    this.NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
                 }
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(AppResources.GeneralErrorMessage);
+                Api.LogError(exception.Message, exception);
+            }
+            finally
+            {
+                this.busyProceedAction.IsRunning = false;
             }
         }
 

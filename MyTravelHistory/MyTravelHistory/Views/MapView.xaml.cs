@@ -21,34 +21,31 @@ namespace MyTravelHistory.Views
     {
         private bool MultipleLocations;
 
-        List<GeoCoordinate> MyCoordinates = new List<GeoCoordinate>();
-        RouteQuery MyQuery = null;
-        GeocodeQuery Mygeocodequery = null;
+        readonly List<GeoCoordinate> MyCoordinates = new List<GeoCoordinate>();
+        RouteQuery myQuery = null;
+        GeocodeQuery mygeocodequery = null;
 
         public MapView()
         {
             InitializeComponent();
 
-            (ApplicationBar.Buttons[0] as ApplicationBarIconButton).Text = AppResources.NavigateLabel;
-
+            ((ApplicationBarIconButton)this.ApplicationBar.Buttons[0]).Text = AppResources.NavigateLabel;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
 
-            if (NavigationContext.QueryString != null || NavigationContext.QueryString.Count > 0)
+            if (this.NavigationContext.QueryString == null || this.NavigationContext.QueryString.Count <= 0) return;
+            if (Convert.ToBoolean(this.NavigationContext.QueryString["MultipleLocations"]))
             {
-                if (Convert.ToBoolean(NavigationContext.QueryString["MultipleLocations"]))
-                {
-                    MultipleLocations = true;
-                    ApplicationBar.IsVisible = false;
-                }
-                else
-                {
-                    MultipleLocations = false;
-                    ApplicationBar.IsVisible = false;
-                }
+                this.MultipleLocations = true;
+                this.ApplicationBar.IsVisible = false;
+            }
+            else
+            {
+                this.MultipleLocations = false;
+                this.ApplicationBar.IsVisible = false;
             }
         }
 
@@ -94,20 +91,20 @@ namespace MyTravelHistory.Views
 
         private async void btnNavigation_Click(object sender, EventArgs e)
         {            
-            Mygeocodequery = new GeocodeQuery();
-            Mygeocodequery.SearchTerm = App.ViewModel.SelectedLocation.Name;
+            this.mygeocodequery = new GeocodeQuery();
+            this.mygeocodequery.SearchTerm = App.ViewModel.SelectedLocation.Name;
 
             await FetchCurrentPosition();          
 
-            Mygeocodequery.GeoCoordinate = new GeoCoordinate(App.ViewModel.CurrentPosition.Latitude, App.ViewModel.CurrentPosition.Longitude);
-            MyCoordinates.Add(Mygeocodequery.GeoCoordinate);
+            this.mygeocodequery.GeoCoordinate = new GeoCoordinate(App.ViewModel.CurrentPosition.Latitude, App.ViewModel.CurrentPosition.Longitude);
+            MyCoordinates.Add(this.mygeocodequery.GeoCoordinate);
 
-            MyQuery = new RouteQuery();
+            this.myQuery = new RouteQuery();
             MyCoordinates.Add(new GeoCoordinate(App.ViewModel.SelectedLocation.Latitude, App.ViewModel.SelectedLocation.Longitude));
-            MyQuery.Waypoints = MyCoordinates;
-            MyQuery.QueryCompleted += MyQuery_QueryCompleted;
-            MyQuery.QueryAsync();
-            Mygeocodequery.Dispose();
+            this.myQuery.Waypoints = MyCoordinates;
+            this.myQuery.QueryCompleted += MyQuery_QueryCompleted;
+            this.myQuery.QueryAsync();
+            this.mygeocodequery.Dispose();
             
         }
 
@@ -128,7 +125,7 @@ namespace MyTravelHistory.Views
                 Route MyRoute = e.Result;
                 MapRoute MyMapRoute = new MapRoute(MyRoute);
                 MyMap.AddRoute(MyMapRoute);
-                MyQuery.Dispose();
+                this.myQuery.Dispose();
             }
 
         }

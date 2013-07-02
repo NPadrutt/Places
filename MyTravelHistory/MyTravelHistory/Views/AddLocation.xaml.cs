@@ -1,29 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Navigation;
-using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
-using Windows.Devices.Geolocation;
-using System.Threading.Tasks;
 using MyTravelHistory.Resources;
 using MyTravelHistory.Models;
-using System.Globalization;
 using MyTravelHistory.Src;
 using Microsoft.Phone.Tasks;
 using System.Windows.Media.Imaging;
-using Microsoft.Phone.Maps.Services;
-using System.Device.Location;
 using GestureEventArgs = System.Windows.Input.GestureEventArgs;
 
-namespace MyTravelHistory
+namespace MyTravelHistory.Views
 {
-    public partial class AddLocation : PhoneApplicationPage
+    public partial class AddLocation 
     {
-        private bool NewElement;
+        private bool newElement;
 
         CameraCaptureTask cameraCaptureTask;
         LocationAddress locationAddress;
@@ -34,36 +24,32 @@ namespace MyTravelHistory
 
             DataContext = App.ViewModel.SelectedLocation;
 
-            (ApplicationBar.Buttons[0] as ApplicationBarIconButton).Text = AppResources.DoneLabel;
-            (ApplicationBar.Buttons[1] as ApplicationBarIconButton).Text = AppResources.CancelLabel;
+            ((ApplicationBarIconButton)this.ApplicationBar.Buttons[0]).Text = AppResources.DoneLabel;
+            ((ApplicationBarIconButton)this.ApplicationBar.Buttons[1]).Text = AppResources.CancelLabel;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
 
-            if (e.NavigationMode != NavigationMode.Back)
+            if (e.NavigationMode == NavigationMode.Back) return;
+            if (App.ViewModel.SelectedLocation == null)
             {
-                if (App.ViewModel.SelectedLocation == null)
-                {
-                    App.ViewModel.SelectedLocation = new Location();
-                    PageTitle.Text = AppResources.AddTitle;
-                    GetPosition();
-                    NewElement = true;
-                }
-                else
-                {
-                    PageTitle.Text = AppResources.EditTitle;
-                    progressionbarGetLocation.IsIndeterminate = false;
-                    progressionbarGetLocation.Visibility = Visibility.Collapsed;
-                }
+                App.ViewModel.SelectedLocation = new Location();
+                this.PageTitle.Text = AppResources.AddTitle;
+                this.GetPosition();
+                this.newElement = true;
+            }
+            else
+            {
+                this.PageTitle.Text = AppResources.EditTitle;
+                this.progressionbarGetLocation.IsIndeterminate = false;
+                this.progressionbarGetLocation.Visibility = Visibility.Collapsed;
             }
         }
 
         private async void GetPosition()
         {
-            var geolocater = new Geolocator();
-            geolocater.DesiredAccuracy = PositionAccuracy.High;
 
             progressionbarGetLocation.IsIndeterminate = true;
             progressionbarGetLocation.Visibility = Visibility.Visible;
@@ -75,37 +61,18 @@ namespace MyTravelHistory
 
             locationAddress = await Utilities.GetAddress(App.ViewModel.CurrentPosition.Latitude, App.ViewModel.CurrentPosition.Longitude);
 
-            //FillInAddressData();
             stackpanelAddress.DataContext = locationAddress;
             stackpanelPosition.DataContext = App.ViewModel.CurrentPosition;
 
             progressionbarGetLocation.IsIndeterminate = false;
             progressionbarGetLocation.Visibility = Visibility.Collapsed;            
-        }
-
-        private void FillInAddressData()
-        {          
-            lblStreet.Text = locationAddress.Street;
-            lblHousenumber.Text = locationAddress.HouseNumber;
-            lblPostalCode.Text = locationAddress.PostalCode;
-            lblCity.Text = locationAddress.City;
-            lblState.Text = locationAddress.State;
-            lblDistrict.Text = locationAddress.District;
-            lblCountry.Text = locationAddress.Country;
         }      
 
         private void btnDone_Click(object sender, EventArgs e)
         {
-            if (App.ViewModel.CurrentPosition.Latitude != 0 && App.ViewModel.CurrentPosition.Longitude != 0)
+            if (Math.Abs(App.ViewModel.CurrentPosition.Latitude) > 0 && Math.Abs(App.ViewModel.CurrentPosition.Longitude) > 0)
             {
-                if (txtName.Text == string.Empty)
-                {
-                    App.ViewModel.SelectedLocation.Name = AppResources.NoNameDefaultEntry;
-                }
-                else
-                {
-                    App.ViewModel.SelectedLocation.Name = txtName.Text;
-                }
+                App.ViewModel.SelectedLocation.Name = this.txtName.Text == string.Empty ? AppResources.NoNameDefaultEntry : this.txtName.Text;
 
                 App.ViewModel.SelectedLocation.Latitude = Convert.ToDouble(lblLatitude.Text);
                 App.ViewModel.SelectedLocation.Longitude = Convert.ToDouble(lblLongtitude.Text);
@@ -114,7 +81,7 @@ namespace MyTravelHistory
 
                 App.ViewModel.SelectedLocation.LocationAddress = locationAddress;
 
-                if (NewElement)
+                if (this.newElement)
                 {
                     App.ViewModel.AddLocation(App.ViewModel.SelectedLocation);
                 }
@@ -153,7 +120,7 @@ namespace MyTravelHistory
         private void Grid_Tap(object sender, GestureEventArgs e)
         {
             cameraCaptureTask = new CameraCaptureTask();
-            cameraCaptureTask.Completed += new EventHandler<PhotoResult>(cameraCaptureTask_Completed);
+            cameraCaptureTask.Completed += this.cameraCaptureTask_Completed;
             cameraCaptureTask.Show();
         }
 
@@ -172,7 +139,7 @@ namespace MyTravelHistory
 
         private void LocationImage_Loaded(object sender, RoutedEventArgs e)
         {
-            if (!NewElement && App.ViewModel.SelectedLocation.LocationImage != null)
+            if (!this.newElement && App.ViewModel.SelectedLocation.LocationImage != null)
             {
                 LocationImage.Source = Utilities.ConvertToImage(App.ViewModel.SelectedLocation.LocationImage);
                 lblAddImage.Visibility = Visibility.Collapsed;
