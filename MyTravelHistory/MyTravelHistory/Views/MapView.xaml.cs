@@ -3,7 +3,6 @@ using Microsoft.Phone.Maps;
 using Microsoft.Phone.Maps.Controls;
 using Microsoft.Phone.Maps.Services;
 using Microsoft.Phone.Shell;
-using MyTravelHistory.Models;
 using MyTravelHistory.Resources;
 using MyTravelHistory.Src;
 using System;

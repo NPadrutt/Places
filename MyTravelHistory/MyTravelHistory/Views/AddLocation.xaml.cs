@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Device.Location;
 using System.Windows;
 using System.Windows.Navigation;
 using Microsoft.Phone.Shell;
@@ -46,6 +47,7 @@ namespace MyTravelHistory.Views
                 stackpanelAddress.DataContext = App.ViewModel.SelectedLocation.LocationAddress;
                 this.progressionbarGetLocation.IsIndeterminate = false;
                 this.progressionbarGetLocation.Visibility = Visibility.Collapsed;
+                MiniMap.ShowOnMap(App.ViewModel.SelectedLocation.Latitude, App.ViewModel.SelectedLocation.Longitude);
             }
         }
 
@@ -65,9 +67,11 @@ namespace MyTravelHistory.Views
             stackpanelAddress.DataContext = locationAddress;
             stackpanelPosition.DataContext = App.ViewModel.CurrentPosition;
 
+            MiniMap.ShowOnMap(App.ViewModel.CurrentPosition.Latitude, App.ViewModel.CurrentPosition.Longitude);
+
             progressionbarGetLocation.IsIndeterminate = false;
             progressionbarGetLocation.Visibility = Visibility.Collapsed;            
-        }      
+        }
 
         private void btnDone_Click(object sender, EventArgs e)
         {
