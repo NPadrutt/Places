@@ -35,16 +35,16 @@ namespace MyTravelHistory.Views
         {
             base.OnNavigatedTo(e);
 
-            if (this.NavigationContext.QueryString == null || this.NavigationContext.QueryString.Count <= 0) return;
-            if (Convert.ToBoolean(this.NavigationContext.QueryString["MultipleLocations"]))
+            if (NavigationContext.QueryString == null || NavigationContext.QueryString.Count <= 0) return;
+            if (Convert.ToBoolean(NavigationContext.QueryString["MultipleLocations"]))
             {
-                this.MultipleLocations = true;
-                this.ApplicationBar.IsVisible = false;
+                MultipleLocations = true;
+                ApplicationBar.IsVisible = false;
             }
             else
             {
-                this.MultipleLocations = false;
-                this.ApplicationBar.IsVisible = false;
+                MultipleLocations = false;
+                ApplicationBar.IsVisible = false;
             }
         }
 
@@ -66,18 +66,27 @@ namespace MyTravelHistory.Views
             }
 
             await FetchCurrentPosition();
-            PinMap(new GeoCoordinate(App.ViewModel.CurrentPosition.Latitude, App.ViewModel.CurrentPosition.Longitude), AppResources.YouAreHereText);
+            PinCurrentPosition();
         }
 
-        private void PinMap(GeoCoordinate geoPosition, string Name)
+        private void PinCurrentPosition()
         {
-            MyMap.Center = geoPosition;
-            MyMap.ZoomLevel = 16;
+            var currentPosition = new GeoCoordinate(App.ViewModel.CurrentPosition.Latitude, App.ViewModel.CurrentPosition.Longitude);
+            MyMap.SetView(currentPosition, 16, MapAnimationKind.Parabolic);
+            
+            var marker = new UserLocationMarker(){ GeoCoordinate = currentPosition };
+            var mapOverlay = new MapOverlay() {Content = marker, GeoCoordinate = currentPosition};
 
+            var mapLayer = new MapLayer { mapOverlay };
+            MyMap.Layers.Add(mapLayer);
+        }
+
+        private void PinMap(GeoCoordinate geoPosition, string locationName)
+        {
             var mapOverlay = new MapOverlay();
             var pin = new Pushpin()
             {
-                Content = Name
+                Content = locationName
             };
             mapOverlay.Content = pin;
             mapOverlay.GeoCoordinate = geoPosition;

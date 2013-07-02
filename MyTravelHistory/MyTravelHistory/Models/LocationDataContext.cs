@@ -1,4 +1,6 @@
-﻿using MyTravelHistory.Src;
+﻿using System.Device.Location;
+using System.Windows.Controls;
+using MyTravelHistory.Src;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

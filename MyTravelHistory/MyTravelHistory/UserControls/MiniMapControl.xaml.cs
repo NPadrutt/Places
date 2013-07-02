@@ -21,15 +21,11 @@ namespace MyTravelHistory.UserControls
         public void ShowOnMap(double latitude, double longitude)
         {
             var geoPosition = new GeoCoordinate(latitude, longitude);
-            myMap.Center = geoPosition;
-            myMap.ZoomLevel = 18;
+            myMap.SetView(geoPosition, 18, MapAnimationKind.Parabolic);
 
             var mapOverlay = new MapOverlay();
-            var pin = new Pushpin()
-            {
-                Content = AppResources.YouAreHereText
-            };
-            mapOverlay.Content = pin;
+            var userMarker = new UserLocationMarker();
+            mapOverlay.Content = userMarker;
             mapOverlay.GeoCoordinate = geoPosition;
 
             var mapLayer = new MapLayer { mapOverlay };

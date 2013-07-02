@@ -7,6 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:maps="clr-namespace:Microsoft.Phone.Maps.Controls;assembly=Microsoft.Phone.Maps"
     xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Maps.Toolkit;assembly=Microsoft.Phone.Controls.Toolkit"
     x:Class="MyTravelHistory.Views.MapView"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
@@ -31,8 +32,18 @@
 			<RowDefinition Height="*"/>
 		</Grid.RowDefinitions>
 		<StackPanel x:Name="ContentPanel" Grid.Row="0" Margin="12,0,12,0">
-			<maps:Map x:Name="MyMap" LandmarksEnabled="True" Loaded="Map_Loaded" PedestrianFeaturesEnabled="True" Grid.Row="0" Height="728" Margin="-12,0" />
-		</StackPanel>
+            <maps:Map x:Name="MyMap" LandmarksEnabled="True" Loaded="Map_Loaded" PedestrianFeaturesEnabled="True" Grid.Row="0" Height="728" Margin="-12,0" >
+                <toolkit:MapExtensions.Children>
+                    <toolkit:MapItemsControl Name="LocationItems">
+                        <toolkit:MapItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <toolkit:Pushpin GeoCoordinate="{Binding Coordinate}" Content="{Binding Name}" />
+                            </DataTemplate>
+                            </toolkit:MapItemsControl.ItemTemplate>
+                    </toolkit:MapItemsControl>
+                </toolkit:MapExtensions.Children>
+            </maps:Map>
+        </StackPanel>
 
 		<telerikPrimitives:RadBusyIndicator Background="#CC000000" x:Name="busyProceedAction" AnimationStyle="AnimationStyle1" Content="{Binding AppResources.CheckBackupAvailableLabel, Source={StaticResource LocalizedStrings}}" Margin="0,0,0,-72" Grid.RowSpan="2" />
 

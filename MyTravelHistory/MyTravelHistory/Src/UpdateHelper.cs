@@ -1,4 +1,6 @@
-﻿using Microsoft.Phone.Data.Linq;
+﻿using System.Device.Location;
+using System.Windows.Media;
+using Microsoft.Phone.Data.Linq;
 using MyTravelHistory.Models;
 using System;
 using System.Collections.Generic;
