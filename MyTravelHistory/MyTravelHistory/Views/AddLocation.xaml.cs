@@ -43,6 +43,7 @@ namespace MyTravelHistory.Views
             else
             {
                 this.PageTitle.Text = AppResources.EditTitle;
+                stackpanelAddress.DataContext = App.ViewModel.SelectedLocation.LocationAddress;
                 this.progressionbarGetLocation.IsIndeterminate = false;
                 this.progressionbarGetLocation.Visibility = Visibility.Collapsed;
             }

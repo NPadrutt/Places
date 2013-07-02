@@ -56,7 +56,7 @@ namespace MyTravelHistory.Views
 
             if (MultipleLocations)
             {
-                foreach (Location location in App.ViewModel.SelectedLocations)
+                foreach (var location in App.ViewModel.SelectedLocations)
                 {
                     PinMap(new GeoCoordinate(location.Latitude, location.Longitude), location.Name);
                 }
@@ -70,29 +70,26 @@ namespace MyTravelHistory.Views
             PinMap(new GeoCoordinate(App.ViewModel.CurrentPosition.Latitude, App.ViewModel.CurrentPosition.Longitude), AppResources.YouAreHereText);
         }
 
-        public void PinMap(GeoCoordinate geoPosition, string Name)
+        private void PinMap(GeoCoordinate geoPosition, string Name)
         {
             MyMap.Center = geoPosition;
             MyMap.ZoomLevel = 16;
 
             var mapOverlay = new MapOverlay();
-            Pushpin pin = new Pushpin()
+            var pin = new Pushpin()
             {
                 Content = Name
             };
             mapOverlay.Content = pin;
             mapOverlay.GeoCoordinate = geoPosition;
 
-            var mapLayer = new MapLayer();
-            mapLayer.Add(mapOverlay);
-
+            var mapLayer = new MapLayer { mapOverlay };
             MyMap.Layers.Add(mapLayer);
         }
 
         private async void btnNavigation_Click(object sender, EventArgs e)
         {            
-            this.mygeocodequery = new GeocodeQuery();
-            this.mygeocodequery.SearchTerm = App.ViewModel.SelectedLocation.Name;
+            this.mygeocodequery = new GeocodeQuery { SearchTerm = App.ViewModel.SelectedLocation.Name };
 
             await FetchCurrentPosition();          
 
@@ -110,7 +107,7 @@ namespace MyTravelHistory.Views
 
         private async Task FetchCurrentPosition()
         {
-            if (App.ViewModel.CurrentPosition == null && App.ViewModel.CurrentPosition.Timestamp <= DateTime.Now.AddMinutes(1))
+            if (App.ViewModel.CurrentPosition == null || App.ViewModel.CurrentPosition.Timestamp <= DateTime.Now.AddMinutes(1))
             {
                 busyProceedAction.IsRunning = true;
                 await Utilities.GetPosition();
@@ -122,9 +119,9 @@ namespace MyTravelHistory.Views
         {
             if (e.Error == null)
             {
-                Route MyRoute = e.Result;
-                MapRoute MyMapRoute = new MapRoute(MyRoute);
-                MyMap.AddRoute(MyMapRoute);
+                Route myRoute = e.Result;
+                var myMapRoute = new MapRoute(myRoute);
+                MyMap.AddRoute(myMapRoute);
                 this.myQuery.Dispose();
             }
 

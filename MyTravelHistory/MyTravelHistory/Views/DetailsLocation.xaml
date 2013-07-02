@@ -46,7 +46,7 @@
         		<TextBlock Text="{Binding Latitude}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextAccentStyle}" Margin="12,0,0,0"/>
 
         		<TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Text="/" Style="{StaticResource PhoneTextAccentStyle}"/>
-        		<TextBlock Text="{Binding Longtitude}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextAccentStyle}" Margin="0,0,12,0"/>
+        		<TextBlock Text="{Binding Longitude}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextAccentStyle}" Margin="0,0,12,0"/>
 
         	</StackPanel>
         	<TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Text="{Binding LocalizedResources.AddressLabel, Source={StaticResource LocalizedStrings}}" Margin="12,0,0,0" Style="{StaticResource PhoneTextLargeStyle}"/>
