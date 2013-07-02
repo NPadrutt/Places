@@ -18,6 +18,8 @@ namespace MyTravelHistory.Views
 
             DataContext = App.ViewModel.SelectedLocation;
 
+            MiniMap.ShowOnMap(App.ViewModel.SelectedLocation.Latitude, App.ViewModel.SelectedLocation.Longitude);
+
             ((ApplicationBarIconButton)this.ApplicationBar.Buttons[0]).Text = AppResources.EditLabel;
             
 			((ApplicationBarMenuItem)this.ApplicationBar.MenuItems[0]).Text = AppResources.PintToStartLabel;
@@ -43,8 +45,6 @@ namespace MyTravelHistory.Views
                     App.ViewModel.SelectedLocation = location;
                 }
             }
-
-            MiniMap.ShowOnMap(App.ViewModel.SelectedLocation.Latitude, App.ViewModel.SelectedLocation.Longitude);
         }
 		
         private void btnEdit_Click(object sender, EventArgs e)
