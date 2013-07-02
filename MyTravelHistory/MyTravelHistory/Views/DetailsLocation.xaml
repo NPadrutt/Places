@@ -1,5 +1,4 @@
 ﻿<phone:PhoneApplicationPage
-    x:Class="MyTravelHistory.Views.DetailsLocation"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
@@ -8,6 +7,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:telerikSlideView="clr-namespace:Telerik.Windows.Controls.SlideView;assembly=Telerik.Windows.Controls.Primitives"
     xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
+    xmlns:UserControls="clr-namespace:MyTravelHistory.UserControls"
+    x:Class="MyTravelHistory.Views.DetailsLocation"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
@@ -25,50 +26,51 @@
 	</phone:PhoneApplicationPage.ApplicationBar>
 
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Transparent" d:DataContext="{Binding Source={StaticResource LocationSampleDataSource}}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+	<Grid x:Name="LayoutRoot" Background="Transparent" d:DataContext="{Binding Source={StaticResource LocationSampleDataSource}}">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
 
-        <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Text="{Binding LocalizedResources.LocationTitle, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock Text="{Binding Name}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
-        </StackPanel>
-        <StackPanel x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0" d:DataContext="{Binding AllLocations[0]}">
-            <telerikPrimitives:RadWindow x:Name="ImageViewer" IsFullScreen="true" IsClosedOnOutsideTap="True" MaxWidth="171" MaxHeight="171">
-                <telerikSlideView:PanAndZoomImage x:Name="locationImageLarge" Loaded="LocationImageLarge_Loaded" Stretch="UniformToFill" MaximumZoom="8" ZoomMode="Free" ImageHorizontalAlignment="Stretch" ImageVerticalAlignment="Stretch" />
-            </telerikPrimitives:RadWindow>
-            <Image x:Name="LocationImage" HorizontalAlignment="Left" VerticalAlignment="Center" Tap="locationImage_Tap" Margin="12,0,0,12" Stretch="UniformToFill" Loaded="locationImage_Loaded" MaxWidth="171" MaxHeight="171"/>
-        	<TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Text="{Binding LocalizedResources.LocationLabel, Source={StaticResource LocalizedStrings}}" Margin="12,0,0,0" Style="{StaticResource PhoneTextLargeStyle}"/>
-        	<StackPanel x:Name="StackpanelLocation" Margin="0,0,0,12" Orientation="Horizontal" Tap="StackPanel_Tap">
-        		<TextBlock Text="{Binding Latitude}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextAccentStyle}" Margin="12,0,0,0"/>
+		<!--TitlePanel contains the name of the application and page title-->
+		<StackPanel Grid.Row="0" Margin="12,17,0,28">
+			<TextBlock Text="{Binding LocalizedResources.LocationTitle, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}"/>
+			<TextBlock Text="{Binding Name}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+		</StackPanel>
+		<StackPanel x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0" d:DataContext="{Binding AllLocations[0]}">
+			<telerikPrimitives:RadWindow x:Name="ImageViewer" IsFullScreen="true" IsClosedOnOutsideTap="True" MaxWidth="171" MaxHeight="171">
+				<telerikSlideView:PanAndZoomImage x:Name="locationImageLarge" Loaded="LocationImageLarge_Loaded" Stretch="UniformToFill" MaximumZoom="8" ZoomMode="Free" ImageHorizontalAlignment="Stretch" ImageVerticalAlignment="Stretch" />
+			</telerikPrimitives:RadWindow>
+			<Image x:Name="LocationImage" HorizontalAlignment="Left" VerticalAlignment="Center" Tap="locationImage_Tap" Margin="12,0,0,12" Stretch="UniformToFill" Loaded="locationImage_Loaded" MaxWidth="171" MaxHeight="171"/>
+			<TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Text="{Binding LocalizedResources.LocationLabel, Source={StaticResource LocalizedStrings}}" Margin="12,0,0,0" Style="{StaticResource PhoneTextLargeStyle}"/>
+			<UserControls:MiniMapControl x:Name="MiniMap" Height="150" Width="431" HorizontalAlignment="Center"/>
+			<StackPanel x:Name="StackpanelLocation" Margin="0,0,0,12" Orientation="Horizontal" Tap="StackPanel_Tap">
+				<TextBlock Text="{Binding Latitude}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextAccentStyle}" Margin="12,0,0,0"/>
 
-        		<TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Text="/" Style="{StaticResource PhoneTextAccentStyle}"/>
-        		<TextBlock Text="{Binding Longitude}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextAccentStyle}" Margin="0,0,12,0"/>
+				<TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Text="/" Style="{StaticResource PhoneTextAccentStyle}"/>
+				<TextBlock Text="{Binding Longitude}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextAccentStyle}" Margin="0,0,12,0"/>
 
-        	</StackPanel>
-        	<TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Text="{Binding LocalizedResources.AddressLabel, Source={StaticResource LocalizedStrings}}" Margin="12,0,0,0" Style="{StaticResource PhoneTextLargeStyle}"/>
-        	<StackPanel x:Name="StackpanelAddress" Margin="12,0,0,12" Tap="StackPanel_Tap">
-        		<StackPanel Height="27" Margin="0" Orientation="Horizontal">
-                    <TextBlock x:Name="lblStreet" Text="{Binding LocationAddress.Street}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextSubtleStyle}" Margin="0,0,5,0"/>
-                    <TextBlock x:Name="lblHousenumber" Text="{Binding LocationAddress.HouseNumber}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextSubtleStyle}" Margin="0"/>
-        		</StackPanel>
-        		<StackPanel Margin="0" Orientation="Horizontal">
-                    <TextBlock x:Name="lblPostalCode" Text="{Binding LocationAddress.PostalCode}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextSubtleStyle}" Margin="0,0,5,0"/>
-                    <TextBlock x:Name="lblCity" Text="{Binding LocationAddress.City}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextSubtleStyle}" Margin="0"/>
-        		</StackPanel>
-                <TextBlock x:Name="lblDistrict" Text="{Binding LocationAddress.District}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextSubtleStyle}" Margin="0"/>
-                <TextBlock x:Name="lblState" Text="{Binding LocationAddress.State}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextSubtleStyle}" Margin="0"/>
-                <TextBlock x:Name="lblCountry" Text="{Binding LocationAddress.Country}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextSubtleStyle}" Margin="0"/>
-        	</StackPanel>
-        	<TextBlock x:Name="lblCommentCaption" HorizontalAlignment="Left" VerticalAlignment="Top" Text="{Binding LocalizedResources.CommentLabel, Source={StaticResource LocalizedStrings}}" Margin="12,0,0,0" Style="{StaticResource PhoneTextGroupHeaderStyle}"/>
-        	<TextBlock x:Name="lblComment" Text="{Binding Comment}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextSmallStyle}" Margin="12,0,0,0"/>
+			</StackPanel>
+			<TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Text="{Binding LocalizedResources.AddressLabel, Source={StaticResource LocalizedStrings}}" Margin="12,0,0,0" Style="{StaticResource PhoneTextLargeStyle}"/>
+			<StackPanel x:Name="StackpanelAddress" Margin="12,0,0,12" Tap="StackPanel_Tap">
+				<StackPanel Height="27" Margin="0" Orientation="Horizontal">
+					<TextBlock x:Name="lblStreet" Text="{Binding LocationAddress.Street}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextSubtleStyle}" Margin="0,0,5,0"/>
+					<TextBlock x:Name="lblHousenumber" Text="{Binding LocationAddress.HouseNumber}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextSubtleStyle}" Margin="0"/>
+				</StackPanel>
+				<StackPanel Margin="0" Orientation="Horizontal">
+					<TextBlock x:Name="lblPostalCode" Text="{Binding LocationAddress.PostalCode}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextSubtleStyle}" Margin="0,0,5,0"/>
+					<TextBlock x:Name="lblCity" Text="{Binding LocationAddress.City}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextSubtleStyle}" Margin="0"/>
+				</StackPanel>
+				<TextBlock x:Name="lblDistrict" Text="{Binding LocationAddress.District}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextSubtleStyle}" Margin="0"/>
+				<TextBlock x:Name="lblState" Text="{Binding LocationAddress.State}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextSubtleStyle}" Margin="0"/>
+				<TextBlock x:Name="lblCountry" Text="{Binding LocationAddress.Country}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextSubtleStyle}" Margin="0"/>
+			</StackPanel>
+			<TextBlock x:Name="lblCommentCaption" HorizontalAlignment="Left" VerticalAlignment="Top" Text="{Binding LocalizedResources.CommentLabel, Source={StaticResource LocalizedStrings}}" Margin="12,0,0,0" Style="{StaticResource PhoneTextGroupHeaderStyle}"/>
+			<TextBlock x:Name="lblComment" Text="{Binding Comment}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextSmallStyle}" Margin="12,0,0,0"/>
 
-        </StackPanel>
+		</StackPanel>
 
-        <!--ContentPanel - place additional content here-->
-    </Grid>
+		<!--ContentPanel - place additional content here-->
+	</Grid>
 
 </phone:PhoneApplicationPage>

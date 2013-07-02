@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using Microsoft.Phone.Maps.Toolkit;
 using Microsoft.Phone.Maps.Controls;
 using System.Device.Location;
+using MyTravelHistory.Resources;
 
 namespace MyTravelHistory.UserControls
 {
@@ -26,7 +27,7 @@ namespace MyTravelHistory.UserControls
             var mapOverlay = new MapOverlay();
             var pin = new Pushpin()
             {
-                Content = Name
+                Content = AppResources.YouAreHereText
             };
             mapOverlay.Content = pin;
             mapOverlay.GeoCoordinate = geoPosition;

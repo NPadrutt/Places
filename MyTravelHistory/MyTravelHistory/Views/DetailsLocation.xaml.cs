@@ -43,6 +43,8 @@ namespace MyTravelHistory.Views
                     App.ViewModel.SelectedLocation = location;
                 }
             }
+
+            MiniMap.ShowOnMap(App.ViewModel.SelectedLocation.Latitude, App.ViewModel.SelectedLocation.Longitude);
         }
 		
         private void btnEdit_Click(object sender, EventArgs e)
