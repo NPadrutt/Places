@@ -1,4 +1,7 @@
-﻿using Microsoft.Phone.Controls;
+﻿using System.ServiceModel.Channels;
+using Windows.Devices.Geolocation;
+using FlurryWP8SDK;
+using Microsoft.Phone.Controls;
 using Microsoft.Phone.Maps;
 using Microsoft.Phone.Maps.Controls;
 using Microsoft.Phone.Maps.Services;
@@ -23,6 +26,8 @@ namespace MyTravelHistory.Views
         readonly List<GeoCoordinate> MyCoordinates = new List<GeoCoordinate>();
         RouteQuery myQuery = null;
         GeocodeQuery mygeocodequery = null;
+
+        private UserLocationMarker marker;
 
         public MapView()
         {
@@ -74,11 +79,58 @@ namespace MyTravelHistory.Views
             var currentPosition = new GeoCoordinate(App.ViewModel.CurrentPosition.Latitude, App.ViewModel.CurrentPosition.Longitude);
             MyMap.SetView(currentPosition, 16, MapAnimationKind.Parabolic);
             
-            var marker = new UserLocationMarker(){ GeoCoordinate = currentPosition };
+            marker = new UserLocationMarker(){ GeoCoordinate = currentPosition };
             var mapOverlay = new MapOverlay() {Content = marker, GeoCoordinate = currentPosition};
 
             var mapLayer = new MapLayer { mapOverlay };
             MyMap.Layers.Add(mapLayer);
+
+            var geolocator = new Geolocator() {MovementThreshold = 10, DesiredAccuracy = PositionAccuracy.High};
+            geolocator.StatusChanged += geolocator_StatusChanged;
+            geolocator.PositionChanged += geolocator_PositionChanged;
+        }
+
+        private void geolocator_StatusChanged(Geolocator sender, StatusChangedEventArgs args)
+        {
+            string status = "";
+
+            switch (args.Status)
+            {
+                case PositionStatus.Disabled:
+                    // the application does not have the right capability or the location master switch is off
+                    status = "location is disabled in phone settings";
+                    break;
+                case PositionStatus.Initializing:
+                    // the geolocator started the tracking operation
+                    status = "initializing";
+                    break;
+                case PositionStatus.NoData:
+                    // the location service was not able to acquire the location
+                    status = "no data";
+                    break;
+                case PositionStatus.Ready:
+                    // the location service is generating geopositions as specified by the tracking parameters
+                    status = "ready";
+                    break;
+                case PositionStatus.NotAvailable:
+                    status = "not available";
+                    // not used in WindowsPhone, Windows desktop uses this value to signal that there is no hardware capable to acquire location information
+                    break;
+                case PositionStatus.NotInitialized:
+                    // the initial state of the geolocator, once the tracking operation is stopped by the user the geolocator moves back to this state
+                    break;
+            }
+
+            Api.LogError(status, null);
+        }
+
+
+        private void geolocator_PositionChanged(Geolocator sender, PositionChangedEventArgs args)
+        {
+            Dispatcher.BeginInvoke(() =>
+            {
+                marker.GeoCoordinate = args.Position.Coordinate.ToGeoCoordinate();
+            });
         }
 
         private void PinMap(GeoCoordinate geoPosition, string locationName)

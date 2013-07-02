@@ -37,16 +37,16 @@ namespace MyTravelHistory.Views
             if (App.ViewModel.SelectedLocation == null)
             {
                 App.ViewModel.SelectedLocation = new Location();
-                this.PageTitle.Text = AppResources.AddTitle;
-                this.GetPosition();
-                this.newElement = true;
+                PageTitle.Text = AppResources.AddTitle;
+                GetPosition();
+                newElement = true;
             }
             else
             {
-                this.PageTitle.Text = AppResources.EditTitle;
+                PageTitle.Text = AppResources.EditTitle;
                 stackpanelAddress.DataContext = App.ViewModel.SelectedLocation.LocationAddress;
-                this.progressionbarGetLocation.IsIndeterminate = false;
-                this.progressionbarGetLocation.Visibility = Visibility.Collapsed;
+                progressionbarGetLocation.IsIndeterminate = false;
+                progressionbarGetLocation.Visibility = Visibility.Collapsed;
                 MiniMap.ShowOnMap(App.ViewModel.SelectedLocation.Latitude, App.ViewModel.SelectedLocation.Longitude);
             }
         }
