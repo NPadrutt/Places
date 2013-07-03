@@ -142,5 +142,18 @@ namespace MyTravelHistory.Src
 
             return imageName;
         }
+
+        public static void LoadThumbnail()
+        {
+            //WriteableBitmap bitmap = new WriteableBitmap(200, 200);
+            //using (IsolatedStorageFile myIsoStorage = IsolatedStorageFile.GetUserStoreForApplication())
+            //{
+            //    using (IsolatedStorageFileStream fileStream = myIsoStorage.OpenFile(fileName, FileMode.Open, FileAccess.Read))
+            //    {
+            //        bitmap = PictureDecoder.DecodeJpeg(fileStream);
+            //    }
+            //}
+            //this.image1.Source = bitmap;  
+        }
     }
 }
