@@ -9,7 +9,7 @@ namespace MyTravelHistory.Models
 {
     public class MainDataContext: DataContext
     {
-        public readonly int SCHEMAVERSION = 1;
+        public readonly int SCHEMAVERSION = 2;
         public static readonly string DBConnectionString = "Data Source=isostore:/MyTravelHistory.sdf";
 
         public MainDataContext(string connectionString)

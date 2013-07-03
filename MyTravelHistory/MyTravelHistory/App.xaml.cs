@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using MyTravelHistory.Models;
 using Telerik.Windows.Controls;
 using MyTravelHistory.Src;
 using MyTravelHistory.ViewModels;
@@ -119,6 +120,11 @@ namespace MyTravelHistory
 
             _viewModel = new MainViewModel();
             _viewModel.LoadLocations();
+
+            foreach (Location location in _viewModel.AllLocations.Where(location => location.ThumbnailImageName == null))
+            {
+                location.ThumbnailImageName = Utilities.SaveImageToLocalStorage(location.LocationImage);
+            }
         }
 
         // Code to execute when the application is launching (eg, from Start)

@@ -61,7 +61,23 @@ namespace MyTravelHistory.Models
                 
                 return new WriteableBitmap(0,0);
             }
-           
+        }
+
+        private string _thumbnailImageName;
+
+        [Column]
+        public string ThumbnailImageName
+        {
+            get { return _thumbnailImageName; }
+            set
+            {
+                if (_thumbnailImageName != value)
+                {
+                    NotifyPropertyChanging("ThumbnailImageName");
+                    _thumbnailImageName = value;
+                    NotifyPropertyChanged("ThumbnailImageName");
+                }
+            }
         }
 
         private string _name;

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using FlurryWP8SDK;
 using Windows.Devices.Geolocation;
@@ -12,6 +13,7 @@ using Microsoft.Phone.Maps.Services;
 using System.Device.Location;
 using MyTravelHistory.Models;
 using Telerik.Windows.Controls;
+using System.IO.IsolatedStorage;
 
 namespace MyTravelHistory.Src
 {
@@ -115,9 +117,30 @@ namespace MyTravelHistory.Src
             LiveTileHelper.CreateOrUpdateTile(tileData, new Uri("/Views/DetailsLocation.xaml?id=" + App.ViewModel.SelectedLocation.Id, UriKind.RelativeOrAbsolute));
         }
 
-        public static void SaveImageToLocalStorage()
+        public static string SaveImageToLocalStorage(byte[] imageBytes)
         {
+            const string DirectoryName = "thumbnails";
+            string imageName = new Guid().ToString();
+            string path = DirectoryName + "\\" + imageName;
 
+            using (var myIsoStorage = IsolatedStorageFile.GetUserStoreForApplication())
+            {
+                if (!myIsoStorage.DirectoryExists(DirectoryName))
+                {
+                    myIsoStorage.CreateDirectory(DirectoryName);
+                }
+
+                if (myIsoStorage.FileExists(path))
+                {
+                    myIsoStorage.DeleteFile(imageName);
+                }
+                IsolatedStorageFileStream fileStream = myIsoStorage.CreateFile(path);
+                WriteableBitmap mywb = ConvertToImage(imageBytes);
+                mywb.SaveJpeg(fileStream, mywb.PixelWidth, mywb.PixelHeight, 0, 95);
+                fileStream.Close();
+            }
+
+            return imageName;
         }
     }
 }
