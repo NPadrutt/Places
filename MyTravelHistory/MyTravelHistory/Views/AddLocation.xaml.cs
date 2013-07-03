@@ -143,6 +143,11 @@ namespace MyTravelHistory.Views
                 lblAddImage.Visibility = Visibility.Collapsed;
                 gridImage.Background.Opacity = 0;
             }
+            else
+            {
+                lblAddImage.Visibility = Visibility.Visible;
+                gridImage.Background.Opacity = 1;
+            }
         }
 
         private void btnRefreshPosition_Click(object sender, RoutedEventArgs e)
