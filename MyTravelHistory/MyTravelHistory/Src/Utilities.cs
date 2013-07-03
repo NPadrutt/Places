@@ -83,35 +83,45 @@ namespace MyTravelHistory.Src
 
         public static async Task<LocationAddress> GetAddress(double latitude, double longtitude)
         {
-            var myReverseGeocodeQuery = new ReverseGeocodeQuery
-            {
-                GeoCoordinate = new GeoCoordinate(latitude, longtitude)
-            };
-            IList<MapLocation> locations = await myReverseGeocodeQuery.GetMapLocationsAsync();
             var locationAddress = new LocationAddress();
-
-            if (locations.Count <= 0) return locationAddress;
-
-            var address = locations.First().Information.Address;
-            locationAddress = new LocationAddress()
+            try
             {
-                Street = address.Street,
-                HouseNumber = address.HouseNumber,
-                PostalCode = address.PostalCode,
-                City = address.City,
-                District = address.District,
-                State = address.State,
-                Country = address.Country
-            };
+                var myReverseGeocodeQuery = new ReverseGeocodeQuery
+                    {
+                        GeoCoordinate = new GeoCoordinate(latitude, longtitude)
+                    };
+                IList<MapLocation> locations = await myReverseGeocodeQuery.GetMapLocationsAsync();
+                
+
+                if (locations.Count <= 0) return locationAddress;
+
+                var address = locations.First().Information.Address;
+                locationAddress = new LocationAddress()
+                {
+                    Street = address.Street,
+                    HouseNumber = address.HouseNumber,
+                    PostalCode = address.PostalCode,
+                    City = address.City,
+                    District = address.District,
+                    State = address.State,
+                    Country = address.Country
+                };
+            }
+            catch (Exception ex)
+            {
+                Api.LogError(ex.Message, ex.InnerException);
+            }
 
             return locationAddress;
         }
 
         public static void CreateTile()
         {
+            
             var tileData = new RadExtendedTileData()
             {
                 Title = App.ViewModel.SelectedLocation.Name
+                //BackBackgroundImage = new Uri(@"isostore:\" + App.ViewModel.SelectedLocation.ThumbnailImageName, UriKind.Absolute)
             };
 
             LiveTileHelper.CreateOrUpdateTile(tileData, new Uri("/Views/DetailsLocation.xaml?id=" + App.ViewModel.SelectedLocation.Id, UriKind.RelativeOrAbsolute));
@@ -119,22 +129,15 @@ namespace MyTravelHistory.Src
 
         public static string SaveImageToLocalStorage(byte[] imageBytes)
         {
-            const string DirectoryName = "thumbnails";
-            string imageName = new Guid().ToString();
-            string path = DirectoryName + "\\" + imageName;
+            string imageName = Guid.NewGuid() + ".jpg";
 
             using (var myIsoStorage = IsolatedStorageFile.GetUserStoreForApplication())
             {
-                if (!myIsoStorage.DirectoryExists(DirectoryName))
-                {
-                    myIsoStorage.CreateDirectory(DirectoryName);
-                }
-
-                if (myIsoStorage.FileExists(path))
+                if (myIsoStorage.FileExists(imageName))
                 {
                     myIsoStorage.DeleteFile(imageName);
                 }
-                IsolatedStorageFileStream fileStream = myIsoStorage.CreateFile(path);
+                IsolatedStorageFileStream fileStream = myIsoStorage.CreateFile(imageName);
                 WriteableBitmap mywb = ConvertToImage(imageBytes);
                 mywb.SaveJpeg(fileStream, mywb.PixelWidth, mywb.PixelHeight, 0, 95);
                 fileStream.Close();
@@ -145,15 +148,16 @@ namespace MyTravelHistory.Src
 
         public static void LoadThumbnail()
         {
-            //WriteableBitmap bitmap = new WriteableBitmap(200, 200);
-            //using (IsolatedStorageFile myIsoStorage = IsolatedStorageFile.GetUserStoreForApplication())
-            //{
-            //    using (IsolatedStorageFileStream fileStream = myIsoStorage.OpenFile(fileName, FileMode.Open, FileAccess.Read))
-            //    {
-            //        bitmap = PictureDecoder.DecodeJpeg(fileStream);
-            //    }
-            //}
-            //this.image1.Source = bitmap;  
+            WriteableBitmap bitmap = new WriteableBitmap(200, 200);
+            using (IsolatedStorageFile myIsoStorage = IsolatedStorageFile.GetUserStoreForApplication())
+            {
+                var foo = myIsoStorage.GetFileNames();
+                //using (IsolatedStorageFileStream fileStream = myIsoStorage.OpenFile(imageName, FileMode.Open, FileAccess.Read))
+                //{
+                //    itmap = PictureDecoder.DecodeJpeg(fileStream);
+                //}
+            }
+
         }
     }
 }
