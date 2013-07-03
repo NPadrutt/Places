@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Device.Location;
+using System.Resources;
 using System.Windows;
+using System.Windows.Media;
 using System.Windows.Navigation;
 using Microsoft.Phone.Shell;
 using MyTravelHistory.Resources;
@@ -8,6 +10,7 @@ using MyTravelHistory.Models;
 using MyTravelHistory.Src;
 using Microsoft.Phone.Tasks;
 using System.Windows.Media.Imaging;
+using Color = Windows.UI.Color;
 using GestureEventArgs = System.Windows.Input.GestureEventArgs;
 
 namespace MyTravelHistory.Views
@@ -126,6 +129,8 @@ namespace MyTravelHistory.Views
                 LocationImage.Source = bmp;
                 lblAddImage.Visibility = Visibility.Collapsed;
 
+                gridImage.Background.Opacity = 0;
+
                 App.ViewModel.SelectedLocation.LocationImage = Utilities.ConvertToBytes(bmp);
             }
         }
@@ -136,6 +141,7 @@ namespace MyTravelHistory.Views
             {
                 LocationImage.Source = Utilities.ConvertToImage(App.ViewModel.SelectedLocation.LocationImage);
                 lblAddImage.Visibility = Visibility.Collapsed;
+                gridImage.Background.Opacity = 0;
             }
         }
 
