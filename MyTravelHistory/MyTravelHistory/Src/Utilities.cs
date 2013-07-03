@@ -25,14 +25,14 @@ namespace MyTravelHistory.Src
         public static byte[] ConvertToBytes(WriteableBitmap image)
         {
             var ms = new MemoryStream();
-            image.SaveJpeg(ms, 1000, 2000, 0, 100);
+            image.SaveJpeg(ms, image.PixelWidth, image.PixelHeight, 0, 50);
 
             return ms.GetBuffer();
         }
 
         public static WriteableBitmap ConvertToImage(byte[] inputBytes)
         {
-            return GetImage(inputBytes, 1000, 2000);
+            return GetImage(inputBytes, 3264, 2448);
         }
 
         public static WriteableBitmap ConvertToImage(byte[] inputBytes, int width, int height)
@@ -113,6 +113,11 @@ namespace MyTravelHistory.Src
             };
 
             LiveTileHelper.CreateOrUpdateTile(tileData, new Uri("/Views/DetailsLocation.xaml?id=" + App.ViewModel.SelectedLocation.Id, UriKind.RelativeOrAbsolute));
+        }
+
+        public static void SaveImageToLocalStorage()
+        {
+
         }
     }
 }

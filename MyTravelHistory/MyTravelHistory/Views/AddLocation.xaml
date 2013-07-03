@@ -37,9 +37,9 @@
 		</StackPanel>
 		<ScrollViewer Grid.Row="1" Margin="10,0,14,0" >
 			<StackPanel x:Name="ContentPanel" d:DataContext="{Binding AllLocations[0]}">
-				<Grid Margin="12,0,0,0" Background="{StaticResource PhoneAccentBrush}" Tap="Grid_Tap" HorizontalAlignment="Left" Width="171" Height="171">
-					<Image x:Name="LocationImage" HorizontalAlignment="Left" Height="171" VerticalAlignment="Center" Margin="0" Stretch="UniformToFill" Width="171" Loaded="LocationImage_Loaded"/>
-					<TextBlock x:Name="lblAddImage" TextWrapping="Wrap" Text="{Binding LocalizedResources.AddImageLabel, Source={StaticResource LocalizedStrings}}" VerticalAlignment="Bottom" Style="{StaticResource PhoneTextTitle3Style}" Margin="0"/>
+				<Grid Margin="12,0,0,0" Tap="Grid_Tap" HorizontalAlignment="Left" Width="171" Height="171" Background="{StaticResource PhoneAccentBrush}">
+					<Image x:Name="LocationImage" HorizontalAlignment="Stretch" Height="171" VerticalAlignment="Center" Margin="0" Width="171" Loaded="LocationImage_Loaded"/>
+					<TextBlock x:Name="lblAddImage" VerticalAlignment="Bottom" TextWrapping="Wrap" Text="{Binding LocalizedResources.AddImageLabel, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextTitle3Style}" Margin="0"/>
 				</Grid>
 				<telerikPrimitives:RadTextBox x:Name="txtName" Text="{Binding Name}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0" Header="{Binding LocalizedResources.NameLabel, Source={StaticResource LocalizedStrings}}"/>
 				<ProgressBar x:Name="progressionbarGetLocation" Height="10" Margin="0" IsIndeterminate="True"/>

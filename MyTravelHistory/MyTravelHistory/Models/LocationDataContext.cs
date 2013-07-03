@@ -56,7 +56,7 @@ namespace MyTravelHistory.Models
             {
                 if (_locationImage != null)
                 {
-                    return Utilities.ConvertToImage(_locationImage, 100, 200);
+                    return Utilities.ConvertToImage(_locationImage, 150, 150);
                 }
                 
                 return new WriteableBitmap(0,0);

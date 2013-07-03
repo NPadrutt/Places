@@ -75,46 +75,34 @@ namespace MyTravelHistory.Views
 
         private void btnDone_Click(object sender, EventArgs e)
         {
-            if (Math.Abs(App.ViewModel.CurrentPosition.Latitude) > 0 && Math.Abs(App.ViewModel.CurrentPosition.Longitude) > 0)
+            App.ViewModel.SelectedLocation.Name = this.txtName.Text == string.Empty ? AppResources.NoNameDefaultEntry : this.txtName.Text;
+
+            if (lblLatitude.Text != String.Empty)
             {
-                App.ViewModel.SelectedLocation.Name = this.txtName.Text == string.Empty ? AppResources.NoNameDefaultEntry : this.txtName.Text;
-
                 App.ViewModel.SelectedLocation.Latitude = Convert.ToDouble(lblLatitude.Text);
-                App.ViewModel.SelectedLocation.Longitude = Convert.ToDouble(lblLongtitude.Text);
-                App.ViewModel.SelectedLocation.Accuracy = Convert.ToDouble(lblAccuracy.Text);
-                App.ViewModel.SelectedLocation.Comment = txtComment.Text;
+            }
+            if (lblLongtitude.Text != String.Empty)
+            {
+                App.ViewModel.SelectedLocation.Longitude = Convert.ToDouble(lblLongtitude.Text);                
+            }
+            if (lblAccuracy.Text != String.Empty)
+            {
+                App.ViewModel.SelectedLocation.Accuracy = Convert.ToDouble(lblAccuracy.Text);                
+            }
+            App.ViewModel.SelectedLocation.Comment = txtComment.Text;
 
-                App.ViewModel.SelectedLocation.LocationAddress = locationAddress;
+            App.ViewModel.SelectedLocation.LocationAddress = locationAddress;
 
-                if (this.newElement)
-                {
-                    App.ViewModel.AddLocation(App.ViewModel.SelectedLocation);
-                }
-                else
-                {
-                    App.ViewModel.SaveChangesToDB();
-                }
-
-                NavigationService.Navigate(new Uri("/Views/DetailsLocation.xaml?RemoveBackstack=true", UriKind.Relative));
+            if (this.newElement)
+            {
+                App.ViewModel.AddLocation(App.ViewModel.SelectedLocation);
             }
             else
             {
-                MessageBox.Show(AppResources.NoPositionMessage, AppResources.NoPositionMessageTitle, MessageBoxButton.OK);
+                App.ViewModel.SaveChangesToDB();
             }
-        }
 
-        private LocationAddress ReadOutAddress()
-        {
-            return new LocationAddress()
-            {
-                Street = lblStreet.Text,
-                HouseNumber = lblHousenumber.Text,
-                PostalCode = lblPostalCode.Text,
-                City = lblCity.Text,
-                District = lblDistrict.Text,
-                State = lblState.Text,
-                Country = lblCountry.Text
-            };
+            NavigationService.Navigate(new Uri("/Views/DetailsLocation.xaml?RemoveBackstack=true", UriKind.Relative));
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -133,7 +121,7 @@ namespace MyTravelHistory.Views
         {
             if (e.TaskResult == TaskResult.OK)
             {
-                var bmp = new WriteableBitmap(1000, 2000);
+                var bmp = new WriteableBitmap(3264,2448);
                 bmp.LoadJpeg(e.ChosenPhoto);
                 LocationImage.Source = bmp;
                 lblAddImage.Visibility = Visibility.Collapsed;
