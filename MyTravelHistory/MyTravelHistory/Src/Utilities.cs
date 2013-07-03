@@ -25,7 +25,7 @@ namespace MyTravelHistory.Src
         public static byte[] ConvertToBytes(WriteableBitmap image)
         {
             var ms = new MemoryStream();
-            image.SaveJpeg(ms, image.PixelWidth, image.PixelHeight, 0, 50);
+            image.SaveJpeg(ms, image.PixelWidth, image.PixelHeight, 0, 10);
 
             return ms.GetBuffer();
         }
