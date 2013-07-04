@@ -12,6 +12,7 @@ using FlurryWP8SDK;
 using Windows.Devices.Geolocation;
 using Microsoft.Phone.Maps.Services;
 using System.Device.Location;
+using Microsoft.Phone.Shell;
 using MyTravelHistory.Models;
 using Telerik.Windows.Controls;
 using System.IO.IsolatedStorage;
@@ -126,11 +127,10 @@ namespace MyTravelHistory.Src
         }
 
         public static void CreateTile()
-        {
-            
+        {           
             var tileData = new RadExtendedTileData()
             {
-                Title = App.ViewModel.SelectedLocation.Name
+                Title = App.ViewModel.SelectedLocation.Name,
                 //BackBackgroundImage = new Uri(@"isostore:\" + App.ViewModel.SelectedLocation.ThumbnailImageName, UriKind.Absolute)
             };
 

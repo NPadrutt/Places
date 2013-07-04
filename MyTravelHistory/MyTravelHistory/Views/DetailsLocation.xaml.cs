@@ -6,6 +6,7 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using MyTravelHistory.Resources;
 using MyTravelHistory.Src;
+using Telerik.Windows.Controls;
 using GestureEventArgs = System.Windows.Input.GestureEventArgs;
 
 namespace MyTravelHistory.Views
@@ -92,7 +93,14 @@ namespace MyTravelHistory.Views
 
         private void mPinToStart_Click(object sender, EventArgs e)
         {
-        	Utilities.CreateTile();
+            var tileData = new RadExtendedTileData()
+            {
+                Title = App.ViewModel.SelectedLocation.Name,
+                VisualElement = LocationImage,
+                IsTransparencySupported = true
+            };
+
+            LiveTileHelper.CreateOrUpdateTile(tileData, new Uri("/Views/DetailsLocation.xaml?id=" + App.ViewModel.SelectedLocation.Id, UriKind.RelativeOrAbsolute));
         }
     }
 }
