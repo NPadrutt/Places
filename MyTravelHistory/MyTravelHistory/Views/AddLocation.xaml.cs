@@ -56,7 +56,6 @@ namespace MyTravelHistory.Views
 
         private async void GetPosition()
         {
-
             progressionbarGetLocation.IsIndeterminate = true;
             progressionbarGetLocation.Visibility = Visibility.Visible;
 
@@ -65,12 +64,13 @@ namespace MyTravelHistory.Views
                 await Utilities.GetPosition();
             }
 
-            locationAddress = await Utilities.GetAddress(App.ViewModel.CurrentPosition.Latitude, App.ViewModel.CurrentPosition.Longitude);
-
-            stackpanelAddress.DataContext = locationAddress;
-            stackpanelPosition.DataContext = App.ViewModel.CurrentPosition;
-
-            MiniMap.ShowOnMap(App.ViewModel.CurrentPosition.Latitude, App.ViewModel.CurrentPosition.Longitude);
+            if (App.ViewModel.CurrentPosition != null)
+            {
+                locationAddress = await Utilities.GetAddress(App.ViewModel.CurrentPosition.Latitude, App.ViewModel.CurrentPosition.Longitude);
+                MiniMap.ShowOnMap(App.ViewModel.CurrentPosition.Latitude, App.ViewModel.CurrentPosition.Longitude);
+                stackpanelAddress.DataContext = locationAddress;
+                stackpanelPosition.DataContext = App.ViewModel.CurrentPosition;
+            }
 
             progressionbarGetLocation.IsIndeterminate = false;
             progressionbarGetLocation.Visibility = Visibility.Collapsed;            

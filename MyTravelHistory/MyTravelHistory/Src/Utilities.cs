@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+using System.Windows.Threading;
 using FlurryWP8SDK;
 using Windows.Devices.Geolocation;
 using Microsoft.Phone.Maps.Services;
@@ -60,16 +61,20 @@ namespace MyTravelHistory.Src
             {
                 var geoposition = await geolocater.GetGeopositionAsync(
                     maximumAge: TimeSpan.FromMinutes(2),
-                    timeout: TimeSpan.FromSeconds(30)
+                    timeout: TimeSpan.FromSeconds(20)
                     );
 
                 App.ViewModel.CurrentPosition = new Position
-                {
-                    Latitude = geoposition.Coordinate.Latitude,
-                    Longitude = geoposition.Coordinate.Longitude,
-                    Accuracy = geoposition.Coordinate.Accuracy,
-                    Timestamp = geoposition.Coordinate.Timestamp.DateTime
-                };
+                                                {
+                                                    Latitude = geoposition.Coordinate.Latitude,
+                                                    Longitude = geoposition.Coordinate.Longitude,
+                                                    Accuracy = geoposition.Coordinate.Accuracy,
+                                                    Timestamp = geoposition.Coordinate.Timestamp.DateTime
+                                                };
+            }
+            catch (TimeoutException ex)
+            {
+                Api.LogError("timeout", ex.InnerException);
             }
             catch (Exception ex)
             {
@@ -77,6 +82,11 @@ namespace MyTravelHistory.Src
                 {
                     // the application does not have the right capability or the location master switch is off
                     Api.LogError("location  is disabled in phone settings.", ex.InnerException);
+                }
+                if ((uint)ex.HResult == 0x800705B4)
+                {
+                    // the application does not have the right capability or the location master switch is off
+                    Api.LogError("Timeout expired.", ex.InnerException);
                 }
             }
         }
