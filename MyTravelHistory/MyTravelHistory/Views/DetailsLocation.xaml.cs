@@ -29,19 +29,22 @@ namespace MyTravelHistory.Views
         {
             base.OnNavigatedTo(e);
 
-            if (this.NavigationContext.QueryString == null || this.NavigationContext.QueryString.Count <= 0) return;
-            
-            //Readout Querystrings
-            if (this.NavigationContext.QueryString.ContainsKey("RemoveBackstack") && Convert.ToBoolean(this.NavigationContext.QueryString["RemoveBackstack"]))
+            if (this.NavigationContext.QueryString != null || this.NavigationContext.QueryString.Count > 0)
             {
-                this.NavigationService.RemoveBackEntry();
-            }
-
-            if (this.NavigationContext.QueryString.ContainsKey("id"))
-            {
-                foreach (var location in App.ViewModel.AllLocations.Where(location => location.Id == Convert.ToInt32(this.NavigationContext.QueryString["id"])))
+                //Readout Querystrings
+                if (this.NavigationContext.QueryString.ContainsKey("RemoveBackstack") &&
+                    Convert.ToBoolean(this.NavigationContext.QueryString["RemoveBackstack"]))
                 {
-                    App.ViewModel.SelectedLocation = location;
+                    this.NavigationService.RemoveBackEntry();
+                }
+
+                if (this.NavigationContext.QueryString.ContainsKey("id"))
+                {
+                    foreach (
+                        var location in App.ViewModel.AllLocations.Where(location => location.Id == Convert.ToInt32(this.NavigationContext.QueryString["id"])))
+                    {
+                        App.ViewModel.SelectedLocation = location;
+                    }
                 }
             }
 
