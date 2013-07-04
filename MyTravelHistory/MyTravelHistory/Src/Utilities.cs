@@ -9,6 +9,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
+using Windows.Foundation.Metadata;
 using FlurryWP8SDK;
 using Windows.Devices.Geolocation;
 using Microsoft.Phone.Maps.Services;
@@ -22,6 +23,8 @@ namespace MyTravelHistory.Src
 {
     public class Utilities
     {
+        private const string ImageFolder = "images";
+
         public static string GetVersion()
         {
             return Assembly.GetExecutingAssembly().FullName.Split('=')[1].Split(',')[0];
@@ -138,28 +141,53 @@ namespace MyTravelHistory.Src
             LiveTileHelper.CreateOrUpdateTile(tileData, new Uri("/Views/DetailsLocation.xaml?id=" + App.ViewModel.SelectedLocation.Id, UriKind.RelativeOrAbsolute));
         }
 
-        public static string SaveImageToLocalStorage(Stream imageStream)
+        public static string SaveImageToLocalStorage(BitmapImage image)
         {
             string imageName = Guid.NewGuid() + ".jpg";
+            
+            using (var myIsoStorage = IsolatedStorageFile.GetUserStoreForApplication())
+            {
+                if (!myIsoStorage.DirectoryExists(ImageFolder))
+                {
+                    myIsoStorage.CreateDirectory(ImageFolder);
+                }
 
-            //using (var myIsoStorage = IsolatedStorageFile.GetUserStoreForApplication())
-            //{
-            //    if (myIsoStorage.FileExists(imageName))
-            //    {
-            //        myIsoStorage.DeleteFile(imageName);
-            //    }
-            //    IsolatedStorageFileStream fileStream = myIsoStorage.CreateFile(imageName);
-            //    WriteableBitmap mywb = ConvertToImage(imageBytes);
-            //    mywb.SaveJpeg(fileStream, mywb.PixelWidth, mywb.PixelHeight, 0, 95);
-            //    fileStream.Close();
-            //}
+                if (myIsoStorage.FileExists(imageName))
+                {
+                    myIsoStorage.DeleteFile(imageName);
+                }
+
+                string path = Path.Combine(ImageFolder, imageName);
+                using (var stream = myIsoStorage.CreateFile(path))
+                {
+                    var wb = new WriteableBitmap(image);
+                    wb.SaveJpeg(stream, image.PixelWidth, image.PixelHeight, 0, 100);
+                    stream.Close();
+                }
+            }
 
             return imageName;
         }
 
         public static BitmapImage LoadLocationImage()
         {
-            return new BitmapImage();
+            var bmp = new BitmapImage();
+
+            using (var myIsoStorage = IsolatedStorageFile.GetUserStoreForApplication())
+            {
+                if (!myIsoStorage.DirectoryExists(ImageFolder))
+                {
+                    return bmp;
+                }
+
+                string path = Path.Combine(ImageFolder, App.ViewModel.SelectedLocation.LocationImageName);
+                using (var imageStream = myIsoStorage.OpenFile(path, FileMode.Open, FileAccess.Read))
+                {
+                    bmp.SetSource(imageStream);
+                }
+            }
+
+            return bmp;
         }
     }
 }

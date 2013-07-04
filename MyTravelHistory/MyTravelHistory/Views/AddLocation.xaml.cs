@@ -139,7 +139,7 @@ namespace MyTravelHistory.Views
 
                 gridImage.Background.Opacity = 0;
 
-                App.ViewModel.SelectedLocation.LocationImageName = Utilities.SaveImageToLocalStorage(e.ChosenPhoto);
+                App.ViewModel.SelectedLocation.LocationImageName = Utilities.SaveImageToLocalStorage(bmp);
             }
         }
 
