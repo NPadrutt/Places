@@ -120,12 +120,6 @@ namespace MyTravelHistory
 
             _viewModel = new MainViewModel();
             _viewModel.LoadLocations();
-
-            foreach (Location location in _viewModel.AllLocations.Where(location => location.ThumbnailImageName == null))
-            {
-                location.ThumbnailImageName = Utilities.SaveImageToLocalStorage(location.LocationImage);
-                _viewModel.SaveChangesToDB();
-            }
         }
 
         // Code to execute when the application is launching (eg, from Start)

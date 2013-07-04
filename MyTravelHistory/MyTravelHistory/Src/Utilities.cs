@@ -155,19 +155,5 @@ namespace MyTravelHistory.Src
 
             return imageName;
         }
-
-        public static void LoadThumbnail()
-        {
-            WriteableBitmap bitmap = new WriteableBitmap(200, 200);
-            using (IsolatedStorageFile myIsoStorage = IsolatedStorageFile.GetUserStoreForApplication())
-            {
-                var foo = myIsoStorage.GetFileNames();
-                //using (IsolatedStorageFileStream fileStream = myIsoStorage.OpenFile(imageName, FileMode.Open, FileAccess.Read))
-                //{
-                //    itmap = PictureDecoder.DecodeJpeg(fileStream);
-                //}
-            }
-
-        }
     }
 }
