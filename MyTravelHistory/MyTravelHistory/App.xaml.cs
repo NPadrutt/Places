@@ -120,6 +120,8 @@ namespace MyTravelHistory
 
             _viewModel = new MainViewModel();
             _viewModel.LoadLocations();
+
+            Utilities.GetPosition();
         }
 
         // Code to execute when the application is launching (eg, from Start)
