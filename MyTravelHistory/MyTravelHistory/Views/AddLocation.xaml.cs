@@ -132,22 +132,22 @@ namespace MyTravelHistory.Views
         {
             if (e.TaskResult == TaskResult.OK)
             {
-                var bmp = new WriteableBitmap(3264,2448);
-                bmp.LoadJpeg(e.ChosenPhoto);
+                var bmp = new BitmapImage();
+                bmp.SetSource(e.ChosenPhoto);
                 LocationImage.Source = bmp;
                 lblAddImage.Visibility = Visibility.Collapsed;
 
                 gridImage.Background.Opacity = 0;
 
-                App.ViewModel.SelectedLocation.LocationImage = Utilities.ConvertToBytes(bmp);
+                App.ViewModel.SelectedLocation.LocationImageName = Utilities.SaveImageToLocalStorage(e.ChosenPhoto);
             }
         }
 
         private void LocationImage_Loaded(object sender, RoutedEventArgs e)
         {
-            if (!this.newElement && App.ViewModel.SelectedLocation.LocationImage != null)
+            if (!this.newElement && App.ViewModel.SelectedLocation.LocationImageName != null)
             {
-                LocationImage.Source = Utilities.ConvertToImage(App.ViewModel.SelectedLocation.LocationImage);
+                LocationImage.Source = Utilities.LoadLocationImage();
                 lblAddImage.Visibility = Visibility.Collapsed;
                 gridImage.Background.Opacity = 0;
             }

@@ -65,17 +65,17 @@ namespace MyTravelHistory.Views
 
         private void locationImage_Loaded(object sender, RoutedEventArgs e)
         {
-            if (App.ViewModel.SelectedLocation.LocationImage != null)
+            if (App.ViewModel.SelectedLocation.LocationImageName != null)
             {
-                LocationImage.Source = Utilities.ConvertToImage(App.ViewModel.SelectedLocation.LocationImage);
+                LocationImage.Source = Utilities.LoadLocationImage();
             }
         }
 
         private void LocationImageLarge_Loaded(object sender, RoutedEventArgs e)
         {
-            if (App.ViewModel.SelectedLocation.LocationImage != null)
+            if (App.ViewModel.SelectedLocation.LocationImageName != null)
             {
-                locationImageLarge.Source = Utilities.ConvertToImage(App.ViewModel.SelectedLocation.LocationImage);
+                locationImageLarge.Source = LocationImage.Source;
             }
         }
 

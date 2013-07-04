@@ -33,49 +33,19 @@ namespace MyTravelHistory.Models
             }
         }
 
-        private byte[] _locationImage;
-
-        [Column(DbType = "image")]
-        public byte[] LocationImage
-        {
-            get { return _locationImage; }
-            set
-            {
-                if (_locationImage != value)
-                {
-                    NotifyPropertyChanging("LocationImage");
-                    _locationImage = value;
-                    NotifyPropertyChanged("LocationImage");
-                }
-            }
-        }
-
-        public WriteableBitmap Thumbnail
-        {
-            get
-            {
-                if (_locationImage != null)
-                {
-                    return Utilities.ConvertToImage(_locationImage, 150, 150);
-                }
-                
-                return new WriteableBitmap(0,0);
-            }
-        }
-
-        private string _thumbnailImageName;
+        private string _locationImageName;
 
         [Column]
-        public string ThumbnailImageName
+        public string LocationImageName
         {
-            get { return _thumbnailImageName; }
+            get { return _locationImageName; }
             set
             {
-                if (_thumbnailImageName != value)
+                if (_locationImageName != value)
                 {
-                    NotifyPropertyChanging("ThumbnailImageName");
-                    _thumbnailImageName = value;
-                    NotifyPropertyChanged("ThumbnailImageName");
+                    NotifyPropertyChanging("LocationImageName");
+                    _locationImageName = value;
+                    NotifyPropertyChanged("LocationImageName");
                 }
             }
         }

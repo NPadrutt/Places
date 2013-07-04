@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 using FlurryWP8SDK;
@@ -137,23 +138,28 @@ namespace MyTravelHistory.Src
             LiveTileHelper.CreateOrUpdateTile(tileData, new Uri("/Views/DetailsLocation.xaml?id=" + App.ViewModel.SelectedLocation.Id, UriKind.RelativeOrAbsolute));
         }
 
-        public static string SaveImageToLocalStorage(byte[] imageBytes)
+        public static string SaveImageToLocalStorage(Stream imageStream)
         {
             string imageName = Guid.NewGuid() + ".jpg";
 
-            using (var myIsoStorage = IsolatedStorageFile.GetUserStoreForApplication())
-            {
-                if (myIsoStorage.FileExists(imageName))
-                {
-                    myIsoStorage.DeleteFile(imageName);
-                }
-                IsolatedStorageFileStream fileStream = myIsoStorage.CreateFile(imageName);
-                WriteableBitmap mywb = ConvertToImage(imageBytes);
-                mywb.SaveJpeg(fileStream, mywb.PixelWidth, mywb.PixelHeight, 0, 95);
-                fileStream.Close();
-            }
+            //using (var myIsoStorage = IsolatedStorageFile.GetUserStoreForApplication())
+            //{
+            //    if (myIsoStorage.FileExists(imageName))
+            //    {
+            //        myIsoStorage.DeleteFile(imageName);
+            //    }
+            //    IsolatedStorageFileStream fileStream = myIsoStorage.CreateFile(imageName);
+            //    WriteableBitmap mywb = ConvertToImage(imageBytes);
+            //    mywb.SaveJpeg(fileStream, mywb.PixelWidth, mywb.PixelHeight, 0, 95);
+            //    fileStream.Close();
+            //}
 
             return imageName;
+        }
+
+        public static BitmapImage LoadLocationImage()
+        {
+            return new BitmapImage();
         }
     }
 }
