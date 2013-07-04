@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Device.Location;
 using System.Resources;
+using System.ServiceModel.Channels;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Navigation;
@@ -78,34 +79,41 @@ namespace MyTravelHistory.Views
 
         private void btnDone_Click(object sender, EventArgs e)
         {
-            App.ViewModel.SelectedLocation.Name = this.txtName.Text == string.Empty ? AppResources.NoNameDefaultEntry : this.txtName.Text;
+            if (lblLatitude.Text != string.Empty && lblLongtitude.Text != String.Empty)
+            {
+                App.ViewModel.SelectedLocation.Name = this.txtName.Text == string.Empty ? AppResources.NoNameDefaultEntry : this.txtName.Text;
 
-            if (lblLatitude.Text != String.Empty)
-            {
-                App.ViewModel.SelectedLocation.Latitude = Convert.ToDouble(lblLatitude.Text);
-            }
-            if (lblLongtitude.Text != String.Empty)
-            {
-                App.ViewModel.SelectedLocation.Longitude = Convert.ToDouble(lblLongtitude.Text);                
-            }
-            if (lblAccuracy.Text != String.Empty)
-            {
-                App.ViewModel.SelectedLocation.Accuracy = Convert.ToDouble(lblAccuracy.Text);                
-            }
-            App.ViewModel.SelectedLocation.Comment = txtComment.Text;
+                if (lblLatitude.Text != String.Empty)
+                {
+                    App.ViewModel.SelectedLocation.Latitude = Convert.ToDouble(lblLatitude.Text);
+                }
+                if (lblLongtitude.Text != String.Empty)
+                {
+                    App.ViewModel.SelectedLocation.Longitude = Convert.ToDouble(lblLongtitude.Text);
+                }
+                if (lblAccuracy.Text != String.Empty)
+                {
+                    App.ViewModel.SelectedLocation.Accuracy = Convert.ToDouble(lblAccuracy.Text);
+                }
+                App.ViewModel.SelectedLocation.Comment = txtComment.Text;
 
-            App.ViewModel.SelectedLocation.LocationAddress = locationAddress;
+                App.ViewModel.SelectedLocation.LocationAddress = locationAddress;
 
-            if (this.newElement)
-            {
-                App.ViewModel.AddLocation(App.ViewModel.SelectedLocation);
+                if (this.newElement)
+                {
+                    App.ViewModel.AddLocation(App.ViewModel.SelectedLocation);
+                }
+                else
+                {
+                    App.ViewModel.SaveChangesToDB();
+                }
+
+                NavigationService.Navigate(new Uri("/Views/DetailsLocation.xaml?RemoveBackstack=true", UriKind.Relative));
             }
             else
             {
-                App.ViewModel.SaveChangesToDB();
+                MessageBox.Show(AppResources.NoPositionMessage, AppResources.NoPositionMessageTitle, MessageBoxButton.OK);
             }
-
-            NavigationService.Navigate(new Uri("/Views/DetailsLocation.xaml?RemoveBackstack=true", UriKind.Relative));
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
