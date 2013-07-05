@@ -504,6 +504,15 @@ namespace MyTravelHistory.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to share.
+        /// </summary>
+        public static string ShareLabel {
+            get {
+                return ResourceManager.GetString("ShareLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to show all on Map.
         /// </summary>
         public static string ShowAllOnMapLabel {

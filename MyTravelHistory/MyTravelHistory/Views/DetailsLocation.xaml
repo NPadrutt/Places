@@ -22,6 +22,7 @@
 				<shell:ApplicationBarMenuItem x:Name="mDelete" Text="delete" Click="mDelete_Click"/>
 			</shell:ApplicationBar.MenuItems>
 			<shell:ApplicationBarIconButton x:Name="btnEdit" IconUri="/Assets/AppBar/edit.png" Text="edit" Click="btnEdit_Click"/>
+			<shell:ApplicationBarIconButton x:Name="btnShare" IconUri="/Assets/AppBar/share.png" Text="share" Click="btnShare_Click"/>
 		</shell:ApplicationBar>
 	</phone:PhoneApplicationPage.ApplicationBar>
 

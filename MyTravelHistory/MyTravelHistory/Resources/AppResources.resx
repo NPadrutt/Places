@@ -284,4 +284,7 @@ Do you wanna proceed?</value>
   <data name="PintToStartLabel" xml:space="preserve">
     <value>pin to start</value>
   </data>
+  <data name="ShareLabel" xml:space="preserve">
+    <value>share</value>
+  </data>
 </root>

@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Linq;
 using System.Windows;
+using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using Microsoft.Phone.Tasks;
+using Microsoft.Xna.Framework.Media;
 using MyTravelHistory.Resources;
 using MyTravelHistory.Src;
 using Telerik.Windows.Controls;
@@ -20,6 +23,7 @@ namespace MyTravelHistory.Views
             DataContext = App.ViewModel.SelectedLocation;
 
             ((ApplicationBarIconButton)this.ApplicationBar.Buttons[0]).Text = AppResources.EditLabel;
+            ((ApplicationBarIconButton)this.ApplicationBar.Buttons[1]).Text = AppResources.ShareLabel;
             
 			((ApplicationBarMenuItem)this.ApplicationBar.MenuItems[0]).Text = AppResources.PintToStartLabel;
 			((ApplicationBarMenuItem)this.ApplicationBar.MenuItems[1]).Text = AppResources.DeleteLabel;

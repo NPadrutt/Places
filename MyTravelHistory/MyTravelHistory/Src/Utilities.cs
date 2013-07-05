@@ -15,6 +15,7 @@ using Windows.Devices.Geolocation;
 using Microsoft.Phone.Maps.Services;
 using System.Device.Location;
 using Microsoft.Phone.Shell;
+using Microsoft.Xna.Framework.Media;
 using MyTravelHistory.Models;
 using Telerik.Windows.Controls;
 using System.IO.IsolatedStorage;
@@ -188,6 +189,13 @@ namespace MyTravelHistory.Src
             }
 
             return bmp;
+        }
+
+        public static Uri GetImageUri(string imagename)
+        {
+            string path = Path.Combine(ImageFolder, imagename);
+
+            return new Uri(@"isostore:/" + path, UriKind.Absolute);
         }
     }
 }

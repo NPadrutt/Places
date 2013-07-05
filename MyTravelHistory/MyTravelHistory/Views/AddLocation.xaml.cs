@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Device.Location;
+using System.IO;
 using System.Resources;
 using System.ServiceModel.Channels;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Navigation;
 using Microsoft.Phone.Shell;
+using Microsoft.Xna.Framework.Media;
+using Microsoft.Xna.Framework.Media.PhoneExtensions;
 using MyTravelHistory.Resources;
 using MyTravelHistory.Models;
 using MyTravelHistory.Src;
@@ -20,8 +23,9 @@ namespace MyTravelHistory.Views
     {
         private bool newElement;
 
-        CameraCaptureTask cameraCaptureTask;
-        LocationAddress locationAddress;
+        private CameraCaptureTask cameraCaptureTask;
+        private LocationAddress locationAddress;
+        private BitmapImage locationImage;
 
         public AddLocation()
         {
@@ -99,6 +103,11 @@ namespace MyTravelHistory.Views
 
                 App.ViewModel.SelectedLocation.LocationAddress = locationAddress;
 
+                if (locationImage != null)
+                {
+                    App.ViewModel.SelectedLocation.LocationImageName = Utilities.SaveImageToLocalStorage(locationImage);
+                }
+
                 if (this.newElement)
                 {
                     App.ViewModel.AddLocation(App.ViewModel.SelectedLocation);
@@ -132,14 +141,12 @@ namespace MyTravelHistory.Views
         {
             if (e.TaskResult == TaskResult.OK)
             {
-                var bmp = new BitmapImage();
-                bmp.SetSource(e.ChosenPhoto);
-                LocationImage.Source = bmp;
+                locationImage = new BitmapImage();
+                locationImage.SetSource(e.ChosenPhoto);
+                LocationImage.Source = locationImage;
                 lblAddImage.Visibility = Visibility.Collapsed;
 
                 gridImage.Background.Opacity = 0;
-
-                App.ViewModel.SelectedLocation.LocationImageName = Utilities.SaveImageToLocalStorage(bmp);
             }
         }
 
