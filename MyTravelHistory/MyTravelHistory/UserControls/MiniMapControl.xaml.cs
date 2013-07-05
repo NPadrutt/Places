@@ -13,6 +13,9 @@ namespace MyTravelHistory.UserControls
 {
     public partial class MiniMapControl : UserControl
     {
+        private MapOverlay mapOverlay;
+        private UserLocationMarker userMarker;
+
         public MiniMapControl()
         {
             InitializeComponent();
@@ -23,13 +26,18 @@ namespace MyTravelHistory.UserControls
             var geoPosition = new GeoCoordinate(latitude, longitude);
             myMap.SetView(geoPosition, 18, MapAnimationKind.Parabolic);
 
-            var mapOverlay = new MapOverlay();
-            var userMarker = new UserLocationMarker();
+            mapOverlay = new MapOverlay();
+            userMarker = new UserLocationMarker();
             mapOverlay.Content = userMarker;
             mapOverlay.GeoCoordinate = geoPosition;
 
             var mapLayer = new MapLayer { mapOverlay };
             myMap.Layers.Add(mapLayer);
-        }      
+        }
+
+        public void ClearPushPins()
+        {
+            myMap.Layers.Clear();
+        }
     }
 }

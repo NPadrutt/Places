@@ -50,6 +50,11 @@ namespace MyTravelHistory.Models
             }
         }
 
+        public BitmapImage LocationImage
+        {
+            get { return Utilities.LoadLocationImage(_locationImageName); }
+        }
+
         private string _name;
 
         [Column]

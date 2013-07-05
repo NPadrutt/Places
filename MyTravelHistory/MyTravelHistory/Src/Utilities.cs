@@ -3,19 +3,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Threading;
-using Windows.Foundation.Metadata;
 using FlurryWP8SDK;
 using Windows.Devices.Geolocation;
 using Microsoft.Phone.Maps.Services;
 using System.Device.Location;
-using Microsoft.Phone.Shell;
-using Microsoft.Xna.Framework.Media;
 using MyTravelHistory.Models;
 using Telerik.Windows.Controls;
 using System.IO.IsolatedStorage;
@@ -30,25 +24,7 @@ namespace MyTravelHistory.Src
         {
             return Assembly.GetExecutingAssembly().FullName.Split('=')[1].Split(',')[0];
         }
-
-        public static byte[] ConvertToBytes(WriteableBitmap image)
-        {
-            var ms = new MemoryStream();
-            image.SaveJpeg(ms, image.PixelWidth, image.PixelHeight, 0, 20);
-
-            return ms.GetBuffer();
-        }
-
-        public static WriteableBitmap ConvertToImage(byte[] inputBytes)
-        {
-            return GetImage(inputBytes, 3264, 2448);
-        }
-
-        public static WriteableBitmap ConvertToImage(byte[] inputBytes, int width, int height)
-        {
-            return GetImage(inputBytes, width, height);
-        }
-
+        
         private static WriteableBitmap GetImage(byte[] inputBytes, int width, int height)
         {
             var img = new WriteableBitmap(width, height);
@@ -131,40 +107,36 @@ namespace MyTravelHistory.Src
             return locationAddress;
         }
 
-        public static void CreateTile()
-        {           
-            var tileData = new RadExtendedTileData()
-            {
-                Title = App.ViewModel.SelectedLocation.Name,
-                //BackBackgroundImage = new Uri(@"isostore:\" + App.ViewModel.SelectedLocation.ThumbnailImageName, UriKind.Absolute)
-            };
-
-            LiveTileHelper.CreateOrUpdateTile(tileData, new Uri("/Views/DetailsLocation.xaml?id=" + App.ViewModel.SelectedLocation.Id, UriKind.RelativeOrAbsolute));
-        }
-
         public static string SaveImageToLocalStorage(BitmapImage image)
         {
             string imageName = Guid.NewGuid() + ".jpg";
-            
-            using (var myIsoStorage = IsolatedStorageFile.GetUserStoreForApplication())
+
+            try
             {
-                if (!myIsoStorage.DirectoryExists(ImageFolder))
+                using (var myIsoStorage = IsolatedStorageFile.GetUserStoreForApplication())
                 {
-                    myIsoStorage.CreateDirectory(ImageFolder);
-                }
+                    if (!myIsoStorage.DirectoryExists(ImageFolder))
+                    {
+                        myIsoStorage.CreateDirectory(ImageFolder);
+                    }
 
-                if (myIsoStorage.FileExists(imageName))
-                {
-                    myIsoStorage.DeleteFile(imageName);
-                }
+                    if (myIsoStorage.FileExists(imageName))
+                    {
+                        myIsoStorage.DeleteFile(imageName);
+                    }
 
-                string path = Path.Combine(ImageFolder, imageName);
-                using (var stream = myIsoStorage.CreateFile(path))
-                {
-                    var wb = new WriteableBitmap(image);
-                    wb.SaveJpeg(stream, image.PixelWidth, image.PixelHeight, 0, 100);
-                    stream.Close();
+                    string path = Path.Combine(ImageFolder, imageName);
+                    using (var stream = myIsoStorage.CreateFile(path))
+                    {
+                        var wb = new WriteableBitmap(image);
+                        wb.SaveJpeg(stream, image.PixelWidth, image.PixelHeight, 0, 50);
+                    }
+                    myIsoStorage.Dispose();
                 }
+            }
+            catch (Exception ex)
+            {
+                Api.LogError(ex.Message, ex.InnerException);
             }
 
             return imageName;
@@ -172,20 +144,39 @@ namespace MyTravelHistory.Src
 
         public static BitmapImage LoadLocationImage()
         {
+            return LoadImage(App.ViewModel.SelectedLocation.LocationImageName);
+        }
+
+        public static BitmapImage LoadLocationImage(string name)
+        {
+            if (string.IsNullOrEmpty(name)) return new BitmapImage();
+            return LoadImage(name);
+        }
+
+        private static BitmapImage LoadImage(string imagename)
+        {
             var bmp = new BitmapImage();
 
-            using (var myIsoStorage = IsolatedStorageFile.GetUserStoreForApplication())
+            try
             {
-                if (!myIsoStorage.DirectoryExists(ImageFolder))
+                using (var myIsoStorage = IsolatedStorageFile.GetUserStoreForApplication())
                 {
-                    return bmp;
-                }
+                    if (!myIsoStorage.DirectoryExists(ImageFolder))
+                    {
+                        return bmp;
+                    }
 
-                string path = Path.Combine(ImageFolder, App.ViewModel.SelectedLocation.LocationImageName);
-                using (var imageStream = myIsoStorage.OpenFile(path, FileMode.Open, FileAccess.Read))
-                {
-                    bmp.SetSource(imageStream);
+                    string path = Path.Combine(ImageFolder, imagename);
+                    using (var imageStream = myIsoStorage.OpenFile(path, FileMode.Open, FileAccess.Read))
+                    {
+                        bmp.SetSource(imageStream);
+                    }
+                    myIsoStorage.Dispose();
                 }
+            }
+            catch (Exception ex)
+            {
+                Api.LogError(ex.Message, ex.InnerException);
             }
 
             return bmp;

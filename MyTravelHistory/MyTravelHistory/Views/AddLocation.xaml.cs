@@ -64,6 +64,7 @@ namespace MyTravelHistory.Views
             if (App.ViewModel.CurrentPosition != null)
             {
                 locationAddress = await Utilities.GetAddress(App.ViewModel.CurrentPosition.Latitude, App.ViewModel.CurrentPosition.Longitude);
+                MiniMap.ClearPushPins();
                 MiniMap.ShowOnMap(App.ViewModel.CurrentPosition.Latitude, App.ViewModel.CurrentPosition.Longitude);
                 stackpanelAddress.DataContext = locationAddress;
                 stackpanelPosition.DataContext = App.ViewModel.CurrentPosition;
