@@ -1,20 +1,12 @@
 ﻿using System;
-using System.Device.Location;
-using System.IO;
-using System.Resources;
-using System.ServiceModel.Channels;
 using System.Windows;
-using System.Windows.Media;
 using System.Windows.Navigation;
 using Microsoft.Phone.Shell;
-using Microsoft.Xna.Framework.Media;
-using Microsoft.Xna.Framework.Media.PhoneExtensions;
 using MyTravelHistory.Resources;
 using MyTravelHistory.Models;
 using MyTravelHistory.Src;
 using Microsoft.Phone.Tasks;
 using System.Windows.Media.Imaging;
-using Color = Windows.UI.Color;
 using GestureEventArgs = System.Windows.Input.GestureEventArgs;
 
 namespace MyTravelHistory.Views
@@ -23,7 +15,7 @@ namespace MyTravelHistory.Views
     {
         private bool newElement;
 
-        private CameraCaptureTask cameraCaptureTask;
+        private PhotoChooserTask photoChooserTask;
         private LocationAddress locationAddress;
         private BitmapImage locationImage;
 
@@ -132,12 +124,13 @@ namespace MyTravelHistory.Views
 
         private void Grid_Tap(object sender, GestureEventArgs e)
         {
-            cameraCaptureTask = new CameraCaptureTask();
-            cameraCaptureTask.Completed += this.cameraCaptureTask_Completed;
-            cameraCaptureTask.Show();
+            photoChooserTask = new PhotoChooserTask();
+            photoChooserTask.ShowCamera = true;
+            photoChooserTask.Completed += this.PhotoChooserTask_Completed;
+            photoChooserTask.Show();
         }
 
-        void cameraCaptureTask_Completed(object sender, PhotoResult e)
+        void PhotoChooserTask_Completed(object sender, PhotoResult e)
         {
             if (e.TaskResult == TaskResult.OK)
             {
