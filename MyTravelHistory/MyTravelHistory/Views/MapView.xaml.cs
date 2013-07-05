@@ -28,6 +28,7 @@ namespace MyTravelHistory.Views
         GeocodeQuery mygeocodequery = null;
 
         private UserLocationMarker marker;
+        private MapOverlay mapOverlay;
 
         public MapView()
         {
@@ -70,17 +71,16 @@ namespace MyTravelHistory.Views
                 PinMap(new GeoCoordinate(App.ViewModel.SelectedLocation.Latitude, App.ViewModel.SelectedLocation.Longitude), App.ViewModel.SelectedLocation.Name);
             }
 
-            await FetchCurrentPosition();
-            PinCurrentPosition();
+            FetchCurrentPosition();
+            
         }
 
         private void PinCurrentPosition()
         {
             var currentPosition = new GeoCoordinate(App.ViewModel.CurrentPosition.Latitude, App.ViewModel.CurrentPosition.Longitude);
-            MyMap.SetView(currentPosition, 16, MapAnimationKind.Parabolic);
             
             marker = new UserLocationMarker(){ GeoCoordinate = currentPosition };
-            var mapOverlay = new MapOverlay() {Content = marker, GeoCoordinate = currentPosition};
+            mapOverlay = new MapOverlay() {Content = marker, GeoCoordinate = currentPosition};
 
             var mapLayer = new MapLayer { mapOverlay };
             MyMap.Layers.Add(mapLayer);
@@ -130,20 +130,22 @@ namespace MyTravelHistory.Views
             Dispatcher.BeginInvoke(() =>
             {
                 marker.GeoCoordinate = args.Position.Coordinate.ToGeoCoordinate();
+                mapOverlay.GeoCoordinate = args.Position.Coordinate.ToGeoCoordinate();
             });
         }
 
         private void PinMap(GeoCoordinate geoPosition, string locationName)
         {
-            var mapOverlay = new MapOverlay();
+            MyMap.SetView(geoPosition, 16, MapAnimationKind.Parabolic);
+            var mapOverlayPin = new MapOverlay();
             var pin = new Pushpin()
             {
                 Content = locationName
             };
-            mapOverlay.Content = pin;
-            mapOverlay.GeoCoordinate = geoPosition;
+            mapOverlayPin.Content = pin;
+            mapOverlayPin.GeoCoordinate = geoPosition;
 
-            var mapLayer = new MapLayer { mapOverlay };
+            var mapLayer = new MapLayer { mapOverlayPin };
             MyMap.Layers.Add(mapLayer);
         }
 
@@ -151,7 +153,9 @@ namespace MyTravelHistory.Views
         {            
             this.mygeocodequery = new GeocodeQuery { SearchTerm = App.ViewModel.SelectedLocation.Name };
 
-            await FetchCurrentPosition();          
+            busyProceedAction.IsRunning = true;
+            await FetchCurrentPosition();
+            busyProceedAction.IsRunning = false;
 
             this.mygeocodequery.GeoCoordinate = new GeoCoordinate(App.ViewModel.CurrentPosition.Latitude, App.ViewModel.CurrentPosition.Longitude);
             MyCoordinates.Add(this.mygeocodequery.GeoCoordinate);
@@ -167,12 +171,11 @@ namespace MyTravelHistory.Views
 
         private async Task FetchCurrentPosition()
         {
-            if (App.ViewModel.CurrentPosition == null || App.ViewModel.CurrentPosition.Timestamp <= DateTime.Now.AddMinutes(1))
+            if (App.ViewModel.CurrentPosition == null || App.ViewModel.CurrentPosition.Timestamp >= DateTime.Now.AddMinutes(1))
             {
-                busyProceedAction.IsRunning = true;
                 await Utilities.GetPosition();
-                busyProceedAction.IsRunning = false;
             }
+            PinCurrentPosition();
         }
 
         void MyQuery_QueryCompleted(object sender, QueryCompletedEventArgs<Route> e)

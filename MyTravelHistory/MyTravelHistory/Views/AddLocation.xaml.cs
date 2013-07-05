@@ -60,7 +60,7 @@ namespace MyTravelHistory.Views
             progressionbarGetLocation.IsIndeterminate = true;
             progressionbarGetLocation.Visibility = Visibility.Visible;
 
-            if (App.ViewModel.CurrentPosition == null || App.ViewModel.CurrentPosition.Timestamp <= DateTime.Now.AddMinutes(1))
+            if (App.ViewModel.CurrentPosition == null || App.ViewModel.CurrentPosition.Timestamp >= DateTime.Now.AddMinutes(1))
             {
                 await Utilities.GetPosition();
             }
