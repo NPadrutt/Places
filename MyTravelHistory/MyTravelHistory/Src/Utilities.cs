@@ -109,7 +109,7 @@ namespace MyTravelHistory.Src
 
         public static string SaveImageToLocalStorage(BitmapImage image)
         {
-            string imageName = Guid.NewGuid() + ".jpg";
+            string imagename = Guid.NewGuid() + ".jpg";
 
             try
             {
@@ -120,18 +120,17 @@ namespace MyTravelHistory.Src
                         myIsoStorage.CreateDirectory(ImageFolder);
                     }
 
-                    if (myIsoStorage.FileExists(imageName))
+                    if (myIsoStorage.FileExists(imagename))
                     {
-                        myIsoStorage.DeleteFile(imageName);
+                        myIsoStorage.DeleteFile(imagename);
                     }
 
-                    string path = Path.Combine(ImageFolder, imageName);
+                    string path = Path.Combine(ImageFolder, imagename);
                     using (var stream = myIsoStorage.CreateFile(path))
                     {
                         var wb = new WriteableBitmap(image);
                         wb.SaveJpeg(stream, image.PixelWidth, image.PixelHeight, 0, 50);
                     }
-                    myIsoStorage.Dispose();
                 }
             }
             catch (Exception ex)
@@ -139,7 +138,7 @@ namespace MyTravelHistory.Src
                 Api.LogError(ex.Message, ex.InnerException);
             }
 
-            return imageName;
+            return imagename;
         }
 
         public static BitmapImage LoadLocationImage()
@@ -167,11 +166,13 @@ namespace MyTravelHistory.Src
                     }
 
                     string path = Path.Combine(ImageFolder, imagename);
-                    using (var imageStream = myIsoStorage.OpenFile(path, FileMode.Open, FileAccess.Read))
+                    if (myIsoStorage.FileExists(path))
                     {
-                        bmp.SetSource(imageStream);
+                        using (var imageStream = myIsoStorage.OpenFile(path, FileMode.Open, FileAccess.Read))
+                        {
+                            bmp.SetSource(imageStream);
+                        }
                     }
-                    myIsoStorage.Dispose();
                 }
             }
             catch (Exception ex)
@@ -180,6 +181,23 @@ namespace MyTravelHistory.Src
             }
 
             return bmp;
+        }
+
+        public static void DetelteImage(string imagename)
+        {
+            using (var myIsoStorage = IsolatedStorageFile.GetUserStoreForApplication())
+            {
+                if (!myIsoStorage.DirectoryExists(ImageFolder))
+                {
+                    myIsoStorage.CreateDirectory(ImageFolder);
+                }
+
+                string path = Path.Combine(ImageFolder, imagename);
+                if (myIsoStorage.FileExists(path))
+                {
+                    myIsoStorage.DeleteFile(path);
+                }
+            }
         }
 
         public static Uri GetImageUri(string imagename)

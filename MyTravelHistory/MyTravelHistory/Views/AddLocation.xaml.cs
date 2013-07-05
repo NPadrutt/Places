@@ -98,6 +98,10 @@ namespace MyTravelHistory.Views
 
                 if (locationImage != null)
                 {
+                    if (!string.IsNullOrEmpty(App.ViewModel.SelectedLocation.LocationImageName))
+                    {
+                        Utilities.DetelteImage(App.ViewModel.SelectedLocation.LocationImageName);
+                    }
                     App.ViewModel.SelectedLocation.LocationImageName = Utilities.SaveImageToLocalStorage(locationImage);
                 }
 
