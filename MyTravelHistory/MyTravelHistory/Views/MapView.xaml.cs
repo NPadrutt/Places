@@ -6,6 +6,7 @@ using Microsoft.Phone.Maps;
 using Microsoft.Phone.Maps.Controls;
 using Microsoft.Phone.Maps.Services;
 using Microsoft.Phone.Shell;
+using Microsoft.Phone.Tasks;
 using MyTravelHistory.Resources;
 using MyTravelHistory.Src;
 using System;
@@ -84,54 +85,6 @@ namespace MyTravelHistory.Views
 
             var mapLayer = new MapLayer { mapOverlay };
             MyMap.Layers.Add(mapLayer);
-
-            var geolocator = new Geolocator() {MovementThreshold = 10, DesiredAccuracy = PositionAccuracy.High};
-            geolocator.StatusChanged += geolocator_StatusChanged;
-            geolocator.PositionChanged += geolocator_PositionChanged;
-        }
-
-        private void geolocator_StatusChanged(Geolocator sender, StatusChangedEventArgs args)
-        {
-            string status = "";
-
-            switch (args.Status)
-            {
-                case PositionStatus.Disabled:
-                    // the application does not have the right capability or the location master switch is off
-                    status = "location is disabled in phone settings";
-                    break;
-                case PositionStatus.Initializing:
-                    // the geolocator started the tracking operation
-                    status = "initializing";
-                    break;
-                case PositionStatus.NoData:
-                    // the location service was not able to acquire the location
-                    status = "no data";
-                    break;
-                case PositionStatus.Ready:
-                    // the location service is generating geopositions as specified by the tracking parameters
-                    status = "ready";
-                    break;
-                case PositionStatus.NotAvailable:
-                    status = "not available";
-                    // not used in WindowsPhone, Windows desktop uses this value to signal that there is no hardware capable to acquire location information
-                    break;
-                case PositionStatus.NotInitialized:
-                    // the initial state of the geolocator, once the tracking operation is stopped by the user the geolocator moves back to this state
-                    break;
-            }
-
-            Api.LogError(status, null);
-        }
-
-
-        private void geolocator_PositionChanged(Geolocator sender, PositionChangedEventArgs args)
-        {
-            Dispatcher.BeginInvoke(() =>
-            {
-                marker.GeoCoordinate = args.Position.Coordinate.ToGeoCoordinate();
-                mapOverlay.GeoCoordinate = args.Position.Coordinate.ToGeoCoordinate();
-            });
         }
 
         private void PinMap(GeoCoordinate geoPosition, string locationName)
@@ -151,22 +104,11 @@ namespace MyTravelHistory.Views
 
         private async void btnNavigation_Click(object sender, EventArgs e)
         {            
-            this.mygeocodequery = new GeocodeQuery { SearchTerm = App.ViewModel.SelectedLocation.Name };
+            var bingMapsDirectionsTask = new BingMapsDirectionsTask();
+            var location = new LabeledMapLocation(App.ViewModel.SelectedLocation.Name, new GeoCoordinate(App.ViewModel.SelectedLocation.Latitude, App.ViewModel.SelectedLocation.Longitude));
+            bingMapsDirectionsTask.End = location;
 
-            busyProceedAction.IsRunning = true;
-            await FetchCurrentPosition();
-            busyProceedAction.IsRunning = false;
-
-            this.mygeocodequery.GeoCoordinate = new GeoCoordinate(App.ViewModel.CurrentPosition.Latitude, App.ViewModel.CurrentPosition.Longitude);
-            MyCoordinates.Add(this.mygeocodequery.GeoCoordinate);
-
-            this.myQuery = new RouteQuery();
-            MyCoordinates.Add(new GeoCoordinate(App.ViewModel.SelectedLocation.Latitude, App.ViewModel.SelectedLocation.Longitude));
-            this.myQuery.Waypoints = MyCoordinates;
-            this.myQuery.QueryCompleted += MyQuery_QueryCompleted;
-            this.myQuery.QueryAsync();
-            this.mygeocodequery.Dispose();
-            
+            bingMapsDirectionsTask.Show();
         }
 
         private async Task FetchCurrentPosition()
@@ -176,18 +118,6 @@ namespace MyTravelHistory.Views
                 await Utilities.GetPosition();
             }
             PinCurrentPosition();
-        }
-
-        void MyQuery_QueryCompleted(object sender, QueryCompletedEventArgs<Route> e)
-        {
-            if (e.Error == null)
-            {
-                Route myRoute = e.Result;
-                var myMapRoute = new MapRoute(myRoute);
-                MyMap.AddRoute(myMapRoute);
-                this.myQuery.Dispose();
-            }
-
         }
     }
 }
