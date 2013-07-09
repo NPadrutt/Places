@@ -32,7 +32,7 @@ namespace MyTravelHistory.Views
         {
             base.OnNavigatedTo(e);
 
-            if (this.NavigationContext.QueryString != null || this.NavigationContext.QueryString.Count > 0)
+            if (e.NavigationMode != NavigationMode.Back && this.NavigationContext.QueryString != null && this.NavigationContext.QueryString.Count > 0)
             {
                 //Readout Querystrings
                 if (this.NavigationContext.QueryString.ContainsKey("RemoveBackstack") &&
@@ -48,10 +48,9 @@ namespace MyTravelHistory.Views
                     {
                         App.ViewModel.SelectedLocation = location;
                     }
-                }
+                }            
+                MiniMap.ShowOnMap(App.ViewModel.SelectedLocation.Latitude, App.ViewModel.SelectedLocation.Longitude);
             }
-
-            MiniMap.ShowOnMap(App.ViewModel.SelectedLocation.Latitude, App.ViewModel.SelectedLocation.Longitude);
         }
 		
         private void btnEdit_Click(object sender, EventArgs e)
