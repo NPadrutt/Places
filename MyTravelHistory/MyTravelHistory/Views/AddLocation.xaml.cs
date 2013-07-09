@@ -19,7 +19,6 @@ namespace MyTravelHistory.Views
 
         private PhotoChooserTask photoChooserTask;
         private BitmapImage locationImage;
-        private MapAddress locationAddress;
 
         public AddLocation()
         {
@@ -64,10 +63,10 @@ namespace MyTravelHistory.Views
 
             if (App.ViewModel.CurrentPosition != null)
             {
-                locationAddress = await Utilities.GetAddress(App.ViewModel.CurrentPosition.Latitude, App.ViewModel.CurrentPosition.Longitude);
+                await Utilities.GetAddress(App.ViewModel.CurrentPosition.Latitude, App.ViewModel.CurrentPosition.Longitude);
                 MiniMap.ClearPushPins();
                 MiniMap.ShowOnMap(App.ViewModel.CurrentPosition.Latitude, App.ViewModel.CurrentPosition.Longitude);
-                stackpanelAddress.DataContext = locationAddress;
+                stackpanelAddress.DataContext = App.ViewModel.CurrentAddress;
                 stackpanelPosition.DataContext = App.ViewModel.CurrentPosition;
             }
 
@@ -88,15 +87,15 @@ namespace MyTravelHistory.Views
                 }
                 App.ViewModel.SelectedLocation.Comment = txtComment.Text;
 
-                if (locationAddress != null)
+                if (App.ViewModel.CurrentAddress != null)
                 {
-                    App.ViewModel.SelectedLocation.Street = locationAddress.Street;
-                    App.ViewModel.SelectedLocation.HouseNumber = locationAddress.HouseNumber;
-                    App.ViewModel.SelectedLocation.PostalCode = locationAddress.PostalCode;
-                    App.ViewModel.SelectedLocation.City = locationAddress.City;
-                    App.ViewModel.SelectedLocation.District = locationAddress.District;
-                    App.ViewModel.SelectedLocation.State = locationAddress.State;
-                    App.ViewModel.SelectedLocation.Country = locationAddress.Country;
+                    App.ViewModel.SelectedLocation.Street = App.ViewModel.CurrentAddress.Street;
+                    App.ViewModel.SelectedLocation.HouseNumber = App.ViewModel.CurrentAddress.HouseNumber;
+                    App.ViewModel.SelectedLocation.PostalCode = App.ViewModel.CurrentAddress.PostalCode;
+                    App.ViewModel.SelectedLocation.City = App.ViewModel.CurrentAddress.City;
+                    App.ViewModel.SelectedLocation.District = App.ViewModel.CurrentAddress.District;
+                    App.ViewModel.SelectedLocation.State = App.ViewModel.CurrentAddress.State;
+                    App.ViewModel.SelectedLocation.Country = App.ViewModel.CurrentAddress.Country;
                 }
 
                 if (locationImage != null)

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Phone.Data.Linq;
+using Microsoft.Phone.Maps.Services;
 using MyTravelHistory.Models;
 using MyTravelHistory.Src;
 using System;
@@ -126,6 +127,17 @@ namespace MyTravelHistory.ViewModels
             {
                 _currentPosition = value;
                 NotifyPropertyChanged("CurrentPosition");
+            }
+        }
+
+        private MapAddress _currentAddress;
+        public MapAddress CurrentAddress
+        {
+            get { return _currentAddress; }
+            set
+            {
+                _currentAddress = value;
+                NotifyPropertyChanged("CurrentAddress");
             }
         }
 
