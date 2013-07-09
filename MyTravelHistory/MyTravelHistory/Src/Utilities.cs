@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -191,21 +192,11 @@ namespace MyTravelHistory.Src
             var uriList = new List<Uri>();
             int i;
 
-            if (App.ViewModel.AllLocations.Count <= 9)
-            {
-                i = App.ViewModel.AllLocations.Count;
-            }
-            else
-            {
-                i = 9;
-            }
-
-            for (i = 0; i >= 0; i--)
-            {
-                uriList.Add(GetImageUri(App.ViewModel.AllLocations[i].LocationImageName));
-            }
+            App.ViewModel.AllLocations.Select(x => x.LocationImageName).Take(9).ToList().ForEach(x => uriList.Add(GetImageUri(x)));
+            
             tileData.CycleImages = uriList;
             LiveTileHelper.UpdateTile(ShellTile.ActiveTiles.FirstOrDefault(), tileData);
+            
         }
     }
 }
