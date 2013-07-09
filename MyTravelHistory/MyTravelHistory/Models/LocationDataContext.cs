@@ -123,6 +123,125 @@ namespace MyTravelHistory.Models
             }
         }
 
+        private string _street;
+
+        [Column]
+        public string Street
+        {
+            get { return _street; }
+            set
+            {
+                if (_street != value)
+                {
+                    NotifyPropertyChanging("Street");
+                    _street = value;
+                    NotifyPropertyChanged("Street");
+                }
+            }
+        }
+
+        private string _houseNumber;
+
+        [Column]
+        public string HouseNumber
+        {
+            get { return _houseNumber; }
+            set
+            {
+                if (_houseNumber != value)
+                {
+                    NotifyPropertyChanging("HouseNumber");
+                    _houseNumber = value;
+                    NotifyPropertyChanged("HouseNumber");
+                }
+            }
+        }
+
+        private string _postalCode;
+
+        [Column]
+        public string PostalCode
+        {
+            get { return _postalCode; }
+            set
+            {
+                if (_postalCode != value)
+                {
+                    NotifyPropertyChanging("PostalCode");
+                    _postalCode = value;
+                    NotifyPropertyChanged("PostalCode");
+                }
+            }
+        }
+
+        private string _city;
+
+        [Column]
+        public string City
+        {
+            get { return _city; }
+            set
+            {
+                if (_city != value)
+                {
+                    NotifyPropertyChanging("City");
+                    _city = value;
+                    NotifyPropertyChanged("City");
+                }
+            }
+        }
+
+        private string _district;
+
+        [Column]
+        public string District
+        {
+            get { return _district; }
+            set
+            {
+                if (_district != value)
+                {
+                    NotifyPropertyChanging("District");
+                    _district = value;
+                    NotifyPropertyChanged("District");
+                }
+            }
+        }
+
+        private string _state;
+
+        [Column]
+        public string State
+        {
+            get { return _state; }
+            set
+            {
+                if (_state != value)
+                {
+                    NotifyPropertyChanging("State");
+                    _state = value;
+                    NotifyPropertyChanged("State");
+                }
+            }
+        }
+
+        private string _country;
+
+        [Column]
+        public string Country
+        {
+            get { return _country; }
+            set
+            {
+                if (_country != value)
+                {
+                    NotifyPropertyChanging("Country");
+                    _country = value;
+                    NotifyPropertyChanged("Country");
+                }
+            }
+        }
+
         private string _comment;
 
         [Column]
@@ -139,33 +258,6 @@ namespace MyTravelHistory.Models
                 }
             }
         }
-
-        #region Foreign Keys
-        
-        [Column]
-        private int? _addressId;
-
-        private EntityRef<LocationAddress> _locationAddress;
-
-        [Association(Storage = "_locationAddress", ThisKey = "_addressId", OtherKey = "Id", IsForeignKey = true)]
-        public LocationAddress LocationAddress
-        {
-            get { return _locationAddress.Entity; }
-            set
-            {
-                NotifyPropertyChanging("LocationAddress");
-                _locationAddress.Entity = value;
-
-                if (value != null)
-                {
-                    _addressId = value.Id;
-                }
-
-                NotifyPropertyChanging("LocationAddress");
-            }
-        }
-
-        #endregion
 
         [Column(IsVersion = true)]
         private Binary _version;

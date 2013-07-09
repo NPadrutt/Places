@@ -43,14 +43,14 @@ namespace MyTravelHistory.Views
 
                 if (this.NavigationContext.QueryString.ContainsKey("id"))
                 {
-                    foreach (
-                        var location in App.ViewModel.AllLocations.Where(location => location.Id == Convert.ToInt32(this.NavigationContext.QueryString["id"])))
+                    foreach (var location in App.ViewModel.AllLocations.Where(location => location.Id == Convert.ToInt32(this.NavigationContext.QueryString["id"])))
                     {
                         App.ViewModel.SelectedLocation = location;
                     }
                 }            
-                MiniMap.ShowOnMap(App.ViewModel.SelectedLocation.Latitude, App.ViewModel.SelectedLocation.Longitude);
             }
+
+            MiniMap.ShowOnMap(App.ViewModel.SelectedLocation.Latitude, App.ViewModel.SelectedLocation.Longitude);
         }
 		
         private void btnEdit_Click(object sender, EventArgs e)
