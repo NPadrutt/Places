@@ -108,13 +108,13 @@ namespace MyTravelHistory.Views
                 if (this.newElement)
                 {
                     App.ViewModel.AddLocation(App.ViewModel.SelectedLocation);
+                    NavigationService.Navigate(new Uri("/Views/DetailsLocation.xaml?RemoveBackstack=true", UriKind.Relative));
                 }
                 else
                 {
                     App.ViewModel.SaveChangesToDB();
+                    NavigationService.GoBack();
                 }
-
-                NavigationService.Navigate(new Uri("/Views/DetailsLocation.xaml?RemoveBackstack=true", UriKind.Relative));
             }
             else
             {

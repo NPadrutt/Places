@@ -92,6 +92,7 @@ namespace MyTravelHistory.Views
             if (result == MessageBoxResult.OK)
             {
                 App.ViewModel.DeleteLocation(App.ViewModel.SelectedLocation);
+                Utilities.DetelteImage(App.ViewModel.SelectedLocation.LocationImageName);
             }
 
             NavigationService.GoBack();        
