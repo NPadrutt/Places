@@ -10,6 +10,7 @@ using FlurryWP8SDK;
 using Windows.Devices.Geolocation;
 using Microsoft.Phone.Maps.Services;
 using System.Device.Location;
+using Microsoft.Phone.Shell;
 using MyTravelHistory.Models;
 using Telerik.Windows.Controls;
 using System.IO.IsolatedStorage;
@@ -18,7 +19,7 @@ namespace MyTravelHistory.Src
 {
     public class Utilities
     {
-        private const string ImageFolder = "images";
+        private const string ImageFolder = "//Shared//ShellContent";
 
         public static string GetVersion()
         {
@@ -160,7 +161,7 @@ namespace MyTravelHistory.Src
             return bmp;
         }
 
-        public static void DetelteImage(string imagename)
+        public static void DeleteImage(string imagename)
         {
             using (var myIsoStorage = IsolatedStorageFile.GetUserStoreForApplication())
             {
@@ -182,6 +183,29 @@ namespace MyTravelHistory.Src
             string path = Path.Combine(ImageFolder, imagename);
 
             return new Uri(@"isostore:/" + path, UriKind.Absolute);
+        }
+
+        public static void CreateTile()
+        {
+            var tileData = new RadCycleTileData();
+            var uriList = new List<Uri>();
+            int i;
+
+            if (App.ViewModel.AllLocations.Count <= 9)
+            {
+                i = App.ViewModel.AllLocations.Count;
+            }
+            else
+            {
+                i = 9;
+            }
+
+            for (i = 0; i >= 0; i--)
+            {
+                uriList.Add(GetImageUri(App.ViewModel.AllLocations[i].LocationImageName));
+            }
+            tileData.CycleImages = uriList;
+            LiveTileHelper.UpdateTile(ShellTile.ActiveTiles.FirstOrDefault(), tileData);
         }
     }
 }

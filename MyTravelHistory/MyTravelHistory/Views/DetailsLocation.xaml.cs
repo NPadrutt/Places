@@ -102,7 +102,7 @@ namespace MyTravelHistory.Views
             var tileData = new RadExtendedTileData()
             {
                 Title = App.ViewModel.SelectedLocation.Name,
-                VisualElement = LocationImage,
+                BackgroundImage = Utilities.GetImageUri(App.ViewModel.SelectedLocation.LocationImageName),
                 IsTransparencySupported = true
             };
 

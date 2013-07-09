@@ -5,6 +5,7 @@ using MyTravelHistory.Models;
 using Microsoft.Phone.Shell;
 using MyTravelHistory.Resources;
 using System.Collections.ObjectModel;
+using MyTravelHistory.Src;
 
 namespace MyTravelHistory
 {
@@ -28,6 +29,8 @@ namespace MyTravelHistory
             ((ApplicationBarMenuItem)this.ApplicationBar.MenuItems[0]).Text = AppResources.ShowAllOnMapLabel;
             ((ApplicationBarMenuItem)this.ApplicationBar.MenuItems[1]).Text = AppResources.BackupLabel;
             ((ApplicationBarMenuItem)this.ApplicationBar.MenuItems[2]).Text = AppResources.AboutLabel;
+
+            Utilities.CreateTile();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)

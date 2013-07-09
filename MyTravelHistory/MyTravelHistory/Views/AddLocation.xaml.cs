@@ -103,7 +103,7 @@ namespace MyTravelHistory.Views
                 {
                     if (!string.IsNullOrEmpty(App.ViewModel.SelectedLocation.LocationImageName))
                     {
-                        Utilities.DetelteImage(App.ViewModel.SelectedLocation.LocationImageName);
+                        Utilities.DeleteImage(App.ViewModel.SelectedLocation.LocationImageName);
                     }
                     App.ViewModel.SelectedLocation.LocationImageName = Utilities.SaveImageToLocalStorage(locationImage);
                 }
