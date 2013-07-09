@@ -38,7 +38,7 @@
 			<TextBlock Text="{Binding Name}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
 		</StackPanel>
 		<ScrollViewer Grid.Row="1" Margin="12,0,12,0" >
-			<StackPanel x:Name="ContentPanel" d:DataContext="{Binding AllLocations[0]}" Height="567" Width="456">
+			<StackPanel x:Name="ContentPanel" d:DataContext="{Binding AllLocations[0]}">
 				<telerikPrimitives:RadWindow x:Name="ImageViewer" IsFullScreen="true" IsClosedOnOutsideTap="True" MaxWidth="171" MaxHeight="171">
 					<telerikSlideView:PanAndZoomImage x:Name="locationImageLarge" Loaded="LocationImageLarge_Loaded" Stretch="UniformToFill" MaximumZoom="8" ZoomMode="Free" ImageHorizontalAlignment="Stretch" ImageVerticalAlignment="Stretch" />
 				</telerikPrimitives:RadWindow>
