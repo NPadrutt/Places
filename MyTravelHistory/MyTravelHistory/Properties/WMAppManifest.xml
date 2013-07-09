@@ -25,7 +25,7 @@
         <TemplateCycle>
           <SmallImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileSmall.png</SmallImageURI>
           <Title>My Travel History</Title>
-          <Photo01ImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileSmall.png</Photo01ImageURI>
+          <Photo01ImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileLarge.png</Photo01ImageURI>
           <Photo02ImageURI IsRelative="true" IsResource="false">
           </Photo02ImageURI>
           <Photo03ImageURI IsRelative="true" IsResource="false">
