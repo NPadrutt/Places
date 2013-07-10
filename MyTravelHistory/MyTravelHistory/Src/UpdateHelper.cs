@@ -21,7 +21,6 @@ namespace MyTravelHistory.Src
             {
                 if (schemaUpdate.DatabaseSchemaVersion == 1)
                 {
-                    schemaUpdate.AddColumn<Location>("ThumbnailImageName");
                 }
 
                 schemaUpdate.DatabaseSchemaVersion = db.SCHEMAVERSION;
