@@ -46,9 +46,9 @@
 				<TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Text="{Binding LocalizedResources.LocationLabel, Source={StaticResource LocalizedStrings}}" Margin="12,0,0,0" Style="{StaticResource PhoneTextLargeStyle}"/>
 				<UserControls:MiniMapControl x:Name="MiniMap" Height="150" Width="431" HorizontalAlignment="Center"/>
 				<StackPanel x:Name="StackpanelLocation" Margin="0,0,0,12" Orientation="Horizontal" Tap="StackPanel_Tap" Width="456" Height="27">
-					<TextBlock x:Name="lblLatitude" Text="{Binding Latitude}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextAccentStyle}" Margin="12,0,0,0"/>
-					<TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Text="/" Style="{StaticResource PhoneTextTitle3Style}"/>
-					<TextBlock x:Name="lblLongitude" Text="{Binding Longitude}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextAccentStyle}" Margin="0,0,12,0"/>
+					<TextBlock x:Name="lblLatitude" Text="{Binding Latitude}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextNormalStyle}" Margin="12,0,0,0"/>
+					<TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Text="/" Style="{StaticResource PhoneTextNormalStyle}"/>
+					<TextBlock x:Name="lblLongitude" Text="{Binding Longitude}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextNormalStyle}" Margin="0,0,12,0"/>
 				</StackPanel>
 				<TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Text="{Binding LocalizedResources.AddressLabel, Source={StaticResource LocalizedStrings}}" Margin="12,0,0,0" Style="{StaticResource PhoneTextLargeStyle}"/>
 				<StackPanel x:Name="StackpanelAddress" Margin="12,0,0,12" Tap="StackPanel_Tap">
