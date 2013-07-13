@@ -35,15 +35,15 @@ namespace MyTravelHistory.Views
             if (e.NavigationMode != NavigationMode.Back && this.NavigationContext.QueryString != null && this.NavigationContext.QueryString.Count > 0)
             {
                 //Readout Querystrings
-                if (this.NavigationContext.QueryString.ContainsKey("RemoveBackstack") &&
+                if (NavigationContext.QueryString.ContainsKey("RemoveBackstack") &&
                     Convert.ToBoolean(this.NavigationContext.QueryString["RemoveBackstack"]))
                 {
-                    this.NavigationService.RemoveBackEntry();
+                    NavigationService.RemoveBackEntry();
                 }
 
-                if (this.NavigationContext.QueryString.ContainsKey("id"))
+                if (NavigationContext.QueryString.ContainsKey("id"))
                 {
-                    foreach (var location in App.ViewModel.AllLocations.Where(location => location.Id == Convert.ToInt32(this.NavigationContext.QueryString["id"])))
+                    foreach (var location in App.ViewModel.AllLocations.Where(location => location.Id == Convert.ToInt32(NavigationContext.QueryString["id"])))
                     {
                         App.ViewModel.SelectedLocation = location;
                     }
@@ -99,10 +99,12 @@ namespace MyTravelHistory.Views
 
         private void mPinToStart_Click(object sender, EventArgs e)
         {
+            var imageUri = Utilities.GetImageUri(App.ViewModel.SelectedLocation.LocationImageName);
+
             var tileData = new RadExtendedTileData()
             {
                 Title = App.ViewModel.SelectedLocation.Name,
-                BackgroundImage = Utilities.GetImageUri(App.ViewModel.SelectedLocation.LocationImageName),
+                BackgroundImage = imageUri,
                 IsTransparencySupported = true
             };
 

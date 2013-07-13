@@ -197,11 +197,13 @@ namespace MyTravelHistory.Src
         public static void CreateTile()
         {
             var tileData = new RadCycleTileData();
-            var uriList = new List<Uri>();
-            int i;
 
-            App.ViewModel.AllLocations.Select(x => x.LocationImageName).Take(9).ToList().ForEach(x => uriList.Add(GetImageUri(x)));
-            
+            List<string> stringList = App.ViewModel.AllLocations.Select(x => x.LocationImageName != null ? x.LocationImageName : String.Empty)
+                .Take(9)
+                .ToList();
+
+            var uriList = (from uriString in stringList where uriString != String.Empty select GetImageUri(uriString)).ToList();
+
             tileData.CycleImages = uriList;
             LiveTileHelper.UpdateTile(ShellTile.ActiveTiles.FirstOrDefault(), tileData);
             

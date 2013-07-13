@@ -47,7 +47,10 @@ namespace MyTravelHistory.Views
                 PageTitle.Text = AppResources.EditTitle;
                 progressionbarGetLocation.IsIndeterminate = false;
                 progressionbarGetLocation.Visibility = Visibility.Collapsed;
-                MiniMap.ShowOnMap(App.ViewModel.SelectedLocation.Latitude, App.ViewModel.SelectedLocation.Longitude);
+                if (!double.IsNaN(App.ViewModel.SelectedLocation.Latitude) && !double.IsNaN(App.ViewModel.SelectedLocation.Longitude))
+                {
+                    MiniMap.ShowOnMap(App.ViewModel.SelectedLocation.Latitude, App.ViewModel.SelectedLocation.Longitude);
+                }
             }
         }
 
