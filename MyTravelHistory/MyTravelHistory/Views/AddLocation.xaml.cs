@@ -82,8 +82,8 @@ namespace MyTravelHistory.Views
             if (lblLatitude.Text != String.Empty && lblLongtitude.Text != String.Empty)
             {
                 App.ViewModel.SelectedLocation.Name = this.txtName.Text == string.Empty ? AppResources.NoNameDefaultEntry : this.txtName.Text;
-                App.ViewModel.SelectedLocation.Latitude = double.Parse(lblLatitude.Text, CultureInfo.CurrentCulture);
-                App.ViewModel.SelectedLocation.Longitude = double.Parse(lblLongtitude.Text, CultureInfo.CurrentCulture);
+                App.ViewModel.SelectedLocation.Latitude = double.Parse(lblLatitude.Text, CultureInfo.InvariantCulture);
+                App.ViewModel.SelectedLocation.Longitude = double.Parse(lblLongtitude.Text, CultureInfo.InvariantCulture);
                 if (lblAccuracy.Text != String.Empty)
                 {
                     App.ViewModel.SelectedLocation.Accuracy = Convert.ToDouble(lblAccuracy.Text);
