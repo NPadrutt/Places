@@ -24,16 +24,6 @@ namespace MyTravelHistory.Src
         {
             return Assembly.GetExecutingAssembly().FullName.Split('=')[1].Split(',')[0];
         }
-        
-        private static WriteableBitmap GetImage(byte[] inputBytes, int width, int height)
-        {
-            var img = new WriteableBitmap(width, height);
-
-            var ms = new MemoryStream(inputBytes);
-            img.LoadJpeg(ms);
-
-            return img;
-        }
 
         public static async Task GetPosition()
         {
@@ -98,6 +88,13 @@ namespace MyTravelHistory.Src
         {
             string imagename = Guid.NewGuid() + ".jpg";
 
+            SaveImageToLocalStorage(image, imagename);
+
+            return imagename;
+        }
+
+        public static void SaveImageToLocalStorage(BitmapImage image, string imagename)
+        {
             try
             {
                 using (var myIsoStorage = IsolatedStorageFile.GetUserStoreForApplication())
@@ -124,8 +121,6 @@ namespace MyTravelHistory.Src
             {
                 Api.LogError(ex.Message, ex.InnerException);
             }
-
-            return imagename;
         }
 
         public static BitmapImage LoadLocationImage()
@@ -168,6 +163,37 @@ namespace MyTravelHistory.Src
             }
 
             return bmp;
+        }
+
+        public static Stream GetImageStream(string imagename)
+        {
+            var stream = Stream.Null;
+
+            try
+            {
+                var myIsoStorage = IsolatedStorageFile.GetUserStoreForApplication();
+                
+                    if (!myIsoStorage.DirectoryExists(ImageFolder))
+                    {
+                        return stream;
+                    }
+
+                    string path = Path.Combine(ImageFolder, imagename);
+                    if (myIsoStorage.FileExists(path))
+                    {
+                        using (var imageStream = myIsoStorage.OpenFile(path, FileMode.Open, FileAccess.Read))
+                        {
+                            stream = imageStream;
+                        }
+                    }
+                
+            }
+            catch (Exception ex)
+            {
+                Api.LogError(ex.Message, ex.InnerException);
+            }
+
+            return stream;
         }
 
         public static void DeleteImage(string imagename)

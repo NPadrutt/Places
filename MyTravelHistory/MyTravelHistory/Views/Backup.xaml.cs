@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using Microsoft.Live.Controls;
 using Microsoft.Phone.Controls;
 using Microsoft.Live;
@@ -10,6 +14,7 @@ using System.Threading.Tasks;
 using System.Globalization;
 using MyTravelHistory.Resources;
 using FlurryWP8SDK;
+using MyTravelHistory.Src;
 using MyTravelHistory.ViewModels;
 
 namespace MyTravelHistory.Views
@@ -19,7 +24,9 @@ namespace MyTravelHistory.Views
         private LiveConnectClient liveClient;
         private static string _folderId;
         private static string _backupId;
+        private Dictionary<string, string> imageIds = new Dictionary<string, string>(); 
 
+        private const string BackUpFolder = "MyTravelHistory Backups";
         private const string Backupname = "MyTravelHistoryBackup";
         private const string Databasename = "MyTravelHistory";
 
@@ -95,6 +102,10 @@ namespace MyTravelHistory.Views
                         {
                             _backupId = file.id;
                         }
+                        else
+                        {
+                            imageIds.Add(file.id, file.name);
+                        }
                     }
                 }
             }
@@ -133,15 +144,53 @@ namespace MyTravelHistory.Views
                 IsolatedStorageFileStream fileStream = store.OpenFile(Databasename + ".sdf", FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
                 var operationResult = await liveClient.UploadAsync(_folderId, Backupname + ".sdf", fileStream, OverwriteOption.Overwrite);
                 dynamic result = operationResult.Result;
-                _folderId = result.id;
+                //_folderId = result.id;
                 fileStream.Flush();
                 fileStream.Close();
             }
-
+            await BackupImages();
             await CheckForBackup();
 
             MessageBox.Show(AppResources.BackupCreatedMessage, AppResources.DoneMessageTitle, MessageBoxButton.OK);
 
+        }
+
+        private async Task BackupImages()
+        {
+            string ImageFolder = "//Shared//ShellContent";
+
+            foreach (var location in App.ViewModel.AllLocations)
+            {
+                if (location.LocationImageName != null)
+                {
+                    var stream = Stream.Null;
+
+                    try
+                    {
+                        var myIsoStorage = IsolatedStorageFile.GetUserStoreForApplication();
+
+                        string path = Path.Combine(ImageFolder, location.LocationImageName);
+                        if (myIsoStorage.FileExists(path))
+                        {
+                            stream = myIsoStorage.OpenFile(path, FileMode.Open, FileAccess.Read);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Api.LogError(ex.Message, ex.InnerException);
+                    }
+
+                    if (stream != Stream.Null)
+                    {
+                        await
+                            liveClient.UploadAsync(_folderId, location.LocationImageName, stream,
+                                OverwriteOption.Overwrite);
+
+                        stream.Flush();
+                        stream.Close();
+                    }
+                }
+            }
         }
 
         private async Task GetFolderId()
@@ -158,7 +207,7 @@ namespace MyTravelHistory.Views
                 {
                     foreach (var folder in data)
                     {
-                        if (folder.name == "Backups")
+                        if (folder.name == BackUpFolder)
                         {
                             _folderId = folder.id;
                         }
@@ -196,7 +245,7 @@ namespace MyTravelHistory.Views
             {
                 try
                 {
-                    var folderData = new Dictionary<string, object> { { "name", "Backups" } };
+                    var folderData = new Dictionary<string, object> { { "name", BackUpFolder } };
                     var operationResult = await liveClient.PostAsync("me/skydrive", folderData);
                     dynamic result = operationResult.Result;
                     _folderId = result.id;
@@ -219,16 +268,16 @@ namespace MyTravelHistory.Views
 
             try
             {
-                this.busyProceedAction.Content = AppResources.LoadBackupLabel;
-                this.busyProceedAction.IsRunning = true;
+                busyProceedAction.Content = AppResources.LoadBackupLabel;
+                busyProceedAction.IsRunning = true;
 
                 if (_backupId == null)
                 {
-                    await this.GetBackupId();
+                    await GetBackupId();
                 }
-                var downloadResult = await this.liveClient.DownloadAsync(_backupId + "/content");
+                var downloadResult = await liveClient.DownloadAsync(_backupId + "/content");
 
-                this.busyProceedAction.Content = AppResources.RestoreBackupLabel;
+                busyProceedAction.Content = AppResources.RestoreBackupLabel;
 
                 App.ViewModel.DeleteDatabase();
 
@@ -242,6 +291,8 @@ namespace MyTravelHistory.Views
                     stream.Flush();
                     myStream.Close();
                 }
+
+                await RestoreImages();
 
                 App.ViewModel = new MainViewModel();
                 App.ViewModel.LoadLocations();
@@ -258,7 +309,18 @@ namespace MyTravelHistory.Views
             }
             finally
             {
-                this.busyProceedAction.IsRunning = false;
+                busyProceedAction.IsRunning = false;
+            }
+        }
+
+        private async Task RestoreImages()
+        {
+            foreach (var id in imageIds)
+            {
+                var downloadResult = await liveClient.DownloadAsync(id.Key + "/content");
+                var bmp = new BitmapImage();
+                bmp.SetSource(downloadResult.Stream);
+                Utilities.SaveImageToLocalStorage(bmp, id.Value);
             }
         }
 
