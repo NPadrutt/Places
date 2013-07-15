@@ -24,7 +24,7 @@ namespace MyTravelHistory.Views
         private LiveConnectClient liveClient;
         private static string _folderId;
         private static string _backupId;
-        private Dictionary<string, string> imageIds = new Dictionary<string, string>(); 
+        private Dictionary<string, string> imageIds; 
 
         private const string BackUpFolder = "MyTravelHistory Backups";
         private const string Backupname = "MyTravelHistoryBackup";
@@ -84,6 +84,7 @@ namespace MyTravelHistory.Views
 
         private async Task GetBackupId()
         {
+            imageIds = new Dictionary<string, string>();
             try
             {
                 if (_folderId == null)
