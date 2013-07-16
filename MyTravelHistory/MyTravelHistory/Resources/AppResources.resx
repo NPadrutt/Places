@@ -293,4 +293,7 @@ Do you wanna proceed?</value>
   <data name="TaskCancelledErrorTitle" xml:space="preserve">
     <value>Create Backup cancelled</value>
   </data>
+  <data name="GeneralErrorMessageTitle" xml:space="preserve">
+    <value>Oops...</value>
+  </data>
 </root>

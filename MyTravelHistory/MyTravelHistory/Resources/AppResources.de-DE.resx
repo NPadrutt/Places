@@ -285,4 +285,7 @@
   <data name="TaskCancelledErrorTitle" xml:space="preserve">
     <value>Sichern abgebrochen</value>
   </data>
+  <data name="GeneralErrorMessageTitle" xml:space="preserve">
+    <value>Hoppla...</value>
+  </data>
 </root>

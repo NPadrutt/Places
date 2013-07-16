@@ -322,6 +322,15 @@ namespace MyTravelHistory.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Oops....
+        /// </summary>
+        public static string GeneralErrorMessageTitle {
+            get {
+                return ResourceManager.GetString("GeneralErrorMessageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your last backup was created at: .
         /// </summary>
         public static string LastBackupLabel {

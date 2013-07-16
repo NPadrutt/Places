@@ -147,7 +147,6 @@ namespace MyTravelHistory.Views
                     IsolatedStorageFileStream fileStream = store.OpenFile(Databasename + ".sdf", FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
                     var operationResult = await liveClient.UploadAsync(_folderId, Backupname + ".sdf", fileStream, OverwriteOption.Overwrite);
                     dynamic result = operationResult.Result;
-                    //_folderId = result.id;
                     fileStream.Flush();
                     fileStream.Close();
                 }
@@ -160,6 +159,11 @@ namespace MyTravelHistory.Views
             {
                 Api.LogError(ex.Message, ex.InnerException);
                 MessageBox.Show(AppResources.TaskCancelledErrorMessage, AppResources.TaskCancelledErrorTitle, MessageBoxButton.OK);
+            }
+            catch (Exception ex)
+            {
+                Api.LogError(ex.Message, ex.InnerException);
+                MessageBox.Show(AppResources.GeneralErrorMessage, AppResources.GeneralErrorMessageTitle, MessageBoxButton.OK);
             }
         }
 
