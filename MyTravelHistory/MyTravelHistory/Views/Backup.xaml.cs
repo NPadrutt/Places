@@ -118,42 +118,49 @@ namespace MyTravelHistory.Views
 
         private async void CreateBackUp()
         {
-            if (_backupId != null)
+            try
             {
-                var result = MessageBox.Show(AppResources.OverwriteBackupMessage, AppResources.OverwriteBackupTitle, MessageBoxButton.OKCancel);
-
-                if (result == MessageBoxResult.Cancel)
+                if (_backupId != null)
                 {
-                    return;
+                    var result = MessageBox.Show(AppResources.OverwriteBackupMessage, AppResources.OverwriteBackupTitle, MessageBoxButton.OKCancel);
+
+                    if (result == MessageBoxResult.Cancel)
+                    {
+                        return;
+                    }
                 }
+
+                busyProceedAction.IsRunning = true;
+
+                await GetFolderId();
+                if (_folderId == null)
+                {
+                    await CreateBackupFolder();
+                }
+                else if (_backupId != null)
+                {
+                    await liveClient.DeleteAsync(_backupId);
+                }
+
+                using (var store = IsolatedStorageFile.GetUserStoreForApplication())
+                {
+                    IsolatedStorageFileStream fileStream = store.OpenFile(Databasename + ".sdf", FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+                    var operationResult = await liveClient.UploadAsync(_folderId, Backupname + ".sdf", fileStream, OverwriteOption.Overwrite);
+                    dynamic result = operationResult.Result;
+                    //_folderId = result.id;
+                    fileStream.Flush();
+                    fileStream.Close();
+                }
+                await BackupImages();
+                await CheckForBackup();
+
+                MessageBox.Show(AppResources.BackupCreatedMessage, AppResources.DoneMessageTitle, MessageBoxButton.OK);
             }
-
-            busyProceedAction.IsRunning = true;
-
-            await GetFolderId();
-            if (_folderId == null)
+            catch (TaskCanceledException ex)
             {
-                await CreateBackupFolder();
+                Api.LogError(ex.Message, ex.InnerException);
+                MessageBox.Show(AppResources.TaskCancelledErrorMessage, AppResources.TaskCancelledErrorTitle, MessageBoxButton.OK);
             }
-            else if (_backupId != null)
-            {
-                await liveClient.DeleteAsync(_backupId);
-            }
-
-            using (var store = IsolatedStorageFile.GetUserStoreForApplication())
-            {
-                IsolatedStorageFileStream fileStream = store.OpenFile(Databasename + ".sdf", FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
-                var operationResult = await liveClient.UploadAsync(_folderId, Backupname + ".sdf", fileStream, OverwriteOption.Overwrite);
-                dynamic result = operationResult.Result;
-                //_folderId = result.id;
-                fileStream.Flush();
-                fileStream.Close();
-            }
-            await BackupImages();
-            await CheckForBackup();
-
-            MessageBox.Show(AppResources.BackupCreatedMessage, AppResources.DoneMessageTitle, MessageBoxButton.OK);
-
         }
 
         private async Task BackupImages()

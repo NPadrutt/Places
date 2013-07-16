@@ -287,4 +287,10 @@ Do you wanna proceed?</value>
   <data name="ShareLabel" xml:space="preserve">
     <value>share</value>
   </data>
+  <data name="TaskCancelledErrorMessage" xml:space="preserve">
+    <value>The process to create the backup got cancelled. Please be sure that have a good internet connection and try it again.</value>
+  </data>
+  <data name="TaskCancelledErrorTitle" xml:space="preserve">
+    <value>Create Backup cancelled</value>
+  </data>
 </root>

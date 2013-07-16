@@ -279,4 +279,10 @@
   <data name="PintToStartLabel" xml:space="preserve">
     <value>An den start heften</value>
   </data>
+  <data name="TaskCancelledErrorMessage" xml:space="preserve">
+    <value>Das Erstellen der Sicherung wurde abgebrochen und konnte nicht abgeschlossen werden. Bitte stelle sicher dass du eine gute Internetverbindung hast und versuche es dann nochmals.</value>
+  </data>
+  <data name="TaskCancelledErrorTitle" xml:space="preserve">
+    <value>Sichern abgebrochen</value>
+  </data>
 </root>

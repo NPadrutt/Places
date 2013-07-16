@@ -540,6 +540,24 @@ namespace MyTravelHistory.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The process to create the backup got cancelled. Please be sure that have a good internet connection and try it again..
+        /// </summary>
+        public static string TaskCancelledErrorMessage {
+            get {
+                return ResourceManager.GetString("TaskCancelledErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create Backup cancelled.
+        /// </summary>
+        public static string TaskCancelledErrorTitle {
+            get {
+                return ResourceManager.GetString("TaskCancelledErrorTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to version:.
         /// </summary>
         public static string VersionLabel {
