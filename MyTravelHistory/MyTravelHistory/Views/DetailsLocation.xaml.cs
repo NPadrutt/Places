@@ -51,6 +51,31 @@ namespace MyTravelHistory.Views
             }
 
             MiniMap.ShowOnMap(App.ViewModel.SelectedLocation.Latitude, App.ViewModel.SelectedLocation.Longitude);
+
+            HideEmptyControlls();
+        }
+
+        private void HideEmptyControlls()
+        {
+            if (App.ViewModel.SelectedLocation.Comment == String.Empty)
+            {
+                lblCommentCaption.Visibility = Visibility.Collapsed;
+                lblComment.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                lblCommentCaption.Visibility = Visibility.Visible;
+                lblComment.Visibility = Visibility.Visible;
+            }
+
+            if (App.ViewModel.SelectedLocation.District == string.Empty)
+            {
+                lblDistrict.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                lblDistrict.Visibility = Visibility.Visible;
+            }
         }
 		
         private void btnEdit_Click(object sender, EventArgs e)
@@ -109,6 +134,11 @@ namespace MyTravelHistory.Views
             };
 
             LiveTileHelper.CreateOrUpdateTile(tileData, new Uri("/Views/DetailsLocation.xaml?id=" + App.ViewModel.SelectedLocation.Id, UriKind.RelativeOrAbsolute));
+        }
+
+        private void MiniMap_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+        	NavigationService.Navigate(new Uri("/Views/MapView.xaml", UriKind.Relative));
         }
     }
 }

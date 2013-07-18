@@ -55,7 +55,7 @@ namespace MyTravelHistory.Views
             }
         }
 
-        private async void Map_Loaded(object sender, RoutedEventArgs e)
+        private void Map_Loaded(object sender, RoutedEventArgs e)
         {
             MapsSettings.ApplicationContext.ApplicationId = "ApplicationID";
             MapsSettings.ApplicationContext.AuthenticationToken = "AuthenticationToken";
@@ -73,7 +73,6 @@ namespace MyTravelHistory.Views
             }
 
             FetchCurrentPosition();
-            
         }
 
         private void PinCurrentPosition()
@@ -115,7 +114,13 @@ namespace MyTravelHistory.Views
         {
             if (App.ViewModel.CurrentPosition == null || App.ViewModel.CurrentPosition.Timestamp >= DateTime.Now.AddMinutes(1))
             {
+                progressionbarGetLocation.IsEnabled = true;
+                lblStatus.Visibility = Visibility.Visible;
+
                 await Utilities.GetPosition();
+
+                progressionbarGetLocation.IsEnabled = false;
+                lblStatus.Visibility = Visibility.Collapsed;
             }
             PinCurrentPosition();
         }

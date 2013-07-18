@@ -288,4 +288,7 @@
   <data name="GeneralErrorMessageTitle" xml:space="preserve">
     <value>Hoppla...</value>
   </data>
+  <data name="GettingYourPositionLabel" xml:space="preserve">
+    <value>Beziehen deine Position..</value>
+  </data>
 </root>

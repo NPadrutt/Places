@@ -32,6 +32,8 @@
 			<RowDefinition Height="*"/>
 		</Grid.RowDefinitions>
 		<StackPanel x:Name="ContentPanel" Grid.Row="0" Margin="12,0,12,0">
+            <TextBlock Name="lblStatus" Text="{Binding LocalizedResources.GettingYourPositionLabel, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}" FontSize="14.667" Margin="0,0,12,0" />
+            <ProgressBar x:Name="progressionbarGetLocation" Height="10" Margin="0" IsIndeterminate="True"/>
             <maps:Map x:Name="MyMap" LandmarksEnabled="True" Loaded="Map_Loaded" PedestrianFeaturesEnabled="True" Grid.Row="0" Height="728" Margin="-12,0" >
                 <toolkit:MapExtensions.Children>
                     <toolkit:MapItemsControl Name="LocationItems">

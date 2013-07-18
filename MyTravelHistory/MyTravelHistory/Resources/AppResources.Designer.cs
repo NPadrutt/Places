@@ -331,6 +331,15 @@ namespace MyTravelHistory.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Getting your position....
+        /// </summary>
+        public static string GettingYourPositionLabel {
+            get {
+                return ResourceManager.GetString("GettingYourPositionLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your last backup was created at: .
         /// </summary>
         public static string LastBackupLabel {
