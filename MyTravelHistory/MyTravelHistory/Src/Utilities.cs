@@ -63,7 +63,7 @@ namespace MyTravelHistory.Src
             }
         }
 
-        public static async Task<LocationAddress> GetAddress(double latitude, double longtitude)
+        public static async Task GetAddress(double latitude, double longtitude)
         {
             var locationAddress = new LocationAddress();
             try
@@ -73,28 +73,29 @@ namespace MyTravelHistory.Src
                         GeoCoordinate = new GeoCoordinate(latitude, longtitude)
                     };
                 IList<MapLocation> locations = await myReverseGeocodeQuery.GetMapLocationsAsync();
-                
 
-                if (locations.Count <= 0) return locationAddress;
 
-                var address = locations.First().Information.Address;
-                locationAddress = new LocationAddress()
+                if (locations.Count > 0)
                 {
-                    Street = address.Street,
-                    HouseNumber = address.HouseNumber,
-                    PostalCode = address.PostalCode,
-                    City = address.City,
-                    District = address.District,
-                    State = address.State,
-                    Country = address.Country
-                };
+                    var address = locations.First().Information.Address;
+                    locationAddress = new LocationAddress()
+                    {
+                        Street = address.Street,
+                        HouseNumber = address.HouseNumber,
+                        PostalCode = address.PostalCode,
+                        City = address.City,
+                        District = address.District,
+                        State = address.State,
+                        Country = address.Country
+                    };
+                }
             }
             catch (Exception ex)
             {
                 Api.LogError(ex.Message, ex.InnerException);
             }
 
-            return locationAddress;
+            App.ViewModel.CurrentAddress = locationAddress;
         }
 
         public static string SaveImageToLocalStorage(BitmapImage image)

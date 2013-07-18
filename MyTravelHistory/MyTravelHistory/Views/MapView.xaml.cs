@@ -118,11 +118,10 @@ namespace MyTravelHistory.Views
                 lblStatus.Visibility = Visibility.Visible;
 
                 await Utilities.GetPosition();
-
-                progressionbarGetLocation.IsEnabled = false;
-                lblStatus.Visibility = Visibility.Collapsed;
             }
             PinCurrentPosition();
+            progressionbarGetLocation.IsEnabled = false;
+            lblStatus.Visibility = Visibility.Collapsed;
         }
     }
 }

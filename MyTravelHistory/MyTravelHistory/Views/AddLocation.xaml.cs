@@ -70,8 +70,19 @@ namespace MyTravelHistory.Views
                 await Utilities.GetAddress(App.ViewModel.CurrentPosition.Latitude, App.ViewModel.CurrentPosition.Longitude);
                 MiniMap.ClearPushPins();
                 MiniMap.ShowOnMap(App.ViewModel.CurrentPosition.Latitude, App.ViewModel.CurrentPosition.Longitude);
-                stackpanelAddress.DataContext = App.ViewModel.CurrentAddress;
-                stackpanelPosition.DataContext = App.ViewModel.CurrentPosition;
+                if (App.ViewModel.CurrentPosition != null)
+                {
+                    App.ViewModel.SelectedLocation.Latitude = App.ViewModel.CurrentPosition.Latitude;
+                    App.ViewModel.SelectedLocation.Longitude = App.ViewModel.CurrentPosition.Longitude;
+                    stackpanelPosition.DataContext = App.ViewModel.SelectedLocation;
+                }
+                if (App.ViewModel.CurrentAddress != null)
+                {
+                    App.ViewModel.SelectedLocation.LocationAddress = App.ViewModel.CurrentAddress;
+                    stackpanelAddress.DataContext = App.ViewModel.SelectedLocation.LocationAddress;
+                    stackpanelAddress.Visibility = Visibility.Visible;
+                }
+
             }
 
             progressionbarGetLocation.IsIndeterminate = false;
