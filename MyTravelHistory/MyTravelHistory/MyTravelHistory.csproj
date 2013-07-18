@@ -98,6 +98,7 @@
     <Compile Include="UserControls\MiniMapControl.xaml.cs">
       <DependentUpon>MiniMapControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\AddressDataContext.cs" />
     <Compile Include="Models\PositionDataContext.cs" />
     <Compile Include="UserControls\LocationList.xaml.cs">
       <DependentUpon>LocationList.xaml</DependentUpon>

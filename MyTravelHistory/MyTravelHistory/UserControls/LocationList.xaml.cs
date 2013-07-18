@@ -24,7 +24,7 @@ namespace MyTravelHistory.UserControls
             if (ListboxLocations.SelectedItem != null)
             {
                 App.ViewModel.SelectedLocation = ListboxLocations.SelectedItem as Location;
-                ((PhoneApplicationFrame)Application.Current.RootVisual).Navigate(new Uri("/Views/DetailsLocation.xaml", UriKind.Relative));
+                (Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/Views/DetailsLocation.xaml", UriKind.Relative));
                 ListboxLocations.SelectedItem = null;
             }
         }

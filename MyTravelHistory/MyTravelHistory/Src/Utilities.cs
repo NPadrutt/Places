@@ -63,25 +63,38 @@ namespace MyTravelHistory.Src
             }
         }
 
-        public static async Task GetAddress(double latitude, double longtitude)
+        public static async Task<LocationAddress> GetAddress(double latitude, double longtitude)
         {
+            var locationAddress = new LocationAddress();
             try
             {
                 var myReverseGeocodeQuery = new ReverseGeocodeQuery
-                                {
-                                    GeoCoordinate = new GeoCoordinate(latitude, longtitude)
-                                };
+                    {
+                        GeoCoordinate = new GeoCoordinate(latitude, longtitude)
+                    };
                 IList<MapLocation> locations = await myReverseGeocodeQuery.GetMapLocationsAsync();
+                
 
-                App.ViewModel.CurrentAddress = locations.FirstOrDefault().Information.Address;
+                if (locations.Count <= 0) return locationAddress;
+
+                var address = locations.First().Information.Address;
+                locationAddress = new LocationAddress()
+                {
+                    Street = address.Street,
+                    HouseNumber = address.HouseNumber,
+                    PostalCode = address.PostalCode,
+                    City = address.City,
+                    District = address.District,
+                    State = address.State,
+                    Country = address.Country
+                };
             }
             catch (Exception ex)
             {
-                if ((uint) ex.HResult == 0x80041B56)
-                {
-                    Api.LogError("Task Unsuccesfull", ex.InnerException);
-                }
+                Api.LogError(ex.Message, ex.InnerException);
             }
+
+            return locationAddress;
         }
 
         public static string SaveImageToLocalStorage(BitmapImage image)

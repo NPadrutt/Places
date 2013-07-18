@@ -2,7 +2,6 @@
 using System.Globalization;
 using System.Windows;
 using System.Windows.Navigation;
-using Microsoft.Phone.Maps.Services;
 using Microsoft.Phone.Shell;
 using MyTravelHistory.Resources;
 using MyTravelHistory.Models;
@@ -18,6 +17,7 @@ namespace MyTravelHistory.Views
         private bool newElement;
 
         private PhotoChooserTask photoChooserTask;
+        private LocationAddress locationAddress;
         private BitmapImage locationImage;
 
         public AddLocation()
@@ -45,6 +45,7 @@ namespace MyTravelHistory.Views
             else
             {
                 PageTitle.Text = AppResources.EditTitle;
+                stackpanelAddress.DataContext = App.ViewModel.SelectedLocation.LocationAddress;
                 progressionbarGetLocation.IsIndeterminate = false;
                 progressionbarGetLocation.Visibility = Visibility.Collapsed;
                 if (!double.IsNaN(App.ViewModel.SelectedLocation.Latitude) && !double.IsNaN(App.ViewModel.SelectedLocation.Longitude))
@@ -79,27 +80,18 @@ namespace MyTravelHistory.Views
 
         private void btnDone_Click(object sender, EventArgs e)
         {
-            if (lblLatitude.Text != String.Empty && lblLongtitude.Text != String.Empty)
+            if (lblLatitude.Text != string.Empty && lblLongtitude.Text != String.Empty)
             {
                 App.ViewModel.SelectedLocation.Name = this.txtName.Text == string.Empty ? AppResources.NoNameDefaultEntry : this.txtName.Text;
                 App.ViewModel.SelectedLocation.Latitude = double.Parse(lblLatitude.Text, CultureInfo.InvariantCulture);
                 App.ViewModel.SelectedLocation.Longitude = double.Parse(lblLongtitude.Text, CultureInfo.InvariantCulture);
+
                 if (lblAccuracy.Text != String.Empty)
                 {
                     App.ViewModel.SelectedLocation.Accuracy = Convert.ToDouble(lblAccuracy.Text);
                 }
                 App.ViewModel.SelectedLocation.Comment = txtComment.Text;
-
-                if (App.ViewModel.CurrentAddress != null)
-                {
-                    App.ViewModel.SelectedLocation.Street = App.ViewModel.CurrentAddress.Street;
-                    App.ViewModel.SelectedLocation.HouseNumber = App.ViewModel.CurrentAddress.HouseNumber;
-                    App.ViewModel.SelectedLocation.PostalCode = App.ViewModel.CurrentAddress.PostalCode;
-                    App.ViewModel.SelectedLocation.City = App.ViewModel.CurrentAddress.City;
-                    App.ViewModel.SelectedLocation.District = App.ViewModel.CurrentAddress.District;
-                    App.ViewModel.SelectedLocation.State = App.ViewModel.CurrentAddress.State;
-                    App.ViewModel.SelectedLocation.Country = App.ViewModel.CurrentAddress.Country;
-                }
+                App.ViewModel.SelectedLocation.LocationAddress = App.ViewModel.CurrentAddress;
 
                 if (locationImage != null)
                 {
@@ -117,7 +109,7 @@ namespace MyTravelHistory.Views
                 }
                 else
                 {
-                    App.ViewModel.SaveChangesToDB(); 
+                    App.ViewModel.SaveChangesToDB();
                     NavigationService.GoBack();
                 }
             }

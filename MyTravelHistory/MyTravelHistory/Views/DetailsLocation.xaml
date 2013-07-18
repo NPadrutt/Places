@@ -48,21 +48,22 @@
 				<StackPanel x:Name="StackpanelLocation" Margin="0,0,0,12" Orientation="Horizontal" Tap="StackPanel_Tap" Width="456" Height="27">
 					<TextBlock x:Name="lblLatitude" Text="{Binding Latitude}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextAccentStyle}" Margin="12,0,0,0"/>
 					<TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Text="/" Style="{StaticResource PhoneTextAccentStyle}"/>
-					<TextBlock x:Name="lblLongitude" Text="{Binding Longitude}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextAccentStyle}" Margin="0,0,12,0"/>
+					<TextBlock Text="{Binding Longitude}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextAccentStyle}" Margin="0,0,12,0"/>
+
 				</StackPanel>
 				<TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Text="{Binding LocalizedResources.AddressLabel, Source={StaticResource LocalizedStrings}}" Margin="12,0,0,0" Style="{StaticResource PhoneTextLargeStyle}"/>
 				<StackPanel x:Name="StackpanelAddress" Margin="12,0,0,12" Tap="StackPanel_Tap">
 					<StackPanel Height="27" Margin="0" Orientation="Horizontal">
-						<TextBlock x:Name="lblStreet" Text="{Binding Street}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextSubtleStyle}" Margin="0,0,5,0"/>
-						<TextBlock x:Name="lblHousenumber" Text="{Binding HouseNumber}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextSubtleStyle}" Margin="0"/>
+						<TextBlock x:Name="lblStreet" Text="{Binding LocationAddress.Street}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextSubtleStyle}" Margin="0,0,5,0"/>
+						<TextBlock x:Name="lblHousenumber" Text="{Binding LocationAddress.HouseNumber}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextSubtleStyle}" Margin="0"/>
 					</StackPanel>
 					<StackPanel Margin="0" Orientation="Horizontal">
-						<TextBlock x:Name="lblPostalCode" Text="{Binding PostalCode}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextSubtleStyle}" Margin="0,0,5,0"/>
-						<TextBlock x:Name="lblCity" Text="{Binding City}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextSubtleStyle}" Margin="0"/>
+						<TextBlock x:Name="lblPostalCode" Text="{Binding LocationAddress.PostalCode}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextSubtleStyle}" Margin="0,0,5,0"/>
+						<TextBlock x:Name="lblCity" Text="{Binding LocationAddress.City}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextSubtleStyle}" Margin="0"/>
 					</StackPanel>
-					<TextBlock x:Name="lblDistrict" Text="{Binding District}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextSubtleStyle}" Margin="0"/>
-					<TextBlock x:Name="lblState" Text="{Binding State}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextSubtleStyle}" Margin="0"/>
-					<TextBlock x:Name="lblCountry" Text="{Binding Country}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextSubtleStyle}" Margin="0"/>
+					<TextBlock x:Name="lblDistrict" Text="{Binding LocationAddress.District}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextSubtleStyle}" Margin="0"/>
+					<TextBlock x:Name="lblState" Text="{Binding LocationAddress.State}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextSubtleStyle}" Margin="0"/>
+					<TextBlock x:Name="lblCountry" Text="{Binding LocationAddress.Country}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextSubtleStyle}" Margin="0"/>
 				</StackPanel>
 				<TextBlock x:Name="lblCommentCaption" HorizontalAlignment="Left" VerticalAlignment="Top" Text="{Binding LocalizedResources.CommentLabel, Source={StaticResource LocalizedStrings}}" Margin="12,0,0,0" Style="{StaticResource PhoneTextGroupHeaderStyle}"/>
 				<TextBlock x:Name="lblComment" Text="{Binding Comment}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextSmallStyle}" Margin="12,0,0,0"/>

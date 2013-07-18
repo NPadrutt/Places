@@ -48,6 +48,7 @@ namespace MyTravelHistory.Views
                         App.ViewModel.SelectedLocation = location;
                     }
                 }            
+                MiniMap.ShowOnMap(App.ViewModel.SelectedLocation.Latitude, App.ViewModel.SelectedLocation.Longitude);
             }
 
             MiniMap.ShowOnMap(App.ViewModel.SelectedLocation.Latitude, App.ViewModel.SelectedLocation.Longitude);
@@ -68,7 +69,7 @@ namespace MyTravelHistory.Views
                 lblComment.Visibility = Visibility.Visible;
             }
 
-            if (App.ViewModel.SelectedLocation.District == string.Empty)
+            if (App.ViewModel.SelectedLocation.LocationAddress.District == string.Empty)
             {
                 lblDistrict.Visibility = Visibility.Collapsed;
             }

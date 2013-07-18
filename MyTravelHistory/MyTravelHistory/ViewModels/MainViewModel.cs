@@ -109,6 +109,8 @@ namespace MyTravelHistory.ViewModels
         public void LoadLocations()
         {
             var locationItemsInDb = from Location location in db.Locations
+                                    join LocationAddress adr in db.LocationAddresses
+                                    on location.LocationAddress.Id equals adr.Id
                                     orderby location.Name
                                     select location;
 
@@ -130,8 +132,8 @@ namespace MyTravelHistory.ViewModels
             }
         }
 
-        private MapAddress _currentAddress;
-        public MapAddress CurrentAddress
+        private LocationAddress _currentAddress;
+        public LocationAddress CurrentAddress
         {
             get { return _currentAddress; }
             set

@@ -98,7 +98,7 @@ namespace MyTravelHistory
             trialReminder = new RadTrialApplicationReminder
             {
                 AllowedTrialUsageCount = 30,
-                OccurrenceUsageCount = 2,
+                OccurrenceUsageCount = 3,
                 SimulateTrialForTests = false
             };
 
@@ -111,7 +111,7 @@ namespace MyTravelHistory
             //Creates a new instance of the RadRateApplicationReminder component.
             rateReminder = new RadRateApplicationReminder()
             {
-                RecurrencePerUsageCount = 2,
+                RecurrencePerUsageCount = 3,
                 AllowUsersToSkipFurtherReminders = true,
             };
 
