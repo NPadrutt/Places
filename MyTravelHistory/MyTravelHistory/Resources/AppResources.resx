@@ -299,4 +299,10 @@ Do you wanna proceed?</value>
   <data name="GettingYourPositionLabel" xml:space="preserve">
     <value>Getting your position...</value>
   </data>
+  <data name="SettingsLabel" xml:space="preserve">
+    <value>settings</value>
+  </data>
+  <data name="SettingsTitle" xml:space="preserve">
+    <value>settings</value>
+  </data>
 </root>

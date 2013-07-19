@@ -291,4 +291,10 @@
   <data name="GettingYourPositionLabel" xml:space="preserve">
     <value>Beziehen deine Position..</value>
   </data>
+  <data name="SettingsLabel" xml:space="preserve">
+    <value>Einstellungen</value>
+  </data>
+  <data name="SettingsTitle" xml:space="preserve">
+    <value>Einstellungen</value>
+  </data>
 </root>
