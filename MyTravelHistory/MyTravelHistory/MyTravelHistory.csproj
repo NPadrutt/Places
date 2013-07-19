@@ -95,6 +95,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\SettingDataContext.cs" />
+    <Compile Include="Models\TagDataContext.cs" />
+    <Compile Include="Src\Enumerations.cs" />
     <Compile Include="UserControls\MiniMapControl.xaml.cs">
       <DependentUpon>MiniMapControl.xaml</DependentUpon>
     </Compile>
@@ -121,6 +124,7 @@
     <Compile Include="Src\UpdateHelper.cs" />
     <Compile Include="Src\Utilities.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\SettingViewModel.cs" />
     <Compile Include="Views\About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
     </Compile>

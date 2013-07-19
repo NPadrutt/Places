@@ -162,8 +162,8 @@ namespace MyTravelHistory.Models
         public LocationAddress()
         {
             _location = new EntitySet<Location>(
-                new Action<Location>(attach_Location),
-                new Action<Location>(detach_Location)
+                attach_Location,
+                detach_Location
                 );
         }
 

@@ -165,6 +165,22 @@ namespace MyTravelHistory.Models
             }
         }
 
+        private EntitySet<Tag> _tag;
+
+        [Association(Storage = "_tag", OtherKey = "_locationId", ThisKey = "Id")]
+        public EntitySet<Tag> Tags
+        {
+            get { return _tag; }
+            set { _tag.Assign(value); }
+        }
+ 
+        public Location()
+        {
+            _tag = new EntitySet<Tag>(
+                tag => tag.Location = this,
+                tag => tag.Location = null);
+        }
+
         #endregion
 
         [Column(IsVersion = true)]
