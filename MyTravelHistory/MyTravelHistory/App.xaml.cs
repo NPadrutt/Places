@@ -120,6 +120,7 @@ namespace MyTravelHistory
 
             _viewModel = new MainViewModel();
             _viewModel.LoadLocations();
+            _viewModel.LoadTags();
 
             Utilities.GetPosition();
         }

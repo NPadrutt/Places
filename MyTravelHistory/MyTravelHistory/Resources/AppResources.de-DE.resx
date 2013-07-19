@@ -180,7 +180,7 @@
   <data name="DetailsTitle" xml:space="preserve">
     <value>Details</value>
   </data>
-  <data name="DeleteMessage" xml:space="preserve">
+  <data name="DeleteMessageLocation" xml:space="preserve">
     <value>Möchtest du diesen Ort wirklich löschen?</value>
   </data>
   <data name="DeleteMessageTitle" xml:space="preserve">
@@ -291,16 +291,25 @@
   <data name="GettingYourPositionLabel" xml:space="preserve">
     <value>Beziehen deine Position..</value>
   </data>
+  <data name="AddTag" xml:space="preserve">
+    <value>Tag hinzufügen</value>
+  </data>
+  <data name="AddTagMessage" xml:space="preserve">
+    <value>Gib den Namen deines Tags ein:</value>
+  </data>
   <data name="SettingsLabel" xml:space="preserve">
     <value>Einstellungen</value>
   </data>
   <data name="SettingsTitle" xml:space="preserve">
     <value>Einstellungen</value>
   </data>
-  <data name="TagsLabel" xml:space="preserve">
+  <data name="TagLabel" xml:space="preserve">
     <value>manage Tags</value>
   </data>
-  <data name="TagsTitle" xml:space="preserve">
+  <data name="TagTitle" xml:space="preserve">
     <value>tags</value>
+  </data>
+  <data name="DeleteMessageTag	Do you really want to delete this tags?" xml:space="preserve">
+    <value>Möchtest du diese Tags wirklich löschen?</value>
   </data>
 </root>

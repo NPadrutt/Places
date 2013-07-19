@@ -184,7 +184,7 @@ I'm looking forward to receive your feedback! =)</value>
   <data name="DetailsTitle" xml:space="preserve">
     <value>details</value>
   </data>
-  <data name="DeleteMessage" xml:space="preserve">
+  <data name="DeleteMessageLocation" xml:space="preserve">
     <value>Do you really want to delete this location?</value>
   </data>
   <data name="DeleteMessageTitle" xml:space="preserve">
@@ -299,16 +299,25 @@ Do you wanna proceed?</value>
   <data name="GettingYourPositionLabel" xml:space="preserve">
     <value>Getting your position...</value>
   </data>
+  <data name="AddTag" xml:space="preserve">
+    <value>add tag</value>
+  </data>
+  <data name="AddTagMessage" xml:space="preserve">
+    <value>Enter the Name of your tag:</value>
+  </data>
   <data name="SettingsLabel" xml:space="preserve">
     <value>settings</value>
   </data>
   <data name="SettingsTitle" xml:space="preserve">
     <value>settings</value>
   </data>
-  <data name="TagsLabel" xml:space="preserve">
+  <data name="TagLabel" xml:space="preserve">
     <value>manage Tags</value>
   </data>
-  <data name="TagsTitle" xml:space="preserve">
+  <data name="TagTitle" xml:space="preserve">
     <value>tags</value>
+  </data>
+  <data name="DeleteMessageTag" xml:space="preserve">
+    <value>Do you really want to delete this tags?</value>
   </data>
 </root>

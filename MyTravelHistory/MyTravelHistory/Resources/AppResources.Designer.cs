@@ -115,6 +115,24 @@ namespace MyTravelHistory.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to add tag.
+        /// </summary>
+        public static string AddTag {
+            get {
+                return ResourceManager.GetString("AddTag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter the Name of your tag:.
+        /// </summary>
+        public static string AddTagMessage {
+            get {
+                return ResourceManager.GetString("AddTagMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to add.
         /// </summary>
         public static string AddTitle {
@@ -243,9 +261,18 @@ namespace MyTravelHistory.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Do you really want to delete this location?.
         /// </summary>
-        public static string DeleteMessage {
+        public static string DeleteMessageLocation {
             get {
-                return ResourceManager.GetString("DeleteMessage", resourceCulture);
+                return ResourceManager.GetString("DeleteMessageLocation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you really want to delete this tags?.
+        /// </summary>
+        public static string DeleteMessageTag {
+            get {
+                return ResourceManager.GetString("DeleteMessageTag", resourceCulture);
             }
         }
         
@@ -578,18 +605,18 @@ namespace MyTravelHistory.Resources {
         /// <summary>
         ///   Looks up a localized string similar to manage Tags.
         /// </summary>
-        public static string TagsLabel {
+        public static string TagLabel {
             get {
-                return ResourceManager.GetString("TagsLabel", resourceCulture);
+                return ResourceManager.GetString("TagLabel", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to tags.
         /// </summary>
-        public static string TagsTitle {
+        public static string TagTitle {
             get {
-                return ResourceManager.GetString("TagsTitle", resourceCulture);
+                return ResourceManager.GetString("TagTitle", resourceCulture);
             }
         }
         

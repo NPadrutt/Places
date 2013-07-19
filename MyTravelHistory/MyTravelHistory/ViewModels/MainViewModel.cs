@@ -137,10 +137,10 @@ namespace MyTravelHistory.ViewModels
             db.SubmitChanges();
         }
 
-        public void DeleteLocation(Tag TagToDelete)
+        public void DeleteTag(Tag TagToDelete)
         {
             AllTags.Remove(TagToDelete);
-            db.Tags.DeleteOnSubmit(v);
+            db.Tags.DeleteOnSubmit(TagToDelete);
 
             db.SubmitChanges();
         }
@@ -151,7 +151,7 @@ namespace MyTravelHistory.ViewModels
                                     orderby tag.TagName
                                     select tag;
 
-           AllTags = new ObservableCollection<Location>(TagsItemsInDb);
+           AllTags = new ObservableCollection<Tag>(TagsItemsInDb);
         }
 
         #endregion

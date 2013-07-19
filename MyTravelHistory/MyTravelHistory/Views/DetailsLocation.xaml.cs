@@ -112,7 +112,7 @@ namespace MyTravelHistory.Views
 
         private void mDelete_Click(object sender, EventArgs e)
         {
-            var result = MessageBox.Show(AppResources.DeleteMessage, AppResources.DeleteMessageTitle, MessageBoxButton.OKCancel);
+            var result = MessageBox.Show(AppResources.DeleteMessageLocation, AppResources.DeleteMessageTitle, MessageBoxButton.OKCancel);
 
             if (result == MessageBoxResult.OK)
             {

@@ -27,7 +27,7 @@ namespace MyTravelHistory
             ((ApplicationBarIconButton)this.ApplicationBar.Buttons[0]).Text = AppResources.AddLabel;
 
             ((ApplicationBarMenuItem)this.ApplicationBar.MenuItems[0]).Text = AppResources.ShowAllOnMapLabel;
-            ((ApplicationBarMenuItem)this.ApplicationBar.MenuItems[1]).Text = AppResources.TagsLabel;
+            ((ApplicationBarMenuItem)this.ApplicationBar.MenuItems[1]).Text = AppResources.TagLabel;
             ((ApplicationBarMenuItem)this.ApplicationBar.MenuItems[2]).Text = AppResources.BackupLabel;
             ((ApplicationBarMenuItem)this.ApplicationBar.MenuItems[3]).Text = AppResources.AboutLabel;
 
