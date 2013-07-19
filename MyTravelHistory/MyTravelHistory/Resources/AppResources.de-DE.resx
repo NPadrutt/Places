@@ -297,4 +297,10 @@
   <data name="SettingsTitle" xml:space="preserve">
     <value>Einstellungen</value>
   </data>
+  <data name="TagsLabel" xml:space="preserve">
+    <value>manage Tags</value>
+  </data>
+  <data name="TagsTitle" xml:space="preserve">
+    <value>tags</value>
+  </data>
 </root>

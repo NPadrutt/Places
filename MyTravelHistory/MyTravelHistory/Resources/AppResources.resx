@@ -305,4 +305,10 @@ Do you wanna proceed?</value>
   <data name="SettingsTitle" xml:space="preserve">
     <value>settings</value>
   </data>
+  <data name="TagsLabel" xml:space="preserve">
+    <value>manage Tags</value>
+  </data>
+  <data name="TagsTitle" xml:space="preserve">
+    <value>tags</value>
+  </data>
 </root>

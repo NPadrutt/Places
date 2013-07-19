@@ -115,6 +115,47 @@ namespace MyTravelHistory.ViewModels
                                     select location;
 
             AllLocations = new ObservableCollection<Location>(locationItemsInDb);
+            SelectedLocations = AllLocations;
+        }
+
+        #endregion
+
+        #region Tags
+
+        private ObservableCollection<Tag> _allTags;
+        public ObservableCollection<Tag> AllTags
+        {
+            get { return _allTags; }
+            set
+            {
+                _allTags = value;
+                NotifyPropertyChanged("AllTags");
+            }
+        }
+
+        public void AddTag(Tag newTag)
+        {
+            AllTags.Add(newTag);
+            db.Tags.InsertOnSubmit(newTag);
+
+            db.SubmitChanges();
+        }
+
+        public void DeleteLocation(Tag TagToDelete)
+        {
+            AllTags.Remove(TagToDelete);
+            db.Tags.DeleteOnSubmit(v);
+
+            db.SubmitChanges();
+        }
+
+        public void LoadTags()
+        {
+            var TagsItemsInDb = from Tag tag in db.Tags
+                                    orderby tag.TagName
+                                    select tag;
+
+           AllTags = new ObservableCollection<Location>(TagsItemsInDb);
         }
 
         #endregion

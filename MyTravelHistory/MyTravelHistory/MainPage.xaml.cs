@@ -27,8 +27,9 @@ namespace MyTravelHistory
             ((ApplicationBarIconButton)this.ApplicationBar.Buttons[0]).Text = AppResources.AddLabel;
 
             ((ApplicationBarMenuItem)this.ApplicationBar.MenuItems[0]).Text = AppResources.ShowAllOnMapLabel;
-            ((ApplicationBarMenuItem)this.ApplicationBar.MenuItems[1]).Text = AppResources.BackupLabel;
-            ((ApplicationBarMenuItem)this.ApplicationBar.MenuItems[2]).Text = AppResources.AboutLabel;
+            ((ApplicationBarMenuItem)this.ApplicationBar.MenuItems[1]).Text = AppResources.TagsLabel;
+            ((ApplicationBarMenuItem)this.ApplicationBar.MenuItems[2]).Text = AppResources.BackupLabel;
+            ((ApplicationBarMenuItem)this.ApplicationBar.MenuItems[3]).Text = AppResources.AboutLabel;
 
             Utilities.CreateTile();
         }
@@ -60,6 +61,11 @@ namespace MyTravelHistory
         private void mBackup_Click(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/Views/Backup.xaml", UriKind.Relative));
+        }
+
+        private void mManageTags_Click(object sender, System.EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Views/ManageTags.xaml", UriKind.Relative));
         }
     }
 }

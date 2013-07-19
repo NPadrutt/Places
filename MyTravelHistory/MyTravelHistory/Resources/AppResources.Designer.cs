@@ -576,6 +576,24 @@ namespace MyTravelHistory.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to manage Tags.
+        /// </summary>
+        public static string TagsLabel {
+            get {
+                return ResourceManager.GetString("TagsLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to tags.
+        /// </summary>
+        public static string TagsTitle {
+            get {
+                return ResourceManager.GetString("TagsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The process to create the backup got cancelled. Please be sure that have a good internet connection and try it again..
         /// </summary>
         public static string TaskCancelledErrorMessage {
