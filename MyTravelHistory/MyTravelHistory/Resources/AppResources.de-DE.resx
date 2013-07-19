@@ -312,4 +312,7 @@
   <data name="DeleteMessageTag	Do you really want to delete this tags?" xml:space="preserve">
     <value>Möchtest du diese Tags wirklich löschen?</value>
   </data>
+  <data name="SelectLabel" xml:space="preserve">
+    <value>Auswählen</value>
+  </data>
 </root>

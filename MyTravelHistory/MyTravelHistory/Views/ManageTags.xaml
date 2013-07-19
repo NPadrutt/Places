@@ -23,9 +23,8 @@
 		</DataTemplate>
 	</phone:PhoneApplicationPage.Resources>
 	<phone:PhoneApplicationPage.ApplicationBar>
-		<shell:ApplicationBar x:Name="AppBar">
+		<shell:ApplicationBar>
 			<shell:ApplicationBarIconButton x:Name="btnAddTag" IconUri="/Assets/AppBar/add.png" Text="button" Click="btnAddTag_Click"/>
-			<shell:ApplicationBarIconButton x:Name="btnMultipleSelect" IconUri="/Toolkit.Content/ApplicationBar.Select.png" Text="button" Click="btnMultipleSelect_Click"/>
 		</shell:ApplicationBar>
 	</phone:PhoneApplicationPage.ApplicationBar>
 
@@ -42,7 +41,7 @@
 			<TextBlock Text="{Binding LocalizedResources.TagTitle, Source={StaticResource LocalizedStrings}}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
 		</StackPanel>
 		<Grid x:Name="ContentPanel" Grid.Row="1">
-    		<telerikPrimitives:RadDataBoundListBox x:Name="ListBoxTags" ItemTemplate="{StaticResource AllTagsItemTemplate}" ItemsSource="{Binding AllTags}" IsCheckModeEnabled="True" IsCheckModeActiveChanged="ListBoxTags_IsCheckModeActiveChanged" >
+    		<telerikPrimitives:RadDataBoundListBox x:Name="ListBoxTags" ItemTemplate="{StaticResource AllTagsItemTemplate}" ItemsSource="{Binding AllTags}" IsCheckModeEnabled="True" IsCheckModeActiveChanged="ListBoxTags_IsCheckModeActiveChanged" Loaded="ListBoxTags_Loaded" >
     			<telerikPrimitives:RadDataBoundListBox.ItemAddedAnimation>
 					<telerik:RadMoveAnimation StartPoint="500, 0" EndPoint="0, 0" Duration="0:0:1">
 						<telerik:RadMoveAnimation.Easing>

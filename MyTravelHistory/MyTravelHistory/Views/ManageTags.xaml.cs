@@ -14,8 +14,9 @@ using Telerik.Windows.Controls;
 namespace MyTravelHistory.Views
 {
     public partial class ManageTags : PhoneApplicationPage
-    {        
-        private ApplicationBarButton btnDelete;
+    {
+        private ApplicationBarIconButton btnDelete;
+        private ApplicationBarIconButton btnMultipleSelect;
 
         public ManageTags()
         {
@@ -28,10 +29,17 @@ namespace MyTravelHistory.Views
 
         private void InitButtons()
         {
-            btnDelete = new ApplicationBarButton();
+            btnDelete = new ApplicationBarIconButton();
             btnDelete.Text = AppResources.DeleteLabel;
             btnDelete.IconUri = new Uri("/Toolkit.Content/ApplicationBar.Delete.png", UriKind.Relative);
-            btnDelete.Click += new EventHandler(this.btnDelete_Click);
+            btnDelete.Click += this.btnDelete_Click;
+
+            btnMultipleSelect = new ApplicationBarIconButton();
+            btnMultipleSelect.Text = AppResources.SelectLabel;
+            btnMultipleSelect.IconUri = new Uri("/Toolkit.Content/ApplicationBar.Select.png", UriKind.Relative);
+            btnMultipleSelect.Click += this.btnMultipleSelect_Click;
+
+            ApplicationBar.Buttons.Add(btnMultipleSelect);
         }
 
         private void btnAddTag_Click(object sender, System.EventArgs e)
@@ -66,6 +74,7 @@ namespace MyTravelHistory.Views
                 foreach (var item in ListBoxTags.CheckedItems)
                 {
                     App.ViewModel.DeleteTag(item as Tag);
+                    ListBoxTags.CheckedItems.Remove(item);
                 }
             }
         }
@@ -74,14 +83,19 @@ namespace MyTravelHistory.Views
         {
             if (ListBoxTags.IsCheckModeActive)
             {
-                AppBar.Buttons.Remove(btnMultipleSelect);
-                AppBar.Buttons.Add(btnDelete);
+                ApplicationBar.Buttons.Remove(btnMultipleSelect);
+                ApplicationBar.Buttons.Add(btnDelete);
             }
             else
             {
-                AppBar.Buttons.Remove(btnDelete);
-                AppBar.Buttons.Add(btnMultipleSelect);
+                ApplicationBar.Buttons.Remove(btnDelete);
+                ApplicationBar.Buttons.Add(btnMultipleSelect);
             }
+        }
+
+        private void ListBoxTags_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            //InitButtons();
         }
     }
 }

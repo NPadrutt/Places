@@ -549,6 +549,15 @@ namespace MyTravelHistory.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to select.
+        /// </summary>
+        public static string SelectLabel {
+            get {
+                return ResourceManager.GetString("SelectLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to settings.
         /// </summary>
         public static string SettingsLabel {

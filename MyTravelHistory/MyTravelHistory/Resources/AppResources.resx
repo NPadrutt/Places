@@ -320,4 +320,7 @@ Do you wanna proceed?</value>
   <data name="DeleteMessageTag" xml:space="preserve">
     <value>Do you really want to delete this tags?</value>
   </data>
+  <data name="SelectLabel" xml:space="preserve">
+    <value>select</value>
+  </data>
 </root>
