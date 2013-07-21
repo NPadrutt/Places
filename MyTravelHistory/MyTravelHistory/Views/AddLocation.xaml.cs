@@ -26,6 +26,8 @@ namespace MyTravelHistory.Views
 
             DataContext = App.ViewModel.SelectedLocation;
 
+            //listpickerTag.DataContext = App.ViewModel.AllTags;
+
             ((ApplicationBarIconButton)this.ApplicationBar.Buttons[0]).Text = AppResources.DoneLabel;
             ((ApplicationBarIconButton)this.ApplicationBar.Buttons[1]).Text = AppResources.CancelLabel;
         }
