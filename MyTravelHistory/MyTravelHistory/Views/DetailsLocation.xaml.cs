@@ -52,7 +52,14 @@ namespace MyTravelHistory.Views
             }
 
             MiniMap.ShowOnMap(App.ViewModel.SelectedLocation.Latitude, App.ViewModel.SelectedLocation.Longitude);
-
+            foreach (var tag in App.ViewModel.SelectedLocation.Tags)
+            {
+                if (lblTag.Text != String.Empty)
+                {
+                    lblTag.Text += ", ";
+                }
+                lblTag.Text += tag.TagName;
+            }
             HideEmptyControlls();
         }
 
@@ -69,16 +76,14 @@ namespace MyTravelHistory.Views
                 lblComment.Visibility = Visibility.Visible;
             }
 
-            if (App.ViewModel.SelectedLocation.LocationAddress.District == string.Empty)
-            {
-                lblDistrict.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                lblDistrict.Visibility = Visibility.Visible;
-            }
+            lblCommentCaption.Visibility = App.ViewModel.SelectedLocation.Comment == string.Empty ? Visibility.Collapsed : Visibility.Visible;
+            lblComment.Visibility = App.ViewModel.SelectedLocation.Comment == string.Empty ? Visibility.Collapsed : Visibility.Visible;
+            lblDistrict.Visibility = App.ViewModel.SelectedLocation.LocationAddress.District == string.Empty ? Visibility.Collapsed : Visibility.Visible;
+            lblTagCaption.Visibility = App.ViewModel.SelectedLocation.Tags.Any() ? Visibility.Visible : Visibility.Collapsed;
+            lblTag.Visibility = App.ViewModel.SelectedLocation.Tags.Any() ? Visibility.Visible : Visibility.Collapsed;
+
         }
-		
+
         private void btnEdit_Click(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/Views/AddLocation.xaml", UriKind.Relative));

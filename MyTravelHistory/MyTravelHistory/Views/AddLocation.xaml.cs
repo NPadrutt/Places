@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Windows;
 using System.Windows.Navigation;
 using Microsoft.Phone.Shell;
@@ -25,8 +27,7 @@ namespace MyTravelHistory.Views
             InitializeComponent();
 
             DataContext = App.ViewModel.SelectedLocation;
-
-            //listpickerTag.DataContext = App.ViewModel.AllTags;
+            listpickerTag.ItemsSource = App.ViewModel.AllTags;
 
             ((ApplicationBarIconButton)this.ApplicationBar.Buttons[0]).Text = AppResources.DoneLabel;
             ((ApplicationBarIconButton)this.ApplicationBar.Buttons[1]).Text = AppResources.CancelLabel;
@@ -53,6 +54,13 @@ namespace MyTravelHistory.Views
                 if (!double.IsNaN(App.ViewModel.SelectedLocation.Latitude) && !double.IsNaN(App.ViewModel.SelectedLocation.Longitude))
                 {
                     MiniMap.ShowOnMap(App.ViewModel.SelectedLocation.Latitude, App.ViewModel.SelectedLocation.Longitude);
+                }
+                if (App.ViewModel.SelectedLocation.Tags.Any())
+                {
+                    foreach(var tag in App.ViewModel.SelectedLocation.Tags)
+                    {
+                        listpickerTag.SelectedItems.Add(tag);
+                    }
                 }
             }
         }
@@ -105,6 +113,10 @@ namespace MyTravelHistory.Views
                 }
                 App.ViewModel.SelectedLocation.Comment = txtComment.Text;
                 App.ViewModel.SelectedLocation.LocationAddress = App.ViewModel.CurrentAddress;
+                foreach (var item in listpickerTag.SelectedItems)
+                {
+                    App.ViewModel.SelectedLocation.Tags.Add(item as Tag);
+                }
 
                 if (locationImage != null)
                 {

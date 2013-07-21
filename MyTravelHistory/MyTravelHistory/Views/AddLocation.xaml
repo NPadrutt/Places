@@ -9,7 +9,8 @@
     xmlns:maps="clr-namespace:Microsoft.Phone.Maps.Controls;assembly=Microsoft.Phone.Maps"
     xmlns:MyTravelHistory="clr-namespace:MyTravelHistory"
 	xmlns:UserControls="clr-namespace:MyTravelHistory.UserControls"
-    x:Class="MyTravelHistory.Views.AddLocation"
+	xmlns:telerikInput="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Input"
+	x:Class="MyTravelHistory.Views.AddLocation"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
@@ -72,7 +73,14 @@
 					<TextBlock x:Name="lblDistrict" Text="{Binding District}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextNormalStyle}" Margin="0"/>
 					<TextBlock x:Name="lblCountry" Text="{Binding Country}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextNormalStyle}" Margin="0"/>
 				</StackPanel>
-				<telerikPrimitives:RadTextBox x:Name="txtComment" Text="{Binding Comment}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Header="{Binding LocalizedResources.CommentLabel, Source={StaticResource LocalizedStrings}}"/>
+                <telerikInput:RadListPicker x:Name="listpickerTag" Margin="12,0,12,12" Header="{Binding LocalizedResources.TagTitle, Source={StaticResource LocalizedStrings}}" SelectionMode="Multiple">
+                    <telerikInput:RadListPicker.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding TagName}" />
+                        </DataTemplate>
+                    </telerikInput:RadListPicker.ItemTemplate>
+                </telerikInput:RadListPicker>
+                <telerikPrimitives:RadTextBox x:Name="txtComment" Text="{Binding Comment}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Header="{Binding LocalizedResources.CommentLabel, Source={StaticResource LocalizedStrings}}"/>
 			</StackPanel>
 
 		</ScrollViewer>
