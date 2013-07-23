@@ -18,9 +18,8 @@ namespace MyTravelHistory.Views
     {
         private bool newElement;
 
-        private PhotoChooserTask photoChooserTask;
-        private LocationAddress locationAddress;
-        private BitmapImage locationImage;
+        private PhotoChooserTask _photoChooserTask;
+        private BitmapImage _locationImage;
 
         public AddLocation()
         {
@@ -119,16 +118,16 @@ namespace MyTravelHistory.Views
                     App.ViewModel.SelectedLocation.Tags.Add(item as Tag);
                 }
 
-                if (locationImage != null)
+                if (_locationImage != null)
                 {
                     if (!string.IsNullOrEmpty(App.ViewModel.SelectedLocation.LocationImageName))
                     {
                         Utilities.DeleteImage(App.ViewModel.SelectedLocation.LocationImageName);
                     }
-                    App.ViewModel.SelectedLocation.LocationImageName = Utilities.SaveImageToLocalStorage(locationImage);
+                    App.ViewModel.SelectedLocation.LocationImageName = Utilities.SaveImageToLocalStorage(_locationImage);
                 }
 
-                if (this.newElement)
+                if (newElement)
                 {
                     App.ViewModel.AddLocation(App.ViewModel.SelectedLocation);
                     NavigationService.Navigate(new Uri("/Views/DetailsLocation.xaml?RemoveBackstack=true", UriKind.Relative));
@@ -152,19 +151,19 @@ namespace MyTravelHistory.Views
 
         private void Grid_Tap(object sender, GestureEventArgs e)
         {
-            photoChooserTask = new PhotoChooserTask();
-            photoChooserTask.ShowCamera = true;
-            photoChooserTask.Completed += this.PhotoChooserTask_Completed;
-            photoChooserTask.Show();
+            _photoChooserTask = new PhotoChooserTask();
+            _photoChooserTask.ShowCamera = true;
+            _photoChooserTask.Completed += this.PhotoChooserTask_Completed;
+            _photoChooserTask.Show();
         }
 
         void PhotoChooserTask_Completed(object sender, PhotoResult e)
         {
             if (e.TaskResult == TaskResult.OK)
             {
-                locationImage = new BitmapImage();
-                locationImage.SetSource(e.ChosenPhoto);
-                LocationImage.Source = locationImage;
+                _locationImage = new BitmapImage();
+                _locationImage.SetSource(e.ChosenPhoto);
+                LocationImage.Source = _locationImage;
                 lblAddImage.Visibility = Visibility.Collapsed;
 
                 gridImage.Background.Opacity = 0;
@@ -173,7 +172,7 @@ namespace MyTravelHistory.Views
 
         private void LocationImage_Loaded(object sender, RoutedEventArgs e)
         {
-            if (!this.newElement && App.ViewModel.SelectedLocation.LocationImageName != null)
+            if (!newElement && App.ViewModel.SelectedLocation.LocationImageName != null)
             {
                 LocationImage.Source = Utilities.LoadLocationImage();
                 lblAddImage.Visibility = Visibility.Collapsed;
