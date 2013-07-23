@@ -52,6 +52,13 @@ namespace MyTravelHistory.Views
             }
 
             MiniMap.ShowOnMap(App.ViewModel.SelectedLocation.Latitude, App.ViewModel.SelectedLocation.Longitude);
+            SetTags();
+            HideEmptyControlls();
+        }
+
+        private void SetTags()
+        {
+            lblTag.Text = String.Empty;
             foreach (var tag in App.ViewModel.SelectedLocation.Tags)
             {
                 if (lblTag.Text != String.Empty)
@@ -60,7 +67,6 @@ namespace MyTravelHistory.Views
                 }
                 lblTag.Text += tag.TagName;
             }
-            HideEmptyControlls();
         }
 
         private void HideEmptyControlls()

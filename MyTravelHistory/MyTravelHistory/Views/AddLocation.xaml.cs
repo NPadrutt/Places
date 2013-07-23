@@ -113,6 +113,7 @@ namespace MyTravelHistory.Views
                 }
                 App.ViewModel.SelectedLocation.Comment = txtComment.Text;
                 App.ViewModel.SelectedLocation.LocationAddress = App.ViewModel.CurrentAddress;
+                App.ViewModel.SelectedLocation.Tags.Clear();
                 foreach (var item in listpickerTag.SelectedItems)
                 {
                     App.ViewModel.SelectedLocation.Tags.Add(item as Tag);
