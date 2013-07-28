@@ -6,6 +6,7 @@ using Microsoft.Phone.Shell;
 using MyTravelHistory.Resources;
 using System.Collections.ObjectModel;
 using MyTravelHistory.Src;
+using System.Collections.Generic;
 
 namespace MyTravelHistory
 {
@@ -23,6 +24,8 @@ namespace MyTravelHistory
 
 			//Shows the rate reminder message, according to the settings of the RateReminder.
             ((App)Application.Current).rateReminder.Notify();
+
+            listpickerFilter.ItemsSource = App.ViewModel.AllTags;
 
             ((ApplicationBarIconButton)this.ApplicationBar.Buttons[0]).Text = AppResources.AddLabel;
 
@@ -66,6 +69,18 @@ namespace MyTravelHistory
         private void mManageTags_Click(object sender, System.EventArgs e)
         {
             NavigationService.Navigate(new Uri("/Views/ManageTags.xaml", UriKind.Relative));
+        }
+
+        private void listpickerFilter_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            List<Tag> tagList = new List<Tag>();
+
+            foreach (var item in listpickerFilter.SelectedItems)
+            {
+                tagList.Add((Tag) item);
+            }
+
+            LocationList.SetFilter(tagList);
         }
     }
 }

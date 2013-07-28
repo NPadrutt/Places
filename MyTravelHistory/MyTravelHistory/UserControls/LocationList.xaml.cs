@@ -14,6 +14,8 @@ namespace MyTravelHistory.UserControls
 {
     public partial class LocationList : UserControl
     {
+        private ObservableCollection<Location> list = new ObservableCollection<Location>();
+
         public LocationList()
         {
             InitializeComponent();
@@ -27,6 +29,31 @@ namespace MyTravelHistory.UserControls
                 (Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/Views/DetailsLocation.xaml", UriKind.Relative));
                 ListboxLocations.SelectedItem = null;
             }
+        }
+
+        public void SetFilter(List<Tag> tagList)
+        {
+            list.Clear();
+
+            foreach (var location in App.ViewModel.AllLocations)
+            {
+                if (tagList.Any())
+                {
+                    foreach (var tag in location.Tags)
+                    {
+                        if (tagList.Contains(tag))
+                        {
+                            list.Add(location);
+                        }
+                    }
+                }
+                else
+                {
+                    list.Add(location);
+                }
+            }
+
+            ListboxLocations.ItemsSource = list;
         }
     }
 }
