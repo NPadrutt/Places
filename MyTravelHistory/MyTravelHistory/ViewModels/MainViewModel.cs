@@ -104,9 +104,9 @@ namespace MyTravelHistory.ViewModels
 
         public void LoadLocations()
         {
-            var locationItemsInDb = from Location location in db.Locations
+            var locationItemsInDb = from location in db.Locations
                                     join LocationAddress adr in db.LocationAddresses
-                                    on location.LocationAddress.Id equals adr.Id
+                                        on new { location.LocationAddress.Id } equals new { adr.Id }
                                     orderby location.Name
                                     select location;
 
