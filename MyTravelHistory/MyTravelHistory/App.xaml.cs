@@ -190,15 +190,20 @@ namespace MyTravelHistory
         {
             if (phoneApplicationInitialized)
                 return;
-
             // Create the frame but don't set it as RootVisual yet; this allows the splash
             // screen to remain active until the application is ready to render.
-            RootFrame = new RadPhoneApplicationFrame();
+            RadTransition transition = new RadTransition();
+            transition.BackwardInAnimation = this.Resources["slideInAnimation"] as RadSlideContinuumAnimation;
+            transition.BackwardOutAnimation = this.Resources["slideOutAnimation"] as RadSlideContinuumAnimation;
+            transition.ForwardInAnimation = this.Resources["slideInAnimation"] as RadSlideContinuumAnimation;
+            transition.ForwardOutAnimation = this.Resources["slideOutAnimation"] as RadSlideContinuumAnimation;
+            transition.PlayMode = TransitionPlayMode.Consecutively;
+            RadPhoneApplicationFrame frame = new RadPhoneApplicationFrame();
+            frame.Transition = transition;
+            RootFrame = frame;
             RootFrame.Navigated += CompleteInitializePhoneApplication;
-
             // Handle navigation failures
             RootFrame.NavigationFailed += RootFrame_NavigationFailed;
-
             // Ensure we don't initialize again
             phoneApplicationInitialized = true;
         }
