@@ -85,6 +85,7 @@ namespace MyTravelHistory.Views
                 {
                     App.ViewModel.SelectedLocation.Latitude = App.ViewModel.CurrentPosition.Latitude;
                     App.ViewModel.SelectedLocation.Longitude = App.ViewModel.CurrentPosition.Longitude;
+                    App.ViewModel.SelectedLocation.Accuracy = App.ViewModel.CurrentPosition.Accuracy;
                     stackpanelPosition.DataContext = App.ViewModel.SelectedLocation;
                 }
                 if (App.ViewModel.CurrentAddress != null)

@@ -49,9 +49,13 @@
 					<TextBlock x:Name="lblLatitude" Text="{Binding Latitude}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextAccentStyle}" Margin="12,0,0,0"/>
 					<TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Text="/" Style="{StaticResource PhoneTextAccentStyle}"/>
 					<TextBlock Text="{Binding Longitude}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextAccentStyle}" Margin="0,0,12,0"/>
-
 				</StackPanel>
-				<TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Text="{Binding LocalizedResources.AddressLabel, Source={StaticResource LocalizedStrings}}" Margin="12,0,0,0" Style="{StaticResource PhoneTextGroupHeaderStyle}"/>
+                <StackPanel Orientation="Horizontal" Margin="12,0,0,0">
+                    <TextBlock x:Name="lblAccuracyCaption" Text="{Binding LocalizedResources.AccuracyLabel, Source={StaticResource LocalizedStrings}}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Style="{StaticResource PhoneTextSubtleStyle}" Margin="0,0,2,0"/>
+                    <TextBlock x:Name="lblAccuracy" Text="{Binding Accuracy}" HorizontalAlignment="Left" Style="{StaticResource PhoneTextSubtleStyle}" Margin="0" VerticalAlignment="Bottom"/>
+                    <TextBlock x:Name="lblM" HorizontalAlignment="Left" Style="{StaticResource PhoneTextSmallStyle}" Margin="2,0,0,0" Text="m" VerticalAlignment="Bottom"/>
+                </StackPanel>
+                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Text="{Binding LocalizedResources.AddressLabel, Source={StaticResource LocalizedStrings}}" Margin="12,0,0,0" Style="{StaticResource PhoneTextGroupHeaderStyle}"/>
 				<StackPanel x:Name="StackpanelAddress" Margin="12,0,0,12" Tap="StackPanel_Tap">
 					<StackPanel Height="27" Margin="0" Orientation="Horizontal">
 						<TextBlock x:Name="lblStreet" Text="{Binding LocationAddress.Street}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextSubtleStyle}" Margin="0,0,5,0"/>
