@@ -50,6 +50,7 @@ namespace MyTravelHistory.Views
                 PageTitle.Text = AppResources.EditTitle;
                 stackpanelAddress.DataContext = App.ViewModel.SelectedLocation.LocationAddress;
                 progressionbarGetLocation.IsIndeterminate = false;
+                stackpanelAddress.Visibility = Visibility.Visible;
                 progressionbarGetLocation.Visibility = Visibility.Collapsed;
                 if (!double.IsNaN(App.ViewModel.SelectedLocation.Latitude) && !double.IsNaN(App.ViewModel.SelectedLocation.Longitude))
                 {

@@ -126,7 +126,7 @@ namespace MyTravelHistory.Src
             return bitmap;
         }
 
-        private static BitmapImage GetThumbnail(string name)
+        public static BitmapImage GetThumbnail(string name)
         {
             var library = new MediaLibrary();
             var bitmap = new BitmapImage();

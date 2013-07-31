@@ -74,7 +74,7 @@ namespace MyTravelHistory.Models
 
         public BitmapImage Thumbnail
         {
-            get { return Utilities.LoadLocationImage(_imageName); }
+            get { return Utilities.GetThumbnail(_imageName); }
         }
 
         private string _name;
