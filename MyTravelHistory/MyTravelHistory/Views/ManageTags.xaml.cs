@@ -71,10 +71,11 @@ namespace MyTravelHistory.Views
 
             if (result == MessageBoxResult.OK)
             {
-                foreach (var item in ListBoxTags.CheckedItems)
+                while (ListBoxTags.CheckedItems.Any())
                 {
-                    App.ViewModel.DeleteTag(item as Tag);
-                    ListBoxTags.CheckedItems.Remove(item);
+                    var tagToDelete = ListBoxTags.CheckedItems.First() as Tag;
+                    ListBoxTags.CheckedItems.Remove(tagToDelete);
+                    App.ViewModel.DeleteTag(tagToDelete);
                 }
             }
         }
