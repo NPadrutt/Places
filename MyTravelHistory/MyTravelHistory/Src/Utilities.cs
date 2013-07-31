@@ -168,17 +168,45 @@ namespace MyTravelHistory.Src
 
         public static void CreateTile()
         {
-            //var tileData = new RadCycleTileData();
+            try
+            {
+                var tileData = new RadCycleTileData();
 
-            //List<string> stringList = App.ViewModel.AllLocations.Select(x => x.LocationImageName != null ? x.LocationImageName : String.Empty)
-            //    .Take(9)
-            //    .ToList();
+                List<Location> locationList = App.ViewModel.AllLocations.Where(x => !String.IsNullOrEmpty(x.ImageUri) && !String.IsNullOrEmpty(x.ImageName))
+                    .Take(9)
+                    .ToList();
 
-            //var uriList = (from uriString in stringList where uriString != String.Empty select GetImageUri(uriString)).ToList();
+                var fotolist = new List<BitmapImage>();
+                foreach (var item in locationList)
+                {
+                    fotolist.Add(GetImage(item.ImageName));
+                }
 
-            //tileData.CycleImages = uriList;
-            //LiveTileHelper.UpdateTile(ShellTile.ActiveTiles.FirstOrDefault(), tileData);
-            
+                var uriList = new List<Uri>();
+                int i = 0;
+
+                foreach (var item in fotolist)
+                {
+                    using (IsolatedStorageFile file = IsolatedStorageFile.GetUserStoreForApplication())
+                    {
+                        using (IsolatedStorageFileStream stream = file.OpenFile("Shared/ShellContent/" +
+                          i + ".jpg", FileMode.Create))
+                        {
+                            WriteableBitmap bmp = new WriteableBitmap((BitmapSource)item);
+                            bmp.SaveJpeg(stream, bmp.PixelWidth, bmp.PixelHeight, 0, 100);
+                        }
+                    }
+                    uriList.Add(new Uri("isostore:/shared/ShellContent/" + i + ".jpg", UriKind.Absolute));
+                    i++;
+                }
+
+                tileData.CycleImages = uriList;
+                LiveTileHelper.UpdateTile(ShellTile.ActiveTiles.FirstOrDefault(), tileData);
+            }
+            catch (Exception ex)
+            {
+                Api.LogError(ex.Message, ex.InnerException);                
+            }            
         }
 
         public static string GetImageName(Stream choosenStream)
