@@ -152,6 +152,7 @@ namespace MyTravelHistory
         private void Application_Deactivated(object sender, DeactivatedEventArgs e)
         {
 			// Ensure that required application state is persisted here.
+            Utilities.CreateTile();
         }
 
         // Code to execute when the application is closing (eg, user hit Back)

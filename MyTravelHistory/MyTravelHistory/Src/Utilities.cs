@@ -142,23 +142,6 @@ namespace MyTravelHistory.Src
             return bitmap;
         }
 
-        public static void DeleteImage(string imagename)
-        {
-            using (var myIsoStorage = IsolatedStorageFile.GetUserStoreForApplication())
-            {
-                if (!myIsoStorage.DirectoryExists(ImageFolder))
-                {
-                    myIsoStorage.CreateDirectory(ImageFolder);
-                }
-
-                string path = Path.Combine(ImageFolder, imagename);
-                if (myIsoStorage.FileExists(path))
-                {
-                    myIsoStorage.DeleteFile(path);
-                }
-            }
-        }
-
         public static void CreateTile()
         {
             try

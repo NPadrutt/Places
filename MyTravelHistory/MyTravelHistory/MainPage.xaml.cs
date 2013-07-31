@@ -33,8 +33,6 @@ namespace MyTravelHistory
             ((ApplicationBarMenuItem)this.ApplicationBar.MenuItems[1]).Text = AppResources.TagLabel;
             ((ApplicationBarMenuItem)this.ApplicationBar.MenuItems[2]).Text = AppResources.BackupLabel;
             ((ApplicationBarMenuItem)this.ApplicationBar.MenuItems[3]).Text = AppResources.AboutLabel;
-
-            Utilities.CreateTile();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)

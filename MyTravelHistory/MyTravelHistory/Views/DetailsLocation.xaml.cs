@@ -128,7 +128,6 @@ namespace MyTravelHistory.Views
             if (result == MessageBoxResult.OK)
             {
                 App.ViewModel.DeleteLocation(App.ViewModel.SelectedLocation);
-                Utilities.DeleteImage(App.ViewModel.SelectedLocation.ImageName);
             }
 
             NavigationService.GoBack();        
@@ -136,6 +135,8 @@ namespace MyTravelHistory.Views
 
         private void mPinToStart_Click(object sender, EventArgs e)
         {
+            locationImageLarge.Source = LocationImage.Source;
+
             var tileData = new RadExtendedTileData()
             {
                 Title = App.ViewModel.SelectedLocation.Name,
