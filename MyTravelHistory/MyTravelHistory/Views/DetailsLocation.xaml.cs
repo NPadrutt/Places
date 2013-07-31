@@ -136,12 +136,10 @@ namespace MyTravelHistory.Views
 
         private void mPinToStart_Click(object sender, EventArgs e)
         {
-            var imageUri = Utilities.GetImageUri(App.ViewModel.SelectedLocation.ImageName);
-
             var tileData = new RadExtendedTileData()
             {
                 Title = App.ViewModel.SelectedLocation.Name,
-                BackgroundImage = imageUri,
+                VisualElement = locationImageLarge,
                 IsTransparencySupported = true
             };
 

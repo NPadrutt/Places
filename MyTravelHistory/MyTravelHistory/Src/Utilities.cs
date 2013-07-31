@@ -159,13 +159,6 @@ namespace MyTravelHistory.Src
             }
         }
 
-        public static Uri GetImageUri(string imagename)
-        {
-            string path = Path.Combine(ImageFolder, imagename);
-
-            return new Uri(@"isostore:/" + path, UriKind.Absolute);
-        }
-
         public static void CreateTile()
         {
             try
