@@ -323,4 +323,25 @@ Do you wanna proceed?</value>
   <data name="SelectLabel" xml:space="preserve">
     <value>select</value>
   </data>
+  <data name="WorkLabel" xml:space="preserve">
+    <value>work</value>
+  </data>
+  <data name="BarLabel" xml:space="preserve">
+    <value>bar</value>
+  </data>
+  <data name="HotelLabel" xml:space="preserve">
+    <value>hotel</value>
+  </data>
+  <data name="RestaurantLabel" xml:space="preserve">
+    <value>restaurant</value>
+  </data>
+  <data name="ShopLabel" xml:space="preserve">
+    <value>shop</value>
+  </data>
+  <data name="MuseumLabel" xml:space="preserve">
+    <value>museum</value>
+  </data>
+  <data name="ViewpointLabel" xml:space="preserve">
+    <value>viewpoint</value>
+  </data>
 </root>

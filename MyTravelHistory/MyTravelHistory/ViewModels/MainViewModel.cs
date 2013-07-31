@@ -1,6 +1,7 @@
 ﻿using Microsoft.Phone.Data.Linq;
 using Microsoft.Phone.Maps.Services;
 using MyTravelHistory.Models;
+using MyTravelHistory.Resources;
 using MyTravelHistory.Src;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -29,12 +30,34 @@ namespace MyTravelHistory.ViewModels
                 schemaUpdate = db.CreateDatabaseSchemaUpdater();
                 schemaUpdate.DatabaseSchemaVersion = db.SCHEMAVERSION;
                 schemaUpdate.Execute();
+
+                LoadTags();
+                CreateDefaultEntries();
             }
             else
             {
                 var updateHelper = new UpdateHelper();
                 updateHelper.UpdateDatabase(db);
             }
+        }
+
+        private void CreateDefaultEntries()
+        {
+            var tagBar = new Tag { TagName = AppResources.BarLabel };
+            var tagRestaurant = new Tag { TagName = AppResources.RestaurantLabel };
+            var tagHotel = new Tag { TagName = AppResources.HotelLabel };
+            var tagShop = new Tag { TagName = AppResources.ShopLabel };
+            var tagWork = new Tag { TagName = AppResources.WorkLabel };
+            var tagMuseum = new Tag { TagName = AppResources.MuseumLabel };
+            var tagViewpoint = new Tag { TagName = AppResources.ViewpointLabel };
+
+            AddTag(tagBar);
+            AddTag(tagRestaurant);
+            AddTag(tagHotel);
+            AddTag(tagShop);
+            AddTag(tagWork);
+            AddTag(tagMuseum);
+            AddTag(tagViewpoint);
         }
 
         public void SaveChangesToDB()

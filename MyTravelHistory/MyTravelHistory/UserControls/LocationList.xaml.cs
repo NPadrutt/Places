@@ -43,7 +43,10 @@ namespace MyTravelHistory.UserControls
                     {
                         if (tagList.Contains(tag))
                         {
-                            list.Add(location);
+                            if (!list.Contains(location))
+                            {
+                                list.Add(location);
+                            }
                         }
                     }
                 }

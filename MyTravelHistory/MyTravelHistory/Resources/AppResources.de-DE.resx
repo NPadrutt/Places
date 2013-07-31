@@ -315,4 +315,25 @@
   <data name="SelectLabel" xml:space="preserve">
     <value>Auswählen</value>
   </data>
+  <data name="BarLabel" xml:space="preserve">
+    <value>Bar</value>
+  </data>
+  <data name="HotelLabel" xml:space="preserve">
+    <value>Hotel</value>
+  </data>
+  <data name="MuseumLabel" xml:space="preserve">
+    <value>Museum</value>
+  </data>
+  <data name="RestaurantLabel" xml:space="preserve">
+    <value>Restaurant</value>
+  </data>
+  <data name="ShopLabel" xml:space="preserve">
+    <value>Laden</value>
+  </data>
+  <data name="ViewpointLabel" xml:space="preserve">
+    <value>Aussichtspunkt</value>
+  </data>
+  <data name="WorkLabel" xml:space="preserve">
+    <value>Arbeit</value>
+  </data>
 </root>

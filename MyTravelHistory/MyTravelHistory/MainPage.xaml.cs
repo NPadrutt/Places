@@ -35,6 +35,13 @@ namespace MyTravelHistory
             ((ApplicationBarMenuItem)this.ApplicationBar.MenuItems[3]).Text = AppResources.AboutLabel;
         }
 
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+
+            LocationList.SetFilter(new List<Tag>());
+        }
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
             App.ViewModel.SelectedLocation = null;
