@@ -150,7 +150,6 @@ namespace MyTravelHistory.Views
                     fileStream.Flush();
                     fileStream.Close();
                 }
-                await BackupImages();
                 await CheckForBackup();
 
                 MessageBox.Show(AppResources.BackupCreatedMessage, AppResources.DoneMessageTitle, MessageBoxButton.OK);
@@ -164,44 +163,6 @@ namespace MyTravelHistory.Views
             {
                 Api.LogError(ex.Message, ex.InnerException);
                 MessageBox.Show(AppResources.GeneralErrorMessage, AppResources.GeneralErrorMessageTitle, MessageBoxButton.OK);
-            }
-        }
-
-        private async Task BackupImages()
-        {
-            string ImageFolder = "//Shared//ShellContent";
-
-            foreach (var location in App.ViewModel.AllLocations)
-            {
-                if (location.ImageName != null)
-                {
-                    var stream = Stream.Null;
-
-                    try
-                    {
-                        var myIsoStorage = IsolatedStorageFile.GetUserStoreForApplication();
-
-                        string path = Path.Combine(ImageFolder, location.ImageName);
-                        if (myIsoStorage.FileExists(path))
-                        {
-                            stream = myIsoStorage.OpenFile(path, FileMode.Open, FileAccess.Read);
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        Api.LogError(ex.Message, ex.InnerException);
-                    }
-
-                    if (stream != Stream.Null)
-                    {
-                        await
-                            liveClient.UploadAsync(_folderId, location.ImageName, stream,
-                                OverwriteOption.Overwrite);
-
-                        stream.Flush();
-                        stream.Close();
-                    }
-                }
             }
         }
 
@@ -304,8 +265,6 @@ namespace MyTravelHistory.Views
                     myStream.Close();
                 }
 
-                //await RestoreImages();
-
                 App.ViewModel = new MainViewModel();
                 App.ViewModel.LoadLocations();
                 result = MessageBox.Show(AppResources.RestoreCompletedMessage, AppResources.DoneMessageTitle, MessageBoxButton.OKCancel);
@@ -324,17 +283,6 @@ namespace MyTravelHistory.Views
                 busyProceedAction.IsRunning = false;
             }
         }
-
-        //private async Task RestoreImages()
-        //{
-        //    foreach (var id in imageIds)
-        //    {
-        //        var downloadResult = await liveClient.DownloadAsync(id.Key + "/content");
-        //        var bmp = new BitmapImage();
-        //        bmp.SetSource(downloadResult.Stream);
-        //        Utilities.SaveImageToLocalStorage(bmp, id.Value);
-        //    }
-        //}
 
         private void btnBackup_Click(object sender, RoutedEventArgs e)
         {
