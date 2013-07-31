@@ -13,6 +13,7 @@ using Microsoft.Phone.Shell;
 using MyTravelHistory.Models;
 using Telerik.Windows.Controls;
 using System.IO.IsolatedStorage;
+using Microsoft.Xna.Framework.Media;
 
 namespace MyTravelHistory.Src
 {
@@ -96,118 +97,49 @@ namespace MyTravelHistory.Src
             }
 
             App.ViewModel.CurrentAddress = locationAddress;
-        }
-
-        public static string SaveImageToLocalStorage(BitmapImage image)
-        {
-            string imagename = Guid.NewGuid() + ".jpg";
-
-            SaveImageToLocalStorage(image, imagename);
-
-            return imagename;
-        }
-
-        public static void SaveImageToLocalStorage(BitmapImage image, string imagename)
-        {
-            try
-            {
-                using (var myIsoStorage = IsolatedStorageFile.GetUserStoreForApplication())
-                {
-                    if (!myIsoStorage.DirectoryExists(ImageFolder))
-                    {
-                        myIsoStorage.CreateDirectory(ImageFolder);
-                    }
-
-                    if (myIsoStorage.FileExists(imagename))
-                    {
-                        myIsoStorage.DeleteFile(imagename);
-                    }
-
-                    string path = Path.Combine(ImageFolder, imagename);
-                    using (var stream = myIsoStorage.CreateFile(path))
-                    {
-                        var wb = new WriteableBitmap(image);
-                        wb.SaveJpeg(stream, image.PixelWidth, image.PixelHeight, 0, 50);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Api.LogError(ex.Message, ex.InnerException);
-            }
-        }
+        }        
 
         public static BitmapImage LoadLocationImage()
         {
-            return LoadImage(App.ViewModel.SelectedLocation.LocationImageName);
+            return GetImage(App.ViewModel.SelectedLocation.ImageName);
         }
 
         public static BitmapImage LoadLocationImage(string name)
         {
             if (string.IsNullOrEmpty(name)) return new BitmapImage();
-            return LoadImage(name);
-        }
+            return GetImage(name);
+        }        
 
-        private static BitmapImage LoadImage(string imagename)
+        private static BitmapImage GetImage(string name)
         {
-            var bmp = new BitmapImage();
+            var library = new MediaLibrary();
+            var bitmap = new BitmapImage();
 
-            try
+            foreach (var picture in library.Pictures)
             {
-                using (var myIsoStorage = IsolatedStorageFile.GetUserStoreForApplication())
+                if (picture.Name == name)
                 {
-                    if (!myIsoStorage.DirectoryExists(ImageFolder))
-                    {
-                        return bmp;
-                    }
-
-                    string path = Path.Combine(ImageFolder, imagename);
-                    if (myIsoStorage.FileExists(path))
-                    {
-                        using (var imageStream = myIsoStorage.OpenFile(path, FileMode.Open, FileAccess.Read))
-                        {
-                            bmp.SetSource(imageStream);
-                        }
-                    }
+                    bitmap.SetSource(picture.GetImage());
                 }
             }
-            catch (Exception ex)
-            {
-                Api.LogError(ex.Message, ex.InnerException);
-            }
 
-            return bmp;
+            return bitmap;
         }
 
-        public static Stream GetImageStream(string imagename)
+        private static BitmapImage GetThumbnail(string name)
         {
-            var stream = Stream.Null;
+            var library = new MediaLibrary();
+            var bitmap = new BitmapImage();
 
-            try
+            foreach (var picture in library.Pictures)
             {
-                var myIsoStorage = IsolatedStorageFile.GetUserStoreForApplication();
-                
-                    if (!myIsoStorage.DirectoryExists(ImageFolder))
-                    {
-                        return stream;
-                    }
-
-                    string path = Path.Combine(ImageFolder, imagename);
-                    if (myIsoStorage.FileExists(path))
-                    {
-                        using (var imageStream = myIsoStorage.OpenFile(path, FileMode.Open, FileAccess.Read))
-                        {
-                            stream = imageStream;
-                        }
-                    }
-                
-            }
-            catch (Exception ex)
-            {
-                Api.LogError(ex.Message, ex.InnerException);
+                if (picture.Name == name)
+                {
+                    bitmap.SetSource(picture.GetThumbnail()); 
+                }
             }
 
-            return stream;
+            return bitmap;
         }
 
         public static void DeleteImage(string imagename)
@@ -236,17 +168,33 @@ namespace MyTravelHistory.Src
 
         public static void CreateTile()
         {
-            var tileData = new RadCycleTileData();
+            //var tileData = new RadCycleTileData();
 
-            List<string> stringList = App.ViewModel.AllLocations.Select(x => x.LocationImageName != null ? x.LocationImageName : String.Empty)
-                .Take(9)
-                .ToList();
+            //List<string> stringList = App.ViewModel.AllLocations.Select(x => x.LocationImageName != null ? x.LocationImageName : String.Empty)
+            //    .Take(9)
+            //    .ToList();
 
-            var uriList = (from uriString in stringList where uriString != String.Empty select GetImageUri(uriString)).ToList();
+            //var uriList = (from uriString in stringList where uriString != String.Empty select GetImageUri(uriString)).ToList();
 
-            tileData.CycleImages = uriList;
-            LiveTileHelper.UpdateTile(ShellTile.ActiveTiles.FirstOrDefault(), tileData);
+            //tileData.CycleImages = uriList;
+            //LiveTileHelper.UpdateTile(ShellTile.ActiveTiles.FirstOrDefault(), tileData);
             
+        }
+
+        public static string GetImageName(Stream choosenStream)
+        {
+            var library = new MediaLibrary();
+
+            foreach (var image in library.Pictures)
+            {
+                Stream stream = image.GetImage();
+                if (stream.Length == choosenStream.Length)
+                {
+                    return image.Name;
+                }
+            }
+
+            return String.Empty;
         }
     }
 }

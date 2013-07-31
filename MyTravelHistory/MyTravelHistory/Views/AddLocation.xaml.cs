@@ -17,9 +17,10 @@ namespace MyTravelHistory.Views
     public partial class AddLocation 
     {
         private bool newElement;
+        private string imageUri;
+        private string imageName;
 
         private PhotoChooserTask _photoChooserTask;
-        private BitmapImage _locationImage;
 
         public AddLocation()
         {
@@ -118,14 +119,8 @@ namespace MyTravelHistory.Views
                     App.ViewModel.SelectedLocation.Tags.Add(item as Tag);
                 }
 
-                if (_locationImage != null)
-                {
-                    if (!string.IsNullOrEmpty(App.ViewModel.SelectedLocation.LocationImageName))
-                    {
-                        Utilities.DeleteImage(App.ViewModel.SelectedLocation.LocationImageName);
-                    }
-                    App.ViewModel.SelectedLocation.LocationImageName = Utilities.SaveImageToLocalStorage(_locationImage);
-                }
+                App.ViewModel.SelectedLocation.ImageName = imageName;
+                App.ViewModel.SelectedLocation.ImageUri = imageUri;
 
                 if (newElement)
                 {
@@ -161,18 +156,22 @@ namespace MyTravelHistory.Views
         {
             if (e.TaskResult == TaskResult.OK)
             {
-                _locationImage = new BitmapImage();
-                _locationImage.SetSource(e.ChosenPhoto);
-                LocationImage.Source = _locationImage;
-                lblAddImage.Visibility = Visibility.Collapsed;
+                
+                BitmapImage bmp = new BitmapImage();
+                bmp.SetSource(e.ChosenPhoto);
+                LocationImage.Source = bmp;
 
+                lblAddImage.Visibility = Visibility.Collapsed;
                 gridImage.Background.Opacity = 0;
+
+                imageUri = e.OriginalFileName;
+                imageName = Utilities.GetImageName(e.ChosenPhoto);
             }
         }
 
         private void LocationImage_Loaded(object sender, RoutedEventArgs e)
         {
-            if (!newElement && App.ViewModel.SelectedLocation.LocationImageName != null)
+            if (!newElement && App.ViewModel.SelectedLocation.ImageName != null)
             {
                 LocationImage.Source = Utilities.LoadLocationImage();
                 lblAddImage.Visibility = Visibility.Collapsed;

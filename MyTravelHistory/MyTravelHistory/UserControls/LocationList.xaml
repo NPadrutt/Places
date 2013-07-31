@@ -12,7 +12,7 @@
     d:DesignHeight="535" d:DesignWidth="456">
 	<UserControl.Resources>
 		<DataTemplate x:Key="AllLocationsItemTemplate">
-			<StackPanel Width="455" Background="{StaticResource PhoneChromeBrush}" Margin="0,0,0,12">
+			<StackPanel Width="455" Background="{StaticResource PhoneAccentBrush}" Margin="0,0,0,12">
 				<StackPanel Orientation="Horizontal">
 					<Grid Height="76" Width="68" Background="#FF595959" Margin="0,0,5,0">
                         <Image Source="{Binding LocationImage}" MaxHeight="76" MaxWidth="68" Stretch="Fill" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="68" Height="76" />

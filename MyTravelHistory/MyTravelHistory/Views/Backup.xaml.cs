@@ -173,7 +173,7 @@ namespace MyTravelHistory.Views
 
             foreach (var location in App.ViewModel.AllLocations)
             {
-                if (location.LocationImageName != null)
+                if (location.ImageName != null)
                 {
                     var stream = Stream.Null;
 
@@ -181,7 +181,7 @@ namespace MyTravelHistory.Views
                     {
                         var myIsoStorage = IsolatedStorageFile.GetUserStoreForApplication();
 
-                        string path = Path.Combine(ImageFolder, location.LocationImageName);
+                        string path = Path.Combine(ImageFolder, location.ImageName);
                         if (myIsoStorage.FileExists(path))
                         {
                             stream = myIsoStorage.OpenFile(path, FileMode.Open, FileAccess.Read);
@@ -195,7 +195,7 @@ namespace MyTravelHistory.Views
                     if (stream != Stream.Null)
                     {
                         await
-                            liveClient.UploadAsync(_folderId, location.LocationImageName, stream,
+                            liveClient.UploadAsync(_folderId, location.ImageName, stream,
                                 OverwriteOption.Overwrite);
 
                         stream.Flush();
@@ -304,7 +304,7 @@ namespace MyTravelHistory.Views
                     myStream.Close();
                 }
 
-                await RestoreImages();
+                //await RestoreImages();
 
                 App.ViewModel = new MainViewModel();
                 App.ViewModel.LoadLocations();
@@ -325,16 +325,16 @@ namespace MyTravelHistory.Views
             }
         }
 
-        private async Task RestoreImages()
-        {
-            foreach (var id in imageIds)
-            {
-                var downloadResult = await liveClient.DownloadAsync(id.Key + "/content");
-                var bmp = new BitmapImage();
-                bmp.SetSource(downloadResult.Stream);
-                Utilities.SaveImageToLocalStorage(bmp, id.Value);
-            }
-        }
+        //private async Task RestoreImages()
+        //{
+        //    foreach (var id in imageIds)
+        //    {
+        //        var downloadResult = await liveClient.DownloadAsync(id.Key + "/content");
+        //        var bmp = new BitmapImage();
+        //        bmp.SetSource(downloadResult.Stream);
+        //        Utilities.SaveImageToLocalStorage(bmp, id.Value);
+        //    }
+        //}
 
         private void btnBackup_Click(object sender, RoutedEventArgs e)
         {

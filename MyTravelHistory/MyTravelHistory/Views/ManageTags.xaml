@@ -17,7 +17,7 @@
     shell:SystemTray.IsVisible="True">
 	<phone:PhoneApplicationPage.Resources>
 		<DataTemplate x:Key="AllTagsItemTemplate">
-			<StackPanel Width="455" Background="{StaticResource PhoneAccentBrush}" Margin="0,0,0,12">
+			<StackPanel Width="455" Background="{StaticResource PhoneChromeBrush}" Margin="0,0,0,12">
 				<TextBlock Text="{Binding TagName}" Style="{StaticResource PhoneTextLargeStyle}" Margin="0"/>
 			</StackPanel>
 		</DataTemplate>

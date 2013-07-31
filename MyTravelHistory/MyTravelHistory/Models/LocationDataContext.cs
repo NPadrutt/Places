@@ -33,26 +33,48 @@ namespace MyTravelHistory.Models
             }
         }
 
-        private string _locationImageName;
+        private string _imageName;
 
         [Column]
-        public string LocationImageName
+        public string ImageName
         {
-            get { return _locationImageName; }
+            get { return _imageName; }
             set
             {
-                if (_locationImageName != value)
+                if (_imageName != value)
                 {
                     NotifyPropertyChanging("LocationImageName");
-                    _locationImageName = value;
+                    _imageName = value;
                     NotifyPropertyChanged("LocationImageName");
+                }
+            }
+        }
+
+        private string _imageUri;
+
+        [Column]
+        public string ImageUri
+        {
+            get { return _imageUri; }
+            set
+            {
+                if (_imageUri != value)
+                {
+                    NotifyPropertyChanging("ImageUri");
+                    _imageUri = value;
+                    NotifyPropertyChanged("ImageUri");
                 }
             }
         }
 
         public BitmapImage LocationImage
         {
-            get { return Utilities.LoadLocationImage(_locationImageName); }
+            get { return Utilities.LoadLocationImage(_imageName); }
+        }
+
+        public BitmapImage Thumbnail
+        {
+            get { return Utilities.LoadLocationImage(_imageName); }
         }
 
         private string _name;

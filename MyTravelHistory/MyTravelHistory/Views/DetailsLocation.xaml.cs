@@ -107,7 +107,7 @@ namespace MyTravelHistory.Views
 
         private void locationImage_Loaded(object sender, RoutedEventArgs e)
         {
-            if (App.ViewModel.SelectedLocation.LocationImageName != null)
+            if (App.ViewModel.SelectedLocation.ImageName != null)
             {
                 LocationImage.Source = Utilities.LoadLocationImage();
             }
@@ -115,7 +115,7 @@ namespace MyTravelHistory.Views
 
         private void LocationImageLarge_Loaded(object sender, RoutedEventArgs e)
         {
-            if (App.ViewModel.SelectedLocation.LocationImageName != null)
+            if (App.ViewModel.SelectedLocation.ImageName != null)
             {
                 locationImageLarge.Source = LocationImage.Source;
             }
@@ -128,7 +128,7 @@ namespace MyTravelHistory.Views
             if (result == MessageBoxResult.OK)
             {
                 App.ViewModel.DeleteLocation(App.ViewModel.SelectedLocation);
-                Utilities.DeleteImage(App.ViewModel.SelectedLocation.LocationImageName);
+                Utilities.DeleteImage(App.ViewModel.SelectedLocation.ImageName);
             }
 
             NavigationService.GoBack();        
@@ -136,7 +136,7 @@ namespace MyTravelHistory.Views
 
         private void mPinToStart_Click(object sender, EventArgs e)
         {
-            var imageUri = Utilities.GetImageUri(App.ViewModel.SelectedLocation.LocationImageName);
+            var imageUri = Utilities.GetImageUri(App.ViewModel.SelectedLocation.ImageName);
 
             var tileData = new RadExtendedTileData()
             {
