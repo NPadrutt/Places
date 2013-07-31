@@ -163,7 +163,8 @@ namespace MyTravelHistory.Views
                 LocationImage.Source = bmp;
 
                 lblAddImage.Visibility = Visibility.Collapsed;
-                gridImage.Background.Opacity = 0;
+                gridImage.Height = LocationImage.Height;
+                gridImage.Width = LocationImage.Width;
 
                 imageUri = e.OriginalFileName;
                 imageName = Utilities.GetImageName(e.ChosenPhoto);
@@ -176,12 +177,12 @@ namespace MyTravelHistory.Views
             {
                 LocationImage.Source = Utilities.LoadLocationImage();
                 lblAddImage.Visibility = Visibility.Collapsed;
-                gridImage.Background.Opacity = 0;
+                gridImage.Height = LocationImage.Height;
+                gridImage.Width = LocationImage.Width;
             }
             else
             {
                 lblAddImage.Visibility = Visibility.Visible;
-                gridImage.Background.Opacity = 1;
             }
         }
 

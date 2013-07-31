@@ -38,8 +38,8 @@
 		</StackPanel>
 		<ScrollViewer Grid.Row="1" Margin="10,0,14,0" >
 			<StackPanel x:Name="ContentPanel" d:DataContext="{Binding AllLocations[0]}">
-				<Grid x:Name="gridImage" Margin="12,0,0,0" Tap="Grid_Tap" HorizontalAlignment="Left" Width="171" Height="171" Background="{StaticResource PhoneAccentBrush}">
-					<Image x:Name="LocationImage" HorizontalAlignment="Stretch" Height="171" VerticalAlignment="Center" Margin="0" Width="171" Loaded="LocationImage_Loaded"/>
+				<Grid x:Name="gridImage" Margin="12,0,0,0" Tap="Grid_Tap" HorizontalAlignment="Left" Background="{StaticResource PhoneAccentBrush}" Width="171" Height="171" MaxWidth="171" MaxHeight="171">
+					<Image x:Name="LocationImage" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="0" Loaded="LocationImage_Loaded"/>
 					<TextBlock x:Name="lblAddImage" VerticalAlignment="Bottom" TextWrapping="Wrap" Text="{Binding LocalizedResources.AddImageLabel, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextTitle3Style}" Margin="0"/>
 				</Grid>
 				<telerikPrimitives:RadTextBox x:Name="txtName" Text="{Binding Name}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0" Header="{Binding LocalizedResources.NameLabel, Source={StaticResource LocalizedStrings}}"/>
