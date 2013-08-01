@@ -29,10 +29,9 @@ namespace MyTravelHistory
 
             ((ApplicationBarIconButton)this.ApplicationBar.Buttons[0]).Text = AppResources.AddLabel;
 
-            ((ApplicationBarMenuItem)this.ApplicationBar.MenuItems[0]).Text = AppResources.ShowAllOnMapLabel;
-            ((ApplicationBarMenuItem)this.ApplicationBar.MenuItems[1]).Text = AppResources.TagLabel;
-            ((ApplicationBarMenuItem)this.ApplicationBar.MenuItems[2]).Text = AppResources.BackupLabel;
-            ((ApplicationBarMenuItem)this.ApplicationBar.MenuItems[3]).Text = AppResources.AboutLabel;
+            ((ApplicationBarMenuItem)this.ApplicationBar.MenuItems[0]).Text = AppResources.TagLabel;
+            ((ApplicationBarMenuItem)this.ApplicationBar.MenuItems[1]).Text = AppResources.BackupLabel;
+            ((ApplicationBarMenuItem)this.ApplicationBar.MenuItems[2]).Text = AppResources.AboutLabel;
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
@@ -52,18 +51,6 @@ namespace MyTravelHistory
         private void mAbout_Click(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/Views/About.xaml", UriKind.Relative));
-        }
-
-        private void mShowOnMap_Click(object sender, EventArgs e)
-        {
-            App.ViewModel.SelectedLocations = new ObservableCollection<Location>();
-
-            foreach (var location in App.ViewModel.AllLocations)
-            {
-                App.ViewModel.SelectedLocations.Add(location);
-            }
-
-            NavigationService.Navigate(new Uri("/Views/MapView.xaml?MultipleLocations=true", UriKind.Relative));
         }
 
         private void mBackup_Click(object sender, EventArgs e)

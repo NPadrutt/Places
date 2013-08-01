@@ -47,11 +47,8 @@ namespace MyTravelHistory.Views
             }
             else
             {
-                PageTitle.Text = AppResources.EditTitle;
-                stackpanelAddress.DataContext = App.ViewModel.SelectedLocation.LocationAddress;
-                progressionbarGetLocation.IsIndeterminate = false;
-                stackpanelAddress.Visibility = Visibility.Visible;
-                progressionbarGetLocation.Visibility = Visibility.Collapsed;
+                TransformGuiForEditMode();
+                App.ViewModel.CurrentAddress = null;
                 if (!double.IsNaN(App.ViewModel.SelectedLocation.Latitude) && !double.IsNaN(App.ViewModel.SelectedLocation.Longitude))
                 {
                     MiniMap.ShowOnMap(App.ViewModel.SelectedLocation.Latitude, App.ViewModel.SelectedLocation.Longitude);
@@ -64,6 +61,15 @@ namespace MyTravelHistory.Views
                     }
                 }
             }
+        }
+
+        private void TransformGuiForEditMode()
+        {
+            PageTitle.Text = AppResources.EditTitle;
+            stackpanelAddress.DataContext = App.ViewModel.SelectedLocation.LocationAddress;
+            progressionbarGetLocation.IsIndeterminate = false;
+            stackpanelAddress.Visibility = Visibility.Visible;
+            progressionbarGetLocation.Visibility = Visibility.Collapsed;
         }
 
         private async void GetPosition()
@@ -114,15 +120,24 @@ namespace MyTravelHistory.Views
                     App.ViewModel.SelectedLocation.Accuracy = Convert.ToDouble(lblAccuracy.Text);
                 }
                 App.ViewModel.SelectedLocation.Comment = txtComment.Text;
-                App.ViewModel.SelectedLocation.LocationAddress = App.ViewModel.CurrentAddress;
+                if (App.ViewModel.CurrentAddress != null)
+                {
+                    App.ViewModel.SelectedLocation.LocationAddress = App.ViewModel.CurrentAddress;
+                }
                 App.ViewModel.SelectedLocation.Tags.Clear();
                 foreach (var item in listpickerTag.SelectedItems)
                 {
                     App.ViewModel.SelectedLocation.Tags.Add(item as Tag);
                 }
 
-                App.ViewModel.SelectedLocation.ImageName = imageName;
-                App.ViewModel.SelectedLocation.ImageUri = imageUri;
+                if (imageName != null)
+                {
+                    App.ViewModel.SelectedLocation.ImageName = imageName;
+                }
+                if (imageUri != null)
+                {
+                    App.ViewModel.SelectedLocation.ImageUri = imageUri;
+                }
 
                 if (newElement)
                 {

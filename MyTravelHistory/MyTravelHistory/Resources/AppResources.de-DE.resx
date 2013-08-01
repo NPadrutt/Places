@@ -186,9 +186,6 @@
   <data name="DeleteMessageTitle" xml:space="preserve">
     <value>Löschen?</value>
   </data>
-  <data name="ShowAllOnMapLabel" xml:space="preserve">
-    <value>Alle auf der Karte anzeigen</value>
-  </data>
   <data name="CancelLabel" xml:space="preserve">
     <value>Abbrechen</value>
   </data>

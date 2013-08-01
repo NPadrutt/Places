@@ -169,7 +169,7 @@ namespace MyTravelHistory.Src
                           i + ".jpg", FileMode.Create))
                         {
                             WriteableBitmap bmp = new WriteableBitmap((BitmapSource)item);
-                            bmp.SaveJpeg(stream, bmp.PixelWidth, bmp.PixelHeight, 0, 100);
+                            bmp.SaveJpeg(stream, bmp.PixelWidth, bmp.PixelHeight, 0, 60);
                         }
                     }
                     uriList.Add(new Uri("isostore:/shared/ShellContent/" + i + ".jpg", UriKind.Absolute));

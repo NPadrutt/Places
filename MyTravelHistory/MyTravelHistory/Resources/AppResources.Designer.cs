@@ -630,15 +630,6 @@ namespace MyTravelHistory.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to show all on Map.
-        /// </summary>
-        public static string ShowAllOnMapLabel {
-            get {
-                return ResourceManager.GetString("ShowAllOnMapLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to support address:.
         /// </summary>
         public static string SupportAddressLabel {
@@ -648,7 +639,7 @@ namespace MyTravelHistory.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to nino.padrutt@hotmail.com.
+        ///   Looks up a localized string similar to support@apply-solutions.ch.
         /// </summary>
         public static string SupportAddressMail {
             get {

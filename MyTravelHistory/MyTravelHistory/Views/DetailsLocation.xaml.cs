@@ -50,6 +50,12 @@ namespace MyTravelHistory.Views
             }
 
             DataContext = App.ViewModel.SelectedLocation;
+
+            if (App.ViewModel.SelectedLocation.ImageName != null)
+            {
+                LocationImage.Source = Utilities.LoadLocationImage();
+            }
+            
             MiniMap.ShowOnMap(App.ViewModel.SelectedLocation.Latitude, App.ViewModel.SelectedLocation.Longitude);
             SetTags();
             HideEmptyControlls();
@@ -106,10 +112,7 @@ namespace MyTravelHistory.Views
 
         private void locationImage_Loaded(object sender, RoutedEventArgs e)
         {
-            if (App.ViewModel.SelectedLocation.ImageName != null)
-            {
-                LocationImage.Source = Utilities.LoadLocationImage();
-            }
+            
         }
 
         private void LocationImageLarge_Loaded(object sender, RoutedEventArgs e)
@@ -134,7 +137,10 @@ namespace MyTravelHistory.Views
 
         private void mPinToStart_Click(object sender, EventArgs e)
         {
-            locationImageLarge.Source = LocationImage.Source;
+            if (App.ViewModel.SelectedLocation.ImageName != null)
+            {
+                locationImageLarge.Source = LocationImage.Source;
+            }
 
             var tileData = new RadExtendedTileData()
             {
