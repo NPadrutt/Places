@@ -11,6 +11,8 @@ using MyTravelHistory.Src;
 using Microsoft.Phone.Tasks;
 using System.Windows.Media.Imaging;
 using GestureEventArgs = System.Windows.Input.GestureEventArgs;
+using ExifLib;
+using System.Threading.Tasks;
 
 namespace MyTravelHistory.Views
 {
@@ -30,7 +32,8 @@ namespace MyTravelHistory.Views
             listpickerTag.ItemsSource = App.ViewModel.AllTags;
 
             ((ApplicationBarIconButton)this.ApplicationBar.Buttons[0]).Text = AppResources.DoneLabel;
-            ((ApplicationBarIconButton)this.ApplicationBar.Buttons[1]).Text = AppResources.CancelLabel;
+            ((ApplicationBarIconButton)this.ApplicationBar.Buttons[1]).Text = AppResources.ImportImageLabel;
+            ((ApplicationBarIconButton)this.ApplicationBar.Buttons[2]).Text = AppResources.CancelLabel;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -67,9 +70,62 @@ namespace MyTravelHistory.Views
         {
             PageTitle.Text = AppResources.EditTitle;
             stackpanelAddress.DataContext = App.ViewModel.SelectedLocation.LocationAddress;
+            ApplicationBar.Buttons.RemoveAt(1);
             progressionbarGetLocation.IsIndeterminate = false;
             stackpanelAddress.Visibility = Visibility.Visible;
             progressionbarGetLocation.Visibility = Visibility.Collapsed;
+        }
+
+        private void Grid_Tap(object sender, GestureEventArgs e)
+        {
+            _photoChooserTask = new PhotoChooserTask();
+            _photoChooserTask.ShowCamera = true;
+            _photoChooserTask.Completed += this.PhotoChooserTask_Completed;
+            _photoChooserTask.Show();
+        }
+
+        private void btnImportImage_Click(object sender, System.EventArgs e)
+        {
+            _photoChooserTask = new PhotoChooserTask();
+            _photoChooserTask.Completed += this.PhotoImportTask_Completed;
+            _photoChooserTask.Show();
+        }
+
+        void PhotoChooserTask_Completed(object sender, PhotoResult e)
+        {
+            if (e.TaskResult == TaskResult.OK)
+            {
+
+                SaveImage(e);
+            }
+        }
+
+        private void PhotoImportTask_Completed(object sender, PhotoResult e)
+        {
+            if (e.TaskResult == TaskResult.OK)
+            {
+                App.ViewModel.CurrentPosition = Utilities.GetPositionFromImage(e.ChosenPhoto);
+                App.ViewModel.SelectedLocation.Latitude = App.ViewModel.CurrentPosition.Latitude;
+                App.ViewModel.SelectedLocation.Longitude = App.ViewModel.CurrentPosition.Longitude;
+                stackpanelPosition.DataContext = App.ViewModel.SelectedLocation;
+                GetAddress();
+
+                SaveImage(e);
+            }
+        }
+
+        private void SaveImage(PhotoResult e)
+        {
+            BitmapImage bmp = new BitmapImage();
+            bmp.SetSource(e.ChosenPhoto);
+            LocationImage.Source = bmp;
+
+            lblAddImage.Visibility = Visibility.Collapsed;
+            gridImage.Height = LocationImage.Height;
+            gridImage.Width = LocationImage.Width;
+
+            imageUri = e.OriginalFileName;
+            imageName = Utilities.GetImageName(e.ChosenPhoto);
         }
 
         private async void GetPosition()
@@ -84,7 +140,6 @@ namespace MyTravelHistory.Views
 
             if (App.ViewModel.CurrentPosition != null)
             {
-                await Utilities.GetAddress(App.ViewModel.CurrentPosition.Latitude, App.ViewModel.CurrentPosition.Longitude);
                 MiniMap.ClearPushPins();
                 MiniMap.ShowOnMap(App.ViewModel.CurrentPosition.Latitude, App.ViewModel.CurrentPosition.Longitude);
                 if (App.ViewModel.CurrentPosition != null)
@@ -94,17 +149,45 @@ namespace MyTravelHistory.Views
                     App.ViewModel.SelectedLocation.Accuracy = App.ViewModel.CurrentPosition.Accuracy;
                     stackpanelPosition.DataContext = App.ViewModel.SelectedLocation;
                 }
-                if (App.ViewModel.CurrentAddress != null)
-                {
-                    App.ViewModel.SelectedLocation.LocationAddress = App.ViewModel.CurrentAddress;
-                    stackpanelAddress.DataContext = App.ViewModel.SelectedLocation.LocationAddress;
-                    stackpanelAddress.Visibility = Visibility.Visible;
-                }
-
+                await GetAddress();
             }
 
             progressionbarGetLocation.IsIndeterminate = false;
-            progressionbarGetLocation.Visibility = Visibility.Collapsed;            
+            progressionbarGetLocation.Visibility = Visibility.Collapsed;
+        }
+
+        private async Task GetAddress()
+        {
+            await Utilities.GetAddress(App.ViewModel.CurrentPosition.Latitude, App.ViewModel.CurrentPosition.Longitude);
+            if (App.ViewModel.CurrentAddress != null)
+            {
+                App.ViewModel.SelectedLocation.LocationAddress = App.ViewModel.CurrentAddress;
+                stackpanelAddress.DataContext = App.ViewModel.SelectedLocation.LocationAddress;
+                stackpanelAddress.Visibility = Visibility.Visible;
+                progressionbarGetLocation.IsIndeterminate = false;
+                progressionbarGetLocation.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        private void LocationImage_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (!newElement && App.ViewModel.SelectedLocation.ImageName != null)
+            {
+                LocationImage.Source = Utilities.LoadLocationImage();
+                lblAddImage.Visibility = Visibility.Collapsed;
+                gridImage.Height = LocationImage.Height;
+                gridImage.Width = LocationImage.Width;
+            }
+            else
+            {
+                lblAddImage.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void btnRefreshPosition_Click(object sender, RoutedEventArgs e)
+        {
+            App.ViewModel.CurrentPosition = null;
+            GetPosition();
         }
 
         private void btnDone_Click(object sender, EventArgs e)
@@ -159,53 +242,6 @@ namespace MyTravelHistory.Views
         private void btnCancel_Click(object sender, EventArgs e)
         {
             NavigationService.GoBack();
-        }
-
-        private void Grid_Tap(object sender, GestureEventArgs e)
-        {
-            _photoChooserTask = new PhotoChooserTask();
-            _photoChooserTask.ShowCamera = true;
-            _photoChooserTask.Completed += this.PhotoChooserTask_Completed;
-            _photoChooserTask.Show();
-        }
-
-        void PhotoChooserTask_Completed(object sender, PhotoResult e)
-        {
-            if (e.TaskResult == TaskResult.OK)
-            {
-                
-                BitmapImage bmp = new BitmapImage();
-                bmp.SetSource(e.ChosenPhoto);
-                LocationImage.Source = bmp;
-
-                lblAddImage.Visibility = Visibility.Collapsed;
-                gridImage.Height = LocationImage.Height;
-                gridImage.Width = LocationImage.Width;
-
-                imageUri = e.OriginalFileName;
-                imageName = Utilities.GetImageName(e.ChosenPhoto);
-            }
-        }
-
-        private void LocationImage_Loaded(object sender, RoutedEventArgs e)
-        {
-            if (!newElement && App.ViewModel.SelectedLocation.ImageName != null)
-            {
-                LocationImage.Source = Utilities.LoadLocationImage();
-                lblAddImage.Visibility = Visibility.Collapsed;
-                gridImage.Height = LocationImage.Height;
-                gridImage.Width = LocationImage.Width;
-            }
-            else
-            {
-                lblAddImage.Visibility = Visibility.Visible;
-            }
-        }
-
-        private void btnRefreshPosition_Click(object sender, RoutedEventArgs e)
-        {
-            App.ViewModel.CurrentPosition = null;
-            GetPosition();
         }
     }
 }

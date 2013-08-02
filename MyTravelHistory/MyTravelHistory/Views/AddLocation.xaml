@@ -20,6 +20,7 @@
 	<phone:PhoneApplicationPage.ApplicationBar>
 		<shell:ApplicationBar>
 			<shell:ApplicationBarIconButton x:Name="btnDone" IconUri="/Assets/AppBar/check.png" Text="Fertig" Click="btnDone_Click"/>
+			<shell:ApplicationBarIconButton x:Name="btnImportImage" IconUri="/Assets/import.png" Text="import image" Click="btnImportImage_Click"/>
 			<shell:ApplicationBarIconButton x:Name="btnCancel" IconUri="/Assets/AppBar/cancel.png" Text="Abbrechen" Click="btnCancel_Click"/>
 		</shell:ApplicationBar>
 	</phone:PhoneApplicationPage.ApplicationBar>

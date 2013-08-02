@@ -333,4 +333,7 @@
   <data name="WorkLabel" xml:space="preserve">
     <value>Arbeit</value>
   </data>
+  <data name="ImportImageLabel" xml:space="preserve">
+    <value>Bild importieren</value>
+  </data>
 </root>

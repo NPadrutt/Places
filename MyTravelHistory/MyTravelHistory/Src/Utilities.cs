@@ -14,6 +14,7 @@ using MyTravelHistory.Models;
 using Telerik.Windows.Controls;
 using System.IO.IsolatedStorage;
 using Microsoft.Xna.Framework.Media;
+using ExifLib;
 
 namespace MyTravelHistory.Src
 {
@@ -124,6 +125,45 @@ namespace MyTravelHistory.Src
             }
 
             return bitmap;
+        }
+
+        public static Position GetPositionFromImage(Stream imageStream)
+        {
+            var library = new MediaLibrary();
+            var position = new Position();
+
+            foreach (var picture in library.Pictures)
+            {
+                if (picture.GetImage().Length == imageStream.Length)
+                {
+                    ExifReader reader = new ExifReader(picture.GetImage());
+                    double[] tmplat, tmplong;
+
+                    if (reader.GetTagValue<double[]>(ExifTags.GPSLatitude, out tmplat) &&
+                        reader.GetTagValue<double[]>(ExifTags.GPSLongitude, out tmplong))
+                    {
+                        position.Longitude = tmplong[0] + tmplong[1] / 60 +
+                            tmplong[2] / (60 * 60);
+                        position.Latitude = tmplat[0] + tmplat[1] / 60 +
+                            tmplat[2] / (60 * 60);
+
+                        string tmp;
+                        if ((reader.GetTagValue<string>(ExifTags.GPSLongitudeRef, out tmp) &&
+                            tmp == "W"))
+                        {
+                            position.Longitude *= -1;
+                        }
+
+                        if ((reader.GetTagValue<string>(ExifTags.GPSLatitudeRef, out tmp) &&
+                            tmp == "S"))
+                        {
+                            position.Latitude *= -1;
+                        }
+                    }
+                }
+            }
+
+            return position;
         }
 
         public static BitmapImage GetThumbnail(string name)
