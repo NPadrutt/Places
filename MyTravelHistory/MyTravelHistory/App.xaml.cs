@@ -72,7 +72,7 @@ namespace MyTravelHistory
             if (Debugger.IsAttached)
             {
                 // Display the current frame rate counters.
-                Current.Host.Settings.EnableFrameRateCounter = true;
+                Current.Host.Settings.EnableFrameRateCounter = false;
 
                 // Show the areas of the app that are being redrawn in each frame.
                 //Application.Current.Host.Settings.EnableRedrawRegions = true;
@@ -159,6 +159,7 @@ namespace MyTravelHistory
         // This code will not execute when the application is deactivated
         private void Application_Closing(object sender, ClosingEventArgs e)
         {
+            Utilities.CreateTile();
         }
 
         // Code to execute if a navigation fails
