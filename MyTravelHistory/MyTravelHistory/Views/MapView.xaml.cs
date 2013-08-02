@@ -57,8 +57,8 @@ namespace MyTravelHistory.Views
 
         private void Map_Loaded(object sender, RoutedEventArgs e)
         {
-            MapsSettings.ApplicationContext.ApplicationId = "ApplicationID";
-            MapsSettings.ApplicationContext.AuthenticationToken = "AuthenticationToken";
+            MapsSettings.ApplicationContext.ApplicationId = "69550432-a2f9-490f-a782-d4c91775382e";
+            MapsSettings.ApplicationContext.AuthenticationToken = "5-Sp7gaotYB4nRJsslF5JQ";
 
             if (MultipleLocations)
             {

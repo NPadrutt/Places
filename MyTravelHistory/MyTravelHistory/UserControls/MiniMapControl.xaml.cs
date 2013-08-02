@@ -39,5 +39,11 @@ namespace MyTravelHistory.UserControls
         {
             myMap.Layers.Clear();
         }
+
+        private void myMap_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            MapsSettings.ApplicationContext.ApplicationId = "69550432-a2f9-490f-a782-d4c91775382e";
+            MapsSettings.ApplicationContext.AuthenticationToken = "5-Sp7gaotYB4nRJsslF5JQ";
+        }
     }
 }
