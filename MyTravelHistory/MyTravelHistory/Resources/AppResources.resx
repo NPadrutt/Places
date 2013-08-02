@@ -344,4 +344,34 @@ Do you wanna proceed?</value>
   <data name="ImportImageLabel" xml:space="preserve">
     <value>import image</value>
   </data>
+  <data name="PurchaseFullVersionLabel" xml:space="preserve">
+    <value>purchase fullversion</value>
+  </data>
+  <data name="RateApplicationMessage" xml:space="preserve">
+    <value>Thanks for using MyTravelHistory!
+
+If you like the programm, support the development with rating the programm in the Marketplace!
+
+Do you want to rate it now?</value>
+  </data>
+  <data name="RateApplicationSkipFurtherMessage" xml:space="preserve">
+    <value>Skip further reminders!</value>
+  </data>
+  <data name="RateApplicationTitel" xml:space="preserve">
+    <value>Rate MyTravelHistory!</value>
+  </data>
+  <data name="TrialExpiredMessage" xml:space="preserve">
+    <value>You've used all your free MyTravelHistory intializations. If you want to continue using MyTravelHistory please purchase a full version in the Windows Marketplace.</value>
+  </data>
+  <data name="TrialExpiredTitle" xml:space="preserve">
+    <value>trialversion expired</value>
+  </data>
+  <data name="TrialReminderMessage" xml:space="preserve">
+    <value>You're using MyTravelHistory in the trial Version. There are  {0} uses left
+
+Do you wanna purchase MyTravelHistory?</value>
+  </data>
+  <data name="TrialReminderTitle" xml:space="preserve">
+    <value>Purchase MyTravelHistory?</value>
+  </data>
 </root>

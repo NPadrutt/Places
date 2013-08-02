@@ -19,10 +19,9 @@ namespace MyTravelHistory
 
             DataContext = App.ViewModel;
 
-			//Shows the trial reminder message, according to the settings of the TrialReminder.
-            ((App)Application.Current).trialReminder.Notify();
+            //CheckLicense();
 
-			//Shows the rate reminder message, according to the settings of the RateReminder.
+            //Shows the rate reminder message, according to the settings of the RateReminder.
             ((App)Application.Current).rateReminder.Notify();
 
             listpickerFilter.ItemsSource = App.ViewModel.AllTags;
@@ -34,9 +33,21 @@ namespace MyTravelHistory
             ((ApplicationBarMenuItem)this.ApplicationBar.MenuItems[2]).Text = AppResources.AboutLabel;
         }
 
+        private void CheckLicense()
+        {
+            ((App)Application.Current).trialReminder.Notify();
+
+            if (((App)Application.Current).trialReminder.IsTrialExpired && NavigationService != null)
+            {
+                NavigationService.Navigate(new Uri("/Views/TrialversionExpired.xaml", UriKind.Relative));
+            }
+        }
+
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
+
+            CheckLicense();
 
             LocationList.SetFilter(new List<Tag>());
         }

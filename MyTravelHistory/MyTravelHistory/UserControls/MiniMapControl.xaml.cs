@@ -8,6 +8,7 @@ using Microsoft.Phone.Maps.Toolkit;
 using Microsoft.Phone.Maps.Controls;
 using System.Device.Location;
 using MyTravelHistory.Resources;
+using Microsoft.Phone.Maps;
 
 namespace MyTravelHistory.UserControls
 {

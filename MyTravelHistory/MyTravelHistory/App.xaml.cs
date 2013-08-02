@@ -18,6 +18,8 @@ using MyTravelHistory.Models;
 using Telerik.Windows.Controls;
 using MyTravelHistory.Src;
 using MyTravelHistory.ViewModels;
+using Telerik.Windows.Controls.Reminders;
+using MyTravelHistory.Resources;
 
 namespace MyTravelHistory
 {
@@ -97,7 +99,7 @@ namespace MyTravelHistory
 		    //Creates an instance of the RadTrialApplicationReminder component.
             trialReminder = new RadTrialApplicationReminder
             {
-                AllowedTrialUsageCount = 30,
+                AllowedTrialUsageCount = 3,
                 OccurrenceUsageCount = 3,
                 SimulateTrialForTests = false
             };
@@ -133,7 +135,43 @@ namespace MyTravelHistory
                 FlurryWP8SDK.Api.StartSession("HKN24VVBRHX4833D8VCR");
 #endif
             ApplicationUsageHelper.Init(Assembly.GetExecutingAssembly().FullName.Split('=')[1].Split(',')[0]);
+            
+            SetTrialExpiredMessage();
+            SetTrialReminderMessage();
+            SetRateReminderMessage();
 		}
+
+        private void SetTrialReminderMessage()
+        {
+            trialReminder.TrialReminderMessageBoxInfo = new MessageBoxInfoModel()
+            {
+                Buttons = MessageBoxButtons.YesNo,
+                Title = AppResources.TrialReminderTitle,
+                Content = string.Format(AppResources.TrialReminderMessage, trialReminder.RemainingUsageCount)
+            };
+        }
+
+        private void SetTrialExpiredMessage()
+        {
+
+            trialReminder.TrialExpiredMessageBoxInfo = new MessageBoxInfoModel()
+            {
+                Buttons = MessageBoxButtons.YesNo,
+                Title = AppResources.TrialExpiredTitle,
+                Content = AppResources.TrialExpiredMessage
+            };
+        }
+
+        private void SetRateReminderMessage()
+        {
+            rateReminder.MessageBoxInfo = new MessageBoxInfoModel()
+            {
+                Buttons = MessageBoxButtons.YesNo,
+                Content = AppResources.RateApplicationMessage,
+                Title = AppResources.RateApplicationTitel,
+                SkipFurtherRemindersMessage = AppResources.RateApplicationSkipFurtherMessage
+            };
+        }
 
         // Code to execute when the application is activated (brought to foreground)
         // This code will not execute when the application is first launched

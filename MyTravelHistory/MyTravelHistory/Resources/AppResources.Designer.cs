@@ -530,11 +530,51 @@ namespace MyTravelHistory.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to purchase fullversion.
+        /// </summary>
+        public static string PurchaseFullVersionLabel {
+            get {
+                return ResourceManager.GetString("PurchaseFullVersionLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rate MyTravelHistory!.
         /// </summary>
         public static string RateAppLabel {
             get {
                 return ResourceManager.GetString("RateAppLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thanks for using MyTravelHistory!
+        ///
+        ///If you like the programm, support the development with rating the programm in the Marketplace!
+        ///
+        ///Do you want to rate it now?.
+        /// </summary>
+        public static string RateApplicationMessage {
+            get {
+                return ResourceManager.GetString("RateApplicationMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Skip further reminders!.
+        /// </summary>
+        public static string RateApplicationSkipFurtherMessage {
+            get {
+                return ResourceManager.GetString("RateApplicationSkipFurtherMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rate MyTravelHistory!.
+        /// </summary>
+        public static string RateApplicationTitel {
+            get {
+                return ResourceManager.GetString("RateApplicationTitel", resourceCulture);
             }
         }
         
@@ -689,6 +729,44 @@ namespace MyTravelHistory.Resources {
         public static string TaskCancelledErrorTitle {
             get {
                 return ResourceManager.GetString("TaskCancelledErrorTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You&apos;ve used all your free MyTravelHistory intializations. If you want to continue using MyTravelHistory please purchase a full version in the Windows Marketplace..
+        /// </summary>
+        public static string TrialExpiredMessage {
+            get {
+                return ResourceManager.GetString("TrialExpiredMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to trialversion expired.
+        /// </summary>
+        public static string TrialExpiredTitle {
+            get {
+                return ResourceManager.GetString("TrialExpiredTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You&apos;re using MyTravelHistory in the trial Version. There are  {0} uses left
+        ///
+        ///Do you wanna purchase MyTravelHistory?.
+        /// </summary>
+        public static string TrialReminderMessage {
+            get {
+                return ResourceManager.GetString("TrialReminderMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Purchase MyTravelHistory?.
+        /// </summary>
+        public static string TrialReminderTitle {
+            get {
+                return ResourceManager.GetString("TrialReminderTitle", resourceCulture);
             }
         }
         
