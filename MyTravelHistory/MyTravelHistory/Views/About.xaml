@@ -21,7 +21,7 @@
             <phone:PivotItem Header="{Binding Path=LocalizedResources.AboutTitle, Source={StaticResource LocalizedStrings}}">
                 <StackPanel>
                     <TextBlock x:Name="lblDeveloperCaption" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding LocalizedResources.DeveloperLabel, Mode=OneWay}" VerticalAlignment="Top" Style="{StaticResource PhoneTextSubtleStyle}"/>
-                    <TextBlock x:Name="lblDeveloper" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Nino Padrutt" VerticalAlignment="Top" Style="{StaticResource PhoneTextLargeStyle}" Margin="12,0,12,10"/>
+                    <TextBlock x:Name="lblDeveloper" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Apply Solutions" VerticalAlignment="Top" Style="{StaticResource PhoneTextLargeStyle}" Margin="12,0,12,10"/>
                     <TextBlock x:Name="lblVersionCaption" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding LocalizedResources.VersionLabel, Mode=OneWay}" VerticalAlignment="Top" Style="{StaticResource PhoneTextSubtleStyle}"/>
                     <TextBlock x:Name="lblVersion" HorizontalAlignment="Left" TextWrapping="Wrap" Text="1.0" VerticalAlignment="Top" Margin="12,0,0,10" Style="{StaticResource PhoneTextLargeStyle}"/>
                     <TextBlock x:Name="lblSupportAddressCaption" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding LocalizedResources.SupportAddressLabel, Mode=OneWay}" VerticalAlignment="Top" Style="{StaticResource PhoneTextSubtleStyle}"/>

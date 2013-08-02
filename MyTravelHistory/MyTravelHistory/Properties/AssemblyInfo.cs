@@ -9,7 +9,7 @@ using System.Resources;
 [assembly: AssemblyTitle("MyTravelHistory")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Apply Solutions")]
 [assembly: AssemblyProduct("MyTravelHistory")]
 [assembly: AssemblyCopyright("Copyright ©  2013")]
 [assembly: AssemblyTrademark("")]
@@ -32,5 +32,5 @@ using System.Resources;
 //
 // You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
-[assembly: AssemblyVersion("1.0.0.68")]
+[assembly: AssemblyVersion("1.0.0.69")]
 [assembly: NeutralResourcesLanguage("en-US")]
