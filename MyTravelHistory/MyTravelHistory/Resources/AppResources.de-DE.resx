@@ -378,4 +378,10 @@ Möchtest du MyTravelHistory jetzt kaufen?</value>
   <data name="NoExifDataMessageTitle" xml:space="preserve">
     <value>Keine Positionsdaten gefunden!</value>
   </data>
+  <data name="OutOfMemoryMessage" xml:space="preserve">
+    <value>Es war leider nicht genug Arbeitsspeicher verfügbar um die Aktion abzuschliessen. Starte das App neu und versuche es dann nochmals.</value>
+  </data>
+  <data name="OutOfMemoryTitle" xml:space="preserve">
+    <value>Zuwenig Speicher</value>
+  </data>
 </root>

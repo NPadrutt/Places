@@ -386,4 +386,10 @@ Do you wanna purchase MyTravelHistory?</value>
   <data name="NoExifDataMessageTitle" xml:space="preserve">
     <value>No position data!</value>
   </data>
+  <data name="OutOfMemoryMessage" xml:space="preserve">
+    <value>Sorry, there wasn't enough memory to complete this task. Please restart the app and try it again.</value>
+  </data>
+  <data name="OutOfMemoryTitle" xml:space="preserve">
+    <value>Out of memory</value>
+  </data>
 </root>

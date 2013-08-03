@@ -529,6 +529,24 @@ namespace MyTravelHistory.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sorry, there wasn&apos;t enough memory to complete this task. Please restart the app and try it again..
+        /// </summary>
+        public static string OutOfMemoryMessage {
+            get {
+                return ResourceManager.GetString("OutOfMemoryMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Out of memory.
+        /// </summary>
+        public static string OutOfMemoryTitle {
+            get {
+                return ResourceManager.GetString("OutOfMemoryTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to If you continue the existing backup on skydrive will be overwritten.
         ///Do you wanna proceed?.
         /// </summary>

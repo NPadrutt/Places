@@ -90,7 +90,7 @@ namespace MyTravelHistory
                 PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Disabled;
             }
 			//Creates an instance of the Diagnostics component.
-            diagnostics = new RadDiagnostics {EmailTo = "nino.padrutt@hotmail.com"};
+            diagnostics = new RadDiagnostics {EmailTo = "support@apply-solutions.ch"};
 
             //Defines the default email where the diagnostics info will be send.
 

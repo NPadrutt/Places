@@ -110,11 +110,6 @@ namespace MyTravelHistory.Views
             ImageViewer.IsOpen = true;
         }
 
-        private void locationImage_Loaded(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
         private void LocationImageLarge_Loaded(object sender, RoutedEventArgs e)
         {
             if (App.ViewModel.SelectedLocation.ImageName != null)

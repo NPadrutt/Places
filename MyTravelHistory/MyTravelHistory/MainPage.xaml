@@ -182,9 +182,9 @@
 			<TextBlock x:Name="ApplicationTitle" Text="{Binding LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}"/>
 			<TextBlock x:Name="PageTitle" Text="{Binding LocalizedResources.LocationsTitle, Source={StaticResource LocalizedStrings}}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
 		</StackPanel>
-		<StackPanel x:Name="ContentPanel" Margin="12,116,12,-25">
+		<StackPanel x:Name="ContentPanel" Margin="12,116,12,0" MinWidth="450">
             <telerikInput:RadListPicker x:Name="listpickerFilter" SelectionMode="Multiple"  DisplayMemberPath="TagName" CancelButtonIconUri="/Toolkit.Content/ApplicationBar.Cancel.png" OkButtonIconUri="/Toolkit.Content/ApplicationBar.Check.png" Margin="0" NoSelectionContent="All" Style="{StaticResource RadListPickerFilterStyle}" SelectionChanged="listpickerFilter_SelectionChanged" ActionButtonVisibility="Visible" />
-			<UserControls:LocationList x:Name="LocationList" />
+			<UserControls:LocationList x:Name="LocationList" MinHeight="450" Height="523" />
 		</StackPanel>
 	</Grid>
 

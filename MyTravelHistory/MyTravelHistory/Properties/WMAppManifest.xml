@@ -7,7 +7,7 @@
     <Language code="de-CH" />
     <Language code="de" />
   </Languages>
-  <App xmlns="" ProductID="{a7763de2-9ed6-48d8-b69f-3776c850984d}" Title="My Travel History" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="MyTravelHistory author" Description="Rember the favorite spots of every journey." Publisher="MyTravelHistory" PublisherID="{b7277ef5-4402-48c2-9707-bbf106cd8e80}">
+  <App xmlns="" ProductID="{a7763de2-9ed6-48d8-b69f-3776c850984d}" Title="My Travel History" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="Apply Solutions" Description="Rember the favorite spots of every journey." Publisher="MyTravelHistory" PublisherID="{b7277ef5-4402-48c2-9707-bbf106cd8e80}">
     <IconPath IsRelative="true" IsResource="false">Assets\ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING" />

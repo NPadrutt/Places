@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using GestureEventArgs = System.Windows.Input.GestureEventArgs;
 using ExifLib;
 using System.Threading.Tasks;
+using FlurryWP8SDK;
 
 namespace MyTravelHistory.Views
 {
@@ -120,16 +121,24 @@ namespace MyTravelHistory.Views
 
         private void SaveImage(PhotoResult e)
         {
-            BitmapImage bmp = new BitmapImage();
-            bmp.SetSource(e.ChosenPhoto);
-            LocationImage.Source = bmp;
+            try
+            {
+                BitmapImage bmp = new BitmapImage();
+                bmp.SetSource(e.ChosenPhoto);
+                LocationImage.Source = bmp;
 
-            lblAddImage.Visibility = Visibility.Collapsed;
-            gridImage.Height = LocationImage.Height;
-            gridImage.Width = LocationImage.Width;
+                lblAddImage.Visibility = Visibility.Collapsed;
+                gridImage.Height = LocationImage.Height;
+                gridImage.Width = LocationImage.Width;
 
-            imageUri = e.OriginalFileName;
-            imageName = Utilities.GetImageName(e.ChosenPhoto);
+                imageUri = e.OriginalFileName;
+                imageName = Utilities.GetImageName(e.ChosenPhoto);
+            }
+            catch (OutOfMemoryException ex)
+            {
+                Api.LogError(ex.Message, ex.InnerException);
+                MessageBox.Show(AppResources.OutOfMemoryMessage, AppResources.OutOfMemoryTitle, MessageBoxButton.OK);
+            }
         }
 
         private async void GetPosition()
