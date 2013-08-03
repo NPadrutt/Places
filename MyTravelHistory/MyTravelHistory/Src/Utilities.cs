@@ -15,6 +15,8 @@ using Telerik.Windows.Controls;
 using System.IO.IsolatedStorage;
 using Microsoft.Xna.Framework.Media;
 using ExifLib;
+using System.Windows;
+using MyTravelHistory.Resources;
 
 namespace MyTravelHistory.Src
 {
@@ -132,35 +134,50 @@ namespace MyTravelHistory.Src
             var library = new MediaLibrary();
             var position = new Position();
 
-            foreach (var picture in library.Pictures)
+            try
             {
-                if (picture.GetImage().Length == imageStream.Length)
+                foreach (var picture in library.Pictures)
                 {
-                    ExifReader reader = new ExifReader(picture.GetImage());
-                    double[] tmplat, tmplong;
-
-                    if (reader.GetTagValue<double[]>(ExifTags.GPSLatitude, out tmplat) &&
-                        reader.GetTagValue<double[]>(ExifTags.GPSLongitude, out tmplong))
+                    if (picture.GetImage().Length == imageStream.Length)
                     {
-                        position.Longitude = tmplong[0] + tmplong[1] / 60 +
-                            tmplong[2] / (60 * 60);
-                        position.Latitude = tmplat[0] + tmplat[1] / 60 +
-                            tmplat[2] / (60 * 60);
+                        ExifReader reader = new ExifReader(picture.GetImage());
+                        double[] tmplat, tmplong;
 
-                        string tmp;
-                        if ((reader.GetTagValue<string>(ExifTags.GPSLongitudeRef, out tmp) &&
-                            tmp == "W"))
+                        if (reader.GetTagValue<double[]>(ExifTags.GPSLatitude, out tmplat) &&
+                            reader.GetTagValue<double[]>(ExifTags.GPSLongitude, out tmplong))
                         {
-                            position.Longitude *= -1;
-                        }
+                            position.Longitude = tmplong[0] + tmplong[1] / 60 +
+                                tmplong[2] / (60 * 60);
+                            position.Latitude = tmplat[0] + tmplat[1] / 60 +
+                                tmplat[2] / (60 * 60);
 
-                        if ((reader.GetTagValue<string>(ExifTags.GPSLatitudeRef, out tmp) &&
-                            tmp == "S"))
-                        {
-                            position.Latitude *= -1;
+                            string tmp;
+                            if ((reader.GetTagValue<string>(ExifTags.GPSLongitudeRef, out tmp) &&
+                                tmp == "W"))
+                            {
+                                position.Longitude *= -1;
+                            }
+
+                            if ((reader.GetTagValue<string>(ExifTags.GPSLatitudeRef, out tmp) &&
+                                tmp == "S"))
+                            {
+                                position.Latitude *= -1;
+                            }
                         }
                     }
                 }
+            }
+            catch (ExifLibException ex)
+            {
+                if (ex.Message.Contains("Could not find Exif data block"))
+                {
+                    MessageBox.Show(AppResources.NoExifDataMessage, AppResources.NoExifDataMessageTitle, MessageBoxButton.OK);
+                }
+            }
+            catch (Exception ex)
+            {
+                Api.LogError(ex.Message, ex.InnerException);
+                MessageBox.Show(AppResources.GeneralErrorMessage, AppResources.GeneralErrorMessageTitle, MessageBoxButton.OK);
             }
 
             return position;

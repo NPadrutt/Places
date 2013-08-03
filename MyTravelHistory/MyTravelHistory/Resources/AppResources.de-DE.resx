@@ -366,4 +366,16 @@ Möchtest du MyTravelHistory jetzt kaufen?</value>
   <data name="TrialReminderTitle" xml:space="preserve">
     <value>MyTravelHistory kaufen?</value>
   </data>
+  <data name="ImagepositionDeactivatedMessage" xml:space="preserve">
+    <value>Für das ausgewählte Bild wurden keine Bilddaten gefunden. Stelle bitte sicher das du die Ortung in den Kameraeinstellungen aktiviert hast.</value>
+  </data>
+  <data name="ImagepositionDeactivatedTitle" xml:space="preserve">
+    <value>Bildposition deaktiviert!</value>
+  </data>
+  <data name="NoExifDataMessage" xml:space="preserve">
+    <value>Wir konnten leider keine Positionsdaten in dem ausgewählten Bild finden.</value>
+  </data>
+  <data name="NoExifDataMessageTitle" xml:space="preserve">
+    <value>Keine Positionsdaten gefunden!</value>
+  </data>
 </root>

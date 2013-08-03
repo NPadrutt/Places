@@ -385,6 +385,24 @@ namespace MyTravelHistory.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to For the selected picture was no location data found. Please make sure that you&apos;ve activated the setting in the camera options..
+        /// </summary>
+        public static string ImagepositionDeactivatedMessage {
+            get {
+                return ResourceManager.GetString("ImagepositionDeactivatedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Imageposition deactivated!.
+        /// </summary>
+        public static string ImagepositionDeactivatedTitle {
+            get {
+                return ResourceManager.GetString("ImagepositionDeactivatedTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to import image.
         /// </summary>
         public static string ImportImageLabel {
@@ -462,6 +480,24 @@ namespace MyTravelHistory.Resources {
         public static string NavigateLabel {
             get {
                 return ResourceManager.GetString("NavigateLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sorry but we couldn&apos;t find any position data in this picture..
+        /// </summary>
+        public static string NoExifDataMessage {
+            get {
+                return ResourceManager.GetString("NoExifDataMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No position data!.
+        /// </summary>
+        public static string NoExifDataMessageTitle {
+            get {
+                return ResourceManager.GetString("NoExifDataMessageTitle", resourceCulture);
             }
         }
         

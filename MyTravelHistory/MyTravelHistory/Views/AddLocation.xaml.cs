@@ -108,6 +108,10 @@ namespace MyTravelHistory.Views
                 App.ViewModel.SelectedLocation.Latitude = App.ViewModel.CurrentPosition.Latitude;
                 App.ViewModel.SelectedLocation.Longitude = App.ViewModel.CurrentPosition.Longitude;
                 stackpanelPosition.DataContext = App.ViewModel.SelectedLocation;
+                if (App.ViewModel.SelectedLocation.Latitude == 0 && App.ViewModel.SelectedLocation.Longitude == 0)
+                {
+                    MessageBox.Show(AppResources.NoPositionMessage, AppResources.NoPositionMessageTitle, MessageBoxButton.OK);
+                }
                 GetAddress();
 
                 SaveImage(e);

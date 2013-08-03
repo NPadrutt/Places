@@ -374,4 +374,16 @@ Do you wanna purchase MyTravelHistory?</value>
   <data name="TrialReminderTitle" xml:space="preserve">
     <value>Purchase MyTravelHistory?</value>
   </data>
+  <data name="ImagepositionDeactivatedMessage" xml:space="preserve">
+    <value>For the selected picture was no location data found. Please make sure that you've activated the setting in the camera options.</value>
+  </data>
+  <data name="ImagepositionDeactivatedTitle" xml:space="preserve">
+    <value>Imageposition deactivated!</value>
+  </data>
+  <data name="NoExifDataMessage" xml:space="preserve">
+    <value>Sorry but we couldn't find any position data in this picture.</value>
+  </data>
+  <data name="NoExifDataMessageTitle" xml:space="preserve">
+    <value>No position data!</value>
+  </data>
 </root>
