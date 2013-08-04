@@ -105,17 +105,22 @@ namespace MyTravelHistory.Views
         {
             if (e.TaskResult == TaskResult.OK)
             {
-                App.ViewModel.CurrentPosition = Utilities.GetPositionFromImage(e.ChosenPhoto);
-                App.ViewModel.SelectedLocation.Latitude = App.ViewModel.CurrentPosition.Latitude;
-                App.ViewModel.SelectedLocation.Longitude = App.ViewModel.CurrentPosition.Longitude;
+                var position = Utilities.GetPositionFromImage(e.ChosenPhoto);
+                App.ViewModel.SelectedLocation.Latitude = position.Latitude;
+                App.ViewModel.SelectedLocation.Longitude = position.Longitude;
                 stackpanelPosition.DataContext = App.ViewModel.SelectedLocation;
+                SaveImage(e);
+
                 if (App.ViewModel.SelectedLocation.Latitude == 0 && App.ViewModel.SelectedLocation.Longitude == 0)
                 {
                     MessageBox.Show(AppResources.NoPositionMessage, AppResources.NoPositionMessageTitle, MessageBoxButton.OK);
+                    return;
                 }
                 GetAddress();
+                MiniMap.ShowOnMap(App.ViewModel.SelectedLocation.Latitude, App.ViewModel.SelectedLocation.Longitude);
 
-                SaveImage(e);
+                progressionbarGetLocation.IsIndeterminate = false;
+                progressionbarGetLocation.Visibility = Visibility.Collapsed;
             }
         }
 

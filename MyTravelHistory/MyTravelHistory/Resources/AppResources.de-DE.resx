@@ -384,4 +384,7 @@ Möchtest du MyTravelHistory jetzt kaufen?</value>
   <data name="OutOfMemoryTitle" xml:space="preserve">
     <value>Zuwenig Speicher</value>
   </data>
+  <data name="RefreshCurrentPositionLabel" xml:space="preserve">
+    <value>Aktualisiere deine Position</value>
+  </data>
 </root>

@@ -23,6 +23,9 @@
 	</phone:PhoneApplicationPage.Foreground>
 	<phone:PhoneApplicationPage.ApplicationBar>
 		<shell:ApplicationBar>
+			<shell:ApplicationBar.MenuItems>
+				<shell:ApplicationBarMenuItem x:Name="menuRefreshPosition" Text="menu item" Click="menuRefreshPosition_Click"/>
+			</shell:ApplicationBar.MenuItems>
 			<shell:ApplicationBarIconButton x:Name="btnNavigation" IconUri="/Assets/Navigation.png" Text="Navigation" Click="btnNavigation_Click"/>
 		</shell:ApplicationBar>
 	</phone:PhoneApplicationPage.ApplicationBar>

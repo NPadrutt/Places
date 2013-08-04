@@ -119,7 +119,7 @@ namespace MyTravelHistory.ViewModels
             var locationItemsInDb = from location in db.Locations
                                     join LocationAddress adr in db.LocationAddresses
                                         on new { location.LocationAddress.Id } equals new { adr.Id }
-                                    orderby location.Name
+                                    orderby location.LocationAddress.City
                                     select location;
 
             AllLocations = new ObservableCollection<Location>(locationItemsInDb);

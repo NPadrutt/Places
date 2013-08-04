@@ -633,6 +633,15 @@ namespace MyTravelHistory.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to refresh current position.
+        /// </summary>
+        public static string RefreshCurrentPositionLabel {
+            get {
+                return ResourceManager.GetString("RefreshCurrentPositionLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Message of the developer:.
         /// </summary>
         public static string ReleaseMessageLabel {

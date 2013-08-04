@@ -36,6 +36,8 @@ namespace MyTravelHistory.Views
             InitializeComponent();
 
             ((ApplicationBarIconButton)this.ApplicationBar.Buttons[0]).Text = AppResources.NavigateLabel;
+
+            ((ApplicationBarMenuItem)this.ApplicationBar.MenuItems[0]).Text = AppResources.RefreshCurrentPositionLabel;
         }
 
         private void Map_Loaded(object sender, RoutedEventArgs e)
@@ -45,7 +47,7 @@ namespace MyTravelHistory.Views
 
             PinMap(new GeoCoordinate(App.ViewModel.SelectedLocation.Latitude, App.ViewModel.SelectedLocation.Longitude), App.ViewModel.SelectedLocation.Name);
 
-            FetchCurrentPosition();
+            GetCurrentPosition(false);
         }
 
         private void PinCurrentPosition()
@@ -83,17 +85,24 @@ namespace MyTravelHistory.Views
             bingMapsDirectionsTask.Show();
         }
 
-        private async Task FetchCurrentPosition()
+        private void menuRefreshPosition_Click(object sender, System.EventArgs e)
         {
-            if (App.ViewModel.CurrentPosition == null || App.ViewModel.CurrentPosition.Timestamp >= DateTime.Now.AddMinutes(1))
+            GetCurrentPosition(true);
+        }
+
+        private async Task GetCurrentPosition(bool refetch)
+        {
+            if (App.ViewModel.CurrentPosition == null || App.ViewModel.CurrentPosition.Timestamp >= DateTime.Now.AddMinutes(1) || refetch)
             {
                 progressionbarGetLocation.IsEnabled = true;
+                progressionbarGetLocation.Visibility = Visibility.Visible;
                 lblStatus.Visibility = Visibility.Visible;
 
                 await Utilities.GetPosition();
             }
             PinCurrentPosition();
             progressionbarGetLocation.IsEnabled = false;
+            progressionbarGetLocation.Visibility = Visibility.Collapsed;
             lblStatus.Visibility = Visibility.Collapsed;
         }
     }
