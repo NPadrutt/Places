@@ -190,11 +190,7 @@ namespace MyTravelHistory.Views
 
         private async Task GetAddress()
         {
-            if (sharePicture)
-            {
-            }
-
-            await Utilities.GetAddress(App.ViewModel.CurrentPosition.Latitude, App.ViewModel.CurrentPosition.Longitude);
+            await Utilities.GetAddress(App.ViewModel.SelectedLocation.Latitude, App.ViewModel.SelectedLocation.Longitude);
             if (App.ViewModel.CurrentAddress != null)
             {
                 App.ViewModel.SelectedLocation.LocationAddress = App.ViewModel.CurrentAddress;
