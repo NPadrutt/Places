@@ -110,14 +110,6 @@ namespace MyTravelHistory.Views
             ImageViewer.IsOpen = true;
         }
 
-        private void LocationImageLarge_Loaded(object sender, RoutedEventArgs e)
-        {
-            if (App.ViewModel.SelectedLocation.ImageName != null)
-            {
-                locationImageLarge.Source = App.ViewModel.SelectedLocation.LocationImage;
-            }
-        }
-
         private void mDelete_Click(object sender, EventArgs e)
         {
             var result = MessageBox.Show(AppResources.DeleteMessageLocation, AppResources.DeleteMessageTitle, MessageBoxButton.OKCancel);
@@ -150,6 +142,19 @@ namespace MyTravelHistory.Views
         private void MiniMap_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
         	NavigationService.Navigate(new Uri("/Views/MapView.xaml", UriKind.Relative));
+        }
+
+        private void ImageViewer_WindowOpening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (App.ViewModel.SelectedLocation.ImageName != null)
+            {
+                locationImageLarge.Source = App.ViewModel.SelectedLocation.LocationImage;
+            }
+        }
+
+        private void ImageViewer_WindowClosing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            locationImageLarge.Source = null;
         }
     }
 }

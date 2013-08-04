@@ -123,16 +123,13 @@ namespace MyTravelHistory.Views
         {
             try
             {
-                BitmapImage bmp = new BitmapImage();
-                bmp.SetSource(e.ChosenPhoto);
-                LocationImage.Source = bmp;
+                imageUri = e.OriginalFileName;
+                imageName = Utilities.GetImageName(e.ChosenPhoto);
 
+                LocationImage.Source = Utilities.GetThumbnail(imageName);
                 lblAddImage.Visibility = Visibility.Collapsed;
                 gridImage.Height = LocationImage.Height;
                 gridImage.Width = LocationImage.Width;
-
-                imageUri = e.OriginalFileName;
-                imageName = Utilities.GetImageName(e.ChosenPhoto);
             }
             catch (OutOfMemoryException ex)
             {
@@ -229,6 +226,7 @@ namespace MyTravelHistory.Views
                 if (imageName != null)
                 {
                     App.ViewModel.SelectedLocation.ImageName = imageName;
+                    App.ViewModel.SelectedLocation.Thumbnail = Utilities.GetThumbnail(imageName);
                 }
                 if (imageUri != null)
                 {

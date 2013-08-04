@@ -39,8 +39,8 @@
 		</StackPanel>
 		<ScrollViewer Grid.Row="1" Margin="12,0,12,0" >
 			<StackPanel x:Name="ContentPanel" d:DataContext="{Binding AllLocations[0]}">
-				<telerikPrimitives:RadWindow x:Name="ImageViewer" IsFullScreen="true" IsClosedOnOutsideTap="True" MaxWidth="171" MaxHeight="171">
-					<telerikSlideView:PanAndZoomImage x:Name="locationImageLarge" Loaded="LocationImageLarge_Loaded" Stretch="Uniform" MaximumZoom="8" ZoomMode="Free" ImageHorizontalAlignment="Stretch" ImageVerticalAlignment="Stretch" />
+				<telerikPrimitives:RadWindow x:Name="ImageViewer" IsFullScreen="true" IsClosedOnOutsideTap="True" MaxWidth="171" MaxHeight="171" WindowOpening="ImageViewer_WindowOpening" WindowClosing="ImageViewer_WindowClosing">
+					<telerikSlideView:PanAndZoomImage x:Name="locationImageLarge" Stretch="Uniform" MaximumZoom="8" ZoomMode="Free" ImageHorizontalAlignment="Stretch" ImageVerticalAlignment="Stretch" />
 				</telerikPrimitives:RadWindow>
 				<Image x:Name="LocationImage" HorizontalAlignment="Left" VerticalAlignment="Center" Tap="locationImage_Tap" Margin="12,0,0,12" MaxWidth="171" MaxHeight="171"/>
 				<TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Text="{Binding LocalizedResources.LocationLabel, Source={StaticResource LocalizedStrings}}" Margin="12,0,0,0" Style="{StaticResource PhoneTextLargeStyle}"/>

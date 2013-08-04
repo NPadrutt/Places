@@ -72,9 +72,19 @@ namespace MyTravelHistory.Models
             get { return Utilities.LoadLocationImage(_imageName); }
         }
 
+        private BitmapImage _thumbnail;
         public BitmapImage Thumbnail
         {
-            get { return Utilities.GetThumbnail(_imageName); }
+            get { return _thumbnail; }
+            set
+            {
+                if (_thumbnail != value)
+                {
+                    NotifyPropertyChanging("Thumbnail");
+                    _thumbnail = value;
+                    NotifyPropertyChanged("Thumbnail");
+                }
+            }
         }
 
         private string _name;

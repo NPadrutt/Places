@@ -123,6 +123,14 @@ namespace MyTravelHistory.ViewModels
                                     select location;
 
             AllLocations = new ObservableCollection<Location>(locationItemsInDb);
+
+            foreach (var location in AllLocations)
+            {
+                if (!string.IsNullOrEmpty(location.ImageName))
+                {
+                    location.Thumbnail = Utilities.GetThumbnail(location.ImageName);
+                }
+            }
         }
 
         #endregion
