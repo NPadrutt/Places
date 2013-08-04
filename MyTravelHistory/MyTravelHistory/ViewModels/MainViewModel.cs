@@ -87,17 +87,6 @@ namespace MyTravelHistory.ViewModels
             }
         }
 
-        private ObservableCollection<Location> _selectedLocations;
-        public ObservableCollection<Location> SelectedLocations
-        {
-            get { return _selectedLocations; }
-            set
-            {
-                _selectedLocations = value;
-                NotifyPropertyChanged("SelectedLocations");
-            }
-        }
-
         private ObservableCollection<Location> _allLocations;
         public ObservableCollection<Location> AllLocations
         {
@@ -134,7 +123,6 @@ namespace MyTravelHistory.ViewModels
                                     select location;
 
             AllLocations = new ObservableCollection<Location>(locationItemsInDb);
-            SelectedLocations = AllLocations;
         }
 
         #endregion

@@ -38,39 +38,12 @@ namespace MyTravelHistory.Views
             ((ApplicationBarIconButton)this.ApplicationBar.Buttons[0]).Text = AppResources.NavigateLabel;
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            base.OnNavigatedTo(e);
-
-            if (NavigationContext.QueryString == null || NavigationContext.QueryString.Count <= 0) return;
-            if (Convert.ToBoolean(NavigationContext.QueryString["MultipleLocations"]))
-            {
-                MultipleLocations = true;
-                ApplicationBar.IsVisible = false;
-            }
-            else
-            {
-                MultipleLocations = false;
-                ApplicationBar.IsVisible = false;
-            }
-        }
-
         private void Map_Loaded(object sender, RoutedEventArgs e)
         {
             MapsSettings.ApplicationContext.ApplicationId = "69550432-a2f9-490f-a782-d4c91775382e";
             MapsSettings.ApplicationContext.AuthenticationToken = "5-Sp7gaotYB4nRJsslF5JQ";
 
-            if (MultipleLocations)
-            {
-                foreach (var location in App.ViewModel.SelectedLocations)
-                {
-                    PinMap(new GeoCoordinate(location.Latitude, location.Longitude), location.Name);
-                }
-            }
-            else
-            {
-                PinMap(new GeoCoordinate(App.ViewModel.SelectedLocation.Latitude, App.ViewModel.SelectedLocation.Longitude), App.ViewModel.SelectedLocation.Name);
-            }
+            PinMap(new GeoCoordinate(App.ViewModel.SelectedLocation.Latitude, App.ViewModel.SelectedLocation.Longitude), App.ViewModel.SelectedLocation.Name);
 
             FetchCurrentPosition();
         }

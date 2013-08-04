@@ -53,7 +53,7 @@ namespace MyTravelHistory.Views
 
             if (App.ViewModel.SelectedLocation.ImageName != null)
             {
-                LocationImage.Source = Utilities.LoadLocationImage();
+                LocationImage.Source = App.ViewModel.SelectedLocation.Thumbnail;
             }
             
             MiniMap.ShowOnMap(App.ViewModel.SelectedLocation.Latitude, App.ViewModel.SelectedLocation.Longitude);
