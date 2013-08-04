@@ -114,7 +114,7 @@ namespace MyTravelHistory.Views
         {
             if (App.ViewModel.SelectedLocation.ImageName != null)
             {
-                locationImageLarge.Source = LocationImage.Source;
+                locationImageLarge.Source = App.ViewModel.SelectedLocation.LocationImage;
             }
         }
 
@@ -134,7 +134,7 @@ namespace MyTravelHistory.Views
         {
             if (App.ViewModel.SelectedLocation.ImageName != null)
             {
-                locationImageLarge.Source = LocationImage.Source;
+                locationImageLarge.Source = App.ViewModel.SelectedLocation.LocationImage;
             }
 
             var tileData = new RadExtendedTileData()
