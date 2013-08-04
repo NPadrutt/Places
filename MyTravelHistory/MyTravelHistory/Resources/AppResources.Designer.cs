@@ -520,7 +520,7 @@ namespace MyTravelHistory.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to We still trying to fetch get your current position. Please wait a second before you save your entry..
+        ///   Looks up a localized string similar to We still trying to fetch get your current position. Please wait a second and try it again..
         /// </summary>
         public static string NoPositionMessage {
             get {
@@ -765,6 +765,15 @@ namespace MyTravelHistory.Resources {
         public static string SupportAddressMail {
             get {
                 return ResourceManager.GetString("SupportAddressMail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to swap position.
+        /// </summary>
+        public static string SwapPositionLabel {
+            get {
+                return ResourceManager.GetString("SwapPositionLabel", resourceCulture);
             }
         }
         

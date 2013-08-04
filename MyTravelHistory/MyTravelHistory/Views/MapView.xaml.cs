@@ -23,15 +23,17 @@ namespace MyTravelHistory.Views
     public partial class MapView : PhoneApplicationPage
     {
         readonly List<GeoCoordinate> MyCoordinates = new List<GeoCoordinate>();
+        private GeoCoordinate SelectedCoordinate;
 
-        private UserLocationMarker marker;
-        private MapOverlay mapOverlay;
+        private UserLocationMarker Marker;
+        private MapOverlay MapOverlay;
 
         public MapView()
         {
             InitializeComponent();
 
             ((ApplicationBarIconButton)this.ApplicationBar.Buttons[0]).Text = AppResources.NavigateLabel;
+            ((ApplicationBarIconButton)this.ApplicationBar.Buttons[1]).Text = AppResources.SwapPositionLabel;
 
             ((ApplicationBarMenuItem)this.ApplicationBar.MenuItems[0]).Text = AppResources.RefreshCurrentPositionLabel;
             ((ApplicationBarMenuItem)this.ApplicationBar.MenuItems[1]).Text = AppResources.DownloadMapsLabel;
@@ -51,10 +53,10 @@ namespace MyTravelHistory.Views
         {
             var currentPosition = new GeoCoordinate(App.ViewModel.CurrentPosition.Latitude, App.ViewModel.CurrentPosition.Longitude);
             
-            marker = new UserLocationMarker(){ GeoCoordinate = currentPosition };
-            mapOverlay = new MapOverlay() {Content = marker, GeoCoordinate = currentPosition};
+            Marker = new UserLocationMarker(){ GeoCoordinate = currentPosition };
+            MapOverlay = new MapOverlay() {Content = Marker, GeoCoordinate = currentPosition};
 
-            var mapLayer = new MapLayer { mapOverlay };
+            var mapLayer = new MapLayer { MapOverlay };
             MyMap.Layers.Add(mapLayer);
         }
 
@@ -71,6 +73,8 @@ namespace MyTravelHistory.Views
 
             var mapLayer = new MapLayer { mapOverlayPin };
             MyMap.Layers.Add(mapLayer);
+
+            SelectedCoordinate = geoPosition;
         }
 
         private async void btnNavigation_Click(object sender, EventArgs e)
@@ -107,6 +111,28 @@ namespace MyTravelHistory.Views
         {
             MapDownloaderTask mapDownloaderTask = new MapDownloaderTask();
             mapDownloaderTask.Show();
+        }
+
+        private void btnSwapPosition_Click(object sender, System.EventArgs e)
+        {
+            if (App.ViewModel.CurrentPosition == null)
+            {
+                MessageBox.Show(AppResources.NoPositionMessage, AppResources.NoPositionMessageTitle, MessageBoxButton.OK);
+                return;
+            }
+
+            var currentCoordinate = new GeoCoordinate(App.ViewModel.CurrentPosition.Latitude, App.ViewModel.CurrentPosition.Longitude);
+
+            if (SelectedCoordinate == currentCoordinate)
+            {
+                SelectedCoordinate = new GeoCoordinate(App.ViewModel.SelectedLocation.Latitude, App.ViewModel.SelectedLocation.Longitude);
+            }
+            else
+            {
+                SelectedCoordinate = currentCoordinate;
+            }
+
+            MyMap.SetView(SelectedCoordinate, 16, MapAnimationKind.Parabolic);
         }
     }
 }

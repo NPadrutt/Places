@@ -253,7 +253,7 @@
     <value>Ort</value>
   </data>
   <data name="NoPositionMessage" xml:space="preserve">
-    <value>Wir sind noch am deine Position ermitteln. Bitte warte einen Moment bevor du deinen Eintrag speicherst.</value>
+    <value>Wir sind noch am deine Position ermitteln. Bitte warte einen Moment und versuche es dann erneut.</value>
   </data>
   <data name="NoPositionMessageTitle" xml:space="preserve">
     <value>Unbekannte Positition!</value>
@@ -389,5 +389,8 @@ Möchtest du MyTravelHistory jetzt kaufen?</value>
   </data>
   <data name="RefreshCurrentPositionLabel" xml:space="preserve">
     <value>Aktualisiere deine Position</value>
+  </data>
+  <data name="SwapPositionLabel" xml:space="preserve">
+    <value>Tausche Position</value>
   </data>
 </root>

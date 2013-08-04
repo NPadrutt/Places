@@ -27,6 +27,7 @@
 				<shell:ApplicationBarMenuItem x:Name="menuRefreshPosition" Text="refresh position" Click="menuRefreshPosition_Click"/>
 				<shell:ApplicationBarMenuItem x:Name="menuDownloadMaps" Text="Download Maps" Click="menuDownloadMaps_Click"/>
 			</shell:ApplicationBar.MenuItems>
+			<shell:ApplicationBarIconButton x:Name="btnSwapPosition" IconUri="/Assets/swapPosition.png" Text="swap Position" Click="btnSwapPosition_Click"/>
 			<shell:ApplicationBarIconButton x:Name="btnNavigation" IconUri="/Assets/Navigation.png" Text="Navigation" Click="btnNavigation_Click"/>
 		</shell:ApplicationBar>
 	</phone:PhoneApplicationPage.ApplicationBar>
