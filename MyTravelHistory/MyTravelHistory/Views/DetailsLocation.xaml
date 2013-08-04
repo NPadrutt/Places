@@ -50,7 +50,7 @@
 					<TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Text="/" Style="{StaticResource PhoneTextAccentStyle}"/>
 					<TextBlock Text="{Binding Longitude}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextAccentStyle}" Margin="0,0,12,0"/>
 				</StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="12,0,0,0">
+                <StackPanel Orientation="Horizontal" Margin="12,0,0,12">
                     <TextBlock x:Name="lblAccuracyCaption" Text="{Binding LocalizedResources.AccuracyLabel, Source={StaticResource LocalizedStrings}}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Style="{StaticResource PhoneTextSubtleStyle}" Margin="0,0,2,0"/>
                     <TextBlock x:Name="lblAccuracy" Text="{Binding Accuracy}" HorizontalAlignment="Left" Style="{StaticResource PhoneTextSubtleStyle}" Margin="0" VerticalAlignment="Bottom"/>
                     <TextBlock x:Name="lblM" HorizontalAlignment="Left" Style="{StaticResource PhoneTextSmallStyle}" Margin="2,0,0,0" Text="m" VerticalAlignment="Bottom"/>
