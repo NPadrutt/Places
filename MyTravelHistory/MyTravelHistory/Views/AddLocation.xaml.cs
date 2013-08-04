@@ -14,12 +14,15 @@ using GestureEventArgs = System.Windows.Input.GestureEventArgs;
 using ExifLib;
 using System.Threading.Tasks;
 using FlurryWP8SDK;
+using System.IO;
+using Microsoft.Xna.Framework.Media.PhoneExtensions;
 
 namespace MyTravelHistory.Views
 {
     public partial class AddLocation 
     {
         private bool newElement;
+        private bool sharePicture;
         private string imageUri;
         private string imageName;
 
@@ -41,13 +44,25 @@ namespace MyTravelHistory.Views
         {
             base.OnNavigatedTo(e);
 
+            IDictionary<string, string> queryStrings = this.NavigationContext.QueryString;
+
             if (e.NavigationMode == NavigationMode.Back) return;
             if (App.ViewModel.SelectedLocation == null)
             {
                 App.ViewModel.SelectedLocation = new Location();
                 PageTitle.Text = AppResources.AddTitle;
-                GetPosition();
                 newElement = true;
+
+                if (queryStrings.ContainsKey("FileId"))
+                {
+                    sharePicture = true;
+                    var picture = Utilities.GetLocationImageByToken(queryStrings["FileId"]);
+                    ImportPicture(picture.GetImage(), MediaLibraryExtensions.GetPath(picture));
+                }
+                else
+                {
+                    GetPosition();
+                }
             }
             else
             {
@@ -97,7 +112,7 @@ namespace MyTravelHistory.Views
             if (e.TaskResult == TaskResult.OK)
             {
 
-                SaveImage(e);
+                SaveImage(e.ChosenPhoto, e.OriginalFileName);
             }
         }
 
@@ -105,31 +120,33 @@ namespace MyTravelHistory.Views
         {
             if (e.TaskResult == TaskResult.OK)
             {
-                var position = Utilities.GetPositionFromImage(e.ChosenPhoto);
-                App.ViewModel.SelectedLocation.Latitude = position.Latitude;
-                App.ViewModel.SelectedLocation.Longitude = position.Longitude;
-                stackpanelPosition.DataContext = App.ViewModel.SelectedLocation;
-                SaveImage(e);
-
-                if (App.ViewModel.SelectedLocation.Latitude == 0 && App.ViewModel.SelectedLocation.Longitude == 0)
-                {
-                    MessageBox.Show(AppResources.NoPositionMessage, AppResources.NoPositionMessageTitle, MessageBoxButton.OK);
-                    return;
-                }
-                GetAddress();
-                MiniMap.ShowOnMap(App.ViewModel.SelectedLocation.Latitude, App.ViewModel.SelectedLocation.Longitude);
-
-                progressionbarGetLocation.IsIndeterminate = false;
-                progressionbarGetLocation.Visibility = Visibility.Collapsed;
+                ImportPicture(e.ChosenPhoto, e.OriginalFileName);
             }
         }
 
-        private void SaveImage(PhotoResult e)
+        private void ImportPicture(Stream photoStream, string path)
+        {
+            var position = Utilities.GetPositionFromImage(photoStream);
+            App.ViewModel.SelectedLocation.Latitude = position.Latitude;
+            App.ViewModel.SelectedLocation.Longitude = position.Longitude;
+            stackpanelPosition.DataContext = App.ViewModel.SelectedLocation;
+            SaveImage(photoStream, path);
+
+            if (App.ViewModel.SelectedLocation.Latitude == 0 && App.ViewModel.SelectedLocation.Longitude == 0)
+            {
+                MessageBox.Show(AppResources.NoPositionMessage, AppResources.NoPositionMessageTitle, MessageBoxButton.OK);
+                //return;
+            }
+            GetAddress();
+            MiniMap.ShowOnMap(App.ViewModel.SelectedLocation.Latitude, App.ViewModel.SelectedLocation.Longitude);
+        }
+
+        private void SaveImage(Stream photoStream, string Path)
         {
             try
             {
-                imageUri = e.OriginalFileName;
-                imageName = Utilities.GetImageName(e.ChosenPhoto);
+                imageUri = Path;
+                imageName = Utilities.GetImageName(photoStream);
 
                 LocationImage.Source = Utilities.GetThumbnail(imageName);
                 lblAddImage.Visibility = Visibility.Collapsed;
@@ -173,6 +190,10 @@ namespace MyTravelHistory.Views
 
         private async Task GetAddress()
         {
+            if (sharePicture)
+            {
+            }
+
             await Utilities.GetAddress(App.ViewModel.CurrentPosition.Latitude, App.ViewModel.CurrentPosition.Longitude);
             if (App.ViewModel.CurrentAddress != null)
             {
@@ -188,12 +209,12 @@ namespace MyTravelHistory.Views
         {
             if (!newElement && App.ViewModel.SelectedLocation.ImageName != null)
             {
-                LocationImage.Source = Utilities.LoadLocationImage();
+                LocationImage.Source = Utilities.GetLocationImage();
                 lblAddImage.Visibility = Visibility.Collapsed;
                 gridImage.Height = LocationImage.Height;
                 gridImage.Width = LocationImage.Width;
             }
-            else
+            else if(!sharePicture)
             {
                 lblAddImage.Visibility = Visibility.Visible;
             }
@@ -257,7 +278,14 @@ namespace MyTravelHistory.Views
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            NavigationService.GoBack();
+            if (NavigationService.CanGoBack)
+            {
+                NavigationService.GoBack();
+            }
+            else
+            {
+                NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
+            }
         }
     }
 }

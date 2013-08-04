@@ -21,6 +21,7 @@ using MyTravelHistory.ViewModels;
 using Telerik.Windows.Controls.Reminders;
 using MyTravelHistory.Resources;
 using FlurryWP8SDK;
+using Src;
 
 namespace MyTravelHistory
 {
@@ -191,7 +192,6 @@ namespace MyTravelHistory
         private void Application_Deactivated(object sender, DeactivatedEventArgs e)
         {
 			// Ensure that required application state is persisted here.
-            Utilities.CreateTile();
         }
 
         // Code to execute when the application is closing (eg, user hit Back)
@@ -248,6 +248,10 @@ namespace MyTravelHistory
             // Handle navigation failures
             RootFrame.NavigationFailed += RootFrame_NavigationFailed;
             // Ensure we don't initialize again
+            phoneApplicationInitialized = true;
+
+            RootFrame.UriMapper = new CustomUriMapper();
+            
             phoneApplicationInitialized = true;
         }
 

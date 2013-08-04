@@ -97,6 +97,7 @@
     </Compile>
     <Compile Include="Models\SettingDataContext.cs" />
     <Compile Include="Models\TagDataContext.cs" />
+    <Compile Include="Src\CustomMapper.cs" />
     <Compile Include="Src\Enumerations.cs" />
     <Compile Include="Src\ExifReader.cs" />
     <Compile Include="Src\ExifTags.cs" />

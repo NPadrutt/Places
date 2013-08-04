@@ -102,7 +102,7 @@ namespace MyTravelHistory.Src
             App.ViewModel.CurrentAddress = locationAddress;
         }        
 
-        public static BitmapImage LoadLocationImage()
+        public static BitmapImage GetLocationImage()
         {
             return GetImage(App.ViewModel.SelectedLocation.ImageName);
         }
@@ -111,7 +111,15 @@ namespace MyTravelHistory.Src
         {
             if (string.IsNullOrEmpty(name)) return new BitmapImage();
             return GetImage(name);
-        }        
+        }
+
+        public static Picture GetLocationImageByToken(string Token)
+        {
+            MediaLibrary library = new MediaLibrary();
+            Picture photoFromLibrary = library.GetPictureFromToken(Token);
+
+            return photoFromLibrary;
+        }
 
         private static BitmapImage GetImage(string name)
         {
