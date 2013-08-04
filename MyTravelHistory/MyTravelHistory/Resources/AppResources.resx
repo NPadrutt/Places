@@ -392,6 +392,9 @@ Do you wanna purchase MyTravelHistory?</value>
   <data name="OutOfMemoryTitle" xml:space="preserve">
     <value>Out of memory</value>
   </data>
+  <data name="DownloadMapsLabel" xml:space="preserve">
+    <value>download maps</value>
+  </data>
   <data name="RefreshCurrentPositionLabel" xml:space="preserve">
     <value>refresh current position</value>
   </data>

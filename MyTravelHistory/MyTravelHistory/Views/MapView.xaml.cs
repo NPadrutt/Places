@@ -22,11 +22,7 @@ namespace MyTravelHistory.Views
 {
     public partial class MapView : PhoneApplicationPage
     {
-        private bool MultipleLocations;
-
         readonly List<GeoCoordinate> MyCoordinates = new List<GeoCoordinate>();
-        RouteQuery myQuery = null;
-        GeocodeQuery mygeocodequery = null;
 
         private UserLocationMarker marker;
         private MapOverlay mapOverlay;
@@ -38,6 +34,7 @@ namespace MyTravelHistory.Views
             ((ApplicationBarIconButton)this.ApplicationBar.Buttons[0]).Text = AppResources.NavigateLabel;
 
             ((ApplicationBarMenuItem)this.ApplicationBar.MenuItems[0]).Text = AppResources.RefreshCurrentPositionLabel;
+            ((ApplicationBarMenuItem)this.ApplicationBar.MenuItems[1]).Text = AppResources.DownloadMapsLabel;
         }
 
         private void Map_Loaded(object sender, RoutedEventArgs e)
@@ -104,6 +101,12 @@ namespace MyTravelHistory.Views
             progressionbarGetLocation.IsEnabled = false;
             progressionbarGetLocation.Visibility = Visibility.Collapsed;
             lblStatus.Visibility = Visibility.Collapsed;
+        }
+
+        private void menuDownloadMaps_Click(object sender, System.EventArgs e)
+        {
+            MapDownloaderTask mapDownloaderTask = new MapDownloaderTask();
+            mapDownloaderTask.Show();
         }
     }
 }

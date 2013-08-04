@@ -331,6 +331,15 @@ namespace MyTravelHistory.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to download maps.
+        /// </summary>
+        public static string DownloadMapsLabel {
+            get {
+                return ResourceManager.GetString("DownloadMapsLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to edit.
         /// </summary>
         public static string EditLabel {
