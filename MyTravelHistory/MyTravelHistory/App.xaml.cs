@@ -20,6 +20,7 @@ using MyTravelHistory.Src;
 using MyTravelHistory.ViewModels;
 using Telerik.Windows.Controls.Reminders;
 using MyTravelHistory.Resources;
+using FlurryWP8SDK;
 
 namespace MyTravelHistory
 {
@@ -213,6 +214,8 @@ namespace MyTravelHistory
         // Code to execute on Unhandled Exceptions
         private void Application_UnhandledException(object sender, ApplicationUnhandledExceptionEventArgs e)
         {
+            Api.LogError(e.ExceptionObject.Message, e.ExceptionObject.InnerException);
+
             if (Debugger.IsAttached)
             {
                 // An unhandled exception has occurred; break into the debugger
