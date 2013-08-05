@@ -42,11 +42,11 @@ namespace MyTravelHistory.Views
             ApplicationBar.Buttons.Add(btnMultipleSelect);
         }
 
-        private void btnAddTag_Click(object sender, System.EventArgs e)
+        private async void btnAddTag_Click(object sender, System.EventArgs e)
         {
             var tag = new Tag();
 
-            RadInputPrompt.Show(
+            InputPromptClosedEventArgs args = await RadInputPrompt.ShowAsync(
                AppResources.AddTag,
                MessageBoxButtons.OKCancel,
                AppResources.AddTagMessage,
@@ -56,8 +56,12 @@ namespace MyTravelHistory.Views
                     false,
                     false,
                     HorizontalAlignment.Stretch,
-                    VerticalAlignment.Top,
-                (args) => App.ViewModel.AddTag(new Tag() { TagName = args.Text }));
+                    VerticalAlignment.Top);
+
+            if (args.Result == DialogResult.OK)
+            {
+                App.ViewModel.AddTag(new Tag() { TagName = args.Text });
+            }                    
         }
 
         private void btnMultipleSelect_Click(object sender, System.EventArgs e)
@@ -92,11 +96,6 @@ namespace MyTravelHistory.Views
                 ApplicationBar.Buttons.Remove(btnDelete);
                 ApplicationBar.Buttons.Add(btnMultipleSelect);
             }
-        }
-
-        private void ListBoxTags_Loaded(object sender, System.Windows.RoutedEventArgs e)
-        {
-            //InitButtons();
         }
     }
 }

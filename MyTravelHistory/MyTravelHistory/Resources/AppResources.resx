@@ -281,8 +281,8 @@ Do you wanna proceed?</value>
   <data name="PintToStartLabel" xml:space="preserve">
     <value>pin to start</value>
   </data>
-  <data name="ShareLabel" xml:space="preserve">
-    <value>share</value>
+  <data name="ShareImageLabel" xml:space="preserve">
+    <value>share image</value>
   </data>
   <data name="TaskCancelledErrorMessage" xml:space="preserve">
     <value>The process to create the backup got cancelled. Please be sure that have a good internet connection and try it again.</value>

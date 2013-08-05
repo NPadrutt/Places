@@ -393,4 +393,7 @@ Möchtest du MyTravelHistory jetzt kaufen?</value>
   <data name="SwapPositionLabel" xml:space="preserve">
     <value>Tausche Position</value>
   </data>
+  <data name="ShareImageLabel" xml:space="preserve">
+    <value>Bild teilen</value>
+  </data>
 </root>

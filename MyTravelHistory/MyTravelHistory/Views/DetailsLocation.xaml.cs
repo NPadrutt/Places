@@ -21,6 +21,7 @@ namespace MyTravelHistory.Views
             InitializeComponent();
 
             ((ApplicationBarIconButton)this.ApplicationBar.Buttons[0]).Text = AppResources.EditLabel;
+            ((ApplicationBarIconButton)this.ApplicationBar.Buttons[1]).Text = AppResources.ShareImageLabel;
             
 			((ApplicationBarMenuItem)this.ApplicationBar.MenuItems[0]).Text = AppResources.PintToStartLabel;
 			((ApplicationBarMenuItem)this.ApplicationBar.MenuItems[1]).Text = AppResources.DeleteLabel; 
@@ -155,6 +156,13 @@ namespace MyTravelHistory.Views
         private void ImageViewer_WindowClosing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             locationImageLarge.Source = null;
+        }
+
+        private void btnShare_Click(object sender, System.EventArgs e)
+        {
+            var shareMediaTask = new ShareMediaTask();
+            shareMediaTask.FilePath = App.ViewModel.SelectedLocation.ImageUri;
+            shareMediaTask.Show();
         }
     }
 }
