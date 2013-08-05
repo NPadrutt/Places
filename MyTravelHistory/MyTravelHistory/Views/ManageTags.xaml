@@ -18,7 +18,7 @@
 	<phone:PhoneApplicationPage.Resources>
 		<DataTemplate x:Key="AllTagsItemTemplate">
 			<StackPanel Width="455" Background="{StaticResource PhoneChromeBrush}" Margin="0,0,0,12">
-				<TextBlock Text="{Binding TagName}" Style="{StaticResource PhoneTextLargeStyle}" Margin="12,0,0,0"/>
+				<TextBlock Text="{Binding TagName}" Style="{StaticResource PhoneTextLargeStyle}" Margin="12,0,0,10"/>
 			</StackPanel>
 		</DataTemplate>
 	</phone:PhoneApplicationPage.Resources>

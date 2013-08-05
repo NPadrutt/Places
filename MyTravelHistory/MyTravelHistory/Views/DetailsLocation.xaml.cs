@@ -77,23 +77,14 @@ namespace MyTravelHistory.Views
 
         private void HideEmptyControlls()
         {
-            if (App.ViewModel.SelectedLocation.Comment == String.Empty)
-            {
-                lblCommentCaption.Visibility = Visibility.Collapsed;
-                lblComment.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                lblCommentCaption.Visibility = Visibility.Visible;
-                lblComment.Visibility = Visibility.Visible;
-            }
-
+            lblAccuracyCaption.Visibility = App.ViewModel.SelectedLocation.Accuracy == 0 ? Visibility.Collapsed : Visibility.Visible;
+            lblAccuracy.Visibility = App.ViewModel.SelectedLocation.Accuracy == 0 ? Visibility.Collapsed : Visibility.Visible;
+            lblM.Visibility = App.ViewModel.SelectedLocation.Accuracy == 0 ? Visibility.Collapsed : Visibility.Visible;
             lblCommentCaption.Visibility = App.ViewModel.SelectedLocation.Comment == string.Empty ? Visibility.Collapsed : Visibility.Visible;
             lblComment.Visibility = App.ViewModel.SelectedLocation.Comment == string.Empty ? Visibility.Collapsed : Visibility.Visible;
             lblDistrict.Visibility = App.ViewModel.SelectedLocation.LocationAddress.District == string.Empty ? Visibility.Collapsed : Visibility.Visible;
             lblTagCaption.Visibility = App.ViewModel.SelectedLocation.Tags.Any() ? Visibility.Visible : Visibility.Collapsed;
             lblTag.Visibility = App.ViewModel.SelectedLocation.Tags.Any() ? Visibility.Visible : Visibility.Collapsed;
-
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
