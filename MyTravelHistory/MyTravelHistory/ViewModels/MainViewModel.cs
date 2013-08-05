@@ -84,13 +84,13 @@ namespace MyTravelHistory.ViewModels
 
         #region Location
 
-        private Location _selectedLocation;
+        private Location selectedLocation;
         public Location SelectedLocation
         {
-            get { return _selectedLocation; }
+            get { return this.selectedLocation; }
             set
             {
-                _selectedLocation = value;
+                this.selectedLocation = value;
                 NotifyPropertyChanged("SelectedLocation");
             }
         }
@@ -166,11 +166,14 @@ namespace MyTravelHistory.ViewModels
         }
 
         public void DeleteTag(Tag TagToDelete)
-        {            
-            if (this.AllLocations.Any(location => location.Tags.Contains(TagToDelete)))
+        {
+            foreach (var location in AllLocations)
             {
-                MessageBox.Show(AppResources.TagAssignedMessage, AppResources.TagAssignedTitle, MessageBoxButton.OK);
-                return;
+                if (location.Tags.Contains(TagToDelete))
+                {
+                    MessageBox.Show(string.Format(AppResources.TagAssignedMessage, location.Name), AppResources.TagAssignedTitle, MessageBoxButton.OK);
+                    return;
+                }
             }
 
             AllTags.Remove(TagToDelete);
