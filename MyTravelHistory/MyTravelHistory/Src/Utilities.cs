@@ -115,8 +115,8 @@ namespace MyTravelHistory.Src
 
         public static Picture GetLocationImageByToken(string Token)
         {
-            MediaLibrary library = new MediaLibrary();
-            Picture photoFromLibrary = library.GetPictureFromToken(Token);
+            var library = new MediaLibrary();
+            var photoFromLibrary = library.GetPictureFromToken(Token);
 
             return photoFromLibrary;
         }

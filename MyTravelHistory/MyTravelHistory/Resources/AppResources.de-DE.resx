@@ -408,4 +408,10 @@ Möchtest du MyTravelHistory jetzt kaufen?</value>
   <data name="TouristAttractionLabel" xml:space="preserve">
     <value>Touristenattraktion</value>
   </data>
+  <data name="TagAssignedMessage" xml:space="preserve">
+    <value>Der Tag {0} ist noch einer oder mehreren Positionen zugewiesen. Bitte entferne die Zuweisung und versuche es nochmals.</value>
+  </data>
+  <data name="TagAssignedTitle" xml:space="preserve">
+    <value>Tag zugewiesen!</value>
+  </data>
 </root>

@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Linq;
 using System.Windows;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Microsoft.Phone.Tasks;
-using Microsoft.Xna.Framework.Media;
 using MyTravelHistory.Resources;
-using MyTravelHistory.Src;
 using Telerik.Windows.Controls;
 using GestureEventArgs = System.Windows.Input.GestureEventArgs;
 
@@ -48,11 +45,6 @@ namespace MyTravelHistory.Views
                     }
                 }            
                 MiniMap.ShowOnMap(App.ViewModel.SelectedLocation.Latitude, App.ViewModel.SelectedLocation.Longitude);
-            }
-
-            if (App.ViewModel.SelectedLocation.LocationAddress == null)
-            {
-                App.ViewModel.LoadAddress();
             }
 
             DataContext = App.ViewModel.SelectedLocation;

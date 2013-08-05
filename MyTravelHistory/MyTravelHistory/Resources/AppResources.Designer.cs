@@ -805,6 +805,24 @@ namespace MyTravelHistory.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The tag {0} is still assigned by one or more locations. Please remove the assignement and try again..
+        /// </summary>
+        public static string TagAssignedMessage {
+            get {
+                return ResourceManager.GetString("TagAssignedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tag assigned!.
+        /// </summary>
+        public static string TagAssignedTitle {
+            get {
+                return ResourceManager.GetString("TagAssignedTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to manage Tags.
         /// </summary>
         public static string TagLabel {

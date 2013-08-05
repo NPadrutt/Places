@@ -413,4 +413,10 @@ Do you wanna purchase MyTravelHistory?</value>
   <data name="TouristAttractionLabel" xml:space="preserve">
     <value>tourist attraction</value>
   </data>
+  <data name="TagAssignedMessage" xml:space="preserve">
+    <value>The tag {0} is still assigned by one or more locations. Please remove the assignement and try again.</value>
+  </data>
+  <data name="TagAssignedTitle" xml:space="preserve">
+    <value>Tag assigned!</value>
+  </data>
 </root>
