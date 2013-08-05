@@ -148,7 +148,7 @@ namespace MyTravelHistory.Src
                 {
                     if (picture.GetImage().Length == imageStream.Length)
                     {
-                        ExifReader reader = new ExifReader(picture.GetImage());
+                        var reader = new ExifReader(picture.GetImage());
                         double[] tmplat, tmplong;
 
                         if (reader.GetTagValue<double[]>(ExifTags.GPSLatitude, out tmplat) &&
@@ -196,12 +196,9 @@ namespace MyTravelHistory.Src
             var library = new MediaLibrary();
             var bitmap = new BitmapImage();
 
-            foreach (var picture in library.Pictures)
+            foreach (var picture in library.Pictures.Where(picture => picture.Name == name))
             {
-                if (picture.Name == name)
-                {
-                    bitmap.SetSource(picture.GetThumbnail()); 
-                }
+                bitmap.SetSource(picture.GetThumbnail());
             }
 
             return bitmap;
@@ -213,28 +210,24 @@ namespace MyTravelHistory.Src
             {
                 var tileData = new RadCycleTileData();
 
-                List<Location> locationList = App.ViewModel.AllLocations.Where(x => !String.IsNullOrEmpty(x.ImageUri) && !String.IsNullOrEmpty(x.ImageName))
+                var locationList = App.ViewModel.AllLocations.Where(x => !String.IsNullOrEmpty(x.ImageUri) && !String.IsNullOrEmpty(x.ImageName))
                     .Take(9)
                     .ToList();
 
-                var fotolist = new List<BitmapImage>();
-                foreach (var item in locationList)
-                {
-                    fotolist.Add(GetImage(item.ImageName));
-                }
+                var fotolist = locationList.Select(item => GetImage(item.ImageName)).ToList();
 
                 var uriList = new List<Uri>();
-                int i = 0;
+                var i = 0;
 
                 foreach (var item in fotolist)
                 {
                     using (IsolatedStorageFile file = IsolatedStorageFile.GetUserStoreForApplication())
                     {
-                        using (IsolatedStorageFileStream stream = file.OpenFile("Shared/ShellContent/" +
+                        using (var fileStream = file.OpenFile("Shared/ShellContent/" +
                           i + ".jpg", FileMode.Create))
                         {
-                            WriteableBitmap bmp = new WriteableBitmap((BitmapSource)item);
-                            bmp.SaveJpeg(stream, bmp.PixelWidth, bmp.PixelHeight, 0, 60);
+                            var bmp = new WriteableBitmap(item);
+                            bmp.SaveJpeg(fileStream, bmp.PixelWidth, bmp.PixelHeight, 0, 60);
                         }
                     }
                     uriList.Add(new Uri("isostore:/shared/ShellContent/" + i + ".jpg", UriKind.Absolute));
@@ -254,13 +247,9 @@ namespace MyTravelHistory.Src
         {
             var library = new MediaLibrary();
 
-            foreach (var image in library.Pictures)
+            foreach (var image in from image in library.Pictures let stream = image.GetImage() where stream.Length == choosenStream.Length select image)
             {
-                Stream stream = image.GetImage();
-                if (stream.Length == choosenStream.Length)
-                {
-                    return image.Name;
-                }
+                return image.Name;
             }
 
             return String.Empty;

@@ -50,6 +50,11 @@ namespace MyTravelHistory.Views
                 MiniMap.ShowOnMap(App.ViewModel.SelectedLocation.Latitude, App.ViewModel.SelectedLocation.Longitude);
             }
 
+            if (App.ViewModel.SelectedLocation.LocationAddress == null)
+            {
+                App.ViewModel.LoadAddress();
+            }
+
             DataContext = App.ViewModel.SelectedLocation;
 
             if (App.ViewModel.SelectedLocation.ImageName != null)
@@ -80,11 +85,13 @@ namespace MyTravelHistory.Views
             lblAccuracyCaption.Visibility = App.ViewModel.SelectedLocation.Accuracy == 0 ? Visibility.Collapsed : Visibility.Visible;
             lblAccuracy.Visibility = App.ViewModel.SelectedLocation.Accuracy == 0 ? Visibility.Collapsed : Visibility.Visible;
             lblM.Visibility = App.ViewModel.SelectedLocation.Accuracy == 0 ? Visibility.Collapsed : Visibility.Visible;
-            lblCommentCaption.Visibility = App.ViewModel.SelectedLocation.Comment == string.Empty ? Visibility.Collapsed : Visibility.Visible;
-            lblComment.Visibility = App.ViewModel.SelectedLocation.Comment == string.Empty ? Visibility.Collapsed : Visibility.Visible;
+            lblStreet.Visibility = App.ViewModel.SelectedLocation.LocationAddress.Street == string.Empty ? Visibility.Collapsed : Visibility.Visible;
+            lblHousenumber.Visibility = App.ViewModel.SelectedLocation.LocationAddress.HouseNumber == string.Empty ? Visibility.Collapsed : Visibility.Visible;
             lblDistrict.Visibility = App.ViewModel.SelectedLocation.LocationAddress.District == string.Empty ? Visibility.Collapsed : Visibility.Visible;
             lblTagCaption.Visibility = App.ViewModel.SelectedLocation.Tags.Any() ? Visibility.Visible : Visibility.Collapsed;
             lblTag.Visibility = App.ViewModel.SelectedLocation.Tags.Any() ? Visibility.Visible : Visibility.Collapsed;
+            lblCommentCaption.Visibility = App.ViewModel.SelectedLocation.Comment == string.Empty ? Visibility.Collapsed : Visibility.Visible;
+            lblComment.Visibility = App.ViewModel.SelectedLocation.Comment == string.Empty ? Visibility.Collapsed : Visibility.Visible;
         }
 
         private void btnEdit_Click(object sender, EventArgs e)

@@ -1,4 +1,5 @@
-﻿using Microsoft.Phone.Data.Linq;
+﻿using System.Collections.Generic;
+using Microsoft.Phone.Data.Linq;
 using Microsoft.Phone.Maps.Services;
 using MyTravelHistory.Models;
 using MyTravelHistory.Resources;
@@ -142,6 +143,15 @@ namespace MyTravelHistory.ViewModels
             }
         }
 
+        public void LoadAddress()
+        {
+            var addressItemInDb = from adr in db.LocationAddresses
+                                    where SelectedLocation.LocationAddress.Id == adr.Id
+                                    select adr;
+
+            SelectedLocation.LocationAddress = new List<LocationAddress>(addressItemInDb).First();
+        }
+
         #endregion
 
         #region Tags
@@ -167,18 +177,18 @@ namespace MyTravelHistory.ViewModels
 
         public void DeleteTag(Tag TagToDelete)
         {
-            foreach (var location in AllLocations)
-            {
-                if(location.Tags.Contains(TagToDelete))
-                {
-                    location.Tags.Remove(TagToDelete);
-                }
-            }
-
             AllTags.Remove(TagToDelete);
             db.Tags.DeleteOnSubmit(TagToDelete);
 
             db.SubmitChanges();
+
+            foreach (var location in AllLocations)
+            {
+                if (location.Tags.Contains(TagToDelete))
+                {
+                    location.Tags.Remove(TagToDelete);
+                }
+            }
         }
 
         public void LoadTags()
