@@ -110,6 +110,7 @@ namespace MyTravelHistory.ViewModels
         {
             AllLocations.Remove(LocationToDelete);
             db.Locations.DeleteOnSubmit(LocationToDelete);
+            db.LocationAddresses.DeleteOnSubmit(LocationToDelete.LocationAddress);
 
             db.SubmitChanges();
         }
@@ -158,6 +159,14 @@ namespace MyTravelHistory.ViewModels
 
         public void DeleteTag(Tag TagToDelete)
         {
+            foreach (var location in AllLocations)
+            {
+                if(location.Tags.Contains(TagToDelete))
+                {
+                    location.Tags.Remove(TagToDelete);
+                }
+            }
+
             AllTags.Remove(TagToDelete);
             db.Tags.DeleteOnSubmit(TagToDelete);
 
