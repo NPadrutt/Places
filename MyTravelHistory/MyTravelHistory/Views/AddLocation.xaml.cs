@@ -72,13 +72,8 @@ namespace MyTravelHistory.Views
                         MiniMap.ShowOnMap(App.ViewModel.SelectedLocation.Latitude,
                                           App.ViewModel.SelectedLocation.Longitude);
                     }
-                    if (App.ViewModel.SelectedLocation.Tags.Any())
-                    {
-                        foreach (var tag in App.ViewModel.SelectedLocation.Tags)
-                        {
-                            listpickerTag.SelectedItems.Add(tag);
-                        }
-                    }
+
+                    listpickerTag.ItemsSource = App.ViewModel.AllTags;
                 }
             }
         }

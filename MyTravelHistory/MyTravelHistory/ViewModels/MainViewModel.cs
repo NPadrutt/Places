@@ -11,7 +11,7 @@ namespace MyTravelHistory.ViewModels
 {
     public class MainViewModel : INotifyPropertyChanged
     {
-        private MainDataContext db;
+        private readonly MainDataContext db;
 
         public MainViewModel()
         {
@@ -21,13 +21,11 @@ namespace MyTravelHistory.ViewModels
 
         private void CreateDbIfNotExist()
         {
-            DatabaseSchemaUpdater schemaUpdate;
-
             // Create the database if it does not exist.
             if (!db.DatabaseExists())
             {
                 db.CreateDatabase();
-                schemaUpdate = db.CreateDatabaseSchemaUpdater();
+                var schemaUpdate = db.CreateDatabaseSchemaUpdater();
                 schemaUpdate.DatabaseSchemaVersion = db.SCHEMAVERSION;
                 schemaUpdate.Execute();
 
