@@ -259,7 +259,7 @@
     <value>Unbekannte Positition!</value>
   </data>
   <data name="NoNameDefaultEntry" xml:space="preserve">
-    <value>[leerer Name]</value>
+    <value>leer</value>
   </data>
   <data name="CommentLabel" xml:space="preserve">
     <value>Bemerkung</value>

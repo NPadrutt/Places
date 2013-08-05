@@ -264,7 +264,7 @@ Do you wanna proceed?</value>
     <value>Unknown position!</value>
   </data>
   <data name="NoNameDefaultEntry" xml:space="preserve">
-    <value>[empty name]</value>
+    <value>empty</value>
   </data>
   <data name="CommentLabel" xml:space="preserve">
     <value>comment</value>
