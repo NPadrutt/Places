@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Windows;
 using Microsoft.Live.Controls;
-using Microsoft.Phone.Controls;
 using Microsoft.Live;
 using System.IO.IsolatedStorage;
 using System.IO;
@@ -14,11 +13,11 @@ using MyTravelHistory.ViewModels;
 
 namespace MyTravelHistory.Views
 {
-    public partial class Backup : PhoneApplicationPage
+    public partial class Backup 
     {
         private LiveConnectClient liveClient;
-        private static string _folderId;
-        private static string _backupId;
+        private static string folderId;
+        private static string backupId;
         private Dictionary<string, string> imageIds; 
 
         private const string BackUpFolder = "MyTravelHistory Backups";
@@ -52,17 +51,17 @@ namespace MyTravelHistory.Views
                 lblLoginInfo.Visibility = Visibility.Visible;
                 btnBackup.IsEnabled = false;
                 btnRestore.IsEnabled = false;
-                
+
             }
             busyProceedAction.IsRunning = false;
         }
 
         private async Task CheckForBackup()
         {
-            if (_folderId != null)
+            if (folderId != null)
             {
                 await GetBackupId();
-                if (_backupId != null)
+                if (backupId != null)
                 {
 
                     btnRestore.IsEnabled = true;
@@ -82,12 +81,12 @@ namespace MyTravelHistory.Views
             imageIds = new Dictionary<string, string>();
             try
             {
-                if (_folderId == null)
+                if (folderId == null)
                 {
                     await GetFolderId();
                 }
 
-                var operationResultFolder = await liveClient.GetAsync(_folderId + "/files");
+                var operationResultFolder = await liveClient.GetAsync(folderId + "/files");
                 dynamic files = operationResultFolder.Result.Values;
 
                 foreach (var data in files)
@@ -96,7 +95,7 @@ namespace MyTravelHistory.Views
                     {
                         if (file.name == Backupname + ".sdf")
                         {
-                            _backupId = file.id;
+                            backupId = file.id;
                         }
                         else
                         {
@@ -115,7 +114,7 @@ namespace MyTravelHistory.Views
         {
             try
             {
-                if (_backupId != null)
+                if (backupId != null)
                 {
                     var result = MessageBox.Show(AppResources.OverwriteBackupMessage, AppResources.OverwriteBackupTitle, MessageBoxButton.OKCancel);
 
@@ -128,19 +127,19 @@ namespace MyTravelHistory.Views
                 busyProceedAction.IsRunning = true;
 
                 await GetFolderId();
-                if (_folderId == null)
+                if (folderId == null)
                 {
                     await CreateBackupFolder();
                 }
-                else if (_backupId != null)
+                else if (backupId != null)
                 {
-                    await liveClient.DeleteAsync(_backupId);
+                    await liveClient.DeleteAsync(backupId);
                 }
 
                 using (var store = IsolatedStorageFile.GetUserStoreForApplication())
                 {
-                    IsolatedStorageFileStream fileStream = store.OpenFile(Databasename + ".sdf", FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
-                    await this.liveClient.UploadAsync(_folderId, Backupname + ".sdf", fileStream, OverwriteOption.Overwrite);
+                    var fileStream = store.OpenFile(Databasename + ".sdf", FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+                    await liveClient.UploadAsync(folderId, Backupname + ".sdf", fileStream, OverwriteOption.Overwrite);
                     fileStream.Flush();
                     fileStream.Close();
                 }
@@ -176,7 +175,7 @@ namespace MyTravelHistory.Views
                     {
                         if (folder.name == BackUpFolder)
                         {
-                            _folderId = folder.id;
+                            folderId = folder.id;
                         }
                     }
                 }
@@ -189,12 +188,12 @@ namespace MyTravelHistory.Views
 
         private async Task GetBackupCreationDate()
         {
-            if (_backupId != null)
+            if (backupId != null)
             {
                 try
                 {
                     var operationResult =
-                        await liveClient.GetAsync(_backupId);
+                        await liveClient.GetAsync(backupId);
                     dynamic result = operationResult.Result;
                     DateTime createdAt = Convert.ToDateTime(result.created_time);
                     lblLastBackupDate.Text = createdAt.ToString("f", new CultureInfo(CultureInfo.CurrentCulture.TwoLetterISOLanguageName));
@@ -215,7 +214,7 @@ namespace MyTravelHistory.Views
                     var folderData = new Dictionary<string, object> { { "name", BackUpFolder } };
                     var operationResult = await liveClient.PostAsync("me/skydrive", folderData);
                     dynamic result = operationResult.Result;
-                    _folderId = result.id;
+                    folderId = result.id;
                 }
                 catch (LiveConnectException exception)
                 {
@@ -238,11 +237,11 @@ namespace MyTravelHistory.Views
                 busyProceedAction.Content = AppResources.LoadBackupLabel;
                 busyProceedAction.IsRunning = true;
 
-                if (_backupId == null)
+                if (backupId == null)
                 {
                     await GetBackupId();
                 }
-                var downloadResult = await liveClient.DownloadAsync(_backupId + "/content");
+                var downloadResult = await liveClient.DownloadAsync(backupId + "/content");
 
                 busyProceedAction.Content = AppResources.RestoreBackupLabel;
 
@@ -254,8 +253,11 @@ namespace MyTravelHistory.Views
                     // Obtain the virtual store for the application.
                     var myStore = IsolatedStorageFile.GetUserStoreForApplication();
                     var myStream = myStore.CreateFile(Databasename + ".sdf");
-                    myStream.Write(stream.GetBuffer(), 0, (int)stream.Length);
-                    stream.Flush();
+                    if (stream != null)
+                    {
+                        myStream.Write(stream.GetBuffer(), 0, (int)stream.Length);
+                        stream.Flush();
+                    }
                     myStream.Close();
                 }
 
@@ -264,7 +266,7 @@ namespace MyTravelHistory.Views
                 result = MessageBox.Show(AppResources.RestoreCompletedMessage, AppResources.DoneMessageTitle, MessageBoxButton.OKCancel);
                 if (result == MessageBoxResult.OK)
                 {
-                    this.NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
+                    NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
                 }
             }
             catch (Exception exception)
