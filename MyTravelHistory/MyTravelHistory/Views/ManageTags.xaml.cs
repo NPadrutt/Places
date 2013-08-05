@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using MyTravelHistory.Models;
@@ -29,14 +25,18 @@ namespace MyTravelHistory.Views
 
         private void InitButtons()
         {
-            btnDelete = new ApplicationBarIconButton();
-            btnDelete.Text = AppResources.DeleteLabel;
-            btnDelete.IconUri = new Uri("/Toolkit.Content/ApplicationBar.Delete.png", UriKind.Relative);
+            btnDelete = new ApplicationBarIconButton
+                            {
+                                Text = AppResources.DeleteLabel,
+                                IconUri = new Uri("/Toolkit.Content/ApplicationBar.Delete.png", UriKind.Relative)
+                            };
             btnDelete.Click += this.btnDelete_Click;
 
-            btnMultipleSelect = new ApplicationBarIconButton();
-            btnMultipleSelect.Text = AppResources.SelectLabel;
-            btnMultipleSelect.IconUri = new Uri("/Toolkit.Content/ApplicationBar.Select.png", UriKind.Relative);
+            btnMultipleSelect = new ApplicationBarIconButton
+                                    {
+                                        Text = AppResources.SelectLabel,
+                                        IconUri = new Uri("/Toolkit.Content/ApplicationBar.Select.png", UriKind.Relative)
+                                    };
             btnMultipleSelect.Click += this.btnMultipleSelect_Click;
 
             ApplicationBar.Buttons.Add(btnMultipleSelect);
@@ -46,7 +46,7 @@ namespace MyTravelHistory.Views
         {
             var tag = new Tag();
 
-            InputPromptClosedEventArgs args = await RadInputPrompt.ShowAsync(
+            var args = await RadInputPrompt.ShowAsync(
                AppResources.AddTag,
                MessageBoxButtons.OKCancel,
                AppResources.AddTagMessage,

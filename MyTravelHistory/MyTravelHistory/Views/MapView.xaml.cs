@@ -1,10 +1,6 @@
-﻿using System.ServiceModel.Channels;
-using Windows.Devices.Geolocation;
-using FlurryWP8SDK;
-using Microsoft.Phone.Controls;
+﻿using Microsoft.Phone.Controls;
 using Microsoft.Phone.Maps;
 using Microsoft.Phone.Maps.Controls;
-using Microsoft.Phone.Maps.Services;
 using Microsoft.Phone.Shell;
 using Microsoft.Phone.Tasks;
 using MyTravelHistory.Resources;
@@ -14,7 +10,6 @@ using System.Collections.Generic;
 using System.Device.Location;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Navigation;
 using Microsoft.Phone.Maps.Toolkit;
 
 
@@ -22,11 +17,11 @@ namespace MyTravelHistory.Views
 {
     public partial class MapView : PhoneApplicationPage
     {
-        readonly List<GeoCoordinate> MyCoordinates = new List<GeoCoordinate>();
-        private GeoCoordinate SelectedCoordinate;
+        readonly List<GeoCoordinate> myCoordinates = new List<GeoCoordinate>();
+        private GeoCoordinate selectedCoordinate;
 
-        private UserLocationMarker Marker;
-        private MapOverlay MapOverlay;
+        private UserLocationMarker marker;
+        private MapOverlay mapOverlay;
 
         public MapView()
         {
@@ -53,10 +48,10 @@ namespace MyTravelHistory.Views
         {
             var currentPosition = new GeoCoordinate(App.ViewModel.CurrentPosition.Latitude, App.ViewModel.CurrentPosition.Longitude);
             
-            Marker = new UserLocationMarker(){ GeoCoordinate = currentPosition };
-            MapOverlay = new MapOverlay() {Content = Marker, GeoCoordinate = currentPosition};
+            this.marker = new UserLocationMarker(){ GeoCoordinate = currentPosition };
+            this.mapOverlay = new MapOverlay() {Content = this.marker, GeoCoordinate = currentPosition};
 
-            var mapLayer = new MapLayer { MapOverlay };
+            var mapLayer = new MapLayer { this.mapOverlay };
             MyMap.Layers.Add(mapLayer);
         }
 
@@ -74,7 +69,7 @@ namespace MyTravelHistory.Views
             var mapLayer = new MapLayer { mapOverlayPin };
             MyMap.Layers.Add(mapLayer);
 
-            SelectedCoordinate = geoPosition;
+            this.selectedCoordinate = geoPosition;
         }
 
         private async void btnNavigation_Click(object sender, EventArgs e)
@@ -109,7 +104,7 @@ namespace MyTravelHistory.Views
 
         private void menuDownloadMaps_Click(object sender, System.EventArgs e)
         {
-            MapDownloaderTask mapDownloaderTask = new MapDownloaderTask();
+            var mapDownloaderTask = new MapDownloaderTask();
             mapDownloaderTask.Show();
         }
 
@@ -122,17 +117,8 @@ namespace MyTravelHistory.Views
             }
 
             var currentCoordinate = new GeoCoordinate(App.ViewModel.CurrentPosition.Latitude, App.ViewModel.CurrentPosition.Longitude);
-
-            if (SelectedCoordinate == currentCoordinate)
-            {
-                SelectedCoordinate = new GeoCoordinate(App.ViewModel.SelectedLocation.Latitude, App.ViewModel.SelectedLocation.Longitude);
-            }
-            else
-            {
-                SelectedCoordinate = currentCoordinate;
-            }
-
-            MyMap.SetView(SelectedCoordinate, 16, MapAnimationKind.Parabolic);
+            this.selectedCoordinate = this.selectedCoordinate == currentCoordinate ? new GeoCoordinate(App.ViewModel.SelectedLocation.Latitude, App.ViewModel.SelectedLocation.Longitude) : currentCoordinate;
+            MyMap.SetView(this.selectedCoordinate, 16, MapAnimationKind.Parabolic);
         }
     }
 }

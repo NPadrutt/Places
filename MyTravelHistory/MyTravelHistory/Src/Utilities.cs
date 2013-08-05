@@ -20,10 +20,8 @@ using MyTravelHistory.Resources;
 
 namespace MyTravelHistory.Src
 {
-    public class Utilities
+    public static class Utilities
     {
-        private const string ImageFolder = "//Shared//ShellContent";
-
         public static string GetVersion()
         {
             return Assembly.GetExecutingAssembly().FullName.Split('=')[1].Split(',')[0];
@@ -35,9 +33,7 @@ namespace MyTravelHistory.Src
 
             try
             {
-                var geoposition = await geolocater.GetGeopositionAsync(
-                    maximumAge: TimeSpan.FromMinutes(2),
-                    timeout: TimeSpan.FromSeconds(20)
+                var geoposition = await geolocater.GetGeopositionAsync(TimeSpan.FromMinutes(2), TimeSpan.FromSeconds(20)
                     );
 
                 App.ViewModel.CurrentPosition = new Position
@@ -82,8 +78,8 @@ namespace MyTravelHistory.Src
                 if (locations.Count > 0)
                 {
                     var address = locations.First().Information.Address;
-                    locationAddress = new LocationAddress()
-                    {
+                    locationAddress = new LocationAddress
+                                          {
                         Street = address.Street,
                         HouseNumber = address.HouseNumber,
                         PostalCode = address.PostalCode,
@@ -113,10 +109,10 @@ namespace MyTravelHistory.Src
             return GetImage(name);
         }
 
-        public static Picture GetLocationImageByToken(string Token)
+        public static Picture GetLocationImageByToken(string token)
         {
             var library = new MediaLibrary();
-            var photoFromLibrary = library.GetPictureFromToken(Token);
+            var photoFromLibrary = library.GetPictureFromToken(token);
 
             return photoFromLibrary;
         }
@@ -151,8 +147,8 @@ namespace MyTravelHistory.Src
                         var reader = new ExifReader(picture.GetImage());
                         double[] tmplat, tmplong;
 
-                        if (reader.GetTagValue<double[]>(ExifTags.GPSLatitude, out tmplat) &&
-                            reader.GetTagValue<double[]>(ExifTags.GPSLongitude, out tmplong))
+                        if (reader.GetTagValue(ExifTags.GPSLatitude, out tmplat) &&
+                            reader.GetTagValue(ExifTags.GPSLongitude, out tmplong))
                         {
                             position.Longitude = tmplong[0] + tmplong[1] / 60 +
                                 tmplong[2] / (60 * 60);
@@ -160,13 +156,13 @@ namespace MyTravelHistory.Src
                                 tmplat[2] / (60 * 60);
 
                             string tmp;
-                            if ((reader.GetTagValue<string>(ExifTags.GPSLongitudeRef, out tmp) &&
+                            if ((reader.GetTagValue(ExifTags.GPSLongitudeRef, out tmp) &&
                                 tmp == "W"))
                             {
                                 position.Longitude *= -1;
                             }
 
-                            if ((reader.GetTagValue<string>(ExifTags.GPSLatitudeRef, out tmp) &&
+                            if ((reader.GetTagValue(ExifTags.GPSLatitudeRef, out tmp) &&
                                 tmp == "S"))
                             {
                                 position.Latitude *= -1;

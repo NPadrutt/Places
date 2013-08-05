@@ -21,7 +21,6 @@ using MyTravelHistory.ViewModels;
 using Telerik.Windows.Controls.Reminders;
 using MyTravelHistory.Resources;
 using FlurryWP8SDK;
-using Src;
 
 namespace MyTravelHistory
 {

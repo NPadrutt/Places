@@ -1,11 +1,10 @@
 ﻿using System;
+using System.Linq;
 using System.Windows;
 using Microsoft.Phone.Controls;
 using MyTravelHistory.Models;
 using Microsoft.Phone.Shell;
 using MyTravelHistory.Resources;
-using System.Collections.ObjectModel;
-using MyTravelHistory.Src;
 using System.Collections.Generic;
 
 namespace MyTravelHistory
@@ -76,13 +75,7 @@ namespace MyTravelHistory
 
         private void listpickerFilter_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            List<Tag> tagList = new List<Tag>();
-
-            foreach (var item in listpickerFilter.SelectedItems)
-            {
-                tagList.Add((Tag) item);
-            }
-
+            var tagList = this.listpickerFilter.SelectedItems.Cast<Tag>().ToList();
             LocationList.SetFilter(tagList);
         }
     }

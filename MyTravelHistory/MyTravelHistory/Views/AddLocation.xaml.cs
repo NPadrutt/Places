@@ -9,9 +9,7 @@ using MyTravelHistory.Resources;
 using MyTravelHistory.Models;
 using MyTravelHistory.Src;
 using Microsoft.Phone.Tasks;
-using System.Windows.Media.Imaging;
 using GestureEventArgs = System.Windows.Input.GestureEventArgs;
-using ExifLib;
 using System.Threading.Tasks;
 using FlurryWP8SDK;
 using System.IO;
@@ -26,7 +24,7 @@ namespace MyTravelHistory.Views
         private string imageUri;
         private string imageName;
 
-        private PhotoChooserTask _photoChooserTask;
+        private PhotoChooserTask photoChooserTask;
 
         public AddLocation()
         {
@@ -57,7 +55,7 @@ namespace MyTravelHistory.Views
                 {
                     sharePicture = true;
                     var picture = Utilities.GetLocationImageByToken(queryStrings["FileId"]);
-                    ImportPicture(picture.GetImage(), MediaLibraryExtensions.GetPath(picture));
+                    ImportPicture(picture.GetImage(), picture.GetPath());
                 }
                 else
                 {
@@ -94,17 +92,16 @@ namespace MyTravelHistory.Views
 
         private void Grid_Tap(object sender, GestureEventArgs e)
         {
-            _photoChooserTask = new PhotoChooserTask();
-            _photoChooserTask.ShowCamera = true;
-            _photoChooserTask.Completed += this.PhotoChooserTask_Completed;
-            _photoChooserTask.Show();
+            this.photoChooserTask = new PhotoChooserTask { ShowCamera = true };
+            this.photoChooserTask.Completed += this.PhotoChooserTask_Completed;
+            this.photoChooserTask.Show();
         }
 
         private void btnImportImage_Click(object sender, System.EventArgs e)
         {
-            _photoChooserTask = new PhotoChooserTask();
-            _photoChooserTask.Completed += this.PhotoImportTask_Completed;
-            _photoChooserTask.Show();
+            this.photoChooserTask = new PhotoChooserTask();
+            this.photoChooserTask.Completed += this.PhotoImportTask_Completed;
+            this.photoChooserTask.Show();
         }
 
         void PhotoChooserTask_Completed(object sender, PhotoResult e)
@@ -135,7 +132,7 @@ namespace MyTravelHistory.Views
             if (App.ViewModel.SelectedLocation.Latitude == 0 && App.ViewModel.SelectedLocation.Longitude == 0)
             {
                 MessageBox.Show(AppResources.NoPositionMessage, AppResources.NoPositionMessageTitle, MessageBoxButton.OK);
-                //return;
+                return;
             }
             GetAddress();
             MiniMap.ShowOnMap(App.ViewModel.SelectedLocation.Latitude, App.ViewModel.SelectedLocation.Longitude);

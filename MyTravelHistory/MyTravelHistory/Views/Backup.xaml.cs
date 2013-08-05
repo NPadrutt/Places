@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using Microsoft.Live.Controls;
 using Microsoft.Phone.Controls;
 using Microsoft.Live;
@@ -14,7 +10,6 @@ using System.Threading.Tasks;
 using System.Globalization;
 using MyTravelHistory.Resources;
 using FlurryWP8SDK;
-using MyTravelHistory.Src;
 using MyTravelHistory.ViewModels;
 
 namespace MyTravelHistory.Views
@@ -145,8 +140,7 @@ namespace MyTravelHistory.Views
                 using (var store = IsolatedStorageFile.GetUserStoreForApplication())
                 {
                     IsolatedStorageFileStream fileStream = store.OpenFile(Databasename + ".sdf", FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
-                    var operationResult = await liveClient.UploadAsync(_folderId, Backupname + ".sdf", fileStream, OverwriteOption.Overwrite);
-                    dynamic result = operationResult.Result;
+                    await this.liveClient.UploadAsync(_folderId, Backupname + ".sdf", fileStream, OverwriteOption.Overwrite);
                     fileStream.Flush();
                     fileStream.Close();
                 }
