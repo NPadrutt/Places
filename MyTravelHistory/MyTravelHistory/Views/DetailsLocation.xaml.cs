@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Navigation;
@@ -28,11 +29,10 @@ namespace MyTravelHistory.Views
         {
             base.OnNavigatedTo(e);
 
-            if (e.NavigationMode != NavigationMode.Back && this.NavigationContext.QueryString != null && this.NavigationContext.QueryString.Count > 0)
+            var queryStrings = NavigationContext.QueryString;
+            if (e.NavigationMode != NavigationMode.Back)
             {
-                //Readout Querystrings
-                if (NavigationContext.QueryString.ContainsKey("RemoveBackstack") &&
-                    Convert.ToBoolean(this.NavigationContext.QueryString["RemoveBackstack"]))
+                if (queryStrings.ContainsKey("RemoveBackstack") && Convert.ToBoolean(this.NavigationContext.QueryString["RemoveBackstack"]))
                 {
                     NavigationService.RemoveBackEntry();
                 }

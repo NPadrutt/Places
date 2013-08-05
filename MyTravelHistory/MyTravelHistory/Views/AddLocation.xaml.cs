@@ -42,39 +42,42 @@ namespace MyTravelHistory.Views
         {
             base.OnNavigatedTo(e);
 
-            IDictionary<string, string> queryStrings = this.NavigationContext.QueryString;
-
-            if (e.NavigationMode == NavigationMode.Back) return;
-            if (App.ViewModel.SelectedLocation == null)
+            var queryStrings = NavigationContext.QueryString;
+            if (e.NavigationMode != NavigationMode.Back)
             {
-                App.ViewModel.SelectedLocation = new Location();
-                PageTitle.Text = AppResources.AddTitle;
-                newElement = true;
-
-                if (queryStrings.ContainsKey("FileId"))
+                if (App.ViewModel.SelectedLocation == null)
                 {
-                    sharePicture = true;
-                    var picture = Utilities.GetLocationImageByToken(queryStrings["FileId"]);
-                    ImportPicture(picture.GetImage(), picture.GetPath());
+                    App.ViewModel.SelectedLocation = new Location();
+                    PageTitle.Text = AppResources.AddTitle;
+                    newElement = true;
+
+                    if (queryStrings.ContainsKey("FileId"))
+                    {
+                        sharePicture = true;
+                        var picture = Utilities.GetLocationImageByToken(queryStrings["FileId"]);
+                        ImportPicture(picture.GetImage(), picture.GetPath());
+                    }
+                    else
+                    {
+                        GetPosition();
+                    }
                 }
                 else
                 {
-                    GetPosition();
-                }
-            }
-            else
-            {
-                TransformGuiForEditMode();
-                App.ViewModel.CurrentAddress = null;
-                if (!double.IsNaN(App.ViewModel.SelectedLocation.Latitude) && !double.IsNaN(App.ViewModel.SelectedLocation.Longitude))
-                {
-                    MiniMap.ShowOnMap(App.ViewModel.SelectedLocation.Latitude, App.ViewModel.SelectedLocation.Longitude);
-                }
-                if (App.ViewModel.SelectedLocation.Tags.Any())
-                {
-                    foreach(var tag in App.ViewModel.SelectedLocation.Tags)
+                    TransformGuiForEditMode();
+                    App.ViewModel.CurrentAddress = null;
+                    if (!double.IsNaN(App.ViewModel.SelectedLocation.Latitude) &&
+                        !double.IsNaN(App.ViewModel.SelectedLocation.Longitude))
                     {
-                        listpickerTag.SelectedItems.Add(tag);
+                        MiniMap.ShowOnMap(App.ViewModel.SelectedLocation.Latitude,
+                                          App.ViewModel.SelectedLocation.Longitude);
+                    }
+                    if (App.ViewModel.SelectedLocation.Tags.Any())
+                    {
+                        foreach (var tag in App.ViewModel.SelectedLocation.Tags)
+                        {
+                            listpickerTag.SelectedItems.Add(tag);
+                        }
                     }
                 }
             }
