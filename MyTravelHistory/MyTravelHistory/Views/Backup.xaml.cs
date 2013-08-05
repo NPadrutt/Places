@@ -20,7 +20,7 @@ namespace MyTravelHistory.Views
         private static string backupId;
         private Dictionary<string, string> imageIds; 
 
-        private const string BackUpFolder = "MyTravelHistory Backups";
+        private const string BackUpFolder = "Backups";
         private const string Backupname = "MyTravelHistoryBackup";
         private const string Databasename = "MyTravelHistory";
 
