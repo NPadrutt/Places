@@ -50,6 +50,10 @@ namespace MyTravelHistory.ViewModels
             var tagWork = new Tag { TagName = AppResources.WorkLabel };
             var tagMuseum = new Tag { TagName = AppResources.MuseumLabel };
             var tagViewpoint = new Tag { TagName = AppResources.ViewpointLabel };
+            var tagFriends = new Tag { TagName = AppResources.FriendsLabel };
+            var tagFamily = new Tag { TagName = AppResources.FamilyLabel };
+            var tagClub = new Tag { TagName = AppResources.ClubLabel };
+            var tagTouristAttraction = new Tag { TagName = AppResources.TouristAttractionLabel };
 
             AddTag(tagBar);
             AddTag(tagRestaurant);
@@ -58,6 +62,10 @@ namespace MyTravelHistory.ViewModels
             AddTag(tagWork);
             AddTag(tagMuseum);
             AddTag(tagViewpoint);
+            AddTag(tagFriends);
+            AddTag(tagFamily);
+            AddTag(tagClub);
+            AddTag(tagTouristAttraction);
         }
 
         public void SaveChangesToDB()

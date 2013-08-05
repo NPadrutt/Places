@@ -401,4 +401,16 @@ Do you wanna purchase MyTravelHistory?</value>
   <data name="SwapPositionLabel" xml:space="preserve">
     <value>swap position</value>
   </data>
+  <data name="ClubLabel" xml:space="preserve">
+    <value>club</value>
+  </data>
+  <data name="FamilyLabel" xml:space="preserve">
+    <value>family</value>
+  </data>
+  <data name="FriendsLabel" xml:space="preserve">
+    <value>friends</value>
+  </data>
+  <data name="TouristAttractionLabel" xml:space="preserve">
+    <value>tourist attraction</value>
+  </data>
 </root>

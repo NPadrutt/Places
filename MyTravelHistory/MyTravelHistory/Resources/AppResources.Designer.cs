@@ -214,6 +214,15 @@ namespace MyTravelHistory.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to club.
+        /// </summary>
+        public static string ClubLabel {
+            get {
+                return ResourceManager.GetString("ClubLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to comment.
         /// </summary>
         public static string CommentLabel {
@@ -354,6 +363,24 @@ namespace MyTravelHistory.Resources {
         public static string EditTitle {
             get {
                 return ResourceManager.GetString("EditTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to family.
+        /// </summary>
+        public static string FamilyLabel {
+            get {
+                return ResourceManager.GetString("FamilyLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to friends.
+        /// </summary>
+        public static string FriendsLabel {
+            get {
+                return ResourceManager.GetString("FriendsLabel", resourceCulture);
             }
         }
         
@@ -810,6 +837,15 @@ namespace MyTravelHistory.Resources {
         public static string TaskCancelledErrorTitle {
             get {
                 return ResourceManager.GetString("TaskCancelledErrorTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to tourist attraction.
+        /// </summary>
+        public static string TouristAttractionLabel {
+            get {
+                return ResourceManager.GetString("TouristAttractionLabel", resourceCulture);
             }
         }
         

@@ -396,4 +396,16 @@ Möchtest du MyTravelHistory jetzt kaufen?</value>
   <data name="ShareImageLabel" xml:space="preserve">
     <value>Bild teilen</value>
   </data>
+  <data name="ClubLabel" xml:space="preserve">
+    <value>Club</value>
+  </data>
+  <data name="FamilyLabel" xml:space="preserve">
+    <value>Familie</value>
+  </data>
+  <data name="FriendsLabel" xml:space="preserve">
+    <value>Freunde</value>
+  </data>
+  <data name="TouristAttractionLabel" xml:space="preserve">
+    <value>Touristenattraktion</value>
+  </data>
 </root>
