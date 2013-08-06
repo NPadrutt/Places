@@ -114,9 +114,13 @@ namespace MyTravelHistory.ViewModels
 
         public void DeleteLocation(Location LocationToDelete)
         {
+            if (LocationToDelete.Tags != null)
+            {
+                LocationToDelete.Tags = null;
+            }
             AllLocations.Remove(LocationToDelete);
             db.Locations.DeleteOnSubmit(LocationToDelete);
-            db.LocationAddresses.DeleteOnSubmit(LocationToDelete.LocationAddress);
+            db.LocationAddresses.DeleteOnSubmit(LocationToDelete.LocationAddress);  
 
             db.SubmitChanges();
         }

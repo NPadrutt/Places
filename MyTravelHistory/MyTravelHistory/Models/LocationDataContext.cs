@@ -179,7 +179,7 @@ namespace MyTravelHistory.Models
 
         private EntityRef<LocationAddress> _locationAddress;
 
-        [Association(Storage = "_locationAddress", ThisKey = "_addressId", OtherKey = "Id", IsForeignKey = true)]
+        [Association(Storage = "_locationAddress", ThisKey = "_addressId", OtherKey = "Id", IsForeignKey = true, DeleteRule = "Cascade")]
         public LocationAddress LocationAddress
         {
             get { return _locationAddress.Entity; }
