@@ -419,4 +419,10 @@ Do you wanna purchase MyTravelHistory?</value>
   <data name="TagAssignedTitle" xml:space="preserve">
     <value>Tag assigned!</value>
   </data>
+  <data name="RenameTagMessage" xml:space="preserve">
+    <value>Enter the new name for the selected tag:</value>
+  </data>
+  <data name="RenameTagTitle" xml:space="preserve">
+    <value>Rename tag</value>
+  </data>
 </root>

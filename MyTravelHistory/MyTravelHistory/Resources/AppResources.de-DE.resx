@@ -414,4 +414,10 @@ Möchtest du MyTravelHistory jetzt kaufen?</value>
   <data name="TagAssignedTitle" xml:space="preserve">
     <value>Tag zugewiesen!</value>
   </data>
+  <data name="RenameTagMessage" xml:space="preserve">
+    <value>Gib den neuen Namen für den gewählten Tag ein:</value>
+  </data>
+  <data name="RenameTagTitle" xml:space="preserve">
+    <value>Tag umbenennen</value>
+  </data>
 </root>

@@ -17,7 +17,7 @@
     shell:SystemTray.IsVisible="True">
 	<phone:PhoneApplicationPage.Resources>
 		<DataTemplate x:Key="AllTagsItemTemplate">
-			<StackPanel Width="455" Background="{StaticResource PhoneChromeBrush}" Margin="0,0,0,12">
+			<StackPanel Width="455" Background="{StaticResource PhoneAccentBrush}" Margin="0,0,0,12">
 				<TextBlock Text="{Binding TagName}" Style="{StaticResource PhoneTextLargeStyle}" Margin="12,0,0,10"/>
 			</StackPanel>
 		</DataTemplate>
@@ -41,7 +41,7 @@
 			<TextBlock Text="{Binding LocalizedResources.TagTitle, Source={StaticResource LocalizedStrings}}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
 		</StackPanel>
 		<Grid x:Name="ContentPanel" Grid.Row="1">
-    		<telerikPrimitives:RadDataBoundListBox x:Name="ListBoxTags" ItemTemplate="{StaticResource AllTagsItemTemplate}" ItemsSource="{Binding AllTags}" IsCheckModeEnabled="True" IsCheckModeActiveChanged="ListBoxTags_IsCheckModeActiveChanged">
+    		<telerikPrimitives:RadDataBoundListBox x:Name="ListBoxTags" ItemTemplate="{StaticResource AllTagsItemTemplate}" ItemsSource="{Binding AllTags}" IsCheckModeEnabled="True" IsCheckModeActiveChanged="ListBoxTags_IsCheckModeActiveChanged" SelectionChanged="ListBoxTags_SelectionChanged">
     			<telerikPrimitives:RadDataBoundListBox.ItemAddedAnimation>
 					<telerik:RadMoveAnimation StartPoint="500, 0" EndPoint="0, 0" Duration="0:0:1">
 						<telerik:RadMoveAnimation.Easing>

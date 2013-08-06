@@ -697,6 +697,24 @@ namespace MyTravelHistory.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enter the new name for the selected tag:.
+        /// </summary>
+        public static string RenameTagMessage {
+            get {
+                return ResourceManager.GetString("RenameTagMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rename tag.
+        /// </summary>
+        public static string RenameTagTitle {
+            get {
+                return ResourceManager.GetString("RenameTagTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to restaurant.
         /// </summary>
         public static string RestaurantLabel {
