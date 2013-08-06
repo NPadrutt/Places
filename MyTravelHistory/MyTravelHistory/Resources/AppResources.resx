@@ -258,7 +258,7 @@ Do you wanna proceed?</value>
     <value>location</value>
   </data>
   <data name="NoPositionMessage" xml:space="preserve">
-    <value>We still trying to fetch get your current position. Please wait a second and try it again.</value>
+    <value>We're still trying to fetch your current position. Please wait a second and try it again.</value>
   </data>
   <data name="NoPositionMessageTitle" xml:space="preserve">
     <value>Unknown position!</value>
