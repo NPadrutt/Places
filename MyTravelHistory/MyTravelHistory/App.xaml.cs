@@ -39,16 +39,16 @@ namespace MyTravelHistory
         /// <summary>
         /// Component used to handle unhandle exceptions, to collect runtime info and to send email to developer.
         /// </summary>
-		public RadDiagnostics diagnostics;
+		public RadDiagnostics Diagnostics;
         /// <summary>
         /// Component used to remind end users about the trial state of the application.
         /// </summary>
-		public RadTrialApplicationReminder trialReminder;
+		public RadTrialApplicationReminder TrialReminder;
 
         /// <summary>
         /// Component used to raise a notification to the end users to rate the application on the marketplace.
         /// </summary>
-        public RadRateApplicationReminder rateReminder;
+        public RadRateApplicationReminder RateReminder;
 
         
 		/// <summary>
@@ -91,14 +91,14 @@ namespace MyTravelHistory
                 PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Disabled;
             }
 			//Creates an instance of the Diagnostics component.
-            diagnostics = new RadDiagnostics {EmailTo = "support@apply-solutions.ch"};
+            Diagnostics = new RadDiagnostics {EmailTo = "support@apply-solutions.ch"};
 
             //Defines the default email where the diagnostics info will be send.
 
             //Initializes this instance.
-            diagnostics.Init();
+            Diagnostics.Init();
 		    //Creates an instance of the RadTrialApplicationReminder component.
-            trialReminder = new RadTrialApplicationReminder
+            TrialReminder = new RadTrialApplicationReminder
             {
                 AllowedTrialUsageCount = 3,
                 OccurrenceUsageCount = 3,
@@ -112,7 +112,7 @@ namespace MyTravelHistory
             //The reminder is shown only if the application is in trial mode. When this property is set to true the application will simulate that it is in trial mode.
 
             //Creates a new instance of the RadRateApplicationReminder component.
-            rateReminder = new RadRateApplicationReminder()
+            RateReminder = new RadRateApplicationReminder()
             {
                 RecurrencePerUsageCount = 3,
                 AllowUsersToSkipFurtherReminders = true,
@@ -144,18 +144,18 @@ namespace MyTravelHistory
 
         private void SetTrialReminderMessage()
         {
-            trialReminder.TrialReminderMessageBoxInfo = new MessageBoxInfoModel()
+            TrialReminder.TrialReminderMessageBoxInfo = new MessageBoxInfoModel()
             {
                 Buttons = MessageBoxButtons.YesNo,
                 Title = AppResources.TrialReminderTitle,
-                Content = string.Format(AppResources.TrialReminderMessage, trialReminder.RemainingUsageCount)
+                Content = string.Format(AppResources.TrialReminderMessage, TrialReminder.RemainingUsageCount)
             };
         }
 
         private void SetTrialExpiredMessage()
         {
 
-            trialReminder.TrialExpiredMessageBoxInfo = new MessageBoxInfoModel()
+            TrialReminder.TrialExpiredMessageBoxInfo = new MessageBoxInfoModel()
             {
                 Buttons = MessageBoxButtons.YesNo,
                 Title = AppResources.TrialExpiredTitle,
@@ -165,7 +165,7 @@ namespace MyTravelHistory
 
         private void SetRateReminderMessage()
         {
-            rateReminder.MessageBoxInfo = new MessageBoxInfoModel()
+            RateReminder.MessageBoxInfo = new MessageBoxInfoModel()
             {
                 Buttons = MessageBoxButtons.YesNo,
                 Content = AppResources.RateApplicationMessage,

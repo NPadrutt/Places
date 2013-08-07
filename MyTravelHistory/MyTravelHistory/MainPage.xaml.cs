@@ -21,7 +21,7 @@ namespace MyTravelHistory
             //CheckLicense();
 
             //Shows the rate reminder message, according to the settings of the RateReminder.
-            ((App)Application.Current).rateReminder.Notify();
+            ((App)Application.Current).RateReminder.Notify();
 
             listpickerFilter.ItemsSource = App.ViewModel.AllTags;
 
@@ -34,9 +34,9 @@ namespace MyTravelHistory
 
         private void CheckLicense()
         {
-            ((App)Application.Current).trialReminder.Notify();
+            ((App)Application.Current).TrialReminder.Notify();
 
-            if (((App)Application.Current).trialReminder.IsTrialExpired && NavigationService != null)
+            if (((App)Application.Current).TrialReminder.IsTrialExpired && NavigationService != null)
             {
                 NavigationService.Navigate(new Uri("/Views/TrialversionExpired.xaml", UriKind.Relative));
             }
