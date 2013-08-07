@@ -1,4 +1,5 @@
-﻿using Microsoft.Phone.Data.Linq;
+﻿using System.Diagnostics;
+using Microsoft.Phone.Data.Linq;
 using MyTravelHistory.Models;
 using MyTravelHistory.Resources;
 using MyTravelHistory.Src;
@@ -80,26 +81,50 @@ namespace MyTravelHistory.ViewModels
             }
         }
 
+        #region Address
+
+        private ObservableCollection<string> allCities;
+        public ObservableCollection<string> AllCities
+        {
+            get { return allCities; }
+            set
+            {
+                allCities = value;
+                NotifyPropertyChanged("AllCities");
+            }
+        }
+
+        public void LoadCities()
+        {
+            var addressItemsInDb = from address in db.LocationAddresses
+                                   orderby address.City
+                                   select address.City;
+
+            AllCities = new ObservableCollection<string>(addressItemsInDb);
+        }
+
+        #endregion
+
         #region Location
 
         private Location selectedLocation;
         public Location SelectedLocation
         {
-            get { return this.selectedLocation; }
+            get { return selectedLocation; }
             set
             {
-                this.selectedLocation = value;
+                selectedLocation = value;
                 NotifyPropertyChanged("SelectedLocation");
             }
         }
 
-        private ObservableCollection<Location> _allLocations;
+        private ObservableCollection<Location> allLocations;
         public ObservableCollection<Location> AllLocations
         {
-            get { return _allLocations; }
+            get { return allLocations; }
             set
             {
-                _allLocations = value;
+                allLocations = value;
                 NotifyPropertyChanged("AllLocations");
             }
         }
