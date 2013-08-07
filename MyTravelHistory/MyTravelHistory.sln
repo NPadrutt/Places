@@ -50,4 +50,12 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		BuildVersion_UseGlobalSettings = True
+		BuildVersion_UpdateFileVersion = False
+		BuildVersion_UpdateAssemblyVersion = True
+		BuildVersion_BuildAction = Both
+		BuildVersion_IncrementBeforeBuild = False
+		BuildVersion_BuildVersioningStyle = None.None.MonthAndDayStamp.Increment
+	EndGlobalSection
 EndGlobal
