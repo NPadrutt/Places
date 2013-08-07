@@ -51,11 +51,11 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		BuildVersion_UseGlobalSettings = True
-		BuildVersion_UpdateFileVersion = False
-		BuildVersion_UpdateAssemblyVersion = True
-		BuildVersion_BuildAction = Both
-		BuildVersion_IncrementBeforeBuild = False
 		BuildVersion_BuildVersioningStyle = None.None.MonthAndDayStamp.Increment
+		BuildVersion_IncrementBeforeBuild = False
+		BuildVersion_BuildAction = Both
+		BuildVersion_UpdateAssemblyVersion = True
+		BuildVersion_UpdateFileVersion = False
+		BuildVersion_UseGlobalSettings = True
 	EndGlobalSection
 EndGlobal
