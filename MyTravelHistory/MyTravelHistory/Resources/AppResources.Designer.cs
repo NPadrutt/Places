@@ -142,7 +142,16 @@ namespace MyTravelHistory.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to My Travel History.
+        ///   Looks up a localized string similar to all.
+        /// </summary>
+        public static string AllLabel {
+            get {
+                return ResourceManager.GetString("AllLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Places.
         /// </summary>
         public static string ApplicationTitle {
             get {
@@ -210,6 +219,15 @@ namespace MyTravelHistory.Resources {
         public static string ChangelogText {
             get {
                 return ResourceManager.GetString("ChangelogText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to cities.
+        /// </summary>
+        public static string CitiesTitle {
+            get {
+                return ResourceManager.GetString("CitiesTitle", resourceCulture);
             }
         }
         
@@ -466,6 +484,15 @@ namespace MyTravelHistory.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to load locations...
+        /// </summary>
+        public static string LoadLocationsLabel {
+            get {
+                return ResourceManager.GetString("LoadLocationsLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to location.
         /// </summary>
         public static string LocationLabel {
@@ -629,7 +656,7 @@ namespace MyTravelHistory.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rate MyTravelHistory!.
+        ///   Looks up a localized string similar to Rate Places!.
         /// </summary>
         public static string RateAppLabel {
             get {
@@ -638,7 +665,7 @@ namespace MyTravelHistory.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Thanks for using MyTravelHistory!
+        ///   Looks up a localized string similar to Thanks for using Places!
         ///
         ///If you like the programm, support the development with rating the programm in the Marketplace!
         ///
@@ -660,7 +687,7 @@ namespace MyTravelHistory.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rate MyTravelHistory!.
+        ///   Looks up a localized string similar to Rate Places!.
         /// </summary>
         public static string RateApplicationTitel {
             get {
@@ -886,7 +913,7 @@ namespace MyTravelHistory.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You&apos;ve used all your free MyTravelHistory intializations. If you want to continue using MyTravelHistory please purchase a full version in the Windows Marketplace..
+        ///   Looks up a localized string similar to You&apos;ve used all your free Places intializations. If you want to continue using Places please purchase a full version in the Windows Marketplace..
         /// </summary>
         public static string TrialExpiredMessage {
             get {
@@ -904,9 +931,9 @@ namespace MyTravelHistory.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You&apos;re using MyTravelHistory in the trial Version. There are  {0} uses left
+        ///   Looks up a localized string similar to You&apos;re using Places in the trial Version. There are  {0} uses left
         ///
-        ///Do you wanna purchase MyTravelHistory?.
+        ///Do you wanna purchase Places?.
         /// </summary>
         public static string TrialReminderMessage {
             get {
@@ -915,7 +942,7 @@ namespace MyTravelHistory.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Purchase MyTravelHistory?.
+        ///   Looks up a localized string similar to Purchase Places?.
         /// </summary>
         public static string TrialReminderTitle {
             get {

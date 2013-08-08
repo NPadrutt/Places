@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ApplicationTitle" xml:space="preserve">
-    <value>MyTravelHistory</value>
+    <value>Places</value>
   </data>
   <data name="AddLabel" xml:space="preserve">
     <value>Hinzufügen</value>
@@ -142,7 +142,7 @@
     <value>fertig</value>
   </data>
   <data name="RateAppLabel" xml:space="preserve">
-    <value>Bewerte MyTravelHistory</value>
+    <value>Places Bewerten</value>
   </data>
   <data name="ReleaseMessageLabel" xml:space="preserve">
     <value>Nachricht des Entwicklers</value>
@@ -350,21 +350,21 @@ Möchtest du es jetzt bewerten?</value>
     <value>Weitere Erinnerungen überspringen!</value>
   </data>
   <data name="RateApplicationTitel" xml:space="preserve">
-    <value>Bewerte MyTravelHistory!</value>
+    <value>Bewerte Places!</value>
   </data>
   <data name="TrialExpiredMessage" xml:space="preserve">
-    <value>Du hast die Anzahl der zur verfügung stehenden Programmstarts aufgebraucht. Um MyTravelHistory weiter zu verwenden musst du die Vollversion im Windows Phone Marketplace kaufen.</value>
+    <value>Du hast die Anzahl der zur verfügung stehenden Programmstarts aufgebraucht. Um Places weiter zu verwenden musst du die Vollversion im Windows Phone Marketplace kaufen.</value>
   </data>
   <data name="TrialExpiredTitle" xml:space="preserve">
     <value>Testversion abgelaufen</value>
   </data>
   <data name="TrialReminderMessage" xml:space="preserve">
-    <value>Du benutzt MyTravelHistory aktuell in der Testversion. Dir verbleiben {0} Nutzungen.
+    <value>Du benutzt Places aktuell in der Testversion. Dir verbleiben {0} Nutzungen.
 
-Möchtest du MyTravelHistory jetzt kaufen?</value>
+Möchtest du Places jetzt kaufen?</value>
   </data>
   <data name="TrialReminderTitle" xml:space="preserve">
-    <value>MyTravelHistory kaufen?</value>
+    <value>Places kaufen?</value>
   </data>
   <data name="ImagepositionDeactivatedMessage" xml:space="preserve">
     <value>Für das ausgewählte Bild wurden keine Bilddaten gefunden. Stelle bitte sicher das du die Ortung in den Kameraeinstellungen aktiviert hast.</value>
@@ -419,5 +419,14 @@ Möchtest du MyTravelHistory jetzt kaufen?</value>
   </data>
   <data name="RenameTagTitle" xml:space="preserve">
     <value>Tag umbenennen</value>
+  </data>
+  <data name="AllLabel" xml:space="preserve">
+    <value>Alle</value>
+  </data>
+  <data name="LoadLocationsLabel" xml:space="preserve">
+    <value>Lade Plätze..</value>
+  </data>
+  <data name="CitiesTitle" xml:space="preserve">
+    <value>Städte</value>
   </data>
 </root>

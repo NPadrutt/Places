@@ -1,5 +1,7 @@
 ﻿using System.Diagnostics;
+using System.IO;
 using Microsoft.Phone.Data.Linq;
+using Microsoft.Phone.Reactive;
 using MyTravelHistory.Models;
 using MyTravelHistory.Resources;
 using MyTravelHistory.Src;
@@ -67,7 +69,7 @@ namespace MyTravelHistory.ViewModels
             AddTag(tagTouristAttraction);
         }
 
-        public void SaveChangesToDB()
+        public void SaveChangesToDb()
         {
             db.SubmitChanges();
         }
@@ -100,7 +102,9 @@ namespace MyTravelHistory.ViewModels
                                    orderby address.City
                                    select address.City;
 
-            AllCities = new ObservableCollection<string>(addressItemsInDb);
+            AllCities = new ObservableCollection<string>();
+            new ObservableCollection<string>(addressItemsInDb).Distinct(new StringComparer()).ToList().ForEach(x => AllCities.Add(x));
+            AllCities.Insert(0, AppResources.AllLabel);
         }
 
         #endregion
@@ -115,6 +119,28 @@ namespace MyTravelHistory.ViewModels
             {
                 selectedLocation = value;
                 NotifyPropertyChanged("SelectedLocation");
+            }
+        }
+
+        private Stream selectedImageStream;
+        public Stream SelectedImageStream
+        {
+            get { return selectedImageStream; }
+            set
+            {
+                selectedImageStream = value;
+                NotifyPropertyChanged("SelectedImageStream");
+            }
+        }
+
+        private string selectedCity;
+        public string SelectedCity
+        {
+            get { return selectedCity; }
+            set
+            {
+                selectedCity = value;
+                NotifyPropertyChanged("SelectedCity");
             }
         }
 
@@ -155,6 +181,26 @@ namespace MyTravelHistory.ViewModels
             var locationItemsInDb = from location in db.Locations
                                     join LocationAddress adr in db.LocationAddresses
                                         on new { location.LocationAddress.Id } equals new { adr.Id }
+                                    orderby location.LocationAddress.City
+                                    select location;
+
+            AllLocations = new ObservableCollection<Location>(locationItemsInDb);
+
+            foreach (var location in AllLocations)
+            {
+                if (!string.IsNullOrEmpty(location.ImageName))
+                {
+                    location.Thumbnail = Utilities.GetThumbnail(location.ImageName);
+                }
+            }
+        }
+
+        public void LoadLocationsByCity(string city)
+        {
+            var locationItemsInDb = from location in db.Locations
+                                    join LocationAddress adr in db.LocationAddresses
+                                        on new { location.LocationAddress.Id } equals new { adr.Id }
+                                    where location.LocationAddress.City == city
                                     orderby location.LocationAddress.City
                                     select location;
 

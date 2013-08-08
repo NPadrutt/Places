@@ -103,13 +103,13 @@ namespace MyTravelHistory.Src
             return GetImage(App.ViewModel.SelectedLocation.ImageName);
         }
 
-        public static BitmapImage LoadLocationImage(string name)
+        public static BitmapImage GetLocationImage(string name)
         {
             if (string.IsNullOrEmpty(name)) return new BitmapImage();
             return GetImage(name);
         }
 
-        public static Picture GetLocationImageByToken(string token)
+        public static Picture GetPictureByToken(string token)
         {
             var library = new MediaLibrary();
             var photoFromLibrary = library.GetPictureFromToken(token);

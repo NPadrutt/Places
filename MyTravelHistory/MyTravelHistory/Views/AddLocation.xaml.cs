@@ -33,9 +33,8 @@ namespace MyTravelHistory.Views
             DataContext = App.ViewModel.SelectedLocation;
             listpickerTag.ItemsSource = App.ViewModel.AllTags;
 
-            ((ApplicationBarIconButton)this.ApplicationBar.Buttons[0]).Text = AppResources.DoneLabel;
-            ((ApplicationBarIconButton)this.ApplicationBar.Buttons[1]).Text = AppResources.ImportImageLabel;
-            ((ApplicationBarIconButton)this.ApplicationBar.Buttons[2]).Text = AppResources.CancelLabel;
+            ((ApplicationBarIconButton)ApplicationBar.Buttons[0]).Text = AppResources.DoneLabel;
+            ((ApplicationBarIconButton)ApplicationBar.Buttons[1]).Text = AppResources.CancelLabel;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -43,38 +42,40 @@ namespace MyTravelHistory.Views
             base.OnNavigatedTo(e);
 
             var queryStrings = NavigationContext.QueryString;
-            if (e.NavigationMode != NavigationMode.Back)
+            if (App.ViewModel.SelectedLocation == null)
             {
-                if (App.ViewModel.SelectedLocation == null)
-                {
-                    App.ViewModel.SelectedLocation = new Location();
-                    PageTitle.Text = AppResources.AddTitle;
-                    newElement = true;
+                App.ViewModel.SelectedLocation = new Location();
+                PageTitle.Text = AppResources.AddTitle;
+                newElement = true;
 
-                    if (queryStrings.ContainsKey("FileId"))
-                    {
-                        sharePicture = true;
-                        var picture = Utilities.GetLocationImageByToken(queryStrings["FileId"]);
-                        ImportPicture(picture.GetImage(), picture.GetPath());
-                    }
-                    else
-                    {
-                        GetPosition();
-                    }
+                if (queryStrings.ContainsKey("FileId"))
+                {
+                    sharePicture = true;
+                    var picture = Utilities.GetPictureByToken(queryStrings["FileId"]);
+                    ImportPicture(picture.GetImage(), picture.GetPath());
+                }
+                else if (queryStrings.ContainsKey("import") && queryStrings.ContainsKey("imagePath"))
+                {
+                    newElement = true;
+                    ImportPicture(App.ViewModel.SelectedImageStream, queryStrings["imagePath"]);
                 }
                 else
                 {
-                    TransformGuiForEditMode();
-                    App.ViewModel.CurrentAddress = null;
-                    if (!double.IsNaN(App.ViewModel.SelectedLocation.Latitude) &&
-                        !double.IsNaN(App.ViewModel.SelectedLocation.Longitude))
-                    {
-                        MiniMap.ShowOnMap(App.ViewModel.SelectedLocation.Latitude,
-                                          App.ViewModel.SelectedLocation.Longitude);
-                    }
-
-                    listpickerTag.ItemsSource = App.ViewModel.AllTags;
+                    GetPosition();
                 }
+            }
+            else
+            {
+                TransformGuiForEditMode();
+                App.ViewModel.CurrentAddress = null;
+                if (!double.IsNaN(App.ViewModel.SelectedLocation.Latitude) &&
+                    !double.IsNaN(App.ViewModel.SelectedLocation.Longitude))
+                {
+                    MiniMap.ShowOnMap(App.ViewModel.SelectedLocation.Latitude,
+                                        App.ViewModel.SelectedLocation.Longitude);
+                }
+
+                listpickerTag.ItemsSource = App.ViewModel.AllTags;
             }
         }
 
@@ -90,32 +91,16 @@ namespace MyTravelHistory.Views
 
         private void Grid_Tap(object sender, GestureEventArgs e)
         {
-            this.photoChooserTask = new PhotoChooserTask { ShowCamera = true };
-            this.photoChooserTask.Completed += this.PhotoChooserTask_Completed;
-            this.photoChooserTask.Show();
-        }
-
-        private void btnImportImage_Click(object sender, System.EventArgs e)
-        {
-            this.photoChooserTask = new PhotoChooserTask();
-            this.photoChooserTask.Completed += this.PhotoImportTask_Completed;
-            this.photoChooserTask.Show();
+            photoChooserTask = new PhotoChooserTask { ShowCamera = true };
+            photoChooserTask.Completed += this.PhotoChooserTask_Completed;
+            photoChooserTask.Show();
         }
 
         void PhotoChooserTask_Completed(object sender, PhotoResult e)
         {
             if (e.TaskResult == TaskResult.OK)
             {
-
                 SaveImage(e.ChosenPhoto, e.OriginalFileName);
-            }
-        }
-
-        private void PhotoImportTask_Completed(object sender, PhotoResult e)
-        {
-            if (e.TaskResult == TaskResult.OK)
-            {
-                ImportPicture(e.ChosenPhoto, e.OriginalFileName);
             }
         }
 
@@ -257,7 +242,7 @@ namespace MyTravelHistory.Views
                 }
                 else
                 {
-                    App.ViewModel.SaveChangesToDB();
+                    App.ViewModel.SaveChangesToDb();
                     NavigationService.GoBack();
                 }
             }

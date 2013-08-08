@@ -21,8 +21,8 @@ namespace MyTravelHistory.Views
         private Dictionary<string, string> imageIds; 
 
         private const string BackUpFolder = "Backups";
-        private const string Backupname = "MyTravelHistoryBackup";
-        private const string Databasename = "MyTravelHistory";
+        private const string Backupname = "PlacesBackup";
+        private const string Databasename = "Places";
 
         public Backup()
         {

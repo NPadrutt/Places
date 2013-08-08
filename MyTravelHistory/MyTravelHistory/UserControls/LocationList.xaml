@@ -31,14 +31,16 @@
 	</UserControl.Resources>
     
     <Grid x:Name="LayoutRoot" Background="Transparent">
-    	<telerikPrimitives:RadDataBoundListBox x:Name="ListboxLocations" ItemTemplate="{StaticResource AllLocationsItemTemplate}" ItemsSource="{Binding AllLocations}" SelectionChanged="ListboxLocations_SelectionChanged">
-    		<telerikPrimitives:RadDataBoundListBox.ItemAddedAnimation>
-                <telerik:RadMoveAnimation StartPoint="500, 0" EndPoint="0, 0" Duration="0:0:1">
-                    <telerik:RadMoveAnimation.Easing>
-                        <CubicEase EasingMode="EaseOut"/>
-                    </telerik:RadMoveAnimation.Easing>
-                </telerik:RadMoveAnimation>
-            </telerikPrimitives:RadDataBoundListBox.ItemAddedAnimation>
-		</telerikPrimitives:RadDataBoundListBox>
+    	<ScrollViewer>
+    		<telerikPrimitives:RadDataBoundListBox x:Name="ListboxLocations" ItemTemplate="{StaticResource AllLocationsItemTemplate}" ItemsSource="{Binding AllLocations}" SelectionChanged="ListboxLocations_SelectionChanged" Height="535" Width="456">
+    			<telerikPrimitives:RadDataBoundListBox.ItemAddedAnimation>
+    				<telerik:RadMoveAnimation StartPoint="500, 0" EndPoint="0, 0" Duration="0:0:1">
+    					<telerik:RadMoveAnimation.Easing>
+    						<CubicEase EasingMode="EaseOut"/>
+    					</telerik:RadMoveAnimation.Easing>
+    				</telerik:RadMoveAnimation>
+    			</telerikPrimitives:RadDataBoundListBox.ItemAddedAnimation>
+    		</telerikPrimitives:RadDataBoundListBox>
+    	</ScrollViewer>
     </Grid>
 </UserControl>

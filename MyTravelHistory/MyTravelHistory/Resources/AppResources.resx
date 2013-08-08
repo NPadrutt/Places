@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ApplicationTitle" xml:space="preserve">
-    <value>My Travel History</value>
+    <value>Places</value>
   </data>
   <data name="AddLabel" xml:space="preserve">
     <value>add</value>
@@ -142,7 +142,7 @@
     <value>done</value>
   </data>
   <data name="RateAppLabel" xml:space="preserve">
-    <value>Rate MyTravelHistory!</value>
+    <value>Rate Places!</value>
   </data>
   <data name="ReleaseMessageLabel" xml:space="preserve">
     <value>Message of the developer:</value>
@@ -348,7 +348,7 @@ Do you wanna proceed?</value>
     <value>purchase fullversion</value>
   </data>
   <data name="RateApplicationMessage" xml:space="preserve">
-    <value>Thanks for using MyTravelHistory!
+    <value>Thanks for using Places!
 
 If you like the programm, support the development with rating the programm in the Marketplace!
 
@@ -358,21 +358,21 @@ Do you want to rate it now?</value>
     <value>Skip further reminders!</value>
   </data>
   <data name="RateApplicationTitel" xml:space="preserve">
-    <value>Rate MyTravelHistory!</value>
+    <value>Rate Places!</value>
   </data>
   <data name="TrialExpiredMessage" xml:space="preserve">
-    <value>You've used all your free MyTravelHistory intializations. If you want to continue using MyTravelHistory please purchase a full version in the Windows Marketplace.</value>
+    <value>You've used all your free Places intializations. If you want to continue using Places please purchase a full version in the Windows Marketplace.</value>
   </data>
   <data name="TrialExpiredTitle" xml:space="preserve">
     <value>trialversion expired</value>
   </data>
   <data name="TrialReminderMessage" xml:space="preserve">
-    <value>You're using MyTravelHistory in the trial Version. There are  {0} uses left
+    <value>You're using Places in the trial Version. There are  {0} uses left
 
-Do you wanna purchase MyTravelHistory?</value>
+Do you wanna purchase Places?</value>
   </data>
   <data name="TrialReminderTitle" xml:space="preserve">
-    <value>Purchase MyTravelHistory?</value>
+    <value>Purchase Places?</value>
   </data>
   <data name="ImagepositionDeactivatedMessage" xml:space="preserve">
     <value>For the selected picture was no location data found. Please make sure that you've activated the setting in the camera options.</value>
@@ -424,5 +424,14 @@ Do you wanna purchase MyTravelHistory?</value>
   </data>
   <data name="RenameTagTitle" xml:space="preserve">
     <value>Rename tag</value>
+  </data>
+  <data name="AllLabel" xml:space="preserve">
+    <value>all</value>
+  </data>
+  <data name="LoadLocationsLabel" xml:space="preserve">
+    <value>load locations..</value>
+  </data>
+  <data name="CitiesTitle" xml:space="preserve">
+    <value>cities</value>
   </data>
 </root>

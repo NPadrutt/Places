@@ -1,20 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Net;
+﻿using System.Diagnostics;
 using System.Reflection;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
-using MyTravelHistory.Models;
 using Telerik.Windows.Controls;
 using MyTravelHistory.Src;
 using MyTravelHistory.ViewModels;
@@ -24,7 +13,7 @@ using FlurryWP8SDK;
 
 namespace MyTravelHistory
 {
-    public partial class App : Application
+    public partial class App
     {
         private static MainViewModel _viewModel;
         public static MainViewModel ViewModel
@@ -112,10 +101,10 @@ namespace MyTravelHistory
             //The reminder is shown only if the application is in trial mode. When this property is set to true the application will simulate that it is in trial mode.
 
             //Creates a new instance of the RadRateApplicationReminder component.
-            RateReminder = new RadRateApplicationReminder()
+            RateReminder = new RadRateApplicationReminder
             {
                 RecurrencePerUsageCount = 3,
-                AllowUsersToSkipFurtherReminders = true,
+                AllowUsersToSkipFurtherReminders = true
             };
 
             //Sets how often the rate reminder is displayed.
@@ -133,7 +122,7 @@ namespace MyTravelHistory
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
 #if !DEBUG
-                FlurryWP8SDK.Api.StartSession("HKN24VVBRHX4833D8VCR");
+                Api.StartSession("HKN24VVBRHX4833D8VCR");
 #endif
             ApplicationUsageHelper.Init(Assembly.GetExecutingAssembly().FullName.Split('=')[1].Split(',')[0]);
             
@@ -144,7 +133,7 @@ namespace MyTravelHistory
 
         private void SetTrialReminderMessage()
         {
-            TrialReminder.TrialReminderMessageBoxInfo = new MessageBoxInfoModel()
+            TrialReminder.TrialReminderMessageBoxInfo = new MessageBoxInfoModel
             {
                 Buttons = MessageBoxButtons.YesNo,
                 Title = AppResources.TrialReminderTitle,
@@ -155,7 +144,7 @@ namespace MyTravelHistory
         private void SetTrialExpiredMessage()
         {
 
-            TrialReminder.TrialExpiredMessageBoxInfo = new MessageBoxInfoModel()
+            TrialReminder.TrialExpiredMessageBoxInfo = new MessageBoxInfoModel
             {
                 Buttons = MessageBoxButtons.YesNo,
                 Title = AppResources.TrialExpiredTitle,
@@ -165,7 +154,7 @@ namespace MyTravelHistory
 
         private void SetRateReminderMessage()
         {
-            RateReminder.MessageBoxInfo = new MessageBoxInfoModel()
+            RateReminder.MessageBoxInfo = new MessageBoxInfoModel
             {
                 Buttons = MessageBoxButtons.YesNo,
                 Content = AppResources.RateApplicationMessage,
@@ -225,7 +214,7 @@ namespace MyTravelHistory
         #region Phone application initialization
 
         // Avoid double-initialization
-        private bool phoneApplicationInitialized = false;
+        private bool phoneApplicationInitialized;
 
         // Do not add any additional code to this method
         private void InitializePhoneApplication()
@@ -234,14 +223,15 @@ namespace MyTravelHistory
                 return;
             // Create the frame but don't set it as RootVisual yet; this allows the splash
             // screen to remain active until the application is ready to render.
-            RadTransition transition = new RadTransition();
-            transition.BackwardInAnimation = this.Resources["slideInAnimation"] as RadSlideContinuumAnimation;
-            transition.BackwardOutAnimation = this.Resources["slideOutAnimation"] as RadSlideContinuumAnimation;
-            transition.ForwardInAnimation = this.Resources["slideInAnimation"] as RadSlideContinuumAnimation;
-            transition.ForwardOutAnimation = this.Resources["slideOutAnimation"] as RadSlideContinuumAnimation;
-            transition.PlayMode = TransitionPlayMode.Consecutively;
-            RadPhoneApplicationFrame frame = new RadPhoneApplicationFrame();
-            frame.Transition = transition;
+            var transition = new RadTransition
+            {
+                BackwardInAnimation = Resources["slideInAnimation"] as RadSlideContinuumAnimation,
+                BackwardOutAnimation = Resources["slideOutAnimation"] as RadSlideContinuumAnimation,
+                ForwardInAnimation = Resources["slideInAnimation"] as RadSlideContinuumAnimation,
+                ForwardOutAnimation = Resources["slideOutAnimation"] as RadSlideContinuumAnimation,
+                PlayMode = TransitionPlayMode.Consecutively
+            };
+            var frame = new RadPhoneApplicationFrame { Transition = transition };
             RootFrame = frame;
             RootFrame.Navigated += CompleteInitializePhoneApplication;
             // Handle navigation failures

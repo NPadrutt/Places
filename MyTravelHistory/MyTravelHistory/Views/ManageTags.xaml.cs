@@ -115,7 +115,7 @@ namespace MyTravelHistory.Views
                 }                    
                 ListBoxTags.SelectedItem = null;
 
-                App.ViewModel.SaveChangesToDB();
+                App.ViewModel.SaveChangesToDb();
             }
         }
     }

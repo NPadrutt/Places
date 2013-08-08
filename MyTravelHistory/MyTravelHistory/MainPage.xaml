@@ -8,12 +8,13 @@
 	xmlns:UserControls="clr-namespace:MyTravelHistory.UserControls"
     xmlns:telerikInput="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Input"
     xmlns:ListPicker="clr-namespace:Telerik.Windows.Controls.ListPicker;assembly=Telerik.Windows.Controls.Input" xmlns:PhoneTextBox="clr-namespace:Telerik.Windows.Controls.PhoneTextBox;assembly=Telerik.Windows.Controls.Primitives" xmlns:telerik="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Core" xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     x:Class="MyTravelHistory.MainPage"
 	mc:Ignorable="d"
     SupportedOrientations="Portrait"  Orientation="Portrait"
     shell:SystemTray.IsVisible="True">
-
-	<phone:PhoneApplicationPage.Resources>
+    
+    <phone:PhoneApplicationPage.Resources>
 		<Style x:Key="PopupHeaderStyle" TargetType="ContentControl">
 			<Setter Property="FontSize" Value="{StaticResource PhoneFontSizeMedium}"/>
 			<Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilySemiBold}"/>
@@ -153,7 +154,13 @@
 				</Setter.Value>
 			</Setter>
 		</Style>
-	</phone:PhoneApplicationPage.Resources>
+
+        <DataTemplate x:Key="AllCitiesItemTemplate">
+        	<StackPanel Width="455" Background="{StaticResource PhoneAccentBrush}" Margin="0,0,0,12">
+        		<TextBlock Text="{Binding}" Style="{StaticResource PhoneTextTitle2Style}" Margin="0"/>
+        	</StackPanel>
+        </DataTemplate>
+    </phone:PhoneApplicationPage.Resources>
 	<phone:PhoneApplicationPage.FontFamily>
 		<StaticResource ResourceKey="PhoneFontFamilyNormal"/>
 	</phone:PhoneApplicationPage.FontFamily>
@@ -164,6 +171,7 @@
 		<StaticResource ResourceKey="PhoneForegroundBrush"/>
 	</phone:PhoneApplicationPage.Foreground>
 
+    
 	<!--Sample code showing usage of ApplicationBar-->
 	<phone:PhoneApplicationPage.ApplicationBar>
 		<shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
@@ -173,6 +181,7 @@
 				<shell:ApplicationBarMenuItem x:Name="mAbout" Text="About" Click="mAbout_Click"/>
 			</shell:ApplicationBar.MenuItems>
 			<shell:ApplicationBarIconButton x:Name="btnAdd" IconUri="/Assets/AppBar/add.png" Text="add" Click="btnAdd_Click"/>
+			<shell:ApplicationBarIconButton x:Name="btnImportImage" IconUri="/Assets/import.png" Text="button" Click="btnImportImage_Click"/>
 		</shell:ApplicationBar>
 	</phone:PhoneApplicationPage.ApplicationBar>
 
@@ -180,12 +189,26 @@
 <!--TitlePanel contains the name of the application and page title-->
 		<StackPanel x:Name="TitlePanel" Margin="12,0,0,580">
 			<TextBlock x:Name="ApplicationTitle" Text="{Binding LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}"/>
-			<TextBlock x:Name="PageTitle" Text="{Binding LocalizedResources.LocationsTitle, Source={StaticResource LocalizedStrings}}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+			<TextBlock x:Name="PageTitle" Text="{Binding LocalizedResources.CitiesTitle, Source={StaticResource LocalizedStrings}}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
 		</StackPanel>
 		<StackPanel x:Name="ContentPanel" Margin="12,116,12,0" MinWidth="450">
-            <telerikInput:RadListPicker x:Name="listpickerFilter" SelectionMode="Multiple"  DisplayMemberPath="TagName" CancelButtonIconUri="/Toolkit.Content/ApplicationBar.Cancel.png" OkButtonIconUri="/Toolkit.Content/ApplicationBar.Check.png" Margin="0" NoSelectionContent="All" Style="{StaticResource RadListPickerFilterStyle}" SelectionChanged="listpickerFilter_SelectionChanged" ActionButtonVisibility="Visible" />
-			<UserControls:LocationList x:Name="LocationList" MinHeight="450" Height="523" />
+			<telerikInput:RadListPicker x:Name="listpickerFilter" SelectionMode="Multiple"  DisplayMemberPath="TagName" CancelButtonIconUri="/Toolkit.Content/ApplicationBar.Cancel.png" OkButtonIconUri="/Toolkit.Content/ApplicationBar.Check.png" Margin="0" NoSelectionContent="{Binding LocalizedResources.AllLabel, Source={StaticResource LocalizedStrings}}" Style="{StaticResource RadListPickerFilterStyle}" SelectionChanged="listpickerFilter_SelectionChanged" ActionButtonVisibility="Visible" Visibility="Collapsed" />
+			<Grid>
+				<UserControls:LocationList x:Name="LocationList" Visibility="Collapsed"/>
+				<telerikPrimitives:RadDataBoundListBox Margin="0" x:Name="ListboxCities" ItemTemplate="{StaticResource AllCitiesItemTemplate}" ItemsSource="{Binding AllCities}" SelectionChanged="ListboxCities_OnSelectionChanged" Height="581">
+					<telerikPrimitives:RadDataBoundListBox.ItemAddedAnimation>
+						<telerik:RadMoveAnimation StartPoint="500, 0" EndPoint="0, 0" Duration="0:0:1">
+							<telerik:RadMoveAnimation.Easing>
+								<CubicEase EasingMode="EaseOut"/>
+							</telerik:RadMoveAnimation.Easing>
+						</telerik:RadMoveAnimation>
+					</telerikPrimitives:RadDataBoundListBox.ItemAddedAnimation>
+				</telerikPrimitives:RadDataBoundListBox>
+			</Grid>
 		</StackPanel>
+		<telerikPrimitives:RadBusyIndicator Background="#CC000000" x:Name="busyProceedAction" AnimationStyle="AnimationStyle7" Content="{Binding LocalizedResources.LoadLocationsLabel, Source={StaticResource LocalizedStrings}}" Margin="0" />
+		<ProgressBar x:Name="progbar" HorizontalAlignment="Left" Height="24" VerticalAlignment="Top" Width="470" Margin="10,-24,0,0"/>
+
 	</Grid>
 
 </phone:PhoneApplicationPage>

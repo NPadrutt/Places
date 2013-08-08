@@ -69,7 +69,7 @@ namespace MyTravelHistory.Models
 
         public BitmapImage LocationImage
         {
-            get { return Utilities.LoadLocationImage(_imageName); }
+            get { return Utilities.GetLocationImage(_imageName); }
         }
 
         private BitmapImage _thumbnail;
