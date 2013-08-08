@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
+using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Tasks;
@@ -64,16 +65,22 @@ namespace MyTravelHistory
             }
         }
 
-        private void ListboxCities_OnSelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        private async void ListboxCities_OnSelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
             if (ListboxCities.SelectedItem != null)
             {
-                Dispatcher.BeginInvoke(delegate
+                Action loadAction = () =>
+                {
+                    LoadLocations(ListboxCities.SelectedItem.ToString());
+                };
+
+                Action actionBusyIndicator = () => Dispatcher.BeginInvoke(delegate
                 {
                     busyProceedAction.IsRunning = true;
                 });
-                LoadLocations(ListboxCities.SelectedItem.ToString());
 
+                await Task.Factory.StartNew(actionBusyIndicator);
+                Dispatcher.BeginInvoke(loadAction);
             }
         }
 
