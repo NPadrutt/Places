@@ -122,7 +122,7 @@ namespace MyTravelHistory
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
 #if !DEBUG
-                Api.StartSession("HKN24VVBRHX4833D8VCR");
+                Api.StartSession("CDM6ZNWY5VQGCX5DMQK6");
 #endif
             ApplicationUsageHelper.Init(Assembly.GetExecutingAssembly().FullName.Split('=')[1].Split(',')[0]);
             
