@@ -434,4 +434,24 @@ Do you wanna purchase Places?</value>
   <data name="CitiesTitle" xml:space="preserve">
     <value>cities</value>
   </data>
+  <data name="ActivatedLabel" xml:space="preserve">
+    <value>activated</value>
+  </data>
+  <data name="DeactivatedLabel" xml:space="preserve">
+    <value>deactivated</value>
+  </data>
+  <data name="LocationserviceDisabledMessage" xml:space="preserve">
+    <value>Your locationservices are disabled. To allow us to get your position please activate them in the appsettings.</value>
+  </data>
+  <data name="LocationserviceDisabledTitle" xml:space="preserve">
+    <value>Locationservices disabled!</value>
+  </data>
+  <data name="PrivacyPolicyMessage" xml:space="preserve">
+    <value>Places needs the windows phone locationservice to determine you position and calculate the address of this position. For this process we have to send location data to Microsoft (you'll find the privacy statement of Microsoft in the phone settings - location). We don't store any location data on our own server.
+
+Do you want do enable locationservices for Places?</value>
+  </data>
+  <data name="PrivacyPolicyTitle" xml:space="preserve">
+    <value>Privacy Statement</value>
+  </data>
 </root>

@@ -29,36 +29,40 @@ namespace MyTravelHistory.Src
 
         public static async Task GetPosition()
         {
-            var geolocater = new Geolocator { DesiredAccuracy = PositionAccuracy.High };
+            if (App.Settings.LocationServiceEnabled == true)
+            {
+                var geolocater = new Geolocator {DesiredAccuracy = PositionAccuracy.High};
 
-            try
-            {
-                var geoposition = await geolocater.GetGeopositionAsync(TimeSpan.FromMinutes(2), TimeSpan.FromSeconds(20)
-                    );
-
-                App.ViewModel.CurrentPosition = new Position
-                                                {
-                                                    Latitude = geoposition.Coordinate.Latitude,
-                                                    Longitude = geoposition.Coordinate.Longitude,
-                                                    Accuracy = geoposition.Coordinate.Accuracy,
-                                                    Timestamp = geoposition.Coordinate.Timestamp.DateTime
-                                                };
-            }
-            catch (TimeoutException ex)
-            {
-                Api.LogError("timeout", ex.InnerException);
-            }
-            catch (Exception ex)
-            {
-                if ((uint)ex.HResult == 0x80004004)
+                try
                 {
-                    // the application does not have the right capability or the location master switch is off
-                    Api.LogError("location  is disabled in phone settings.", ex.InnerException);
+                    var geoposition =
+                        await geolocater.GetGeopositionAsync(TimeSpan.FromMinutes(2), TimeSpan.FromSeconds(20)
+                                  );
+
+                    App.ViewModel.CurrentPosition = new Position
+                        {
+                            Latitude = geoposition.Coordinate.Latitude,
+                            Longitude = geoposition.Coordinate.Longitude,
+                            Accuracy = geoposition.Coordinate.Accuracy,
+                            Timestamp = geoposition.Coordinate.Timestamp.DateTime
+                        };
                 }
-                if ((uint)ex.HResult == 0x800705B4)
+                catch (TimeoutException ex)
                 {
-                    // the application does not have the right capability or the location master switch is off
-                    Api.LogError("Timeout expired.", ex.InnerException);
+                    Api.LogError("timeout", ex.InnerException);
+                }
+                catch (Exception ex)
+                {
+                    if ((uint) ex.HResult == 0x80004004)
+                    {
+                        // the application does not have the right capability or the location master switch is off
+                        Api.LogError("location  is disabled in phone settings.", ex.InnerException);
+                    }
+                    if ((uint) ex.HResult == 0x800705B4)
+                    {
+                        // the application does not have the right capability or the location master switch is off
+                        Api.LogError("Timeout expired.", ex.InnerException);
+                    }
                 }
             }
         }

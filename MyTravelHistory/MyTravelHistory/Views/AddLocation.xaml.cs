@@ -61,6 +61,11 @@ namespace MyTravelHistory.Views
                 }
                 else
                 {
+                    if (App.Settings.LocationServiceEnabled != true)
+                    {
+                        MessageBox.Show(AppResources.LocationserviceDisabledMessage,
+                                        AppResources.LocationserviceDisabledTitle, MessageBoxButton.OK);
+                    }
                     GetPosition();
                 }
             }

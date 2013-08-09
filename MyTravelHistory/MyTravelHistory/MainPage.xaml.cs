@@ -10,6 +10,7 @@ using MyTravelHistory.Models;
 using Microsoft.Phone.Shell;
 using MyTravelHistory.Resources;
 using System.Collections.Generic;
+using Telerik.Windows.Controls;
 
 namespace MyTravelHistory
 {
@@ -26,6 +27,7 @@ namespace MyTravelHistory
 
             CheckLicense();
             LoadCities();
+            CheckLocationservices();
 
             //Shows the rate reminder message, according to the settings of the RateReminder.
             ((App)Application.Current).RateReminder.Notify();
@@ -37,7 +39,18 @@ namespace MyTravelHistory
 
             ((ApplicationBarMenuItem)ApplicationBar.MenuItems[0]).Text = AppResources.TagLabel;
             ((ApplicationBarMenuItem)ApplicationBar.MenuItems[1]).Text = AppResources.BackupLabel;
-            ((ApplicationBarMenuItem)ApplicationBar.MenuItems[2]).Text = AppResources.AboutLabel;
+            ((ApplicationBarMenuItem)ApplicationBar.MenuItems[2]).Text = AppResources.SettingsLabel;
+            ((ApplicationBarMenuItem)ApplicationBar.MenuItems[3]).Text = AppResources.AboutLabel;
+        }
+
+        private void CheckLicense()
+        {
+            ((App)Application.Current).TrialReminder.Notify();
+
+            if (((App)Application.Current).TrialReminder.IsTrialExpired && NavigationService != null)
+            {
+                NavigationService.Navigate(new Uri("/Views/TrialversionExpired.xaml", UriKind.Relative));
+            }
         }
 
         private void LoadCities()
@@ -55,13 +68,14 @@ namespace MyTravelHistory
             }
         }
 
-        private void CheckLicense()
+        private async void CheckLocationservices()
         {
-            ((App)Application.Current).TrialReminder.Notify();
-
-            if (((App)Application.Current).TrialReminder.IsTrialExpired && NavigationService != null)
+            if (App.Settings.LocationServiceEnabled == null)
             {
-                NavigationService.Navigate(new Uri("/Views/TrialversionExpired.xaml", UriKind.Relative));
+                var args = await RadMessageBox.ShowAsync(AppResources.PrivacyPolicyTitle, MessageBoxButtons.YesNo,
+                                        AppResources.PrivacyPolicyMessage);
+
+                App.Settings.LocationServiceEnabled = args.Result == DialogResult.OK;
             }
         }
 
@@ -69,10 +83,7 @@ namespace MyTravelHistory
         {
             if (ListboxCities.SelectedItem != null)
             {
-                Action loadAction = () =>
-                {
-                    LoadLocations(ListboxCities.SelectedItem.ToString());
-                };
+                Action loadAction = () => LoadLocations(ListboxCities.SelectedItem.ToString());
 
                 Action actionBusyIndicator = () => Dispatcher.BeginInvoke(delegate
                 {
@@ -162,6 +173,11 @@ namespace MyTravelHistory
             }
 
             base.OnBackKeyPress(e);
+        }
+
+        private void mSettings_Click(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Views/Settings.xaml", UriKind.Relative));
         }
     }
 }

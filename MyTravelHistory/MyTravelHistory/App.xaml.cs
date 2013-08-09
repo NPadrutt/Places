@@ -25,6 +25,16 @@ namespace MyTravelHistory
             }
         }
 
+        private static SettingViewModel settings;
+        public static SettingViewModel Settings
+        {
+            get { return settings; }
+            set
+            {
+                settings = value;
+            }
+        }
+
         /// <summary>
         /// Component used to handle unhandle exceptions, to collect runtime info and to send email to developer.
         /// </summary>
@@ -112,6 +122,9 @@ namespace MyTravelHistory
 
             _viewModel = new MainViewModel();
             _viewModel.LoadTags();
+
+
+            settings = new SettingViewModel();
 
             Utilities.GetPosition();
         }

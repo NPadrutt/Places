@@ -429,4 +429,16 @@ Möchtest du Places jetzt kaufen?</value>
   <data name="CitiesTitle" xml:space="preserve">
     <value>Städte</value>
   </data>
+  <data name="ActivatedLabel" xml:space="preserve">
+    <value>Aktiviert</value>
+  </data>
+  <data name="DeactivatedLabel" xml:space="preserve">
+    <value>Deaktiviert</value>
+  </data>
+  <data name="LocationserviceDisabledMessage" xml:space="preserve">
+    <value>Deine Positionsdienste sind deaktiviert. Damit wir deine Position bestimmen können aktiviere diese bitte in den App Einstellungen.</value>
+  </data>
+  <data name="LocationserviceDisabledTitle" xml:space="preserve">
+    <value>Positionsdienste deaktiviert!</value>
+  </data>
 </root>

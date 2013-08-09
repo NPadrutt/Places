@@ -11,9 +11,7 @@ namespace MyTravelHistory.ViewModels
     {
         #region Settings and Default Definition
 
-        //const string DefaultImageLocationKeyName = "DefaultImageLocation";
-
-        //const int DefaultImageLocationKeyDefault = 1;
+        const string LocationServiceEnabledKeyName = "LocationServiceEnabled";
 
         #endregion
 
@@ -50,17 +48,17 @@ namespace MyTravelHistory.ViewModels
             return value;
         }
 
-        //public int DefaultImageLocation
-        //{
-        //    get
-        //    {
-        //        return GetValueOrDefault<int>(DefaultImageLocationKeyName, DefaultImageLocationKeyDefault);
-        //    }
-        //    set
-        //    {
-        //        AddOrUpdateValue(DefaultImageLocationKeyName, value);
-        //    }
-        //}
+        public bool? LocationServiceEnabled
+        {
+            get
+            {
+                return GetValueOrDefault<bool?>(LocationServiceEnabledKeyName, null);
+            }
+            set
+            {
+                AddOrUpdateValue(LocationServiceEnabledKeyName, value);
+            }
+        }
 
         #region INotifyPropertyChanged Members
 
