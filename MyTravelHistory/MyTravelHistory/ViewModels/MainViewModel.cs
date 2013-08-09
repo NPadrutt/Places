@@ -257,11 +257,11 @@ namespace MyTravelHistory.ViewModels
 
         public void LoadTags()
         {
-            var TagsItemsInDb = from Tag tag in db.Tags
+            var tagsItemsInDb = from Tag tag in db.Tags
                                     orderby tag.TagName
                                     select tag;
 
-           AllTags = new ObservableCollection<Tag>(TagsItemsInDb);
+           AllTags = new ObservableCollection<Tag>(tagsItemsInDb);
         }
 
         #endregion
