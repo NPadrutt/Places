@@ -218,6 +218,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ApplicationIcon.png" />
     <Content Include="Assets\Add.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
