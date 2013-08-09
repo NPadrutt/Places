@@ -50,6 +50,7 @@ namespace MyTravelHistory.Views
 
                 if (queryStrings.ContainsKey("FileId"))
                 {
+                    App.ViewModel.LoadLocationsByCity(lblCity.Text);
                     sharePicture = true;
                     var picture = Utilities.GetPictureByToken(queryStrings["FileId"]);
                     ImportPicture(picture.GetImage(), picture.GetPath());
