@@ -73,9 +73,12 @@ namespace MyTravelHistory
             if (App.Settings.LocationServiceEnabled == null)
             {
                 var args = await RadMessageBox.ShowAsync(AppResources.PrivacyPolicyTitle, MessageBoxButtons.YesNo,
-                                        AppResources.PrivacyPolicyMessage);
+                                                         AppResources.PrivacyPolicyMessage);
 
-                App.Settings.LocationServiceEnabled = args.Result == DialogResult.OK;
+                if (args.Result == DialogResult.OK)
+                {
+                    App.Settings.LocationServiceEnabled = true;
+                }
             }
         }
 
