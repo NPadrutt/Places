@@ -1,0 +1,31 @@
+﻿<Application
+    x:Class="Places.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"       
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:telerikCore="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Core"    
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:SampleData="clr-namespace:Expression.Blend.SampleData.LocationSampleDataSource"
+    xmlns:resources="clr-namespace:Places.Resources"
+    xmlns:places="clr-namespace:Places"
+    mc:Ignorable="d" 
+    >
+    
+    <!--Application Resources-->
+    <Application.Resources>
+        <SampleData:LocationSampleDataSource x:Key="LocationSampleDataSource" d:IsDataSource="True"/>
+        <places:LocalizedStrings x:Key="Locales" d:IsDataSource="True"/>
+        <resources:LocalizedStrings x:Key="LocalizedStrings"/>
+        <telerikCore:RadSlideContinuumAnimation x:Key="slideInAnimation"/>
+        <telerikCore:RadSlideContinuumAnimation x:Key="slideOutAnimation" />
+    </Application.Resources>
+
+    <Application.ApplicationLifetimeObjects>
+        <!--Required object that handles lifetime events for the application-->
+        <shell:PhoneApplicationService
+            Launching="Application_Launching" Closing="Application_Closing"
+            Activated="Application_Activated" Deactivated="Application_Deactivated"/>
+    </Application.ApplicationLifetimeObjects>
+
+</Application>

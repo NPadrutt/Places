@@ -1,0 +1,46 @@
+﻿<UserControl x:Class="Places.UserControls.LocationList"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives" 
+	xmlns:telerik="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Core" 
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="535" d:DesignWidth="456">
+	<UserControl.Resources>
+		<DataTemplate x:Key="AllLocationsItemTemplate">
+			<StackPanel Width="455" Background="{StaticResource PhoneAccentBrush}" Margin="0,0,0,12">
+				<StackPanel Orientation="Horizontal">
+					<Grid Height="76" Width="68" Background="#FF595959" Margin="0,0,5,0">
+                        <Image Source="{Binding Thumbnail}" MaxHeight="76" MaxWidth="68" Stretch="Fill" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="68" Height="76" />
+					</Grid>
+					<StackPanel>
+						<TextBlock Text="{Binding Name}" Style="{StaticResource PhoneTextTitle2Style}" Margin="0"/>
+						<StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding LocationAddress.City}" Style="{StaticResource PhoneTextSmallStyle}" Margin="-2,0,0,0" />
+							<TextBlock Text=", "  Style="{StaticResource PhoneTextSmallStyle}" Margin="2,0,0,0" />
+                            <TextBlock Text="{Binding LocationAddress.Country}" Style="{StaticResource PhoneTextSmallStyle}" Margin="0" />
+                        </StackPanel>
+					</StackPanel>
+				</StackPanel>
+			</StackPanel>
+		</DataTemplate>
+	</UserControl.Resources>
+    
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+    	<ScrollViewer>
+    		<telerikPrimitives:RadDataBoundListBox x:Name="ListboxLocations" ItemTemplate="{StaticResource AllLocationsItemTemplate}" ItemsSource="{Binding AllLocations}" SelectionChanged="ListboxLocations_SelectionChanged" Height="535" Width="456">
+    			<telerikPrimitives:RadDataBoundListBox.ItemAddedAnimation>
+    				<telerik:RadMoveAnimation StartPoint="500, 0" EndPoint="0, 0" Duration="0:0:1">
+    					<telerik:RadMoveAnimation.Easing>
+    						<CubicEase EasingMode="EaseOut"/>
+    					</telerik:RadMoveAnimation.Easing>
+    				</telerik:RadMoveAnimation>
+    			</telerikPrimitives:RadDataBoundListBox.ItemAddedAnimation>
+    		</telerikPrimitives:RadDataBoundListBox>
+    	</ScrollViewer>
+    </Grid>
+</UserControl>
