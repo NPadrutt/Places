@@ -87,7 +87,6 @@ namespace Places.Views
         {
             PageTitle.Text = AppResources.EditTitle;
             stackpanelAddress.DataContext = App.ViewModel.SelectedLocation.LocationAddress;
-            ApplicationBar.Buttons.RemoveAt(1);
             progressionbarGetLocation.IsIndeterminate = false;
             stackpanelAddress.Visibility = Visibility.Visible;
             progressionbarGetLocation.Visibility = Visibility.Collapsed;

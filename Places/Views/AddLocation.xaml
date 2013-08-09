@@ -49,7 +49,7 @@
 						<TextBlock x:Name="lblLatitude" Text="{Binding Latitude}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Style="{StaticResource PhoneTextNormalStyle}"/>
 						<TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Text=" / " Margin="0" Style="{StaticResource PhoneTextNormalStyle}"/>
 						<TextBlock x:Name="lblLongtitude" Text="{Binding Longitude}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Style="{StaticResource PhoneTextNormalStyle}"/>
-						<telerikPrimitives:RadImageButton x:Name="btnRefreshPosition" Content="" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ButtonType="Custom" RestStateImageSource="/Places;component/Assets/Refresh.png" PressedStateImageSource="/Places;component/Assets/Refresh.png" DisabledStateImageSource="/MyTravelHistory;component/Assets/Refresh.png" Click="btnRefreshPosition_Click" Margin="0,-20,0,0"/>
+						<telerikPrimitives:RadImageButton x:Name="btnRefreshPosition" Content="" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ButtonType="Custom" RestStateImageSource="/Assets/Refresh.png" PressedStateImageSource="/Assets/Refresh.png" DisabledStateImageSource="/Assets/Refresh.png" Click="btnRefreshPosition_Click" Margin="0,-20,0,0"/>
 					</StackPanel>
 					<StackPanel Orientation="Horizontal" Margin="0,-12,0,0">
 						<TextBlock x:Name="lblAccuracyCaption" Text="{Binding LocalizedResources.AccuracyLabel, Source={StaticResource LocalizedStrings}}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Style="{StaticResource PhoneTextSubtleStyle}" Margin="0,0,2,0"/>
