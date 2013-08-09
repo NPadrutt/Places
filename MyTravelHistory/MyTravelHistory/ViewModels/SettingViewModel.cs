@@ -13,6 +13,8 @@ namespace MyTravelHistory.ViewModels
 
         const string LocationServiceEnabledKeyName = "LocationServiceEnabled";
 
+        const bool LocationServiceEnabledKeyDefault = false;
+
         #endregion
 
         private void AddOrUpdateValue(string key, Object value)
@@ -48,11 +50,11 @@ namespace MyTravelHistory.ViewModels
             return value;
         }
 
-        public bool? LocationServiceEnabled
+        public bool LocationServiceEnabled
         {
             get
             {
-                return GetValueOrDefault<bool?>(LocationServiceEnabledKeyName, null);
+                return GetValueOrDefault<bool>(LocationServiceEnabledKeyName, LocationServiceEnabledKeyDefault);
             }
             set
             {

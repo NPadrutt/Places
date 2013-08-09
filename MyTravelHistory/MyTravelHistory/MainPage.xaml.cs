@@ -70,7 +70,7 @@ namespace MyTravelHistory
 
         private async void CheckLocationservices()
         {
-            if (App.Settings.LocationServiceEnabled == null)
+            if (ApplicationUsageHelper.ApplicationRunsCountTotal <= 1)
             {
                 var args = await RadMessageBox.ShowAsync(AppResources.PrivacyPolicyTitle, MessageBoxButtons.YesNo,
                                                          AppResources.PrivacyPolicyMessage);

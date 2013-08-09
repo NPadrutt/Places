@@ -9,6 +9,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
+using Telerik.Windows.Controls;
 
 namespace MyTravelHistory.ViewModels
 {
@@ -34,6 +35,8 @@ namespace MyTravelHistory.ViewModels
 
                 LoadTags();
                 CreateDefaultEntries();
+
+
             }
             else
             {

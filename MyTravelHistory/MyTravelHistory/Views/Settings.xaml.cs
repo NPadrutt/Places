@@ -15,7 +15,7 @@ namespace MyTravelHistory.Views
         {
             base.OnNavigatedTo(e);
 
-            if (App.Settings.LocationServiceEnabled == true)
+            if (App.Settings.LocationServiceEnabled)
             {
                 LocationservicesStatus.IsChecked = true;
             }
