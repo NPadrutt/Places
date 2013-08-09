@@ -15,7 +15,6 @@
     <!--Application Resources-->
     <Application.Resources>
         <SampleData:LocationSampleDataSource x:Key="LocationSampleDataSource" d:IsDataSource="True"/>
-        <places:LocalizedStrings x:Key="Locales" d:IsDataSource="True"/>
         <resources:LocalizedStrings x:Key="LocalizedStrings"/>
         <telerikCore:RadSlideContinuumAnimation x:Key="slideInAnimation"/>
         <telerikCore:RadSlideContinuumAnimation x:Key="slideOutAnimation" />

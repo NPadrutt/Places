@@ -132,6 +132,8 @@ namespace Places.Views
                 imageName = Utilities.GetImageName(photoStream);
 
                 LocationImage.Source = Utilities.GetThumbnail(imageName);
+                //set true that AddImageLabel don't get visible again
+                sharePicture = true;
                 lblAddImage.Visibility = Visibility.Collapsed;
                 gridImage.Height = LocationImage.Height;
                 gridImage.Width = LocationImage.Width;
