@@ -157,6 +157,11 @@ namespace Places.ViewModels
 
         public void AddLocation(Location newLocation)
         {
+            if (AllLocations == null)
+            {
+                LoadLocationsByCity(newLocation.LocationAddress.City);
+            }
+
             AllLocations.Add(newLocation);
             db.Locations.InsertOnSubmit(newLocation);
 
