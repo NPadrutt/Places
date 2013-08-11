@@ -78,8 +78,6 @@ namespace Places.Views
                     MiniMap.ShowOnMap(App.ViewModel.SelectedLocation.Latitude,
                                         App.ViewModel.SelectedLocation.Longitude);
                 }
-
-                listpickerTag.ItemsSource = App.ViewModel.AllTags;
             }
         }
 
@@ -90,6 +88,10 @@ namespace Places.Views
             progressionbarGetLocation.IsIndeterminate = false;
             stackpanelAddress.Visibility = Visibility.Visible;
             progressionbarGetLocation.Visibility = Visibility.Collapsed;
+            foreach (var tag in App.ViewModel.SelectedLocation.Tags)
+            {
+                listpickerTag.SelectedItems.Add(tag);
+            }
         }
 
         private void Grid_Tap(object sender, GestureEventArgs e)
