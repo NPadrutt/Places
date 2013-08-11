@@ -163,6 +163,7 @@ namespace Places.ViewModels
             }
 
             AllLocations.Add(newLocation);
+            AllCities.Add(newLocation.LocationAddress.City);
             db.Locations.InsertOnSubmit(newLocation);
 
             db.SubmitChanges();
