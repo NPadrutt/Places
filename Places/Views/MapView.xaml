@@ -32,14 +32,16 @@
 		</shell:ApplicationBar>
 	</phone:PhoneApplicationPage.ApplicationBar>
 
-	<Grid x:Name="LayoutRoot" Background="Transparent">
+    <shell:SystemTray.ProgressIndicator>
+        <shell:ProgressIndicator x:Name="ProgressionbarGetLocation" Text="{Binding AppResources.GettingYourPositionLabel, Source={StaticResource LocalizedStrings}}" IsIndeterminate="true" IsVisible="True" />
+    </shell:SystemTray.ProgressIndicator>
+
+    <Grid x:Name="LayoutRoot" Background="Transparent">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="*"/>
 		</Grid.RowDefinitions>
 		<StackPanel x:Name="ContentPanel" Grid.Row="0" Margin="12,0,12,0">
-            <TextBlock Name="lblStatus" Text="{Binding LocalizedResources.GettingYourPositionLabel, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}" FontSize="14.667" Margin="0,0,12,0" />
-            <ProgressBar x:Name="progressionbarGetLocation" Height="10" Margin="0" IsIndeterminate="True"/>
-            <maps:Map x:Name="MyMap" LandmarksEnabled="True" Loaded="Map_Loaded" PedestrianFeaturesEnabled="True" Grid.Row="0" Height="728" Margin="-12,0" >
+            <maps:Map x:Name="MyMap" LandmarksEnabled="True" Loaded="Map_Loaded" PedestrianFeaturesEnabled="True" Grid.Row="0" Margin="-12,0" Height="700" >
                 <toolkit:MapExtensions.Children>
                     <toolkit:MapItemsControl Name="LocationItems">
                         <toolkit:MapItemsControl.ItemTemplate>
@@ -52,7 +54,7 @@
             </maps:Map>
         </StackPanel>
 
-		<telerikPrimitives:RadBusyIndicator Background="#CC000000" x:Name="busyProceedAction" AnimationStyle="AnimationStyle1" Content="{Binding AppResources.CheckBackupAvailableLabel, Source={StaticResource LocalizedStrings}}" Margin="0,0,0,-72" Grid.RowSpan="2" />
+
 
 		<!--ContentPanel - place additional content here-->
 	</Grid>

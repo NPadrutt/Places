@@ -33,14 +33,14 @@ namespace Places.Views
             ((ApplicationBarMenuItem)ApplicationBar.MenuItems[1]).Text = AppResources.DownloadMapsLabel;
         }
 
-        private void Map_Loaded(object sender, RoutedEventArgs e)
+        private async void Map_Loaded(object sender, RoutedEventArgs e)
         {
             MapsSettings.ApplicationContext.ApplicationId = "69550432-a2f9-490f-a782-d4c91775382e";
             MapsSettings.ApplicationContext.AuthenticationToken = "5-Sp7gaotYB4nRJsslF5JQ";
 
             PinMap(new GeoCoordinate(App.ViewModel.SelectedLocation.Latitude, App.ViewModel.SelectedLocation.Longitude), App.ViewModel.SelectedLocation.Name);
 
-            GetCurrentPosition(false);
+            await GetCurrentPosition(false);
         }
 
         private void PinCurrentPosition()
@@ -71,7 +71,7 @@ namespace Places.Views
             selectedCoordinate = geoPosition;
         }
 
-        private async void btnNavigation_Click(object sender, EventArgs e)
+        private void btnNavigation_Click(object sender, EventArgs e)
         {            
             var bingMapsDirectionsTask = new BingMapsDirectionsTask();
             var location = new LabeledMapLocation(App.ViewModel.SelectedLocation.Name, new GeoCoordinate(App.ViewModel.SelectedLocation.Latitude, App.ViewModel.SelectedLocation.Longitude));
@@ -80,25 +80,20 @@ namespace Places.Views
             bingMapsDirectionsTask.Show();
         }
 
-        private void menuRefreshPosition_Click(object sender, System.EventArgs e)
+        private async void menuRefreshPosition_Click(object sender, System.EventArgs e)
         {
-            GetCurrentPosition(true);
+            await GetCurrentPosition(true);
         }
 
         private async Task GetCurrentPosition(bool refetch)
         {
             if (App.ViewModel.CurrentPosition == null || App.ViewModel.CurrentPosition.Timestamp >= DateTime.Now.AddMinutes(1) || refetch)
             {
-                progressionbarGetLocation.IsEnabled = true;
-                progressionbarGetLocation.Visibility = Visibility.Visible;
-                lblStatus.Visibility = Visibility.Visible;
-
+                ProgressionbarGetLocation.IsVisible = true;
                 await Utilities.GetPosition();
             }
             PinCurrentPosition();
-            progressionbarGetLocation.IsEnabled = false;
-            progressionbarGetLocation.Visibility = Visibility.Collapsed;
-            lblStatus.Visibility = Visibility.Collapsed;
+            ProgressionbarGetLocation.IsVisible = false;
         }
 
         private void menuDownloadMaps_Click(object sender, System.EventArgs e)
