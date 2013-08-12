@@ -161,11 +161,13 @@ namespace Places.ViewModels
             {
                 LoadLocationsByCity(newLocation.LocationAddress.City);
             }
-
+            if (AllCities != null)
+            {
+                AllCities.Add(newLocation.LocationAddress.City);
+            }
             AllLocations.Add(newLocation);
-            AllCities.Add(newLocation.LocationAddress.City);
-            db.Locations.InsertOnSubmit(newLocation);
 
+            db.Locations.InsertOnSubmit(newLocation);
             db.SubmitChanges();
         }
 
