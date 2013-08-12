@@ -149,8 +149,7 @@ namespace Places.Views
 
         private void btnShare_Click(object sender, System.EventArgs e)
         {
-            var shareMediaTask = new ShareMediaTask();
-            shareMediaTask.FilePath = App.ViewModel.SelectedLocation.ImageUri;
+            var shareMediaTask = new ShareMediaTask {FilePath = App.ViewModel.SelectedLocation.ImageUri};
             shareMediaTask.Show();
         }
     }
