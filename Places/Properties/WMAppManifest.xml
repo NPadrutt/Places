@@ -5,7 +5,7 @@
     <Language code="en" />
     <Language code="de-DE" />
   </Languages>
-  <App xmlns="" ProductID="{2dd45328-c002-4fc8-8ee8-1d4ad48c0aa9}" Title="Places" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="Places author" Description="Manage and share your favorite Places!" Publisher="Places" PublisherID="{70df50ea-7763-426e-9cc3-0ecf82677012}">
+  <App xmlns="" ProductID="{2dd45328-c002-4fc8-8ee8-1d4ad48c0aa9}" Title="MyPlaces" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="Places author" Description="Manage and share your favorite Places!" Publisher="Places" PublisherID="{70df50ea-7763-426e-9cc3-0ecf82677012}">
     <IconPath IsRelative="true" IsResource="false">Assets\ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING" />
@@ -24,19 +24,28 @@
       <PrimaryToken TokenID="PlacesToken" TaskName="_default">
         <TemplateCycle>
           <SmallImageURI IsRelative="true" IsResource="false">ApplicationIcon.png</SmallImageURI>
-          <Title>Places</Title>
+          <Title>MyPlaces</Title>
           <Photo01ImageURI IsRelative="true" IsResource="false">ApplicationIcon.png</Photo01ImageURI>
-          <Photo02ImageURI IsRelative="true" IsResource="false"></Photo02ImageURI>
-          <Photo03ImageURI IsRelative="true" IsResource="false"></Photo03ImageURI>
-          <Photo04ImageURI IsRelative="true" IsResource="false"></Photo04ImageURI>
-          <Photo05ImageURI IsRelative="true" IsResource="false"></Photo05ImageURI>
-          <Photo06ImageURI IsRelative="true" IsResource="false"></Photo06ImageURI>
-          <Photo07ImageURI IsRelative="true" IsResource="false"></Photo07ImageURI>
-          <Photo08ImageURI IsRelative="true" IsResource="false"></Photo08ImageURI>
-          <Photo09ImageURI IsRelative="true" IsResource="false"></Photo09ImageURI>
+          <Photo02ImageURI IsRelative="true" IsResource="false">
+          </Photo02ImageURI>
+          <Photo03ImageURI IsRelative="true" IsResource="false">
+          </Photo03ImageURI>
+          <Photo04ImageURI IsRelative="true" IsResource="false">
+          </Photo04ImageURI>
+          <Photo05ImageURI IsRelative="true" IsResource="false">
+          </Photo05ImageURI>
+          <Photo06ImageURI IsRelative="true" IsResource="false">
+          </Photo06ImageURI>
+          <Photo07ImageURI IsRelative="true" IsResource="false">
+          </Photo07ImageURI>
+          <Photo08ImageURI IsRelative="true" IsResource="false">
+          </Photo08ImageURI>
+          <Photo09ImageURI IsRelative="true" IsResource="false">
+          </Photo09ImageURI>
           <Count>0</Count>
           <HasLarge>True</HasLarge>
-          <DeviceLockImageURI IsRelative="true" IsResource="false"></DeviceLockImageURI>
+          <DeviceLockImageURI IsRelative="true" IsResource="false">
+          </DeviceLockImageURI>
         </TemplateCycle>
       </PrimaryToken>
     </Tokens>
