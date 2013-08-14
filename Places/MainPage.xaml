@@ -182,7 +182,7 @@
 				<shell:ApplicationBarMenuItem x:Name="mAbout" Text="About" Click="mAbout_Click"/>
 			</shell:ApplicationBar.MenuItems>
 			<shell:ApplicationBarIconButton x:Name="btnAdd" IconUri="/Assets/AppBar/add.png" Text="add" Click="btnAdd_Click"/>
-			<shell:ApplicationBarIconButton x:Name="btnImportImage" IconUri="/Assets/import.png" Text="button" Click="btnImportImage_Click"/>
+			<shell:ApplicationBarIconButton x:Name="btnImportImage" IconUri="/Assets/Import.png" Text="button" Click="btnImportImage_Click"/>
 		</shell:ApplicationBar>
 	</phone:PhoneApplicationPage.ApplicationBar>
 

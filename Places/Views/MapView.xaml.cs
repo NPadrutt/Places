@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Device.Location;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Maps;
 using Microsoft.Phone.Maps.Controls;
@@ -11,6 +12,7 @@ using Microsoft.Phone.Shell;
 using Microsoft.Phone.Tasks;
 using Places.Resources;
 using Places.Src;
+using Color = Microsoft.Xna.Framework.Color;
 
 namespace Places.Views
 {
@@ -113,6 +115,11 @@ namespace Places.Views
             var currentCoordinate = new GeoCoordinate(App.ViewModel.CurrentPosition.Latitude, App.ViewModel.CurrentPosition.Longitude);
             selectedCoordinate = selectedCoordinate == currentCoordinate ? new GeoCoordinate(App.ViewModel.SelectedLocation.Latitude, App.ViewModel.SelectedLocation.Longitude) : currentCoordinate;
             MyMap.SetView(selectedCoordinate, 16, MapAnimationKind.Parabolic);
+        }
+
+        private void btnMapLayer_Click(object sender, EventArgs e)
+        {
+            WindowLayers.IsOpen = true;
         }
     }
 }

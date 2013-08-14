@@ -12,6 +12,7 @@
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
     shell:SystemTray.IsVisible="True">
+	
 	<phone:PhoneApplicationPage.FontFamily>
 		<StaticResource ResourceKey="PhoneFontFamilyNormal"/>
 	</phone:PhoneApplicationPage.FontFamily>
@@ -29,6 +30,7 @@
 			</shell:ApplicationBar.MenuItems>
 			<shell:ApplicationBarIconButton x:Name="btnSwapPosition" IconUri="/Assets/swapPosition.png" Text="swap Position" Click="btnSwapPosition_Click"/>
 			<shell:ApplicationBarIconButton x:Name="btnNavigation" IconUri="/Assets/Navigation.png" Text="Navigation" Click="btnNavigation_Click"/>
+			<shell:ApplicationBarIconButton x:Name="btnMapLayer" IconUri="/Assets/Layers.png" Text="layers" Click="btnMapLayer_Click"/>
 		</shell:ApplicationBar>
 	</phone:PhoneApplicationPage.ApplicationBar>
 
@@ -40,19 +42,20 @@
 		<Grid.RowDefinitions>
 			<RowDefinition Height="*"/>
 		</Grid.RowDefinitions>
-		<StackPanel x:Name="ContentPanel" Grid.Row="0" Margin="12,0,12,0">
-            <maps:Map x:Name="MyMap" LandmarksEnabled="True" Loaded="Map_Loaded" PedestrianFeaturesEnabled="True" Grid.Row="0" Margin="-12,0" Height="700" >
-                <toolkit:MapExtensions.Children>
-                    <toolkit:MapItemsControl Name="LocationItems">
-                        <toolkit:MapItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <toolkit:Pushpin GeoCoordinate="{Binding Coordinate}" Content="{Binding Name}" />
-                            </DataTemplate>
-                            </toolkit:MapItemsControl.ItemTemplate>
-                    </toolkit:MapItemsControl>
-                </toolkit:MapExtensions.Children>
-            </maps:Map>
-        </StackPanel>
+    	<Grid x:Name="ContentPanel" Grid.Row="0" Margin="12,0,12,0">
+    		<telerikPrimitives:RadWindow x:Name="WindowLayers" IsClosedOnOutsideTap="True" Placement="CenterCenter" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="86,216,70,180" Width="300" Height="300" IsFullScreen="True" />
+    		<maps:Map x:Name="MyMap" LandmarksEnabled="True" Loaded="Map_Loaded" PedestrianFeaturesEnabled="True" Grid.Row="0" Margin="-12,0" >
+    			<toolkit:MapExtensions.Children>
+    				<toolkit:MapItemsControl x:Name="LocationItems">
+    					<toolkit:MapItemsControl.ItemTemplate>
+    						<DataTemplate>
+    							<toolkit:Pushpin GeoCoordinate="{Binding Coordinate}" Content="{Binding Name}" />
+    						</DataTemplate>
+    					</toolkit:MapItemsControl.ItemTemplate>
+    				</toolkit:MapItemsControl>
+    			</toolkit:MapExtensions.Children>
+    		</maps:Map>
+    	</Grid>
 
 
 

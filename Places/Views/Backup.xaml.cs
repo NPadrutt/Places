@@ -18,7 +18,6 @@ namespace Places.Views
         private LiveConnectClient liveClient;
         private static string folderId;
         private static string backupId;
-        private Dictionary<string, string> imageIds; 
 
         private const string BackUpFolder = "Backups";
         private const string Backupname = "PlacesBackup";
@@ -78,7 +77,6 @@ namespace Places.Views
 
         private async Task GetBackupId()
         {
-            imageIds = new Dictionary<string, string>();
             try
             {
                 if (folderId == null)
@@ -96,10 +94,6 @@ namespace Places.Views
                         if (file.name == Backupname + ".sdf")
                         {
                             backupId = file.id;
-                        }
-                        else
-                        {
-                            imageIds.Add(file.id, file.name);
                         }
                     }
                 }
