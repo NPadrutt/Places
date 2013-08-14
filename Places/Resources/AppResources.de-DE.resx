@@ -368,4 +368,10 @@ Möchtest du den Zugriff erlauben?</value>
   <data name="WorkLabel" xml:space="preserve">
     <value>Arbeit</value>
   </data>
+  <data name="TouristAttractionLabel" xml:space="preserve">
+    <value>Touristenattraktion</value>
+  </data>
+  <data name="ViewpointLabel" xml:space="preserve">
+    <value>Aussichtspunkt</value>
+  </data>
 </root>
