@@ -315,8 +315,38 @@
   <data name="SelectLabel" xml:space="preserve">
     <value>Auswählen</value>
   </data>
+  <data name="BarLabel" xml:space="preserve">
+    <value>Bar</value>
+  </data>
+  <data name="CitiesTitle" xml:space="preserve">
+    <value>Städte</value>
+  </data>
+  <data name="ClubLabel" xml:space="preserve">
+    <value>Club</value>
+  </data>
+  <data name="FamilyLabel" xml:space="preserve">
+    <value>Familie</value>
+  </data>
+  <data name="FriendsLabel" xml:space="preserve">
+    <value>Freunde</value>
+  </data>
+  <data name="HotelLabel" xml:space="preserve">
+    <value>Hotel</value>
+  </data>
+  <data name="ImportImageLabel" xml:space="preserve">
+    <value>Bild importieren</value>
+  </data>
+  <data name="LocationserviceDisabledMessage" xml:space="preserve">
+    <value>Du hast den Zugriff auf den Windows Phone Positionierungsdienst nicht erlaubt. Daher können wir deine Position nicht bestimmen. Bitte erlaube uns zuerst den Zugriff in den Appeinstellungen und versuche es dann erneut.</value>
+  </data>
+  <data name="LocationserviceDisabledTitle" xml:space="preserve">
+    <value>Positionierungsdienst deaktiviert!</value>
+  </data>
+  <data name="MuseumLabel" xml:space="preserve">
+    <value>Museum</value>
+  </data>
   <data name="PrivacyPolicyMessage" xml:space="preserve">
-    <value>MyPlaces benötigt Zugriff auf den Windows Phone Location Service um richtig zu funktionieren. Wenn dieser nicht aktiviert ist, sind die meisten Funktionen deaktiviert und können nicht verwendet werden.
+    <value>MyPlaces benötigt Zugriff auf den Windows Phone Positionsierungsdienst um richtig zu funktionieren. Wenn dieser nicht aktiviert ist, sind die meisten Funktionen deaktiviert und können nicht verwendet werden.
 
 Möchtest du den Zugriff erlauben?</value>
   </data>
@@ -328,5 +358,14 @@ Möchtest du den Zugriff erlauben?</value>
   </data>
   <data name="RenameTagTitle" xml:space="preserve">
     <value>Tag umbenennen</value>
+  </data>
+  <data name="RestaurantLabel" xml:space="preserve">
+    <value>Restaurant</value>
+  </data>
+  <data name="ShopLabel" xml:space="preserve">
+    <value>Einkaufscenter</value>
+  </data>
+  <data name="WorkLabel" xml:space="preserve">
+    <value>Arbeit</value>
   </data>
 </root>

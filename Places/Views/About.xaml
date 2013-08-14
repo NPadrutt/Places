@@ -14,19 +14,19 @@
     shell:SystemTray.IsVisible="True">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Transparent" DataContext="{Binding Source={StaticResource Locales}}">
+    <Grid x:Name="LayoutRoot" Background="Transparent" DataContext="{Binding LocalizedStrings}">
         <!--Pivot Control-->
         <phone:Pivot Title="{Binding Path=LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}">
             <!--Pivot item one-->
             <phone:PivotItem Header="{Binding Path=LocalizedResources.AboutTitle, Source={StaticResource LocalizedStrings}}">
                 <StackPanel>
-                    <TextBlock x:Name="lblDeveloperCaption" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding LocalizedResources.DeveloperLabel, Mode=OneWay}" VerticalAlignment="Top" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                    <TextBlock x:Name="lblDeveloperCaption" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding LocalizedResources.DeveloperLabel, Source={StaticResource LocalizedStrings}}" VerticalAlignment="Top" Style="{StaticResource PhoneTextSubtleStyle}"/>
                     <TextBlock x:Name="lblDeveloper" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Apply Solutions" VerticalAlignment="Top" Style="{StaticResource PhoneTextLargeStyle}" Margin="12,0,12,10"/>
-                    <TextBlock x:Name="lblVersionCaption" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding LocalizedResources.VersionLabel, Mode=OneWay}" VerticalAlignment="Top" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                    <TextBlock x:Name="lblVersionCaption" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding LocalizedResources.VersionLabel, Source={StaticResource LocalizedStrings}}" VerticalAlignment="Top" Style="{StaticResource PhoneTextSubtleStyle}"/>
                     <TextBlock x:Name="lblVersion" HorizontalAlignment="Left" TextWrapping="Wrap" Text="1.0" VerticalAlignment="Top" Margin="12,0,0,10" Style="{StaticResource PhoneTextLargeStyle}"/>
-                    <TextBlock x:Name="lblSupportAddressCaption" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding LocalizedResources.SupportAddressLabel, Mode=OneWay}" VerticalAlignment="Top" Style="{StaticResource PhoneTextSubtleStyle}"/>
-                    <TextBlock x:Name="lblSupportAddress" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding LocalizedResources.SupportAddressMail, Mode=OneWay}" VerticalAlignment="Top" Margin="12,0,0,10" Style="{StaticResource PhoneTextAccentStyle}" FontSize="32" Tap="lblSupportAddress_Tap"/>
-                    <Button x:Name="btnRateApp" Content="{Binding LocalizedResources.RateAppLabel, Mode=OneWay}" Click="btnRateApp_Click"/>
+                    <TextBlock x:Name="lblSupportAddressCaption" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding LocalizedResources.SupportAddressLabel, Source={StaticResource LocalizedStrings}}" VerticalAlignment="Top" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                    <TextBlock x:Name="lblSupportAddress" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding LocalizedResources.SupportAddressMail, Source={StaticResource LocalizedStrings}}" VerticalAlignment="Top" Margin="12,0,0,10" Style="{StaticResource PhoneTextAccentStyle}" FontSize="32" Tap="lblSupportAddress_Tap"/>
+                    <Button x:Name="btnRateApp" Content="{Binding LocalizedResources.RateAppLabel, Source={StaticResource LocalizedStrings}}" Click="btnRateApp_Click"/>
                 </StackPanel>
             </phone:PivotItem>
 
