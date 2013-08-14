@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2012/deployment" AppPlatformVersion="8.0">
-  <DefaultLanguage xmlns="" code="en-US" />
+  <DefaultLanguage xmlns="" code="en" />
   <Languages xmlns="">
     <Language code="en" />
-    <Language code="de-DE" />
+    <Language code="de" />
   </Languages>
   <App xmlns="" ProductID="{2dd45328-c002-4fc8-8ee8-1d4ad48c0aa9}" Title="MyPlaces" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="Places author" Description="Manage and share your favorite Places!" Publisher="Places" PublisherID="{70df50ea-7763-426e-9cc3-0ecf82677012}">
     <IconPath IsRelative="true" IsResource="false">Assets\ApplicationIcon.png</IconPath>

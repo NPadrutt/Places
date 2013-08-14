@@ -20,27 +20,16 @@ namespace Places.Views
             }
         }
 
-        protected override void OnNavigatedFrom(NavigationEventArgs e)
-        {
-            base.OnNavigatedFrom(e);
-
-            if (LocationservicesStatus.IsChecked == true)
-            {
-                if (LocationservicesStatus.IsChecked == true)
-                {
-                    App.Settings.LocationServiceEnabled = true;
-                }
-            }
-        }
-
         private void LocationservicesStatus_Checked(object sender, System.Windows.RoutedEventArgs e)
         {
             LocationservicesStatus.Content = AppResources.ActivatedLabel;
+            App.Settings.LocationServiceEnabled = true;
         }
 
         private void LocationservicesStatus_Unchecked(object sender, System.Windows.RoutedEventArgs e)
         {
             LocationservicesStatus.Content = AppResources.DeactivatedLabel;
+            App.Settings.LocationServiceEnabled = false;
         }
     }
 }

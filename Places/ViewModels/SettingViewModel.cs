@@ -26,6 +26,9 @@ namespace Places.ViewModels
                     db.Settings.InsertOnSubmit(t);
                     db.SubmitChanges();
                 }
+
+                db.Settings.Single(x => x.Key == key).Value = value.ToString();
+                db.SubmitChanges();
             }
         }
 
