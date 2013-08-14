@@ -326,7 +326,7 @@ Do you wanna proceed?</value>
     <value>You must be logged in to backup or restore your data.</value>
   </data>
   <data name="PrivacyPolicyMessage" xml:space="preserve">
-    <value>Places needs the windows phone locationservice to determine you position and calculate the address of this position. For this process we have to send location data to Microsoft (you'll find the privacy statement of Microsoft in the phone settings - location). We don't store any location data on our own server.
+    <value>MyPlaces needs the windows phone locationservice to determine you position and calculate the address of this position. Without this acces most of the features of the app will be inactive.
 
 Do you want do enable locationservices for Places?</value>
   </data>
@@ -350,7 +350,7 @@ Do you want to rate it now?</value>
     <value>Skip further reminders!</value>
   </data>
   <data name="RateApplicationTitel" xml:space="preserve">
-    <value>Rate Places!</value>
+    <value>Rate MyPlaces!</value>
   </data>
   <data name="RefreshCurrentPositionLabel" xml:space="preserve">
     <value>refresh current position</value>

@@ -304,7 +304,7 @@
     <value>Einstellungen</value>
   </data>
   <data name="TagLabel" xml:space="preserve">
-    <value>manage Tags</value>
+    <value>Tags verwalten</value>
   </data>
   <data name="TagTitle" xml:space="preserve">
     <value>tags</value>
@@ -314,5 +314,19 @@
   </data>
   <data name="SelectLabel" xml:space="preserve">
     <value>Auswählen</value>
+  </data>
+  <data name="PrivacyPolicyMessage" xml:space="preserve">
+    <value>MyPlaces benötigt Zugriff auf den Windows Phone Location Service um richtig zu funktionieren. Wenn dieser nicht aktiviert ist, sind die meisten Funktionen deaktiviert und können nicht verwendet werden.
+
+Möchtest du den Zugriff erlauben?</value>
+  </data>
+  <data name="PrivacyPolicyTitle" xml:space="preserve">
+    <value>Positionsdienste</value>
+  </data>
+  <data name="RenameTagMessage" xml:space="preserve">
+    <value>Gib den neuen Namen für den ausgewählten Tag ein:</value>
+  </data>
+  <data name="RenameTagTitle" xml:space="preserve">
+    <value>Tag umbenennen</value>
   </data>
 </root>
