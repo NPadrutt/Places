@@ -187,10 +187,10 @@ namespace Places.ViewModels
         public void LoadLocations()
         {
             var locationItemsInDb = from location in db.Locations
-                                    join LocationAddress adr in db.LocationAddresses
-                                        on new { location.LocationAddress.Id } equals new { adr.Id }
-                                    orderby location.LocationAddress.City
-                                    select location;
+                join LocationAddress adr in db.LocationAddresses
+                    on new {location.LocationAddress.Id} equals new {adr.Id}
+                orderby location.LocationAddress.City
+                select location;
 
             AllLocations = new ObservableCollection<Location>(locationItemsInDb);
 
@@ -206,21 +206,28 @@ namespace Places.ViewModels
         public void LoadLocationsByCity(string city)
         {
             var locationItemsInDb = from location in db.Locations
-                                    join LocationAddress adr in db.LocationAddresses
-                                        on new { location.LocationAddress.Id } equals new { adr.Id }
-                                    where location.LocationAddress.City == city
-                                    orderby location.LocationAddress.City
-                                    select location;
+                join LocationAddress adr in db.LocationAddresses
+                    on new {location.LocationAddress.Id} equals new {adr.Id}
+                where location.LocationAddress.City == city
+                orderby location.LocationAddress.City
+                select location;
 
             AllLocations = new ObservableCollection<Location>(locationItemsInDb);
 
-            foreach (var location in AllLocations)
+            foreach (var location in AllLocations.Where(location => !string.IsNullOrEmpty(location.ImageName)))
             {
-                if (!string.IsNullOrEmpty(location.ImageName))
-                {
-                    location.Thumbnail = Utilities.GetThumbnail(location.ImageName);
-                }
+                location.Thumbnail = Utilities.GetThumbnail(location.ImageName);
             }
+        }
+
+        public void LoadTileLocations()
+        {
+            var locationItemsInDb = (from location in db.Locations
+                where location.LocationImage != null
+                orderby location.LocationAddress.City
+                select location).Take(9);
+
+            AllLocations = new ObservableCollection<Location>(locationItemsInDb);
         }
 
         #endregion

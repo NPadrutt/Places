@@ -29,7 +29,7 @@ namespace Places.Src
 
         public static async Task GetPosition()
         {
-            if (App.Settings.LocationServiceEnabled == true)
+            if (App.Settings.LocationServiceEnabled)
             {
                 var geolocater = new Geolocator {DesiredAccuracy = PositionAccuracy.High};
 
@@ -213,10 +213,13 @@ namespace Places.Src
             try
             {
                 var tileData = new RadCycleTileData();
+                App.ViewModel.LoadTileLocations();
 
-                var locationList = App.ViewModel.AllLocations.Where(x => !String.IsNullOrEmpty(x.ImageUri) && !String.IsNullOrEmpty(x.ImageName))
-                    .Take(9)
-                    .ToList();
+                var locationList =
+                    App.ViewModel.AllLocations.Where(
+                        x => !String.IsNullOrEmpty(x.ImageUri) && !String.IsNullOrEmpty(x.ImageName))
+                        .Take(9)
+                        .ToList();
 
                 var fotolist = locationList.Select(item => GetImage(item.ImageName)).ToList();
 
@@ -225,7 +228,7 @@ namespace Places.Src
 
                 foreach (var item in fotolist)
                 {
-                    using (IsolatedStorageFile file = IsolatedStorageFile.GetUserStoreForApplication())
+                    using (var file = IsolatedStorageFile.GetUserStoreForApplication())
                     {
                         using (var fileStream = file.OpenFile("Shared/ShellContent/" +
                           i + ".jpg", FileMode.Create))
