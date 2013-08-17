@@ -116,10 +116,5 @@ namespace Places.Views
             selectedCoordinate = selectedCoordinate == currentCoordinate ? new GeoCoordinate(App.ViewModel.SelectedLocation.Latitude, App.ViewModel.SelectedLocation.Longitude) : currentCoordinate;
             MyMap.SetView(selectedCoordinate, 16, MapAnimationKind.Parabolic);
         }
-
-        private void btnMapLayer_Click(object sender, EventArgs e)
-        {
-            WindowLayers.IsOpen = true;
-        }
     }
 }
