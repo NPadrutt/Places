@@ -126,12 +126,16 @@ namespace Places.Src
             var library = new MediaLibrary();
             var bitmap = new BitmapImage();
 
-            foreach (var picture in library.Pictures)
+            try
             {
-                if (picture.Name == name)
+                foreach (var picture in library.Pictures.Where(picture => picture.Name == name))
                 {
                     bitmap.SetSource(picture.GetImage());
                 }
+            }
+            catch (Exception ex)
+            {
+                Api.LogError(ex.Message, ex.InnerException);
             }
 
             return bitmap;

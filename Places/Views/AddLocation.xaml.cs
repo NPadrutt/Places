@@ -192,7 +192,7 @@ namespace Places.Views
         {
             if (!newElement && App.ViewModel.SelectedLocation.ImageName != null)
             {
-                LocationImage.Source = Utilities.GetLocationImage();
+                LocationImage.Source = Utilities.GetThumbnail(App.ViewModel.SelectedLocation.ImageName);
                 lblAddImage.Visibility = Visibility.Collapsed;
                 gridImage.Height = LocationImage.Height;
                 gridImage.Width = LocationImage.Width;
@@ -269,6 +269,12 @@ namespace Places.Views
             {
                 NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
             }
+        }
+
+        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
+        {
+            LocationImage.Source = null;
+            base.OnNavigatingFrom(e);
         }
     }
 }
