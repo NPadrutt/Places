@@ -213,10 +213,10 @@ namespace Places.Src
             try
             {
                 var tileData = new RadCycleTileData();
-                App.ViewModel.LoadTileLocations();
+               var dbLIst = App.ViewModel.LoadTileLocations();
 
                 var locationList =
-                    App.ViewModel.AllLocations.Where(
+                    dbLIst.Where(
                         x => !String.IsNullOrEmpty(x.ImageUri) && !String.IsNullOrEmpty(x.ImageName))
                         .Take(9)
                         .ToList();

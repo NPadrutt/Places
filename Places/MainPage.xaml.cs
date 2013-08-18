@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
@@ -77,6 +78,7 @@ namespace Places
                 if (args.Result == DialogResult.OK)
                 {
                     App.Settings.LocationServiceEnabled = true;
+                    ((ApplicationBarIconButton)ApplicationBar.Buttons[1]).IsEnabled = true;
                 }
             }
         }
@@ -85,18 +87,11 @@ namespace Places
         {
             base.OnNavigatedTo(e);
 
-            if (App.Settings.LocationServiceEnabled)
-            {
-                ((ApplicationBarIconButton) ApplicationBar.Buttons[1]).IsEnabled = true;
-            }
-            else
-            {
-                ((ApplicationBarIconButton) ApplicationBar.Buttons[1]).IsEnabled = false;
-            }
+            ((ApplicationBarIconButton) ApplicationBar.Buttons[1]).IsEnabled = App.Settings.LocationServiceEnabled;
         }
 
 
-        private async void ListboxCities_OnSelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        private async void ListboxCities_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (ListboxCities.SelectedItem != null)
             {

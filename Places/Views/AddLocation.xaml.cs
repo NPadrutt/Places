@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.IO;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -68,7 +69,7 @@ namespace Places.Views
                     GetPosition();
                 }
             }
-            else
+            else if(e.NavigationMode != NavigationMode.Back)
             {
                 TransformGuiForEditMode();
                 App.ViewModel.CurrentAddress = null;
@@ -246,6 +247,8 @@ namespace Places.Views
                 {
                     App.ViewModel.AddLocation(App.ViewModel.SelectedLocation);
                     NavigationService.Navigate(new Uri("/Views/DetailsLocation.xaml?RemoveBackstack=true", UriKind.Relative));
+                    Action updateTile = () => Dispatcher.BeginInvoke(Utilities.CreateTile);
+                    Task.Factory.StartNew(updateTile);
                 }
                 else
                 {
@@ -269,12 +272,6 @@ namespace Places.Views
             {
                 NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
             }
-        }
-
-        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
-        {
-            LocationImage.Source = null;
-            base.OnNavigatingFrom(e);
         }
     }
 }

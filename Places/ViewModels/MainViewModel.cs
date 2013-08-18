@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Windows;
 using Microsoft.Phone.Data.Linq;
 using Places.Models;
@@ -220,14 +221,14 @@ namespace Places.ViewModels
             }
         }
 
-        public void LoadTileLocations()
+        public ObservableCollection<Location> LoadTileLocations()
         {
             var locationItemsInDb = (from location in db.Locations
-                where location.LocationImage != null
+                where location.ImageName != null
                 orderby location.LocationAddress.City
                 select location).Take(9);
 
-            AllLocations = new ObservableCollection<Location>(locationItemsInDb);
+            return new ObservableCollection<Location>(locationItemsInDb);
         }
 
         #endregion
