@@ -62,6 +62,7 @@ namespace Places
             }
             else
             {
+                PageTitle.Text = AppResources.CitiesTitle;
                 ListboxCities.Visibility = Visibility.Visible;
                 listpickerFilter.Visibility = Visibility.Collapsed;
                 LocationList.Visibility = Visibility.Collapsed;
