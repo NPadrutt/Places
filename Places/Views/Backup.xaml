@@ -39,7 +39,7 @@
                 <Button x:Name="btnRestore" Content="{Binding LocalizedResources.RestoreTitle, Source={StaticResource LocalizedStrings}}" Click="btnRestore_Click" IsEnabled="False"/>
 			</StackPanel>
 		</Grid>
-        <telerikPrimitives:RadBusyIndicator Background="#CC000000" x:Name="busyProceedAction" AnimationStyle="AnimationStyle7" Content="{Binding AppResources.CheckBackupAvailableLabel, Source={StaticResource LocalizedStrings}}" Margin="0" />
+        <telerikPrimitives:RadBusyIndicator Background="#CC000000" x:Name="busyProceedAction" AnimationStyle="AnimationStyle8" Content="{Binding AppResources.CheckBackupAvailableLabel, Source={StaticResource LocalizedStrings}}" Margin="0" />
 	</Grid>
 
 </phone:PhoneApplicationPage>

@@ -207,7 +207,7 @@
 				</telerikPrimitives:RadDataBoundListBox>
 			</Grid>
 		</StackPanel>
-		<telerikPrimitives:RadBusyIndicator Background="#CC000000" x:Name="busyProceedAction" AnimationStyle="AnimationStyle7" Content="{Binding LocalizedResources.LoadLocationsLabel, Source={StaticResource LocalizedStrings}}" Margin="0" />
+		<telerikPrimitives:RadBusyIndicator Background="#CC000000" x:Name="busyProceedAction" AnimationStyle="AnimationStyle8" Content="{Binding LocalizedResources.LoadLocationsLabel, Source={StaticResource LocalizedStrings}}" Margin="0" />
 		<ProgressBar x:Name="progbar" HorizontalAlignment="Left" Height="24" VerticalAlignment="Top" Width="470" Margin="10,-24,0,0"/>
 
 	</Grid>
