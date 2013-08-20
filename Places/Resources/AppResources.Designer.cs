@@ -1007,6 +1007,15 @@ namespace Places.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to update tile...
+        /// </summary>
+        public static string UpdateTileLabel {
+            get {
+                return ResourceManager.GetString("UpdateTileLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to version:.
         /// </summary>
         public static string VersionLabel {

@@ -374,4 +374,7 @@ Möchtest du den Zugriff erlauben?</value>
   <data name="ViewpointLabel" xml:space="preserve">
     <value>Aussichtspunkt</value>
   </data>
+  <data name="UpdateTileLabel" xml:space="preserve">
+    <value>Tile aktualisieren..</value>
+  </data>
 </root>

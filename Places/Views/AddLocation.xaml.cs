@@ -210,7 +210,7 @@ namespace Places.Views
             GetPosition();
         }
 
-        private void btnDone_Click(object sender, EventArgs e)
+        private async void btnDone_Click(object sender, EventArgs e)
         {
             if (lblLatitude.Text != string.Empty && lblLongtitude.Text != String.Empty)
             {
@@ -247,8 +247,21 @@ namespace Places.Views
                 {
                     App.ViewModel.AddLocation(App.ViewModel.SelectedLocation);
                     NavigationService.Navigate(new Uri("/Views/DetailsLocation.xaml?RemoveBackstack=true", UriKind.Relative));
+
+                    Action actionBusyIndicator = () => Dispatcher.BeginInvoke(delegate
+                    {
+                        busyProceedAction.IsRunning = true;
+                    });
                     Action updateTile = () => Dispatcher.BeginInvoke(Utilities.CreateTile);
-                    Task.Factory.StartNew(updateTile);
+
+
+                    await Task.Factory.StartNew(actionBusyIndicator);
+                    await Task.Factory.StartNew(updateTile);
+
+                    Dispatcher.BeginInvoke(delegate
+                    {
+                        busyProceedAction.IsRunning = false;
+                    });
                 }
                 else
                 {
