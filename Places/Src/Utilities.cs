@@ -36,7 +36,7 @@ namespace Places.Src
                 try
                 {
                     var geoposition =
-                        await geolocater.GetGeopositionAsync(TimeSpan.FromMinutes(2), TimeSpan.FromSeconds(20)
+                        await geolocater.GetGeopositionAsync(TimeSpan.FromMinutes(2), TimeSpan.FromSeconds(60)
                                   );
 
                     App.ViewModel.CurrentPosition = new Position
