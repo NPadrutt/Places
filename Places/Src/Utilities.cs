@@ -212,7 +212,7 @@ namespace Places.Src
         {
             try
             {
-                var tileData = new RadCycleTileData();
+               var tileData = new RadCycleTileData();
                var dbLIst = App.ViewModel.LoadTileLocations();
 
                 var locationList =
@@ -221,33 +221,38 @@ namespace Places.Src
                         .Take(9)
                         .ToList();
 
-                var fotolist = locationList.Select(item => GetImage(item.ImageName)).ToList();
-
                 var uriList = new List<Uri>();
                 var i = 0;
-
-                foreach (var item in fotolist)
+                using (var file = IsolatedStorageFile.GetUserStoreForApplication())
                 {
-                    using (var file = IsolatedStorageFile.GetUserStoreForApplication())
+                    foreach (var item in locationList)
                     {
-                        using (var fileStream = file.OpenFile("Shared/ShellContent/" +
-                          i + ".jpg", FileMode.Create))
+                        try
                         {
-                            var bmp = new WriteableBitmap(item);
-                            bmp.SaveJpeg(fileStream, bmp.PixelWidth, bmp.PixelHeight, 0, 60);
-                        }
+                            using (var fileStream = file.OpenFile("Shared/ShellContent/" +
+                                                              i + ".jpg", FileMode.Create))
+                            {
+                                var bmp = new WriteableBitmap(GetImage(item.ImageName));
+                                bmp.SaveJpeg(fileStream, bmp.PixelWidth, bmp.PixelHeight, 0, 30);
+
+                                uriList.Add(new Uri("isostore:/shared/ShellContent/" + i + ".jpg", UriKind.Absolute));
+                                i++;
+                            }
+                        } catch (Exception) {}
                     }
-                    uriList.Add(new Uri("isostore:/shared/ShellContent/" + i + ".jpg", UriKind.Absolute));
-                    i++;
                 }
 
                 tileData.CycleImages = uriList;
                 LiveTileHelper.UpdateTile(ShellTile.ActiveTiles.FirstOrDefault(), tileData);
             }
-            catch (Exception ex)
+            catch (OutOfMemoryException ex)
             {
                 Api.LogError(ex.Message, ex.InnerException);                
-            }            
+            }
+            catch (Exception ex)
+            {
+                Api.LogError(ex.Message, ex.InnerException);
+            } 
         }
 
         public static string GetImageName(Stream choosenStream)
