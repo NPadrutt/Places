@@ -193,10 +193,15 @@ namespace Places.Views
         {
             if (!newElement && App.ViewModel.SelectedLocation.ImageName != null)
             {
-                LocationImage.Source = Utilities.GetThumbnail(App.ViewModel.SelectedLocation.ImageName);
-                lblAddImage.Visibility = Visibility.Collapsed;
-                gridImage.Height = LocationImage.Height;
-                gridImage.Width = LocationImage.Width;
+                var image = Utilities.GetThumbnail(App.ViewModel.SelectedLocation.ImageName);
+                LocationImage.Source = image;
+                lblAddImage.Visibility = image.PixelHeight == 0 &&
+                    image.PixelWidth == 0
+                    ? Visibility.Visible : Visibility.Collapsed;
+                gridImage.Height = image.PixelHeight == 0
+                    ? 175 : LocationImage.Height;
+                gridImage.Width = image.PixelWidth == 0
+                    ? 175 : LocationImage.Width;
             }
             else if(!sharePicture)
             {
