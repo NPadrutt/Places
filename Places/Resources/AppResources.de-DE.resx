@@ -133,7 +133,10 @@
     <value>Änderungen</value>
   </data>
   <data name="ChangelogText" xml:space="preserve">
-    <value>- init</value>
+    <value>- Applikationsname aufgrund von Namenskonflikten angepasst
+- Fehlende Übersetzungen eingefügt
+- Korrigiert dass das LiveTile keine Bilder anzeigt
+- Fehler korrigiert wenn das Bild eines Ortes bearbeitet werden soll wenn das Bild nicht gefunden wurde</value>
   </data>
   <data name="DeveloperLabel" xml:space="preserve">
     <value>Entwickler:</value>
@@ -148,7 +151,9 @@
     <value>Nachricht des Entwicklers</value>
   </data>
   <data name="ReleaseMessageText" xml:space="preserve">
-    <value>Wenn dir die App gefällt, unterstütze die Entwickler und bewerte es im Marketplace! Ich freue mich auf eure Rückmeldungen</value>
+    <value>Ich muss mit diesem Update leider den Namen des Apps aufgrund von Namenskonflikten ändern. Ausserdem werden wieder einige Fehler korrigiert.
+
+Wenn dir die App gefällt, unterstütze die Entwickler und bewerte es im Marketplace! Ich freue mich auf eure Rückmeldungen</value>
   </data>
   <data name="SupportAddressLabel" xml:space="preserve">
     <value>Supportadresse:</value>

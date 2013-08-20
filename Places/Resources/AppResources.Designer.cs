@@ -223,7 +223,10 @@ namespace Places.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to - Init.
+        ///   Looks up a localized string similar to - change application name because of naming conflicts
+        ///- add some missing german translations
+        ///- fix that the live tile don&apos;t show any picture
+        ///- fix problems with edit image of a location if image not found.
         /// </summary>
         public static string ChangelogText {
             get {
@@ -770,7 +773,9 @@ namespace Places.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If you like this App please rate it in the Marketplace!
+        ///   Looks up a localized string similar to I had to change the application name since there are other apps who already use it. Also this update fixes several bugs in the app.
+        ///
+        ///If you like this app please rate it in the Windows Phone Marketplace!
         ///I&apos;m looking forward to receive your feedback! =).
         /// </summary>
         public static string ReleaseMessageText {

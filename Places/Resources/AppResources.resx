@@ -172,7 +172,10 @@
     <value>changelog:</value>
   </data>
   <data name="ChangelogText" xml:space="preserve">
-    <value>- Init</value>
+    <value>- change application name because of naming conflicts
+- add some missing german translations
+- fix that the live tile don't show any picture
+- fix problems with edit image of a location if image not found</value>
   </data>
   <data name="CitiesTitle" xml:space="preserve">
     <value>cities</value>
@@ -359,7 +362,9 @@ Do you want to rate it now?</value>
     <value>Message of the developer:</value>
   </data>
   <data name="ReleaseMessageText" xml:space="preserve">
-    <value>If you like this App please rate it in the Marketplace!
+    <value>I had to change the application name since there are other apps who already use it. Also this update fixes several bugs in the app.
+
+If you like this app please rate it in the Windows Phone Marketplace!
 I'm looking forward to receive your feedback! =)</value>
   </data>
   <data name="RenameTagMessage" xml:space="preserve">
