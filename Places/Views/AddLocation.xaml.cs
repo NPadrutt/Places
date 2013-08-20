@@ -212,6 +212,12 @@ namespace Places.Views
 
         private async void btnDone_Click(object sender, EventArgs e)
         {
+            Action actionBusyIndicator = () => Dispatcher.BeginInvoke(delegate
+            {
+                busyProceedAction.IsRunning = true;
+            });
+            await Task.Factory.StartNew(actionBusyIndicator);
+
             if (lblLatitude.Text != string.Empty && lblLongtitude.Text != String.Empty)
             {
                 App.ViewModel.SelectedLocation.Name = this.txtName.Text == string.Empty ? AppResources.NoNameDefaultEntry : this.txtName.Text;
@@ -248,26 +254,19 @@ namespace Places.Views
                     App.ViewModel.AddLocation(App.ViewModel.SelectedLocation);
                     NavigationService.Navigate(new Uri("/Views/DetailsLocation.xaml?RemoveBackstack=true", UriKind.Relative));
 
-                    Action actionBusyIndicator = () => Dispatcher.BeginInvoke(delegate
-                    {
-                        busyProceedAction.IsRunning = true;
-                    });
-                    Action updateTile = () => Dispatcher.BeginInvoke(Utilities.CreateTile);
+                    Dispatcher.BeginInvoke(Utilities.CreateTile);
 
-
-                    await Task.Factory.StartNew(actionBusyIndicator);
-                    await Task.Factory.StartNew(updateTile);
-
-                    Dispatcher.BeginInvoke(delegate
-                    {
-                        busyProceedAction.IsRunning = false;
-                    });
                 }
                 else
                 {
                     App.ViewModel.SaveChangesToDb();
                     NavigationService.GoBack();
                 }
+
+                Dispatcher.BeginInvoke(delegate
+                {
+                    busyProceedAction.IsRunning = false;
+                });
             }
             else
             {
