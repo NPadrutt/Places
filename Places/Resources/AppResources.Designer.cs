@@ -160,7 +160,7 @@ namespace Places.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Places.
+        ///   Looks up a localized string similar to FavoritePlaces.
         /// </summary>
         public static string ApplicationTitle {
             get {
@@ -683,9 +683,9 @@ namespace Places.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to MyPlaces needs the windows phone locationservice to determine you position and calculate the address of this position. Without this acces most of the features of the app will be inactive.
+        ///   Looks up a localized string similar to FavoritePlaces needs the windows phone locationservice to determine you position and calculate the address of this position. Without this acces most of the features of the app will be inactive.
         ///
-        ///Do you want do enable locationservices for Places?.
+        ///Do you want do enable locationservices for FavoritePlaces?.
         /// </summary>
         public static string PrivacyPolicyMessage {
             get {
@@ -712,7 +712,7 @@ namespace Places.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rate Places!.
+        ///   Looks up a localized string similar to Rate FavoritePlaces!.
         /// </summary>
         public static string RateAppLabel {
             get {
@@ -721,7 +721,7 @@ namespace Places.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Thanks for using Places!
+        ///   Looks up a localized string similar to Thanks for using FavoritePlaces!
         ///
         ///If you like the programm, support the development with rating the programm in the Marketplace!
         ///
@@ -743,7 +743,7 @@ namespace Places.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rate MyPlaces!.
+        ///   Looks up a localized string similar to Rate FavoritePlaces!.
         /// </summary>
         public static string RateApplicationTitel {
             get {
@@ -969,7 +969,7 @@ namespace Places.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You&apos;ve used all your free Places intializations. If you want to continue using Places please purchase a full version in the Windows Marketplace..
+        ///   Looks up a localized string similar to You&apos;ve used all your free FavoritePlaces intializations. If you want to continue using FavoritePlaces please purchase a full version in the Windows Marketplace..
         /// </summary>
         public static string TrialExpiredMessage {
             get {
@@ -987,9 +987,9 @@ namespace Places.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You&apos;re using Places in the trial Version. There are  {0} uses left
+        ///   Looks up a localized string similar to You&apos;re using FavoritePlaces in the trial Version. There are  {0} uses left
         ///
-        ///Do you wanna purchase Places?.
+        ///Do you wanna purchase FavoritePlaces?.
         /// </summary>
         public static string TrialReminderMessage {
             get {
@@ -998,7 +998,7 @@ namespace Places.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Purchase Places?.
+        ///   Looks up a localized string similar to Purchase FavoritePlaces?.
         /// </summary>
         public static string TrialReminderTitle {
             get {

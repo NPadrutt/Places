@@ -151,7 +151,7 @@
     <value>all</value>
   </data>
   <data name="ApplicationTitle" xml:space="preserve">
-    <value>Places</value>
+    <value>FavoritePlaces</value>
   </data>
   <data name="BackupCreatedMessage" xml:space="preserve">
     <value>Your backup was created succesfully!</value>
@@ -326,9 +326,9 @@ Do you wanna proceed?</value>
     <value>You must be logged in to backup or restore your data.</value>
   </data>
   <data name="PrivacyPolicyMessage" xml:space="preserve">
-    <value>MyPlaces needs the windows phone locationservice to determine you position and calculate the address of this position. Without this acces most of the features of the app will be inactive.
+    <value>FavoritePlaces needs the windows phone locationservice to determine you position and calculate the address of this position. Without this acces most of the features of the app will be inactive.
 
-Do you want do enable locationservices for Places?</value>
+Do you want do enable locationservices for FavoritePlaces?</value>
   </data>
   <data name="PrivacyPolicyTitle" xml:space="preserve">
     <value>Privacy Statement</value>
@@ -337,10 +337,10 @@ Do you want do enable locationservices for Places?</value>
     <value>purchase fullversion</value>
   </data>
   <data name="RateAppLabel" xml:space="preserve">
-    <value>Rate Places!</value>
+    <value>Rate FavoritePlaces!</value>
   </data>
   <data name="RateApplicationMessage" xml:space="preserve">
-    <value>Thanks for using Places!
+    <value>Thanks for using FavoritePlaces!
 
 If you like the programm, support the development with rating the programm in the Marketplace!
 
@@ -350,7 +350,7 @@ Do you want to rate it now?</value>
     <value>Skip further reminders!</value>
   </data>
   <data name="RateApplicationTitel" xml:space="preserve">
-    <value>Rate MyPlaces!</value>
+    <value>Rate FavoritePlaces!</value>
   </data>
   <data name="RefreshCurrentPositionLabel" xml:space="preserve">
     <value>refresh current position</value>
@@ -426,18 +426,18 @@ I'm looking forward to receive your feedback! =)</value>
     <value>tourist attraction</value>
   </data>
   <data name="TrialExpiredMessage" xml:space="preserve">
-    <value>You've used all your free Places intializations. If you want to continue using Places please purchase a full version in the Windows Marketplace.</value>
+    <value>You've used all your free FavoritePlaces intializations. If you want to continue using FavoritePlaces please purchase a full version in the Windows Marketplace.</value>
   </data>
   <data name="TrialExpiredTitle" xml:space="preserve">
     <value>trialversion expired</value>
   </data>
   <data name="TrialReminderMessage" xml:space="preserve">
-    <value>You're using Places in the trial Version. There are  {0} uses left
+    <value>You're using FavoritePlaces in the trial Version. There are  {0} uses left
 
-Do you wanna purchase Places?</value>
+Do you wanna purchase FavoritePlaces?</value>
   </data>
   <data name="TrialReminderTitle" xml:space="preserve">
-    <value>Purchase Places?</value>
+    <value>Purchase FavoritePlaces?</value>
   </data>
   <data name="VersionLabel" xml:space="preserve">
     <value>version:</value>

@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ApplicationTitle" xml:space="preserve">
-    <value>Places</value>
+    <value>FavoritePlaces</value>
   </data>
   <data name="AddLabel" xml:space="preserve">
     <value>Hinzufügen</value>
@@ -142,7 +142,7 @@
     <value>fertig</value>
   </data>
   <data name="RateAppLabel" xml:space="preserve">
-    <value>Bewerte Places</value>
+    <value>Bewerte FavoritePlaces!</value>
   </data>
   <data name="ReleaseMessageLabel" xml:space="preserve">
     <value>Nachricht des Entwicklers</value>
@@ -346,7 +346,7 @@
     <value>Museum</value>
   </data>
   <data name="PrivacyPolicyMessage" xml:space="preserve">
-    <value>MyPlaces benötigt Zugriff auf den Windows Phone Positionsierungsdienst um richtig zu funktionieren. Wenn dieser nicht aktiviert ist, sind die meisten Funktionen deaktiviert und können nicht verwendet werden.
+    <value>FavoritePlaces benötigt Zugriff auf den Windows Phone Positionsierungsdienst um richtig zu funktionieren. Wenn dieser nicht aktiviert ist, sind die meisten Funktionen deaktiviert und können nicht verwendet werden.
 
 Möchtest du den Zugriff erlauben?</value>
   </data>
@@ -373,5 +373,28 @@ Möchtest du den Zugriff erlauben?</value>
   </data>
   <data name="ViewpointLabel" xml:space="preserve">
     <value>Aussichtspunkt</value>
+  </data>
+  <data name="RateApplicationMessage" xml:space="preserve">
+    <value>Vielen Dank dass du FavoritePlaces benutzt!
+
+Wenn dir das Programm gefällt unterstütze uns und bewerte es im Windows Phone Marketplace.
+
+Möchtest du es jetzt Bewerten?</value>
+  </data>
+  <data name="TrialExpiredMessage" xml:space="preserve">
+    <value>Du hast alle Benutzungen die in der Testversion inbegriffen waren aufgebraucht. Wenn du FavoritePlaces weiterhin benutzen möchtest, musst du im Windows Phone Marketplace die Vollversion kaufen.
+
+Möchtest du die Vollversion jetzt kaufen?</value>
+  </data>
+  <data name="TrialExpiredTitle" xml:space="preserve">
+    <value>Testversion abgelaufen</value>
+  </data>
+  <data name="TrialReminderMessage" xml:space="preserve">
+    <value>Du benutzt aktuell die Testversion von FavoritePlaces. Du hast  {0} Benutzungen übrig.
+
+Möchtest du die Vollversion von FavoritePlaces jetzt kaufen?</value>
+  </data>
+  <data name="TrialReminderTitle" xml:space="preserve">
+    <value>FavoritePlaces kaufen?</value>
   </data>
 </root>
