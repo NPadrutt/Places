@@ -168,6 +168,11 @@ namespace Places.ViewModels
             }
             AllLocations.Add(newLocation);
 
+            var unsortedLocation = AllLocations;
+            AllLocations = new ObservableCollection<Location>(
+                unsortedLocation.OrderByDescending(sleep => sleep)
+                );
+
             db.Locations.InsertOnSubmit(newLocation);
             db.SubmitChanges();
         }

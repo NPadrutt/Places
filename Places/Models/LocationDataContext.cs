@@ -1,7 +1,9 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Data.Linq;
 using System.Data.Linq.Mapping;
 using System.Windows.Media.Imaging;
+using FlurryWP8SDK;
 using Places.Src;
 
 namespace Places.Models
@@ -240,5 +242,24 @@ namespace Places.Models
         }
 
         #endregion
+
+        public int CompareTo(object obj)
+        {
+            var location = obj as Location;
+
+            if (location != null)
+            {
+                try
+                {
+                    return System.String.Compare(Name, location.Name, StringComparison.OrdinalIgnoreCase);
+                }
+                catch (Exception ex)
+                {
+                    Api.LogError(ex.Message, ex.InnerException);
+                }
+            }
+
+            return 0;
+        }
     }
 }

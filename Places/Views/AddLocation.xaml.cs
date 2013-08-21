@@ -89,6 +89,7 @@ namespace Places.Views
             progressionbarGetLocation.IsIndeterminate = false;
             stackpanelAddress.Visibility = Visibility.Visible;
             progressionbarGetLocation.Visibility = Visibility.Collapsed;
+            btnDone.IconUri = new Uri("/Assets/Save.png");
             foreach (var tag in App.ViewModel.SelectedLocation.Tags)
             {
                 listpickerTag.SelectedItems.Add(tag);
