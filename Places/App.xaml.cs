@@ -134,9 +134,10 @@ namespace Places
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
 #if !DEBUG
-                Api.StartSession("CDM6ZNWY5VQGCX5DMQK6");
+            Api.SetVersion(Utilities.GetVersion());
+            Api.StartSession("CDM6ZNWY5VQGCX5DMQK6");
 #endif
-            ApplicationUsageHelper.Init(Assembly.GetExecutingAssembly().FullName.Split('=')[1].Split(',')[0]);
+            ApplicationUsageHelper.Init(Utilities.GetVersion());
 
             SetTrialExpiredMessage();
             SetTrialReminderMessage();
