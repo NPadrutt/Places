@@ -4,7 +4,6 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Input;
 using System.Windows.Navigation;
 using FlurryWP8SDK;
 using Microsoft.Phone.Shell;
@@ -13,6 +12,8 @@ using Microsoft.Xna.Framework.Media.PhoneExtensions;
 using Places.Models;
 using Places.Resources;
 using Places.Src;
+using Telerik.Windows.Controls;
+using GestureEventArgs = System.Windows.Input.GestureEventArgs;
 
 namespace Places.Views
 {
@@ -34,6 +35,8 @@ namespace Places.Views
 
             ((ApplicationBarIconButton)ApplicationBar.Buttons[0]).Text = AppResources.DoneLabel;
             ((ApplicationBarIconButton)ApplicationBar.Buttons[1]).Text = AppResources.CancelLabel;
+
+            ((ApplicationBarMenuItem)ApplicationBar.MenuItems[0]).Text = AppResources.PintToStartLabel;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -290,6 +293,18 @@ namespace Places.Views
             {
                 NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
             }
+        }
+
+        private void mPinToStart_Click(object sender, System.EventArgs e)
+        {
+            var tileData = new RadExtendedTileData()
+            {
+                Title = AppResources.AddLocationTitle,
+                BackgroundImage = new Uri("/Assets/AddLocationTileImage.png", UriKind.Relative),
+                IsTransparencySupported = false
+            };
+
+            LiveTileHelper.CreateOrUpdateTile(tileData, new Uri("/Views/DetailsLocation.xaml?id=" + App.ViewModel.SelectedLocation.Id, UriKind.RelativeOrAbsolute));
         }
     }
 }

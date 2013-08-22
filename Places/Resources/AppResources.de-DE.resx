@@ -382,4 +382,7 @@ Möchtest du den Zugriff erlauben?</value>
   <data name="UpdateTileLabel" xml:space="preserve">
     <value>Tile aktualisieren..</value>
   </data>
+  <data name="AddLocationTitle" xml:space="preserve">
+    <value>Ort hinzufügen</value>
+  </data>
 </root>

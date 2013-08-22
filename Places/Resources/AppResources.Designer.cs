@@ -115,6 +115,15 @@ namespace Places.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to add location.
+        /// </summary>
+        public static string AddLocationTitle {
+            get {
+                return ResourceManager.GetString("AddLocationTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to address.
         /// </summary>
         public static string AddressLabel {

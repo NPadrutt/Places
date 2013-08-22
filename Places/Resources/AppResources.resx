@@ -462,4 +462,7 @@ Do you wanna purchase Places?</value>
   <data name="UpdateTileLabel" xml:space="preserve">
     <value>update tile..</value>
   </data>
+  <data name="AddLocationTitle" xml:space="preserve">
+    <value>add location</value>
+  </data>
 </root>

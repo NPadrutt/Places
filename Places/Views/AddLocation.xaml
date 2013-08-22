@@ -17,6 +17,9 @@
     shell:SystemTray.IsVisible="True">
 	<phone:PhoneApplicationPage.ApplicationBar>
 		<shell:ApplicationBar>
+			<shell:ApplicationBar.MenuItems>
+				<shell:ApplicationBarMenuItem x:Name="mPinToStart" Text="pin to start" Click="mPinToStart_Click"/>
+			</shell:ApplicationBar.MenuItems>
 			<shell:ApplicationBarIconButton x:Name="btnDone" IconUri="/Assets/AppBar/check.png" Text="Fertig" Click="btnDone_Click"/>
 			<shell:ApplicationBarIconButton x:Name="btnCancel" IconUri="/Assets/AppBar/cancel.png" Text="Abbrechen" Click="btnCancel_Click"/>
 		</shell:ApplicationBar>
