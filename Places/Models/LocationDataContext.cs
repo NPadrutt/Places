@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Data.Linq;
 using System.Data.Linq.Mapping;
 using System.Windows.Media.Imaging;
@@ -7,7 +8,7 @@ using Places.Src;
 namespace Places.Models
 {
     [Table]
-    public class Location : INotifyPropertyChanged, INotifyPropertyChanging
+    public class Location : INotifyPropertyChanged, INotifyPropertyChanging, IComparable
     {
         private int _id;
 
@@ -240,5 +241,11 @@ namespace Places.Models
         }
 
         #endregion
+
+        public int CompareTo(object obj)
+        {
+            var location = obj as Location;
+            return location != null ? location.Name.CompareTo(Name) : 0;
+        }
     }
 }

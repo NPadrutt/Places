@@ -89,6 +89,7 @@ namespace Places.Views
             progressionbarGetLocation.IsIndeterminate = false;
             stackpanelAddress.Visibility = Visibility.Visible;
             progressionbarGetLocation.Visibility = Visibility.Collapsed;
+            btnDone.IconUri = new Uri("/Assets/Save.png", UriKind.Relative);
             foreach (var tag in App.ViewModel.SelectedLocation.Tags)
             {
                 listpickerTag.SelectedItems.Add(tag);
@@ -217,15 +218,15 @@ namespace Places.Views
 
         private async void btnDone_Click(object sender, EventArgs e)
         {
-            Action actionBusyIndicator = () => Dispatcher.BeginInvoke(delegate
-            {
-                busyProceedAction.IsRunning = true;
-            });
-            await Task.Factory.StartNew(actionBusyIndicator);
-
             if (lblLatitude.Text != string.Empty && lblLongtitude.Text != String.Empty)
             {
-                App.ViewModel.SelectedLocation.Name = this.txtName.Text == string.Empty ? AppResources.NoNameDefaultEntry : this.txtName.Text;
+                Action actionBusyIndicator = () => Dispatcher.BeginInvoke(delegate
+                {
+                    busyProceedAction.IsRunning = true;
+                });
+                await Task.Factory.StartNew(actionBusyIndicator);
+
+                App.ViewModel.SelectedLocation.Name = txtName.Text == string.Empty ? AppResources.NoNameDefaultEntry : txtName.Text;
                 App.ViewModel.SelectedLocation.Latitude = double.Parse(lblLatitude.Text, CultureInfo.InvariantCulture);
                 App.ViewModel.SelectedLocation.Longitude = double.Parse(lblLongtitude.Text, CultureInfo.InvariantCulture);
 
