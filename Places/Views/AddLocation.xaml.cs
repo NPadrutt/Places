@@ -304,7 +304,7 @@ namespace Places.Views
                 IsTransparencySupported = false
             };
 
-            LiveTileHelper.CreateOrUpdateTile(tileData, new Uri("/Views/DetailsLocation.xaml?id=" + App.ViewModel.SelectedLocation.Id, UriKind.RelativeOrAbsolute));
+            LiveTileHelper.CreateOrUpdateTile(tileData, new Uri("/Views/AddLocation.xaml", UriKind.RelativeOrAbsolute));
         }
     }
 }
