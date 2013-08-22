@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ApplicationTitle" xml:space="preserve">
-    <value>Places</value>
+    <value>FavoritePlaces</value>
   </data>
   <data name="AddLabel" xml:space="preserve">
     <value>Hinzufügen</value>
@@ -145,7 +145,7 @@
     <value>fertig</value>
   </data>
   <data name="RateAppLabel" xml:space="preserve">
-    <value>Bewerte Places</value>
+    <value>Bewerte FavoritePlaces</value>
   </data>
   <data name="ReleaseMessageLabel" xml:space="preserve">
     <value>Nachricht des Entwicklers</value>
