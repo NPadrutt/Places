@@ -9,7 +9,7 @@ using Places.Src;
 namespace Places.Models
 {
     [Table]
-    public class Location : INotifyPropertyChanged, INotifyPropertyChanging
+    public class Location : INotifyPropertyChanged, INotifyPropertyChanging, IComparable
     {
         private int _id;
 
@@ -246,20 +246,7 @@ namespace Places.Models
         public int CompareTo(object obj)
         {
             var location = obj as Location;
-
-            if (location != null)
-            {
-                try
-                {
-                    return System.String.Compare(Name, location.Name, StringComparison.OrdinalIgnoreCase);
-                }
-                catch (Exception ex)
-                {
-                    Api.LogError(ex.Message, ex.InnerException);
-                }
-            }
-
-            return 0;
+            return location != null ? location.Name.CompareTo(Name) : 0;
         }
     }
 }

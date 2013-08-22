@@ -151,7 +151,7 @@
     <value>all</value>
   </data>
   <data name="ApplicationTitle" xml:space="preserve">
-    <value>Places</value>
+    <value>FavoritePlaces</value>
   </data>
   <data name="BackupCreatedMessage" xml:space="preserve">
     <value>Your backup was created succesfully!</value>
@@ -329,7 +329,7 @@ Do you wanna proceed?</value>
     <value>You must be logged in to backup or restore your data.</value>
   </data>
   <data name="PrivacyPolicyMessage" xml:space="preserve">
-    <value>MyPlaces needs the windows phone locationservice to determine you position and calculate the address of this position. Without this acces most of the features of the app will be inactive.
+    <value>FavoritePlaces needs the windows phone locationservice to determine you position and calculate the address of this position. Without this acces most of the features of the app will be inactive.
 
 Do you want do enable locationservices for Places?</value>
   </data>
@@ -343,7 +343,7 @@ Do you want do enable locationservices for Places?</value>
     <value>Rate Places!</value>
   </data>
   <data name="RateApplicationMessage" xml:space="preserve">
-    <value>Thanks for using Places!
+    <value>Thanks for using FavoritePlaces!
 
 If you like the programm, support the development with rating the programm in the Marketplace!
 
@@ -461,5 +461,8 @@ Do you wanna purchase Places?</value>
   </data>
   <data name="UpdateTileLabel" xml:space="preserve">
     <value>update tile..</value>
+  </data>
+  <data name="AddLocationTitle" xml:space="preserve">
+    <value>add location</value>
   </data>
 </root>

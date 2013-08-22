@@ -49,19 +49,19 @@ namespace Places.Src
                 }
                 catch (TimeoutException ex)
                 {
-                    Api.LogError("timeout", ex.InnerException);
+                    Api.LogError("timeout", ex);
                 }
                 catch (Exception ex)
                 {
                     if ((uint) ex.HResult == 0x80004004)
                     {
                         // the application does not have the right capability or the location master switch is off
-                        Api.LogError("location  is disabled in phone settings.", ex.InnerException);
+                        Api.LogError("location  is disabled in phone settings.", ex);
                     }
                     if ((uint) ex.HResult == 0x800705B4)
                     {
                         // the application does not have the right capability or the location master switch is off
-                        Api.LogError("Timeout expired.", ex.InnerException);
+                        Api.LogError("Timeout expired.", ex);
                     }
                 }
             }
@@ -96,7 +96,7 @@ namespace Places.Src
             }
             catch (Exception ex)
             {
-                Api.LogError(ex.Message, ex.InnerException);
+                Api.LogError(ex.Message, ex);
             }
 
             App.ViewModel.CurrentAddress = locationAddress;
@@ -135,7 +135,7 @@ namespace Places.Src
             }
             catch (Exception ex)
             {
-                Api.LogError(ex.Message, ex.InnerException);
+                Api.LogError(ex.Message, ex);
             }
 
             return bitmap;
@@ -188,7 +188,7 @@ namespace Places.Src
             }
             catch (Exception ex)
             {
-                Api.LogError(ex.Message, ex.InnerException);
+                Api.LogError(ex.Message, ex);
                 MessageBox.Show(AppResources.GeneralErrorMessage, AppResources.GeneralErrorMessageTitle, MessageBoxButton.OK);
             }
 
@@ -247,11 +247,14 @@ namespace Places.Src
             }
             catch (OutOfMemoryException ex)
             {
-                Api.LogError(ex.Message, ex.InnerException);                
+                Api.LogError(
+                    "Zuviel Speicherverbrauch beim Tile Aktualisieren. Aktueller Memory Verbrauch: " +
+                    Microsoft.Phone.Info.DeviceStatus.ApplicationCurrentMemoryUsage + "Peak: " +
+                    Microsoft.Phone.Info.DeviceStatus.ApplicationPeakMemoryUsage, ex);
             }
             catch (Exception ex)
             {
-                Api.LogError(ex.Message, ex.InnerException);
+                Api.LogError(ex.Message, ex);
             } 
         }
 

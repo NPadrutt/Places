@@ -166,7 +166,12 @@ namespace Places.ViewModels
             {
                 AllCities.Add(newLocation.LocationAddress.City);
             }
+
             AllLocations.Add(newLocation);
+            var unsortedLocations = AllLocations;
+            AllLocations = new ObservableCollection<Location>(
+                    unsortedLocations.OrderByDescending(location => location)
+                    );
 
             var unsortedLocation = AllLocations;
             AllLocations = new ObservableCollection<Location>(
@@ -195,7 +200,7 @@ namespace Places.ViewModels
             var locationItemsInDb = from location in db.Locations
                 join LocationAddress adr in db.LocationAddresses
                     on new {location.LocationAddress.Id} equals new {adr.Id}
-                orderby location.LocationAddress.City
+                orderby location.Name
                 select location;
 
             AllLocations = new ObservableCollection<Location>(locationItemsInDb);

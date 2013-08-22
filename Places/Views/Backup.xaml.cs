@@ -143,12 +143,12 @@ namespace Places.Views
             }
             catch (TaskCanceledException ex)
             {
-                Api.LogError(ex.Message, ex.InnerException);
+                Api.LogError(ex.Message, ex);
                 MessageBox.Show(AppResources.TaskCancelledErrorMessage, AppResources.TaskCancelledErrorTitle, MessageBoxButton.OK);
             }
             catch (Exception ex)
             {
-                Api.LogError(ex.Message, ex.InnerException);
+                Api.LogError(ex.Message, ex);
                 MessageBox.Show(AppResources.GeneralErrorMessage, AppResources.GeneralErrorMessageTitle, MessageBoxButton.OK);
             }
         }

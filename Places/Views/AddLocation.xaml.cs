@@ -4,7 +4,6 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Input;
 using System.Windows.Navigation;
 using FlurryWP8SDK;
 using Microsoft.Phone.Shell;
@@ -13,6 +12,8 @@ using Microsoft.Xna.Framework.Media.PhoneExtensions;
 using Places.Models;
 using Places.Resources;
 using Places.Src;
+using Telerik.Windows.Controls;
+using GestureEventArgs = System.Windows.Input.GestureEventArgs;
 
 namespace Places.Views
 {
@@ -34,6 +35,8 @@ namespace Places.Views
 
             ((ApplicationBarIconButton)ApplicationBar.Buttons[0]).Text = AppResources.DoneLabel;
             ((ApplicationBarIconButton)ApplicationBar.Buttons[1]).Text = AppResources.CancelLabel;
+
+            ((ApplicationBarMenuItem)ApplicationBar.MenuItems[0]).Text = AppResources.PintToStartLabel;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -89,7 +92,7 @@ namespace Places.Views
             progressionbarGetLocation.IsIndeterminate = false;
             stackpanelAddress.Visibility = Visibility.Visible;
             progressionbarGetLocation.Visibility = Visibility.Collapsed;
-            btnDone.IconUri = new Uri("/Assets/Save.png");
+            ((ApplicationBarIconButton)ApplicationBar.Buttons[0]).IconUri = new Uri("/Assets/Save.png", UriKind.Relative);
             foreach (var tag in App.ViewModel.SelectedLocation.Tags)
             {
                 listpickerTag.SelectedItems.Add(tag);
@@ -144,7 +147,9 @@ namespace Places.Views
             }
             catch (OutOfMemoryException ex)
             {
-                Api.LogError(ex.Message, ex.InnerException);
+                Api.LogError(ex.Message +
+                    Microsoft.Phone.Info.DeviceStatus.ApplicationCurrentMemoryUsage + "Peak: " +
+                    Microsoft.Phone.Info.DeviceStatus.ApplicationPeakMemoryUsage, ex);
                 MessageBox.Show(AppResources.OutOfMemoryMessage, AppResources.OutOfMemoryTitle, MessageBoxButton.OK);
             }
         }
@@ -218,15 +223,15 @@ namespace Places.Views
 
         private async void btnDone_Click(object sender, EventArgs e)
         {
-            Action actionBusyIndicator = () => Dispatcher.BeginInvoke(delegate
-            {
-                busyProceedAction.IsRunning = true;
-            });
-            await Task.Factory.StartNew(actionBusyIndicator);
-
             if (lblLatitude.Text != string.Empty && lblLongtitude.Text != String.Empty)
             {
-                App.ViewModel.SelectedLocation.Name = this.txtName.Text == string.Empty ? AppResources.NoNameDefaultEntry : this.txtName.Text;
+                Action actionBusyIndicator = () => Dispatcher.BeginInvoke(delegate
+                {
+                    busyProceedAction.IsRunning = true;
+                });
+                await Task.Factory.StartNew(actionBusyIndicator);
+
+                App.ViewModel.SelectedLocation.Name = txtName.Text == string.Empty ? AppResources.NoNameDefaultEntry : txtName.Text;
                 App.ViewModel.SelectedLocation.Latitude = double.Parse(lblLatitude.Text, CultureInfo.InvariantCulture);
                 App.ViewModel.SelectedLocation.Longitude = double.Parse(lblLongtitude.Text, CultureInfo.InvariantCulture);
 
@@ -290,6 +295,18 @@ namespace Places.Views
             {
                 NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
             }
+        }
+
+        private void mPinToStart_Click(object sender, System.EventArgs e)
+        {
+            var tileData = new RadExtendedTileData()
+            {
+                Title = AppResources.AddLocationTitle,
+                BackgroundImage = new Uri("/Assets/AddLocationTileImage.png", UriKind.Relative),
+                IsTransparencySupported = false
+            };
+
+            LiveTileHelper.CreateOrUpdateTile(tileData, new Uri("/Views/AddLocation.xaml", UriKind.RelativeOrAbsolute));
         }
     }
 }

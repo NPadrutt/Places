@@ -115,6 +115,15 @@ namespace Places.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to add location.
+        /// </summary>
+        public static string AddLocationTitle {
+            get {
+                return ResourceManager.GetString("AddLocationTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to address.
         /// </summary>
         public static string AddressLabel {
@@ -160,7 +169,7 @@ namespace Places.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Places.
+        ///   Looks up a localized string similar to FavoritePlaces.
         /// </summary>
         public static string ApplicationTitle {
             get {
@@ -686,7 +695,7 @@ namespace Places.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to MyPlaces needs the windows phone locationservice to determine you position and calculate the address of this position. Without this acces most of the features of the app will be inactive.
+        ///   Looks up a localized string similar to FavoritePlaces needs the windows phone locationservice to determine you position and calculate the address of this position. Without this acces most of the features of the app will be inactive.
         ///
         ///Do you want do enable locationservices for Places?.
         /// </summary>
@@ -724,7 +733,7 @@ namespace Places.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Thanks for using Places!
+        ///   Looks up a localized string similar to Thanks for using FavoritePlaces!
         ///
         ///If you like the programm, support the development with rating the programm in the Marketplace!
         ///
