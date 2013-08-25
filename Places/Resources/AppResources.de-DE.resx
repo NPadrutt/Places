@@ -391,6 +391,12 @@ Möchtest du den Zugriff erlauben?</value>
   <data name="HybridLabel" xml:space="preserve">
     <value>Hybrid</value>
   </data>
+  <data name="LocationNoExistingMessage" xml:space="preserve">
+    <value>Wir konnten den angepinnten Ort nicht finden. Möglicherweise wurde er in de Zwischenzeit gelöscht. Bitte entferne das Tile und pinne dir den entsprechend Ort erneut.</value>
+  </data>
+  <data name="LocationNotExistingTitle" xml:space="preserve">
+    <value>Ort existiert nicht!</value>
+  </data>
   <data name="RoadLabel" xml:space="preserve">
     <value>Strasse</value>
   </data>

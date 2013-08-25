@@ -550,6 +550,24 @@ namespace Places.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to We couldn&apos;t find that location in your database. Maybe it was removed in the meanwhile. Please unpin this location from the startscreen and pin the appropriate location again..
+        /// </summary>
+        public static string LocationNoExistingMessage {
+            get {
+                return ResourceManager.GetString("LocationNoExistingMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Location does not exist!.
+        /// </summary>
+        public static string LocationNotExistingTitle {
+            get {
+                return ResourceManager.GetString("LocationNotExistingTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your locationservices are disabled. To allow us to get your position please activate them in the appsettings..
         /// </summary>
         public static string LocationserviceDisabledMessage {

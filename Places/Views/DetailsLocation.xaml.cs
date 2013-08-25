@@ -38,10 +38,8 @@ namespace Places.Views
 
                 if (NavigationContext.QueryString.ContainsKey("id"))
                 {
-                    foreach (var location in App.ViewModel.AllLocations.Where(location => location.Id == Convert.ToInt32(NavigationContext.QueryString["id"])))
-                    {
-                        App.ViewModel.SelectedLocation = location;
-                    }
+                    App.ViewModel.SelectedLocation =
+                        App.ViewModel.LoadPinnedLocation(Convert.ToInt32(NavigationContext.QueryString["id"]));
                 }            
                 MiniMap.ShowOnMap(App.ViewModel.SelectedLocation.Latitude, App.ViewModel.SelectedLocation.Longitude);
             }

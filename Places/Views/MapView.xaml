@@ -30,12 +30,12 @@
 			</shell:ApplicationBar.MenuItems>
 			<shell:ApplicationBarIconButton x:Name="btnSwapPosition" IconUri="/Assets/swapPosition.png" Text="swap Position" Click="btnSwapPosition_Click"/>
 			<shell:ApplicationBarIconButton x:Name="btnNavigation" IconUri="/Assets/Navigation.png" Text="Navigation" Click="btnNavigation_Click"/>
-			<shell:ApplicationBarIconButton x:Name="btnLayers" IconUri="appbar_button.png" Text="button" Click="btnLayers_Click"/>
+            <shell:ApplicationBarIconButton x:Name="btnLayers" IconUri="/Assets/Layers.png" Text="button" Click="btnLayers_Click"/>
 		</shell:ApplicationBar>
 	</phone:PhoneApplicationPage.ApplicationBar>
 
     <shell:SystemTray.ProgressIndicator>
-        <shell:ProgressIndicator x:Name="ProgressionbarGetLocation" Text="{Binding AppResources.GettingYourPositionLabel, Source={StaticResource LocalizedStrings}}" IsIndeterminate="true" IsVisible="True" />
+        <shell:ProgressIndicator x:Name="ProgressionbarGetLocation" Text="{Binding LocalizedResources.GettingYourPositionLabel, Source={StaticResource LocalizedStrings}}" IsIndeterminate="true" IsVisible="True" />
     </shell:SystemTray.ProgressIndicator>
 
     <Grid x:Name="LayoutRoot" Background="Transparent">
@@ -43,14 +43,14 @@
 			<RowDefinition Height="*"/>
 		</Grid.RowDefinitions>
     	<Grid x:Name="ContentPanel" Grid.Row="0" Margin="12,0,12,0">
-    		<telerikPrimitives:RadWindow x:Name="WindowLayers" IsClosedOnOutsideTap="True" Placement="CenterCenter" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="86,216,70,180" Width="300" Height="300" Visibility="Collapsed">
-                <Border Width="300" Background="{StaticResource PhoneTextBoxReadOnlyBrush}" >
-                    <Grid>
-                        <RadioButton x:Name="RadioBtnRoad" GroupName="CartographicMode" Content="{Binding AppResources.RoadLabel, Source={StaticResource LocalizedStrings}}" Checked="RadioBtnRoad_Checked"/>
-                        <RadioButton x:Name="RadioBtnAerial" GroupName="CartographicMode" Content="{Binding AppResources.RoadLabel, Source={StaticResource LocalizedStrings}}" Checked="RadioBtnAerial_Checked"/>
-                        <RadioButton x:Name="RadioBtnHybrid" GroupName="CartographicMode" Content="{Binding AppResources.RoadLabel, Source={StaticResource LocalizedStrings}}" Checked="RadioBtnHybrid_Checked"/>
-                        <RadioButton x:Name="RadioBtnTerrain" GroupName="CartographicMode" Content="{Binding AppResources.RoadLabel, Source={StaticResource LocalizedStrings}}" Checked="RadioBtnTerrain_Checked"/>
-                    </Grid>
+    		<telerikPrimitives:RadWindow x:Name="WindowLayers" IsClosedOnOutsideTap="True" Placement="CenterCenter" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="86,216,70,180" Width="400" Visibility="Collapsed">
+                <Border Background="{StaticResource PhoneTextBoxReadOnlyBrush}" >
+                    <StackPanel>
+                        <RadioButton x:Name="RadioBtnRoad" GroupName="CartographicMode" Content="{Binding LocalizedResources.RoadLabel, Source={StaticResource LocalizedStrings}}" Checked="RadioBtnRoad_Checked"/>
+                        <RadioButton x:Name="RadioBtnAerial" GroupName="CartographicMode" Content="{Binding LocalizedResources.AerialLabel, Source={StaticResource LocalizedStrings}}" Checked="RadioBtnAerial_Checked"/>
+                        <RadioButton x:Name="RadioBtnHybrid" GroupName="CartographicMode" Content="{Binding LocalizedResources.HybridLabel, Source={StaticResource LocalizedStrings}}" Checked="RadioBtnHybrid_Checked"/>
+                        <RadioButton x:Name="RadioBtnTerrain" GroupName="CartographicMode" Content="{Binding LocalizedResources.TerrainLabel, Source={StaticResource LocalizedStrings}}" Checked="RadioBtnTerrain_Checked"/>
+                	</StackPanel>
                 </Border>
             </telerikPrimitives:RadWindow>
     		<maps:Map x:Name="MyMap" LandmarksEnabled="True" Loaded="Map_Loaded" PedestrianFeaturesEnabled="True" Grid.Row="0" Margin="-12,0" >

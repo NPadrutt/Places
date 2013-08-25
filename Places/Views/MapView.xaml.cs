@@ -149,12 +149,12 @@ namespace Places.Views
 
         private void RadioBtnHybrid_Checked(object sender, RoutedEventArgs e)
         {
-            MyMap.CartographicMode = MapCartographicMode.Road;
+            MyMap.CartographicMode = MapCartographicMode.Hybrid;
         }
 
         private void RadioBtnTerrain_Checked(object sender, RoutedEventArgs e)
         {
-            MyMap.CartographicMode = MapCartographicMode.Road;
+            MyMap.CartographicMode = MapCartographicMode.Terrain;
         }
 
     }

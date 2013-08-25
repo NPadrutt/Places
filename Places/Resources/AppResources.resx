@@ -471,6 +471,12 @@ Do you wanna purchase Places?</value>
   <data name="HybridLabel" xml:space="preserve">
     <value>Hybrid</value>
   </data>
+  <data name="LocationNoExistingMessage" xml:space="preserve">
+    <value>We couldn't find that location in your database. Maybe it was removed in the meanwhile. Please unpin this location from the startscreen and pin the appropriate location again.</value>
+  </data>
+  <data name="LocationNotExistingTitle" xml:space="preserve">
+    <value>Location does not exist!</value>
+  </data>
   <data name="RoadLabel" xml:space="preserve">
     <value>Road</value>
   </data>

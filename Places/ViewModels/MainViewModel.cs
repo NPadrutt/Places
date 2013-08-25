@@ -1,4 +1,6 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
@@ -8,6 +10,7 @@ using Microsoft.Phone.Data.Linq;
 using Places.Models;
 using Places.Resources;
 using Places.Src;
+using StringComparer = Places.Src.StringComparer;
 
 namespace Places.ViewModels
 {
@@ -229,6 +232,28 @@ namespace Places.ViewModels
             {
                 location.Thumbnail = Utilities.GetThumbnail(location.ImageName);
             }
+        }
+
+        public Location LoadPinnedLocation(int id)
+        {
+            try
+            {
+                var locationItemsInDb = from location in db.Locations
+                                        join LocationAddress adr in db.LocationAddresses
+                                            on new { location.LocationAddress.Id } equals new { adr.Id }
+                                        where location.Id == id
+                                        orderby location.Name
+                                        select location;
+
+                return new ObservableCollection<Location>(locationItemsInDb).First();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(AppResources.LocationNoExistingMessage, AppResources.LocationNotExistingTitle,
+                    MessageBoxButton.OK);
+            }
+
+            return new Location();
         }
 
         public ObservableCollection<Location> LoadTileLocations()
