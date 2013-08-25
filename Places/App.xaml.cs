@@ -227,6 +227,7 @@ namespace Places
 
         // Avoid double-initialization
         private bool phoneApplicationInitialized;
+        private bool reset;
 
         // Do not add any additional code to this method
         private void InitializePhoneApplication()
@@ -245,6 +246,8 @@ namespace Places
             };
             var frame = new RadPhoneApplicationFrame { Transition = transition };
             RootFrame = frame;
+            RootFrame.Navigating += RootFrame_Navigating;
+            RootFrame.Navigated += RootFrame_Navigated;
             RootFrame.Navigated += CompleteInitializePhoneApplication;
             // Handle navigation failures
             RootFrame.NavigationFailed += RootFrame_NavigationFailed;
@@ -265,6 +268,20 @@ namespace Places
 
             // Remove this handler since it is no longer needed
             RootFrame.Navigated -= CompleteInitializePhoneApplication;
+        }
+
+        void RootFrame_Navigating(object sender, NavigatingCancelEventArgs e)
+        {
+            if (reset && e.IsCancelable && e.Uri.OriginalString == "/MainPage.xaml")
+            {
+                e.Cancel = true;
+                reset = false;
+            }
+        }
+
+        void RootFrame_Navigated(object sender, NavigationEventArgs e)
+        {
+            reset = e.NavigationMode == NavigationMode.Reset;
         }
 
         #endregion
