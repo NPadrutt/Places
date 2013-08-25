@@ -172,10 +172,11 @@
     <value>changelog:</value>
   </data>
   <data name="ChangelogText" xml:space="preserve">
-    <value>- change application name because of naming conflicts
-- add some missing german translations
-- fix that the live tile don't show any picture
-- fix problems with edit image of a location if image not found</value>
+    <value>- you are now able to pin the add dialog to your startscreen
+- in the map view there are now different map modes supported
+- fix error if open a pinned location
+- add somed missed german translation
+- small improvements and fixes</value>
   </data>
   <data name="CitiesTitle" xml:space="preserve">
     <value>cities</value>

@@ -133,10 +133,11 @@
     <value>Änderungen</value>
   </data>
   <data name="ChangelogText" xml:space="preserve">
-    <value>- Applikationsname aufgrund von Namenskonflikten angepasst
-- Fehlende Übersetzungen eingefügt
-- Korrigiert dass das LiveTile keine Bilder anzeigt
-- Fehler korrigiert wenn das Bild eines Ortes bearbeitet werden soll wenn das Bild nicht gefunden wurde</value>
+    <value>- Du kannst nun den Erfassendialog direkt auf von deiner Startseite aufrufen
+- In der Kartenansicht sind nun verschiedene Karten Modi verfügbar
+- Korrigiert den Fehler beim öffenen eines an den Start gepinnten Ortes
+- Ergänzt fehlende Deutsch übersetzungen
+- Kleinere Verbesserungen und Korrekturen</value>
   </data>
   <data name="DeveloperLabel" xml:space="preserve">
     <value>Entwickler:</value>

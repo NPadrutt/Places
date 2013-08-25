@@ -241,10 +241,11 @@ namespace Places.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to - change application name because of naming conflicts
-        ///- add some missing german translations
-        ///- fix that the live tile don&apos;t show any picture
-        ///- fix problems with edit image of a location if image not found.
+        ///   Looks up a localized string similar to - you are now able to pin the add dialog to your startscreen
+        ///- in the map view there are now different map modes supported
+        ///- fix error if open a pinned location
+        ///- add somed missed german translation
+        ///- small improvements and fixes.
         /// </summary>
         public static string ChangelogText {
             get {
