@@ -30,6 +30,7 @@
 			</shell:ApplicationBar.MenuItems>
 			<shell:ApplicationBarIconButton x:Name="btnSwapPosition" IconUri="/Assets/swapPosition.png" Text="swap Position" Click="btnSwapPosition_Click"/>
 			<shell:ApplicationBarIconButton x:Name="btnNavigation" IconUri="/Assets/Navigation.png" Text="Navigation" Click="btnNavigation_Click"/>
+			<shell:ApplicationBarIconButton x:Name="btnLayers" IconUri="appbar_button.png" Text="button" Click="btnLayers_Click"/>
 		</shell:ApplicationBar>
 	</phone:PhoneApplicationPage.ApplicationBar>
 
@@ -42,7 +43,9 @@
 			<RowDefinition Height="*"/>
 		</Grid.RowDefinitions>
     	<Grid x:Name="ContentPanel" Grid.Row="0" Margin="12,0,12,0">
-    		<telerikPrimitives:RadWindow x:Name="WindowLayers" IsClosedOnOutsideTap="True" Placement="CenterCenter" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="86,216,70,180" Width="300" Height="300" IsFullScreen="True" Visibility="Collapsed" />
+    		<telerikPrimitives:RadWindow x:Name="WindowLayers" IsClosedOnOutsideTap="True" Placement="CenterCenter" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="86,216,70,180" Width="300" Height="300" Visibility="Collapsed">
+    			<Border Width="300" Height="300" Background="{StaticResource PhoneTextBoxReadOnlyBrush}" />
+			</telerikPrimitives:RadWindow>
     		<maps:Map x:Name="MyMap" LandmarksEnabled="True" Loaded="Map_Loaded" PedestrianFeaturesEnabled="True" Grid.Row="0" Margin="-12,0" >
     			<toolkit:MapExtensions.Children>
     				<toolkit:MapItemsControl x:Name="LocationItems">

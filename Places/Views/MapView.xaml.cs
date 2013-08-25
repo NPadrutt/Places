@@ -12,7 +12,6 @@ using Microsoft.Phone.Shell;
 using Microsoft.Phone.Tasks;
 using Places.Resources;
 using Places.Src;
-using Color = Microsoft.Xna.Framework.Color;
 
 namespace Places.Views
 {
@@ -82,7 +81,7 @@ namespace Places.Views
             bingMapsDirectionsTask.Show();
         }
 
-        private async void menuRefreshPosition_Click(object sender, System.EventArgs e)
+        private async void menuRefreshPosition_Click(object sender, EventArgs e)
         {
             await GetCurrentPosition(true);
         }
@@ -98,13 +97,13 @@ namespace Places.Views
             ProgressionbarGetLocation.IsVisible = false;
         }
 
-        private void menuDownloadMaps_Click(object sender, System.EventArgs e)
+        private void menuDownloadMaps_Click(object sender, EventArgs e)
         {
             var mapDownloaderTask = new MapDownloaderTask();
             mapDownloaderTask.Show();
         }
 
-        private void btnSwapPosition_Click(object sender, System.EventArgs e)
+        private void btnSwapPosition_Click(object sender, EventArgs e)
         {
             if (App.ViewModel.CurrentPosition == null)
             {
@@ -115,6 +114,11 @@ namespace Places.Views
             var currentCoordinate = new GeoCoordinate(App.ViewModel.CurrentPosition.Latitude, App.ViewModel.CurrentPosition.Longitude);
             selectedCoordinate = selectedCoordinate == currentCoordinate ? new GeoCoordinate(App.ViewModel.SelectedLocation.Latitude, App.ViewModel.SelectedLocation.Longitude) : currentCoordinate;
             MyMap.SetView(selectedCoordinate, 16, MapAnimationKind.Parabolic);
+        }
+
+        private void btnLayers_Click(object sender, EventArgs e)
+        {
+            WindowLayers.IsOpen = !WindowLayers.IsOpen;
         }
     }
 }
