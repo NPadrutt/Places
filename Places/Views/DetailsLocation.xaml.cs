@@ -18,11 +18,11 @@ namespace Places.Views
         {
             InitializeComponent();
 
-            ((ApplicationBarIconButton)this.ApplicationBar.Buttons[0]).Text = AppResources.EditLabel;
-            ((ApplicationBarIconButton)this.ApplicationBar.Buttons[1]).Text = AppResources.ShareImageLabel;
+            ((ApplicationBarIconButton)ApplicationBar.Buttons[0]).Text = AppResources.EditLabel;
+            ((ApplicationBarIconButton)ApplicationBar.Buttons[1]).Text = AppResources.ShareImageLabel;
             
-			((ApplicationBarMenuItem)this.ApplicationBar.MenuItems[0]).Text = AppResources.PintToStartLabel;
-			((ApplicationBarMenuItem)this.ApplicationBar.MenuItems[1]).Text = AppResources.DeleteLabel; 
+			((ApplicationBarMenuItem)ApplicationBar.MenuItems[0]).Text = AppResources.PintToStartLabel;
+			((ApplicationBarMenuItem)ApplicationBar.MenuItems[1]).Text = AppResources.DeleteLabel; 
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -32,7 +32,7 @@ namespace Places.Views
             var queryStrings = NavigationContext.QueryString;
             if (e.NavigationMode != NavigationMode.Back)
             {
-                if (queryStrings.ContainsKey("RemoveBackstack") && Convert.ToBoolean(this.NavigationContext.QueryString["RemoveBackstack"]))
+                if (queryStrings.ContainsKey("RemoveBackstack") && Convert.ToBoolean(NavigationContext.QueryString["RemoveBackstack"]))
                 {
                     NavigationService.RemoveBackEntry();
                 }
