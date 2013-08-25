@@ -44,8 +44,15 @@
 		</Grid.RowDefinitions>
     	<Grid x:Name="ContentPanel" Grid.Row="0" Margin="12,0,12,0">
     		<telerikPrimitives:RadWindow x:Name="WindowLayers" IsClosedOnOutsideTap="True" Placement="CenterCenter" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="86,216,70,180" Width="300" Height="300" Visibility="Collapsed">
-    			<Border Width="300" Height="300" Background="{StaticResource PhoneTextBoxReadOnlyBrush}" />
-			</telerikPrimitives:RadWindow>
+                <Border Width="300" Background="{StaticResource PhoneTextBoxReadOnlyBrush}" >
+                    <Grid>
+                        <RadioButton x:Name="RadioBtnRoad" GroupName="CartographicMode" Content="{Binding AppResources.RoadLabel, Source={StaticResource LocalizedStrings}}" Checked="RadioBtnRoad_Checked"/>
+                        <RadioButton x:Name="RadioBtnAerial" GroupName="CartographicMode" Content="{Binding AppResources.RoadLabel, Source={StaticResource LocalizedStrings}}" Checked="RadioBtnAerial_Checked"/>
+                        <RadioButton x:Name="RadioBtnHybrid" GroupName="CartographicMode" Content="{Binding AppResources.RoadLabel, Source={StaticResource LocalizedStrings}}" Checked="RadioBtnHybrid_Checked"/>
+                        <RadioButton x:Name="RadioBtnTerrain" GroupName="CartographicMode" Content="{Binding AppResources.RoadLabel, Source={StaticResource LocalizedStrings}}" Checked="RadioBtnTerrain_Checked"/>
+                    </Grid>
+                </Border>
+            </telerikPrimitives:RadWindow>
     		<maps:Map x:Name="MyMap" LandmarksEnabled="True" Loaded="Map_Loaded" PedestrianFeaturesEnabled="True" Grid.Row="0" Margin="-12,0" >
     			<toolkit:MapExtensions.Children>
     				<toolkit:MapItemsControl x:Name="LocationItems">

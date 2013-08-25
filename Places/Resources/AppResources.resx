@@ -465,4 +465,16 @@ Do you wanna purchase Places?</value>
   <data name="AddLocationTitle" xml:space="preserve">
     <value>add location</value>
   </data>
+  <data name="AerialLabel" xml:space="preserve">
+    <value>Aerial</value>
+  </data>
+  <data name="HybridLabel" xml:space="preserve">
+    <value>Hybrid</value>
+  </data>
+  <data name="RoadLabel" xml:space="preserve">
+    <value>Road</value>
+  </data>
+  <data name="TerrainLabel" xml:space="preserve">
+    <value>Terrain</value>
+  </data>
 </root>

@@ -385,4 +385,16 @@ Möchtest du den Zugriff erlauben?</value>
   <data name="AddLocationTitle" xml:space="preserve">
     <value>Ort hinzufügen</value>
   </data>
+  <data name="AerialLabel" xml:space="preserve">
+    <value>Luftansicht</value>
+  </data>
+  <data name="HybridLabel" xml:space="preserve">
+    <value>Hybrid</value>
+  </data>
+  <data name="RoadLabel" xml:space="preserve">
+    <value>Strasse</value>
+  </data>
+  <data name="TerrainLabel" xml:space="preserve">
+    <value>Gelände</value>
+  </data>
 </root>

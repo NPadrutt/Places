@@ -119,6 +119,43 @@ namespace Places.Views
         private void btnLayers_Click(object sender, EventArgs e)
         {
             WindowLayers.IsOpen = !WindowLayers.IsOpen;
+            
+            switch (MyMap.CartographicMode)
+            {
+                case MapCartographicMode.Road:
+                    RadioBtnRoad.IsChecked = true;
+                    break;
+                case MapCartographicMode.Aerial:
+                    RadioBtnAerial.IsChecked = true;
+                    break;
+                case MapCartographicMode.Hybrid:
+                    RadioBtnHybrid.IsChecked = true;
+                    break;
+                case MapCartographicMode.Terrain:
+                    RadioBtnTerrain.IsChecked = true;
+                    break;
+            }
         }
+
+        private void RadioBtnRoad_Checked(object sender, RoutedEventArgs e)
+        {
+            MyMap.CartographicMode = MapCartographicMode.Road;
+        }
+
+        private void RadioBtnAerial_Checked(object sender, RoutedEventArgs e)
+        {
+            MyMap.CartographicMode = MapCartographicMode.Aerial;
+        }
+
+        private void RadioBtnHybrid_Checked(object sender, RoutedEventArgs e)
+        {
+            MyMap.CartographicMode = MapCartographicMode.Road;
+        }
+
+        private void RadioBtnTerrain_Checked(object sender, RoutedEventArgs e)
+        {
+            MyMap.CartographicMode = MapCartographicMode.Road;
+        }
+
     }
 }

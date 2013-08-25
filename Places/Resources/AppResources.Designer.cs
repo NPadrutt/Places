@@ -160,6 +160,15 @@ namespace Places.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Aerial.
+        /// </summary>
+        public static string AerialLabel {
+            get {
+                return ResourceManager.GetString("AerialLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to all.
         /// </summary>
         public static string AllLabel {
@@ -465,6 +474,15 @@ namespace Places.Resources {
         public static string HotelLabel {
             get {
                 return ResourceManager.GetString("HotelLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hybrid.
+        /// </summary>
+        public static string HybridLabel {
+            get {
+                return ResourceManager.GetString("HybridLabel", resourceCulture);
             }
         }
         
@@ -848,6 +866,15 @@ namespace Places.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Road.
+        /// </summary>
+        public static string RoadLabel {
+            get {
+                return ResourceManager.GetString("RoadLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to select.
         /// </summary>
         public static string SelectLabel {
@@ -970,6 +997,15 @@ namespace Places.Resources {
         public static string TaskCancelledErrorTitle {
             get {
                 return ResourceManager.GetString("TaskCancelledErrorTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Terrain.
+        /// </summary>
+        public static string TerrainLabel {
+            get {
+                return ResourceManager.GetString("TerrainLabel", resourceCulture);
             }
         }
         
