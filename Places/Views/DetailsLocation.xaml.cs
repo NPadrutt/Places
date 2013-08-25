@@ -5,6 +5,7 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Microsoft.Phone.Tasks;
+using Places.Models;
 using Places.Resources;
 using Telerik.Windows.Controls;
 using GestureEventArgs = System.Windows.Input.GestureEventArgs;
@@ -117,11 +118,13 @@ namespace Places.Views
                 locationImageLarge.Source = App.ViewModel.SelectedLocation.LocationImage;
             }
 
+            locationImageLarge.Height = 300;
+            locationImageLarge.Width = 300;
+
             var tileData = new RadExtendedTileData()
             {
                 Title = App.ViewModel.SelectedLocation.Name,
-                VisualElement = locationImageLarge,
-                IsTransparencySupported = true
+                VisualElement = locationImageLarge
             };
 
             LiveTileHelper.CreateOrUpdateTile(tileData, new Uri("/Views/DetailsLocation.xaml?id=" + App.ViewModel.SelectedLocation.Id, UriKind.RelativeOrAbsolute));

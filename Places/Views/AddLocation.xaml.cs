@@ -110,6 +110,10 @@ namespace Places.Views
         {
             if (e.TaskResult == TaskResult.OK)
             {
+                if (App.ViewModel.SelectedLocation.Latitude == 0 && App.ViewModel.SelectedLocation.Longitude == 0)
+                {
+                    GetPosition();
+                }
                 SaveImage(e.ChosenPhoto, e.OriginalFileName);
             }
         }
