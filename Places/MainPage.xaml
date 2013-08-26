@@ -157,7 +157,7 @@
 
         <DataTemplate x:Key="AllCitiesItemTemplate">
         	<StackPanel Width="455" Background="{StaticResource PhoneAccentBrush}" Margin="0,0,0,12">
-        		<TextBlock Text="{Binding}" Style="{StaticResource PhoneTextTitle2Style}" Margin="0"/>
+        		<TextBlock Text="{Binding}" Style="{StaticResource PhoneTextTitle2Style}" Margin="12,0,0,0"/>
         	</StackPanel>
         </DataTemplate>
     </phone:PhoneApplicationPage.Resources>
@@ -208,7 +208,6 @@
 			</Grid>
 		</StackPanel>
 		<telerikPrimitives:RadBusyIndicator Background="#CC000000" x:Name="busyProceedAction" AnimationStyle="AnimationStyle8" Content="{Binding LocalizedResources.LoadLocationsLabel, Source={StaticResource LocalizedStrings}}" Margin="0" />
-		<ProgressBar x:Name="progbar" HorizontalAlignment="Left" Height="24" VerticalAlignment="Top" Width="470" Margin="10,-24,0,0"/>
 
 	</Grid>
 
