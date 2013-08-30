@@ -29,6 +29,7 @@ namespace Places.Views
 
             ((ApplicationBarIconButton)ApplicationBar.Buttons[0]).Text = AppResources.SwapPositionLabel;
             ((ApplicationBarIconButton)ApplicationBar.Buttons[1]).Text = AppResources.NavigateLabel;
+            ((ApplicationBarIconButton)ApplicationBar.Buttons[2]).Text = AppResources.LayersLabel;
 
             ((ApplicationBarMenuItem)ApplicationBar.MenuItems[0]).Text = AppResources.RefreshCurrentPositionLabel;
             ((ApplicationBarMenuItem)ApplicationBar.MenuItems[1]).Text = AppResources.DownloadMapsLabel;

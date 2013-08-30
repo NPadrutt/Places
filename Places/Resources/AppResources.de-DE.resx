@@ -404,4 +404,7 @@ Möchtest du den Zugriff erlauben?</value>
   <data name="TerrainLabel" xml:space="preserve">
     <value>Gelände</value>
   </data>
+  <data name="LayersLabel" xml:space="preserve">
+    <value>Karten Layers</value>
+  </data>
 </root>

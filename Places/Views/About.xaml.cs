@@ -13,6 +13,10 @@ namespace Places.Views
         public About()
         {
             InitializeComponent();
+
+            btnPurchase.Visibility = new Microsoft.Phone.Marketplace.LicenseInformation().IsTrial()
+                ? Visibility.Visible
+                : Visibility.Collapsed;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -32,6 +36,12 @@ namespace Places.Views
         {
             var marketPlaceReviewTask = new MarketplaceReviewTask();
             marketPlaceReviewTask.Show();
+        }
+
+        private void btnPurchase_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            var marketPlaceDetailTask = new MarketplaceDetailTask();
+            marketPlaceDetailTask.Show();
         }
     }
 }

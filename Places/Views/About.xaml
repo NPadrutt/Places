@@ -27,6 +27,7 @@
                     <TextBlock x:Name="lblSupportAddressCaption" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding LocalizedResources.SupportAddressLabel, Source={StaticResource LocalizedStrings}}" VerticalAlignment="Top" Style="{StaticResource PhoneTextSubtleStyle}"/>
                     <TextBlock x:Name="lblSupportAddress" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding LocalizedResources.SupportAddressMail, Source={StaticResource LocalizedStrings}}" VerticalAlignment="Top" Margin="12,0,0,10" Style="{StaticResource PhoneTextAccentStyle}" FontSize="32" Tap="lblSupportAddress_Tap"/>
                     <Button x:Name="btnRateApp" Content="{Binding LocalizedResources.RateAppLabel, Source={StaticResource LocalizedStrings}}" Click="btnRateApp_Click"/>
+                    <Button x:Name="btnPurchase" Content="{Binding LocalizedResources.PurchaseFullVersionLabel, Mode=OneWay, Source={StaticResource LocalizedStrings}}" Click="btnPurchase_Click"/>
                 </StackPanel>
             </phone:PivotItem>
 
