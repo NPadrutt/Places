@@ -484,4 +484,7 @@ Do you wanna purchase Places?</value>
   <data name="TerrainLabel" xml:space="preserve">
     <value>Terrain</value>
   </data>
+  <data name="LayersLabel" xml:space="preserve">
+    <value>layers</value>
+  </data>
 </root>

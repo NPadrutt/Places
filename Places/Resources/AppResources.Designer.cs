@@ -524,6 +524,15 @@ namespace Places.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to layers.
+        /// </summary>
+        public static string LayersLabel {
+            get {
+                return ResourceManager.GetString("LayersLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to load backup.
         /// </summary>
         public static string LoadBackupLabel {

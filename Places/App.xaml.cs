@@ -105,21 +105,12 @@ namespace Places
                 SimulateTrialForTests = false
             };
 
-            //Sets the lenght of the trial period.
-
-            //Sets how often the trial reminder is displayed.
-
-            //The reminder is shown only if the application is in trial mode. When this property is set to true the application will simulate that it is in trial mode.
-
             //Creates a new instance of the RadRateApplicationReminder component.
             RateReminder = new RadRateApplicationReminder
             {
                 RecurrencePerUsageCount = 3,
                 AllowUsersToSkipFurtherReminders = true
             };
-
-            //Sets how often the rate reminder is displayed.
-
 
             _viewModel = new MainViewModel();
             _viewModel.LoadTags();
