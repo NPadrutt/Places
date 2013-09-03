@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.IO.IsolatedStorage;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -48,12 +49,21 @@ namespace Places
 
         private async void CheckLicense()
         {
-            var listing = await CurrentApp.LoadListingInformationAsync();
-            var removedAds = listing.ProductListings.FirstOrDefault(p => p.Value.ProductId == Product.RemoveAds().Id);
+            try
+            {
+                var listing = await CurrentApp.LoadListingInformationAsync();
+                var removedAds = listing.ProductListings.FirstOrDefault(p => p.Value.ProductId == Product.RemoveAds().Id);
 
-            MessageBox.Show(CurrentApp.LicenseInformation.ProductLicenses[removedAds.Key].IsActive
-                                ? "removeAds is purchased"
-                                : "Ads will be shown!!");
+                IsolatedStorageSettings.ApplicationSettings.Add(removedAds.Key, CurrentApp.LicenseInformation.ProductLicenses[removedAds.Key].IsActive);
+
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message.Contains("0x805A0194"))
+                {
+                    MessageBox.Show("Task couldn't coulnd't finish with a result.");
+                }
+            }
         }
 
         private void LoadCities()
@@ -193,14 +203,14 @@ namespace Places
         private void mSettings_Click(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/Views/Settings.xaml", UriKind.Relative));
-        }
+            }
 
         private async void mRemoveAds_Click(object sender, System.EventArgs e)
         {
             var listing = await CurrentApp.LoadListingInformationAsync();
             var removedAds = listing.ProductListings.FirstOrDefault(p => p.Value.ProductId == Product.RemoveAds().Id);
 
-            var receipt = await CurrentApp.RequestProductPurchaseAsync(removedAds.Key, true);
+            await CurrentApp.RequestProductPurchaseAsync(removedAds.Key, true);
             if (CurrentApp.LicenseInformation.ProductLicenses[removedAds.Key].IsActive)
             {
                 MessageBox.Show("erfolgreich gekauft!");

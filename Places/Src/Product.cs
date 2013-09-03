@@ -15,7 +15,7 @@
 
         public static Product RemoveAds()
         {
-            return new Product("100", "RemoveAds");
+            return new Product("10000", "RemoveAds");
         }
     }
 }

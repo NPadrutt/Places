@@ -281,6 +281,25 @@ namespace Places.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to To use FavoritePlaces withouth ads you have to purchase the licence in the marketplace.
+        ///Do you wanna continue?.
+        /// </summary>
+        public static string ConfirmPurchaseRemoveAdsMessage {
+            get {
+                return ResourceManager.GetString("ConfirmPurchaseRemoveAdsMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove Ads.
+        /// </summary>
+        public static string ConfirmPurchaseRemoveAdsTitle {
+            get {
+                return ResourceManager.GetString("ConfirmPurchaseRemoveAdsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Do you wanna restore your backup? Your current data will be overwritten.
         /// </summary>
         public static string ConfirmRestoreBackupMessage {

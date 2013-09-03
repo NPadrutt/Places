@@ -410,4 +410,11 @@ Möchtest du den Zugriff erlauben?</value>
   <data name="RemoveAdsLabel" xml:space="preserve">
     <value>Entferne Werbebanner</value>
   </data>
+  <data name="ConfirmPurchaseRemoveAdsMessage" xml:space="preserve">
+    <value>Um Favorite Places ohne Werbung benutzen zu können, musst du die dazugehörige Lizenz im Marketplace erwerben. 
+Möchtest du fortfahren?</value>
+  </data>
+  <data name="ConfirmPurchaseRemoveAdsTitle" xml:space="preserve">
+    <value>Werbung entfernen</value>
+  </data>
 </root>

@@ -490,4 +490,11 @@ Do you wanna purchase Places?</value>
   <data name="RemoveAdsLabel" xml:space="preserve">
     <value>remove ads</value>
   </data>
+  <data name="ConfirmPurchaseRemoveAdsMessage" xml:space="preserve">
+    <value>To use FavoritePlaces withouth ads you have to purchase the licence in the marketplace.
+Do you wanna continue?</value>
+  </data>
+  <data name="ConfirmPurchaseRemoveAdsTitle" xml:space="preserve">
+    <value>Remove Ads</value>
+  </data>
 </root>
