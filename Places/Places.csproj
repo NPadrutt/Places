@@ -303,6 +303,8 @@
     <Reference Include="FlurryWP8SDK">
       <HintPath>..\lib\flurry3.1.1\FlurryWP8SDK.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Advertising.Mobile, Version=6.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Advertising.Mobile.UI, Version=6.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Live">
       <HintPath>..\lib\live.wp8.0\Microsoft.Live.dll</HintPath>
     </Reference>

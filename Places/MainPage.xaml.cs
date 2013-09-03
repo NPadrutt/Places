@@ -213,7 +213,7 @@ namespace Places
             await CurrentApp.RequestProductPurchaseAsync(removedAds.Key, true);
             if (CurrentApp.LicenseInformation.ProductLicenses[removedAds.Key].IsActive)
             {
-                MessageBox.Show("erfolgreich gekauft!");
+                IsolatedStorageSettings.ApplicationSettings.Add(removedAds.Key, CurrentApp.LicenseInformation.ProductLicenses[removedAds.Key].IsActive);
             }
         }
     }
