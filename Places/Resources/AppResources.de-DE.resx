@@ -407,4 +407,7 @@ Möchtest du den Zugriff erlauben?</value>
   <data name="LayersLabel" xml:space="preserve">
     <value>Karten Layers</value>
   </data>
+  <data name="RemoveAdsLabel" xml:space="preserve">
+    <value>Entferne Werbebanner</value>
+  </data>
 </root>

@@ -10,7 +10,9 @@ using Microsoft.Phone.Shell;
 using Microsoft.Phone.Tasks;
 using Places.Models;
 using Places.Resources;
+using Places.Src;
 using Telerik.Windows.Controls;
+using Windows.ApplicationModel.Store;
 
 namespace Places
 {
@@ -40,17 +42,18 @@ namespace Places
             ((ApplicationBarMenuItem)ApplicationBar.MenuItems[0]).Text = AppResources.TagLabel;
             ((ApplicationBarMenuItem)ApplicationBar.MenuItems[1]).Text = AppResources.BackupLabel;
             ((ApplicationBarMenuItem)ApplicationBar.MenuItems[2]).Text = AppResources.SettingsLabel;
-            ((ApplicationBarMenuItem)ApplicationBar.MenuItems[3]).Text = AppResources.AboutLabel;
+            ((ApplicationBarMenuItem)ApplicationBar.MenuItems[3]).Text = AppResources.RemoveAdsLabel;
+            ((ApplicationBarMenuItem)ApplicationBar.MenuItems[4]).Text = AppResources.AboutLabel;
         }
 
-        private void CheckLicense()
+        private async void CheckLicense()
         {
-            ((App)Application.Current).TrialReminder.Notify();
+            var listing = await CurrentApp.LoadListingInformationAsync();
+            var removedAds = listing.ProductListings.FirstOrDefault(p => p.Value.ProductId == Product.RemoveAds().Id);
 
-            if (((App)Application.Current).TrialReminder.IsTrialExpired && NavigationService != null)
-            {
-                NavigationService.Navigate(new Uri("/Views/TrialversionExpired.xaml", UriKind.Relative));
-            }
+            MessageBox.Show(CurrentApp.LicenseInformation.ProductLicenses[removedAds.Key].IsActive
+                                ? "removeAds is purchased"
+                                : "Ads will be shown!!");
         }
 
         private void LoadCities()
@@ -190,6 +193,18 @@ namespace Places
         private void mSettings_Click(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/Views/Settings.xaml", UriKind.Relative));
+        }
+
+        private async void mRemoveAds_Click(object sender, System.EventArgs e)
+        {
+            var listing = await CurrentApp.LoadListingInformationAsync();
+            var removedAds = listing.ProductListings.FirstOrDefault(p => p.Value.ProductId == Product.RemoveAds().Id);
+
+            var receipt = await CurrentApp.RequestProductPurchaseAsync(removedAds.Key, true);
+            if (CurrentApp.LicenseInformation.ProductLicenses[removedAds.Key].IsActive)
+            {
+                MessageBox.Show("erfolgreich gekauft!");
+            }
         }
     }
 }

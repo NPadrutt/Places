@@ -840,6 +840,15 @@ namespace Places.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to remove ads.
+        /// </summary>
+        public static string RemoveAdsLabel {
+            get {
+                return ResourceManager.GetString("RemoveAdsLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enter the new name for the selected tag:.
         /// </summary>
         public static string RenameTagMessage {

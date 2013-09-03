@@ -487,4 +487,7 @@ Do you wanna purchase Places?</value>
   <data name="LayersLabel" xml:space="preserve">
     <value>layers</value>
   </data>
+  <data name="RemoveAdsLabel" xml:space="preserve">
+    <value>remove ads</value>
+  </data>
 </root>
