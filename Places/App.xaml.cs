@@ -10,6 +10,7 @@ using Places.Src;
 using Places.ViewModels;
 using Telerik.Windows.Controls;
 using Telerik.Windows.Controls.Reminders;
+using Windows.ApplicationModel.Store;
 
 namespace Places
 {
