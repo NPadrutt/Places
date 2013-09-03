@@ -116,6 +116,7 @@
     <Compile Include="Src\CustomMapper.cs" />
     <Compile Include="Src\ExifReader.cs" />
     <Compile Include="Src\ExifTags.cs" />
+    <Compile Include="Src\Products.cs" />
     <Compile Include="Src\StringComparer.cs" />
     <Compile Include="Src\UpdateHelper.cs" />
     <Compile Include="Src\Utilities.cs" />
