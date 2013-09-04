@@ -417,4 +417,10 @@ Möchtest du fortfahren?</value>
   <data name="ConfirmPurchaseRemoveAdsTitle" xml:space="preserve">
     <value>Werbung entfernen</value>
   </data>
+  <data name="PurchaseWentWrongMessage" xml:space="preserve">
+    <value>Der Windows Phone Marketplace ist im Moment nicht erreichbar. Gegebenenfalls kann ein neustart des Telefons dieses Problem beheben.</value>
+  </data>
+  <data name="PurchaseWentWrongTitle" xml:space="preserve">
+    <value>Marketplace nicht erreichbar</value>
+  </data>
 </root>

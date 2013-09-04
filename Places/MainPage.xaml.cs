@@ -28,7 +28,6 @@ namespace Places
 
             DataContext = App.ViewModel;
 
-            CheckLicense();
             LoadCities();
             CheckLocationservices();
 
@@ -46,26 +45,7 @@ namespace Places
             ((ApplicationBarMenuItem)ApplicationBar.MenuItems[3]).Text = AppResources.RemoveAdsLabel;
             ((ApplicationBarMenuItem)ApplicationBar.MenuItems[4]).Text = AppResources.AboutLabel;
         }
-
-        private async void CheckLicense()
-        {
-            try
-            {
-                var listing = await CurrentApp.LoadListingInformationAsync();
-                var removedAds = listing.ProductListings.FirstOrDefault(p => p.Value.ProductId == Product.RemoveAds().Id);
-
-                IsolatedStorageSettings.ApplicationSettings.Add(removedAds.Key, CurrentApp.LicenseInformation.ProductLicenses[removedAds.Key].IsActive);
-
-            }
-            catch (Exception ex)
-            {
-                if (ex.Message.Contains("0x805A0194"))
-                {
-                    MessageBox.Show("Task couldn't coulnd't finish with a result.");
-                }
-            }
-        }
-
+        
         private void LoadCities()
         {
             App.ViewModel.LoadCities();
@@ -101,8 +81,18 @@ namespace Places
             base.OnNavigatedTo(e);
 
             ((ApplicationBarIconButton) ApplicationBar.Buttons[1]).IsEnabled = App.Settings.LocationServiceEnabled;
-        }
 
+            if (IsolatedStorageSettings.ApplicationSettings.Contains(Product.RemoveAds().Id) &&
+                (bool) IsolatedStorageSettings.ApplicationSettings[Product.RemoveAds().Id])
+            {
+                ApplicationBar.MenuItems.RemoveAt(3);
+            }
+
+            if (Ad.Visibility == Visibility.Collapsed)
+            {
+                ListboxCities.Height += 80;
+            }
+        }
 
         private async void ListboxCities_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -210,11 +200,33 @@ namespace Places
             var listing = await CurrentApp.LoadListingInformationAsync();
             var removedAds = listing.ProductListings.FirstOrDefault(p => p.Value.ProductId == Product.RemoveAds().Id);
 
-            await CurrentApp.RequestProductPurchaseAsync(removedAds.Key, true);
-            if (CurrentApp.LicenseInformation.ProductLicenses[removedAds.Key].IsActive)
+            try
             {
-                IsolatedStorageSettings.ApplicationSettings.Add(removedAds.Key, CurrentApp.LicenseInformation.ProductLicenses[removedAds.Key].IsActive);
+                await CurrentApp.RequestProductPurchaseAsync(removedAds.Key, true);
+
+                if (CurrentApp.LicenseInformation.ProductLicenses[removedAds.Key].IsActive)
+                {
+                    if (!IsolatedStorageSettings.ApplicationSettings.Contains(removedAds.Key))
+                    {
+                        IsolatedStorageSettings.ApplicationSettings.Add(removedAds.Key,
+                                                                        CurrentApp.LicenseInformation.ProductLicenses[
+                                                                            removedAds.Key].IsActive);
+                    }
+                    else if (IsolatedStorageSettings.ApplicationSettings.Contains(removedAds.Key))
+                    {
+                        IsolatedStorageSettings.ApplicationSettings[removedAds.Key] =
+                            CurrentApp.LicenseInformation.ProductLicenses[removedAds.Key].IsActive;
+                    }
+                    Ad.Visibility = Visibility.Collapsed;
+                }
             }
+            catch (Exception)
+            {
+
+                MessageBox.Show(AppResources.ConfirmPurchaseRemoveAdsMessage, AppResources.ConfirmPurchaseRemoveAdsTitle, MessageBoxButton.OK);
+            }
+
+
         }
     }
 }

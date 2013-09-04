@@ -789,6 +789,24 @@ namespace Places.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The Marketplace is currently not available. Sometimes reboot your device solve this problems..
+        /// </summary>
+        public static string PurchaseWentWrongMessage {
+            get {
+                return ResourceManager.GetString("PurchaseWentWrongMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Marketplace not available.
+        /// </summary>
+        public static string PurchaseWentWrongTitle {
+            get {
+                return ResourceManager.GetString("PurchaseWentWrongTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rate Places!.
         /// </summary>
         public static string RateAppLabel {

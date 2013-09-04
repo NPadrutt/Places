@@ -497,4 +497,10 @@ Do you wanna continue?</value>
   <data name="ConfirmPurchaseRemoveAdsTitle" xml:space="preserve">
     <value>Remove Ads</value>
   </data>
+  <data name="PurchaseWentWrongMessage" xml:space="preserve">
+    <value>The Marketplace is currently not available. Sometimes reboot your device solve this problems.</value>
+  </data>
+  <data name="PurchaseWentWrongTitle" xml:space="preserve">
+    <value>Marketplace not available</value>
+  </data>
 </root>
