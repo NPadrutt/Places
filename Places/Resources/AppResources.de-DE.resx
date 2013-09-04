@@ -423,4 +423,10 @@ Möchtest du fortfahren?</value>
   <data name="PurchaseWentWrongTitle" xml:space="preserve">
     <value>Marketplace nicht erreichbar</value>
   </data>
+  <data name="PurchaseSuccessfulMessage" xml:space="preserve">
+    <value>Vielen Dank dass Sie die Lizenz für FavoritePlaces ohne Werbung erworben haben!</value>
+  </data>
+  <data name="PurchaseSuccessfulTitle" xml:space="preserve">
+    <value>Kauf erfolgreich</value>
+  </data>
 </root>

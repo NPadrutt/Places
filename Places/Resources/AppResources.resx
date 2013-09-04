@@ -337,9 +337,6 @@ Do you want do enable locationservices for Places?</value>
   <data name="PrivacyPolicyTitle" xml:space="preserve">
     <value>Privacy Statement</value>
   </data>
-  <data name="PurchaseFullVersionLabel" xml:space="preserve">
-    <value>purchase fullversion</value>
-  </data>
   <data name="RateAppLabel" xml:space="preserve">
     <value>Rate Places!</value>
   </data>
@@ -431,20 +428,6 @@ I'm looking forward to receive your feedback! =)</value>
   <data name="TouristAttractionLabel" xml:space="preserve">
     <value>tourist attraction</value>
   </data>
-  <data name="TrialExpiredMessage" xml:space="preserve">
-    <value>You've used all your free Places intializations. If you want to continue using Places please purchase a full version in the Windows Marketplace.</value>
-  </data>
-  <data name="TrialExpiredTitle" xml:space="preserve">
-    <value>trialversion expired</value>
-  </data>
-  <data name="TrialReminderMessage" xml:space="preserve">
-    <value>You're using Places in the trial Version. There are  {0} uses left
-
-Do you wanna purchase Places?</value>
-  </data>
-  <data name="TrialReminderTitle" xml:space="preserve">
-    <value>Purchase Places?</value>
-  </data>
   <data name="VersionLabel" xml:space="preserve">
     <value>version:</value>
   </data>
@@ -502,5 +485,11 @@ Do you wanna continue?</value>
   </data>
   <data name="PurchaseWentWrongTitle" xml:space="preserve">
     <value>Marketplace not available</value>
+  </data>
+  <data name="PurchaseSuccessfulMessage" xml:space="preserve">
+    <value>Thank you for purchasing the licence for using FavoritePlaces without Ads!</value>
+  </data>
+  <data name="PurchaseSuccessfulTitle" xml:space="preserve">
+    <value>Purchase successful</value>
   </data>
 </root>

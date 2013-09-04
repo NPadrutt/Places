@@ -780,11 +780,20 @@ namespace Places.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to purchase fullversion.
+        ///   Looks up a localized string similar to Thank you for purchasing the licence for using FavoritePlaces without Ads!.
         /// </summary>
-        public static string PurchaseFullVersionLabel {
+        public static string PurchaseSuccessfulMessage {
             get {
-                return ResourceManager.GetString("PurchaseFullVersionLabel", resourceCulture);
+                return ResourceManager.GetString("PurchaseSuccessfulMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Purchase successful.
+        /// </summary>
+        public static string PurchaseSuccessfulTitle {
+            get {
+                return ResourceManager.GetString("PurchaseSuccessfulTitle", resourceCulture);
             }
         }
         
@@ -1089,44 +1098,6 @@ namespace Places.Resources {
         public static string TouristAttractionLabel {
             get {
                 return ResourceManager.GetString("TouristAttractionLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to You&apos;ve used all your free Places intializations. If you want to continue using Places please purchase a full version in the Windows Marketplace..
-        /// </summary>
-        public static string TrialExpiredMessage {
-            get {
-                return ResourceManager.GetString("TrialExpiredMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to trialversion expired.
-        /// </summary>
-        public static string TrialExpiredTitle {
-            get {
-                return ResourceManager.GetString("TrialExpiredTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to You&apos;re using Places in the trial Version. There are  {0} uses left
-        ///
-        ///Do you wanna purchase Places?.
-        /// </summary>
-        public static string TrialReminderMessage {
-            get {
-                return ResourceManager.GetString("TrialReminderMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Purchase Places?.
-        /// </summary>
-        public static string TrialReminderTitle {
-            get {
-                return ResourceManager.GetString("TrialReminderTitle", resourceCulture);
             }
         }
         
