@@ -222,7 +222,8 @@ namespace Places
                             CurrentApp.LicenseInformation.ProductLicenses[removedAds.Key].IsActive;
                     }
                     Ad.Visibility = Visibility.Collapsed;
-                    MessageBox.Show(AppResources.PurchaseSuccessfulMessage, AppResources.PurchaseSuccessfulTitle, MessageBoxButton.OK)
+                    MessageBox.Show(AppResources.PurchaseSuccessfulMessage, AppResources.PurchaseSuccessfulTitle,
+                                    MessageBoxButton.OK);
                 }
             }
             catch (Exception)
