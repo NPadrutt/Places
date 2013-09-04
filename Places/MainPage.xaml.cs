@@ -85,11 +85,15 @@ namespace Places
             if (IsolatedStorageSettings.ApplicationSettings.Contains(Product.RemoveAds().Id) &&
                 (bool) IsolatedStorageSettings.ApplicationSettings[Product.RemoveAds().Id])
             {
-                ApplicationBar.MenuItems.RemoveAt(3);
+                if (ApplicationBar.MenuItems.Count >= 5)
+                {
+                    ApplicationBar.MenuItems.RemoveAt(3);
+                }
             }
 
             if (Ad.Visibility == Visibility.Collapsed)
             {
+                ContentPanel.Width += 80;
                 ListboxCities.Height += 80;
             }
         }
