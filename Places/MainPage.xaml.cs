@@ -36,6 +36,8 @@ namespace Places
 
             listpickerFilter.ItemsSource = App.ViewModel.AllTags;
 
+            AdjustListsIfAdCollapsed();
+
             ((ApplicationBarIconButton)ApplicationBar.Buttons[0]).Text = AppResources.AddLabel;
             ((ApplicationBarIconButton)ApplicationBar.Buttons[1]).Text = AppResources.ImportImageLabel;
 
@@ -58,6 +60,16 @@ namespace Places
                 ListboxCities.Visibility = Visibility.Visible;
                 listpickerFilter.Visibility = Visibility.Collapsed;
                 LocationList.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        private void AdjustListsIfAdCollapsed()
+        {
+            if (Ad.Visibility == Visibility.Collapsed)
+            {
+                ContentPanel.Height += 80;
+                ListboxCities.Height += 80;
+                LocationList.Height += 80;
             }
         }
 
@@ -89,12 +101,6 @@ namespace Places
                 {
                     ApplicationBar.MenuItems.RemoveAt(3);
                 }
-            }
-
-            if (Ad.Visibility == Visibility.Collapsed)
-            {
-                ContentPanel.Height += 80;
-                ListboxCities.Height += 80;
             }
         }
 
@@ -201,12 +207,12 @@ namespace Places
 
         private async void mRemoveAds_Click(object sender, System.EventArgs e)
         {
+            try
+            {
             var listing = await CurrentApp.LoadListingInformationAsync();
             var removedAds = listing.ProductListings.FirstOrDefault(p => p.Value.ProductId == Product.RemoveAds().Id);
 
-            try
-            {
-                await CurrentApp.RequestProductPurchaseAsync(removedAds.Key, true);
+           await CurrentApp.RequestProductPurchaseAsync(removedAds.Key, true);
 
                 if (CurrentApp.LicenseInformation.ProductLicenses[removedAds.Key].IsActive)
                 {
@@ -222,6 +228,7 @@ namespace Places
                             CurrentApp.LicenseInformation.ProductLicenses[removedAds.Key].IsActive;
                     }
                     Ad.Visibility = Visibility.Collapsed;
+                    AdjustListsIfAdCollapsed();
                     MessageBox.Show(AppResources.PurchaseSuccessfulMessage, AppResources.PurchaseSuccessfulTitle,
                                     MessageBoxButton.OK);
                 }
