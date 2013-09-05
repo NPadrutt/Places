@@ -5,24 +5,34 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Microsoft.Phone.Tasks;
-using Places.Models;
 using Places.Resources;
 using Telerik.Windows.Controls;
 using GestureEventArgs = System.Windows.Input.GestureEventArgs;
 
 namespace Places.Views
 {
-    public partial class DetailsLocation : PhoneApplicationPage
+    public partial class DetailsLocation
     {
         public DetailsLocation()
         {
             InitializeComponent();
+
+            AdjustListsIfAdCollapsed();
 
             ((ApplicationBarIconButton)ApplicationBar.Buttons[0]).Text = AppResources.EditLabel;
             ((ApplicationBarIconButton)ApplicationBar.Buttons[1]).Text = AppResources.ShareImageLabel;
             
 			((ApplicationBarMenuItem)ApplicationBar.MenuItems[0]).Text = AppResources.PintToStartLabel;
 			((ApplicationBarMenuItem)ApplicationBar.MenuItems[1]).Text = AppResources.DeleteLabel; 
+        }
+
+        private void AdjustListsIfAdCollapsed()
+        {
+            if (Ad.Visibility == Visibility.Collapsed)
+            {
+                ControllScrollViewer.Height += 80;
+                ContentPanel.Height += 80;
+            }
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)

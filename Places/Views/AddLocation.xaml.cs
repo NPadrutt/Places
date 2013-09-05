@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Globalization;
 using System.IO;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Navigation;
@@ -30,6 +29,8 @@ namespace Places.Views
         {
             InitializeComponent();
 
+            AdjustListsIfAdCollapsed();
+
             DataContext = App.ViewModel.SelectedLocation;
             listpickerTag.ItemsSource = App.ViewModel.AllTags;
 
@@ -37,6 +38,15 @@ namespace Places.Views
             ((ApplicationBarIconButton)ApplicationBar.Buttons[1]).Text = AppResources.CancelLabel;
 
             ((ApplicationBarMenuItem)ApplicationBar.MenuItems[0]).Text = AppResources.PintToStartLabel;
+        }
+
+        private void AdjustListsIfAdCollapsed()
+        {
+            if (Ad.Visibility == Visibility.Collapsed)
+            {
+                ControllScrollViewer.Height += 80;
+                ContentPanel.Height += 80;
+            }
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
