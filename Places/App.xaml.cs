@@ -40,10 +40,6 @@ namespace Places
         /// Component used to handle unhandle exceptions, to collect runtime info and to send email to developer.
         /// </summary>
         public RadDiagnostics Diagnostics;
-        /// <summary>
-        /// Component used to remind end users about the trial state of the application.
-        /// </summary>
-        public RadTrialApplicationReminder TrialReminder;
 
         /// <summary>
         /// Component used to raise a notification to the end users to rate the application on the marketplace.
@@ -97,13 +93,6 @@ namespace Places
 
             //Initializes this instance.
             Diagnostics.Init();
-            //Creates an instance of the RadTrialApplicationReminder component.
-            TrialReminder = new RadTrialApplicationReminder
-            {
-                AllowedTrialUsageCount = 3,
-                OccurrenceUsageCount = 3,
-                SimulateTrialForTests = false
-            };
 
             //Creates a new instance of the RadRateApplicationReminder component.
             RateReminder = new RadRateApplicationReminder
@@ -130,31 +119,7 @@ namespace Places
             Api.StartSession("CDM6ZNWY5VQGCX5DMQK6");
 #endif
             ApplicationUsageHelper.Init(Utilities.GetVersion());
-
-            SetTrialExpiredMessage();
-            SetTrialReminderMessage();
             SetRateReminderMessage();
-        }
-
-        private void SetTrialReminderMessage()
-        {
-            TrialReminder.TrialReminderMessageBoxInfo = new MessageBoxInfoModel
-            {
-                Buttons = MessageBoxButtons.YesNo,
-                Title = AppResources.TrialReminderTitle,
-                Content = string.Format(AppResources.TrialReminderMessage, TrialReminder.RemainingUsageCount)
-            };
-        }
-
-        private void SetTrialExpiredMessage()
-        {
-
-            TrialReminder.TrialExpiredMessageBoxInfo = new MessageBoxInfoModel
-            {
-                Buttons = MessageBoxButtons.YesNo,
-                Title = AppResources.TrialExpiredTitle,
-                Content = AppResources.TrialExpiredMessage
-            };
         }
 
         private void SetRateReminderMessage()
