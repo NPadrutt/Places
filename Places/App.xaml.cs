@@ -1,7 +1,9 @@
-﻿using System.Diagnostics;
-using System.Reflection;
+﻿using System;
+using System.Diagnostics;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Navigation;
+using System.Windows.Threading;
 using FlurryWP8SDK;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
@@ -10,19 +12,18 @@ using Places.Src;
 using Places.ViewModels;
 using Telerik.Windows.Controls;
 using Telerik.Windows.Controls.Reminders;
-using Windows.ApplicationModel.Store;
 
 namespace Places
 {
-    public partial class App : Application
+    public partial class App
     {
-        private static MainViewModel _viewModel;
+        private static MainViewModel viewModel;
         public static MainViewModel ViewModel
         {
-            get { return _viewModel; }
+            get { return viewModel; }
             set
             {
-                _viewModel = value;
+                viewModel = value;
             }
         }
 
@@ -101,12 +102,14 @@ namespace Places
                 AllowUsersToSkipFurtherReminders = true
             };
 
-            _viewModel = new MainViewModel();
-            _viewModel.LoadTags();
-
+            viewModel = new MainViewModel();
+            viewModel.LoadTags();
 
             settings = new SettingViewModel();
 
+            Action updateTile = () => Deployment.Current.Dispatcher.BeginInvoke(Utilities.CreateTile);
+
+            Task.Factory.StartNew(updateTile);
             Utilities.GetPosition();
         }
 

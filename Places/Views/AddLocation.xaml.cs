@@ -278,9 +278,6 @@ namespace Places.Views
                 {
                     App.ViewModel.AddLocation(App.ViewModel.SelectedLocation);
                     NavigationService.Navigate(new Uri("/Views/DetailsLocation.xaml?RemoveBackstack=true", UriKind.Relative));
-
-                    Dispatcher.BeginInvoke(Utilities.CreateTile);
-
                 }
                 else
                 {
@@ -288,10 +285,10 @@ namespace Places.Views
                     NavigationService.GoBack();
                 }
 
-                Dispatcher.BeginInvoke(delegate
-                {
-                    busyProceedAction.IsRunning = false;
-                });
+                //Dispatcher.BeginInvoke(delegate
+                //{
+                //    busyProceedAction.IsRunning = false;
+                //});
             }
             else
             {
