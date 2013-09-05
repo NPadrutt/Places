@@ -281,6 +281,25 @@ namespace Places.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to To use FavoritePlaces withouth ads you have to purchase the licence in the marketplace.
+        ///Do you wanna continue?.
+        /// </summary>
+        public static string ConfirmPurchaseRemoveAdsMessage {
+            get {
+                return ResourceManager.GetString("ConfirmPurchaseRemoveAdsMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove Ads.
+        /// </summary>
+        public static string ConfirmPurchaseRemoveAdsTitle {
+            get {
+                return ResourceManager.GetString("ConfirmPurchaseRemoveAdsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Do you wanna restore your backup? Your current data will be overwritten.
         /// </summary>
         public static string ConfirmRestoreBackupMessage {
@@ -761,11 +780,38 @@ namespace Places.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to purchase fullversion.
+        ///   Looks up a localized string similar to Thank you for purchasing the licence for using FavoritePlaces without Ads!.
         /// </summary>
-        public static string PurchaseFullVersionLabel {
+        public static string PurchaseSuccessfulMessage {
             get {
-                return ResourceManager.GetString("PurchaseFullVersionLabel", resourceCulture);
+                return ResourceManager.GetString("PurchaseSuccessfulMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Purchase successful.
+        /// </summary>
+        public static string PurchaseSuccessfulTitle {
+            get {
+                return ResourceManager.GetString("PurchaseSuccessfulTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Marketplace is currently not available. Sometimes reboot your device solve this problems..
+        /// </summary>
+        public static string PurchaseWentWrongMessage {
+            get {
+                return ResourceManager.GetString("PurchaseWentWrongMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Marketplace not available.
+        /// </summary>
+        public static string PurchaseWentWrongTitle {
+            get {
+                return ResourceManager.GetString("PurchaseWentWrongTitle", resourceCulture);
             }
         }
         
@@ -836,6 +882,15 @@ namespace Places.Resources {
         public static string ReleaseMessageText {
             get {
                 return ResourceManager.GetString("ReleaseMessageText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to remove ads.
+        /// </summary>
+        public static string RemoveAdsLabel {
+            get {
+                return ResourceManager.GetString("RemoveAdsLabel", resourceCulture);
             }
         }
         
@@ -1043,44 +1098,6 @@ namespace Places.Resources {
         public static string TouristAttractionLabel {
             get {
                 return ResourceManager.GetString("TouristAttractionLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to You&apos;ve used all your free Places intializations. If you want to continue using Places please purchase a full version in the Windows Marketplace..
-        /// </summary>
-        public static string TrialExpiredMessage {
-            get {
-                return ResourceManager.GetString("TrialExpiredMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to trialversion expired.
-        /// </summary>
-        public static string TrialExpiredTitle {
-            get {
-                return ResourceManager.GetString("TrialExpiredTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to You&apos;re using Places in the trial Version. There are  {0} uses left
-        ///
-        ///Do you wanna purchase Places?.
-        /// </summary>
-        public static string TrialReminderMessage {
-            get {
-                return ResourceManager.GetString("TrialReminderMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Purchase Places?.
-        /// </summary>
-        public static string TrialReminderTitle {
-            get {
-                return ResourceManager.GetString("TrialReminderTitle", resourceCulture);
             }
         }
         

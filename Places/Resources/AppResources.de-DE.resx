@@ -407,4 +407,26 @@ Möchtest du den Zugriff erlauben?</value>
   <data name="LayersLabel" xml:space="preserve">
     <value>Karten Layers</value>
   </data>
+  <data name="RemoveAdsLabel" xml:space="preserve">
+    <value>Entferne Werbebanner</value>
+  </data>
+  <data name="ConfirmPurchaseRemoveAdsMessage" xml:space="preserve">
+    <value>Um Favorite Places ohne Werbung benutzen zu können, musst du die dazugehörige Lizenz im Marketplace erwerben. 
+Möchtest du fortfahren?</value>
+  </data>
+  <data name="ConfirmPurchaseRemoveAdsTitle" xml:space="preserve">
+    <value>Werbung entfernen</value>
+  </data>
+  <data name="PurchaseWentWrongMessage" xml:space="preserve">
+    <value>Der Windows Phone Marketplace ist im Moment nicht erreichbar. Gegebenenfalls kann ein neustart des Telefons dieses Problem beheben.</value>
+  </data>
+  <data name="PurchaseWentWrongTitle" xml:space="preserve">
+    <value>Marketplace nicht erreichbar</value>
+  </data>
+  <data name="PurchaseSuccessfulMessage" xml:space="preserve">
+    <value>Vielen Dank dass Sie die Lizenz für FavoritePlaces ohne Werbung erworben haben!</value>
+  </data>
+  <data name="PurchaseSuccessfulTitle" xml:space="preserve">
+    <value>Kauf erfolgreich</value>
+  </data>
 </root>

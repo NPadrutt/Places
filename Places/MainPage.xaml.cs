@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.IO.IsolatedStorage;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -10,7 +11,9 @@ using Microsoft.Phone.Shell;
 using Microsoft.Phone.Tasks;
 using Places.Models;
 using Places.Resources;
+using Places.Src;
 using Telerik.Windows.Controls;
+using Windows.ApplicationModel.Store;
 
 namespace Places
 {
@@ -25,7 +28,6 @@ namespace Places
 
             DataContext = App.ViewModel;
 
-            CheckLicense();
             LoadCities();
             CheckLocationservices();
 
@@ -34,25 +36,18 @@ namespace Places
 
             listpickerFilter.ItemsSource = App.ViewModel.AllTags;
 
+            AdjustListsIfAdCollapsed();
+
             ((ApplicationBarIconButton)ApplicationBar.Buttons[0]).Text = AppResources.AddLabel;
             ((ApplicationBarIconButton)ApplicationBar.Buttons[1]).Text = AppResources.ImportImageLabel;
 
             ((ApplicationBarMenuItem)ApplicationBar.MenuItems[0]).Text = AppResources.TagLabel;
             ((ApplicationBarMenuItem)ApplicationBar.MenuItems[1]).Text = AppResources.BackupLabel;
             ((ApplicationBarMenuItem)ApplicationBar.MenuItems[2]).Text = AppResources.SettingsLabel;
-            ((ApplicationBarMenuItem)ApplicationBar.MenuItems[3]).Text = AppResources.AboutLabel;
+            ((ApplicationBarMenuItem)ApplicationBar.MenuItems[3]).Text = AppResources.RemoveAdsLabel;
+            ((ApplicationBarMenuItem)ApplicationBar.MenuItems[4]).Text = AppResources.AboutLabel;
         }
-
-        private void CheckLicense()
-        {
-            ((App)Application.Current).TrialReminder.Notify();
-
-            if (((App)Application.Current).TrialReminder.IsTrialExpired && NavigationService != null)
-            {
-                NavigationService.Navigate(new Uri("/Views/TrialversionExpired.xaml", UriKind.Relative));
-            }
-        }
-
+        
         private void LoadCities()
         {
             App.ViewModel.LoadCities();
@@ -65,6 +60,16 @@ namespace Places
                 ListboxCities.Visibility = Visibility.Visible;
                 listpickerFilter.Visibility = Visibility.Collapsed;
                 LocationList.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        private void AdjustListsIfAdCollapsed()
+        {
+            if (Ad.Visibility == Visibility.Collapsed)
+            {
+                ContentPanel.Height += 80;
+                ListboxCities.Height += 80;
+                LocationList.Height += 80;
             }
         }
 
@@ -88,8 +93,16 @@ namespace Places
             base.OnNavigatedTo(e);
 
             ((ApplicationBarIconButton) ApplicationBar.Buttons[1]).IsEnabled = App.Settings.LocationServiceEnabled;
-        }
 
+            if (IsolatedStorageSettings.ApplicationSettings.Contains(Product.RemoveAds().Id) &&
+                (bool) IsolatedStorageSettings.ApplicationSettings[Product.RemoveAds().Id])
+            {
+                if (ApplicationBar.MenuItems.Count >= 5)
+                {
+                    ApplicationBar.MenuItems.RemoveAt(3);
+                }
+            }
+        }
 
         private async void ListboxCities_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -190,6 +203,43 @@ namespace Places
         private void mSettings_Click(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/Views/Settings.xaml", UriKind.Relative));
+            }
+
+        private async void mRemoveAds_Click(object sender, System.EventArgs e)
+        {
+            try
+            {
+            var listing = await CurrentApp.LoadListingInformationAsync();
+            var removedAds = listing.ProductListings.FirstOrDefault(p => p.Value.ProductId == Product.RemoveAds().Id);
+
+           await CurrentApp.RequestProductPurchaseAsync(removedAds.Key, true);
+
+                if (CurrentApp.LicenseInformation.ProductLicenses[removedAds.Key].IsActive)
+                {
+                    if (!IsolatedStorageSettings.ApplicationSettings.Contains(removedAds.Key))
+                    {
+                        IsolatedStorageSettings.ApplicationSettings.Add(removedAds.Key,
+                                                                        CurrentApp.LicenseInformation.ProductLicenses[
+                                                                            removedAds.Key].IsActive);
+                    }
+                    else if (IsolatedStorageSettings.ApplicationSettings.Contains(removedAds.Key))
+                    {
+                        IsolatedStorageSettings.ApplicationSettings[removedAds.Key] =
+                            CurrentApp.LicenseInformation.ProductLicenses[removedAds.Key].IsActive;
+                    }
+                    Ad.Visibility = Visibility.Collapsed;
+                    AdjustListsIfAdCollapsed();
+                    MessageBox.Show(AppResources.PurchaseSuccessfulMessage, AppResources.PurchaseSuccessfulTitle,
+                                    MessageBoxButton.OK);
+                }
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show(AppResources.ConfirmPurchaseRemoveAdsMessage, AppResources.ConfirmPurchaseRemoveAdsTitle, MessageBoxButton.OK);
+            }
+
+
         }
     }
 }
