@@ -197,8 +197,8 @@
 		</StackPanel>
 		<StackPanel x:Name="ContentPanel" MinWidth="450" VerticalAlignment="Top" Margin="12,116,12,0" Height="500">
 			<telerikInput:RadListPicker x:Name="listpickerFilter" SelectionMode="Multiple"  DisplayMemberPath="TagName" CancelButtonIconUri="/Toolkit.Content/ApplicationBar.Cancel.png" OkButtonIconUri="/Toolkit.Content/ApplicationBar.Check.png" Margin="0" NoSelectionContent="{Binding LocalizedResources.AllLabel, Source={StaticResource LocalizedStrings}}" Style="{StaticResource RadListPickerFilterStyle}" SelectionChanged="listpickerFilter_SelectionChanged" ActionButtonVisibility="Visible" Visibility="Collapsed" />
-			<Grid>
-				<UserControls:LocationList x:Name="LocationList" Visibility="Collapsed"/>
+			<Grid x:Name="listGrid" Height="501">
+				<UserControls:LocationList x:Name="LocationList"/>
 				<telerikPrimitives:RadDataBoundListBox Margin="0" x:Name="ListboxCities" ItemTemplate="{StaticResource AllCitiesItemTemplate}" ItemsSource="{Binding AllCities}" SelectionChanged="ListboxCities_OnSelectionChanged" Height="500">
 					<telerikPrimitives:RadDataBoundListBox.ItemAddedAnimation>
 						<telerik:RadMoveAnimation StartPoint="500, 0" EndPoint="0, 0" Duration="0:0:1">

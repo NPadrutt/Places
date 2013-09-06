@@ -68,8 +68,7 @@ namespace Places
             if (Ad.Visibility == Visibility.Collapsed)
             {
                 ContentPanel.Height += 80;
-                ListboxCities.Height += 80;
-                LocationList.Height += 80;
+                listGrid.Height += 80;
             }
         }
 
