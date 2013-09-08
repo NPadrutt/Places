@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO.IsolatedStorage;
 using System.Linq;
@@ -20,6 +22,7 @@ namespace Places
     public partial class MainPage : PhoneApplicationPage
     {
         private PhotoChooserTask photoChooserTask;
+        private ObservableCollection<Location> list = new ObservableCollection<Location>();
 
         // Constructor
         public MainPage()
@@ -36,7 +39,7 @@ namespace Places
 
             listpickerFilter.ItemsSource = App.ViewModel.AllTags;
 
-            AdjustListsIfAdCollapsed();
+            AdjustLists();
 
             ((ApplicationBarIconButton)ApplicationBar.Buttons[0]).Text = AppResources.AddLabel;
             ((ApplicationBarIconButton)ApplicationBar.Buttons[1]).Text = AppResources.ImportImageLabel;
@@ -59,16 +62,26 @@ namespace Places
             {
                 ListboxCities.Visibility = Visibility.Visible;
                 listpickerFilter.Visibility = Visibility.Collapsed;
-                LocationList.Visibility = Visibility.Collapsed;
+                ListboxLocations.Visibility = Visibility.Collapsed;
             }
         }
 
-        private void AdjustListsIfAdCollapsed()
+        private void AdjustLists()
         {
+            switch (ResolutionHelper.CurrentResolution)
+            {
+                case Resolutions.HD720p:
+                    ContentPanel.Height += 50;
+                    ListboxCities.Height += 50;
+                    ListboxLocations.Height += 50;
+                    break;
+            }
+
             if (Ad.Visibility == Visibility.Collapsed)
             {
                 ContentPanel.Height += 80;
-                listGrid.Height += 80;
+                ListboxCities.Height += 80;
+                ListboxLocations.Height += 80;
             }
         }
 
@@ -119,6 +132,16 @@ namespace Places
             }
         }
 
+        private void ListboxLocations_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (ListboxLocations.SelectedItem != null)
+            {
+                App.ViewModel.SelectedLocation = ListboxLocations.SelectedItem as Location;
+                ((PhoneApplicationFrame)Application.Current.RootVisual).Navigate(new Uri("/Views/DetailsLocation.xaml", UriKind.Relative));
+                ListboxLocations.SelectedItem = null;
+            }
+        }
+
         private void LoadLocations(string City)
         {
             if (City == AppResources.AllLabel)
@@ -134,7 +157,7 @@ namespace Places
 
             ListboxCities.Visibility = Visibility.Collapsed;
             listpickerFilter.Visibility = Visibility.Visible;
-            LocationList.Visibility = Visibility.Visible;
+            ListboxLocations.Visibility = Visibility.Visible;
             Dispatcher.BeginInvoke(delegate
             {
                 busyProceedAction.IsRunning = false;
@@ -166,7 +189,35 @@ namespace Places
         private void listpickerFilter_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
             var tagList = listpickerFilter.SelectedItems.Cast<Tag>().ToList();
-            LocationList.SetFilter(tagList);
+            SetFilter(tagList);
+        }
+
+        private void SetFilter(List<Tag> tagList)
+        {
+            list.Clear();
+
+            foreach (var location in App.ViewModel.AllLocations)
+            {
+                if (tagList.Any())
+                {
+                    foreach (var tag in location.Tags)
+                    {
+                        if (tagList.Contains(tag))
+                        {
+                            if (!list.Contains(location))
+                            {
+                                list.Add(location);
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    list.Add(location);
+                }
+            }
+
+            ListboxLocations.ItemsSource = list;
         }
 
         private void btnImportImage_Click(object sender, System.EventArgs e)
@@ -227,7 +278,7 @@ namespace Places
                             CurrentApp.LicenseInformation.ProductLicenses[removedAds.Key].IsActive;
                     }
                     Ad.Visibility = Visibility.Collapsed;
-                    AdjustListsIfAdCollapsed();
+                    AdjustLists();
                     MessageBox.Show(AppResources.PurchaseSuccessfulMessage, AppResources.PurchaseSuccessfulTitle,
                                     MessageBoxButton.OK);
                 }

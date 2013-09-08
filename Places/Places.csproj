@@ -26,6 +26,7 @@
     <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+    <ExpressionBlendVersion>5.0.40218.0</ExpressionBlendVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -118,14 +119,12 @@
     <Compile Include="Src\ExifTags.cs" />
     <Compile Include="Src\Products.cs" />
     <Compile Include="Src\Product.cs" />
+    <Compile Include="Src\ResolutionHelper.cs" />
     <Compile Include="Src\StringComparer.cs" />
     <Compile Include="Src\UpdateHelper.cs" />
     <Compile Include="Src\Utilities.cs" />
     <Compile Include="UserControls\CustomAdControl.xaml.cs">
       <DependentUpon>CustomAdControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\LocationList.xaml.cs">
-      <DependentUpon>LocationList.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\MiniMapControl.xaml.cs">
       <DependentUpon>MiniMapControl.xaml</DependentUpon>
@@ -168,10 +167,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="UserControls\CustomAdControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="UserControls\LocationList.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

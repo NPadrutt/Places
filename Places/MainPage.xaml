@@ -161,6 +161,23 @@
         		<TextBlock Text="{Binding}" Style="{StaticResource PhoneTextTitle2Style}" Margin="12,0,0,0"/>
         	</StackPanel>
         </DataTemplate>
+        <DataTemplate x:Key="AllLocationsItemTemplate">
+        	<StackPanel Width="455" Background="{StaticResource PhoneAccentBrush}" Margin="0,0,0,12">
+        		<StackPanel Orientation="Horizontal">
+        			<Grid Height="76" Width="68" Background="#FF595959" Margin="0,0,5,0">
+        				<Image Source="{Binding Thumbnail}" MaxHeight="76" MaxWidth="68" Stretch="Fill" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="68" Height="76" />
+        			</Grid>
+        			<StackPanel>
+        				<TextBlock Text="{Binding Name}" Style="{StaticResource PhoneTextTitle2Style}" Margin="0"/>
+        				<StackPanel Orientation="Horizontal">
+        					<TextBlock Text="{Binding LocationAddress.City}" Style="{StaticResource PhoneTextSmallStyle}" Margin="-2,0,0,0" />
+        					<TextBlock Text=", "  Style="{StaticResource PhoneTextSmallStyle}" Margin="2,0,0,0" />
+        					<TextBlock Text="{Binding LocationAddress.Country}" Style="{StaticResource PhoneTextSmallStyle}" Margin="0" />
+        				</StackPanel>
+        			</StackPanel>
+        		</StackPanel>
+        	</StackPanel>
+        </DataTemplate>
     </phone:PhoneApplicationPage.Resources>
 	<phone:PhoneApplicationPage.FontFamily>
 		<StaticResource ResourceKey="PhoneFontFamilyNormal"/>
@@ -191,26 +208,34 @@
 	<Grid x:Name="LayoutRoot" Background="Transparent" d:DataContext="{Binding Source={StaticResource LocationSampleDataSource}}">
 <!--TitlePanel contains the name of the application and page title-->
 <!--TitlePanel contains the name of the application and page title-->
+<!--TitlePanel contains the name of the application and page title-->
 		<StackPanel x:Name="TitlePanel" Margin="12,0,0,580">
 			<TextBlock x:Name="ApplicationTitle" Text="{Binding LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}"/>
 			<TextBlock x:Name="PageTitle" Text="{Binding LocalizedResources.CitiesTitle, Source={StaticResource LocalizedStrings}}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
 		</StackPanel>
 		<StackPanel x:Name="ContentPanel" MinWidth="450" VerticalAlignment="Top" Margin="12,116,12,0" Height="500">
 			<telerikInput:RadListPicker x:Name="listpickerFilter" SelectionMode="Multiple"  DisplayMemberPath="TagName" CancelButtonIconUri="/Toolkit.Content/ApplicationBar.Cancel.png" OkButtonIconUri="/Toolkit.Content/ApplicationBar.Check.png" Margin="0" NoSelectionContent="{Binding LocalizedResources.AllLabel, Source={StaticResource LocalizedStrings}}" Style="{StaticResource RadListPickerFilterStyle}" SelectionChanged="listpickerFilter_SelectionChanged" ActionButtonVisibility="Visible" Visibility="Collapsed" />
-			<Grid x:Name="listGrid" Height="501">
-				<UserControls:LocationList x:Name="LocationList"/>
-				<telerikPrimitives:RadDataBoundListBox Margin="0" x:Name="ListboxCities" ItemTemplate="{StaticResource AllCitiesItemTemplate}" ItemsSource="{Binding AllCities}" SelectionChanged="ListboxCities_OnSelectionChanged" Height="500">
-					<telerikPrimitives:RadDataBoundListBox.ItemAddedAnimation>
-						<telerik:RadMoveAnimation StartPoint="500, 0" EndPoint="0, 0" Duration="0:0:1">
-							<telerik:RadMoveAnimation.Easing>
-								<CubicEase EasingMode="EaseOut"/>
-							</telerik:RadMoveAnimation.Easing>
-						</telerik:RadMoveAnimation>
-					</telerikPrimitives:RadDataBoundListBox.ItemAddedAnimation>
-				</telerikPrimitives:RadDataBoundListBox>
-			</Grid>
+			<telerikPrimitives:RadDataBoundListBox Margin="0" x:Name="ListboxLocations" ItemTemplate="{StaticResource AllLocationsItemTemplate}" ItemsSource="{Binding AllLocations}" SelectionChanged="ListboxLocations_SelectionChanged" Height="450">
+				<telerikPrimitives:RadDataBoundListBox.ItemAddedAnimation>
+					<telerik:RadMoveAnimation StartPoint="500, 0" EndPoint="0, 0" Duration="0:0:1">
+						<telerik:RadMoveAnimation.Easing>
+							<CubicEase EasingMode="EaseOut"/>
+						</telerik:RadMoveAnimation.Easing>
+					</telerik:RadMoveAnimation>
+				</telerikPrimitives:RadDataBoundListBox.ItemAddedAnimation>
+			</telerikPrimitives:RadDataBoundListBox>
+			<telerikPrimitives:RadDataBoundListBox Margin="0" x:Name="ListboxCities" ItemTemplate="{StaticResource AllCitiesItemTemplate}" ItemsSource="{Binding AllCities}" SelectionChanged="ListboxCities_OnSelectionChanged" Height="500">
+				<telerikPrimitives:RadDataBoundListBox.ItemAddedAnimation>
+					<telerik:RadMoveAnimation StartPoint="500, 0" EndPoint="0, 0" Duration="0:0:1">
+						<telerik:RadMoveAnimation.Easing>
+							<CubicEase EasingMode="EaseOut"/>
+						</telerik:RadMoveAnimation.Easing>
+					</telerik:RadMoveAnimation>
+				</telerikPrimitives:RadDataBoundListBox.ItemAddedAnimation>
+			</telerikPrimitives:RadDataBoundListBox>
+			<Grid x:Name="listGrid"/>
 		</StackPanel>
-		<UserControls:CustomAdControl x:Name="Ad" HorizontalAlignment="Left" VerticalAlignment="Top" Height="Auto" Margin="0,616,0,0" Visibility="Visible"/>
+		<UserControls:CustomAdControl x:Name="Ad" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0" Visibility="Visible"/>
 		<telerikPrimitives:RadBusyIndicator Background="#CC000000" x:Name="busyProceedAction" AnimationStyle="AnimationStyle8" Content="{Binding LocalizedResources.LoadLocationsLabel, Source={StaticResource LocalizedStrings}}" Margin="0" />
 
 	</Grid>

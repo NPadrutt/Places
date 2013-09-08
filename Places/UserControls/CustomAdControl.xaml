@@ -11,8 +11,8 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     d:DesignHeight="480" d:DesignWidth="480" VerticalAlignment="Top" Height="80" Loaded="UserControl_Loaded">
     
-	<Grid x:Name="LayoutRoot" Background="{StaticResource PhoneChromeBrush}" VerticalAlignment="Top">
-		<AdDuplex:AdControl x:Name="AdDuplexAd" HorizontalAlignment="Left" VerticalAlignment="Top" AppId="53995"/>
-		<adduplex:AdControl x:Name="MSAdControl" ApplicationId="ab86e91b-e1f7-4606-882f-1f24f96f745e" AdUnitId="10154433" HorizontalAlignment="Left" Height="80" Margin="0,0,0,-20" VerticalAlignment="Top" Width="480" AdRefreshed="MSAdControl_AdRefreshed" ErrorOccurred="MSAdControl_ErrorOccurred" IsAutoCollapseEnabled="True" IsAutoRefreshEnabled="True"/>
+	<Grid x:Name="LayoutRoot" Background="{StaticResource PhoneChromeBrush}" VerticalAlignment="Top" Height="80">
+		<AdDuplex:AdControl x:Name="AdDuplexAd" HorizontalAlignment="Left" VerticalAlignment="Top" AppId="53995" Height="80" Width="480"/>
+		<adduplex:AdControl x:Name="MSAdControl" ApplicationId="ab86e91b-e1f7-4606-882f-1f24f96f745e" AdUnitId="10154433" HorizontalAlignment="Left" Height="80" Margin="0" VerticalAlignment="Top" Width="480" AdRefreshed="MSAdControl_AdRefreshed" ErrorOccurred="MSAdControl_ErrorOccurred" IsAutoCollapseEnabled="True" IsAutoRefreshEnabled="True"/>
 	</Grid>
 </UserControl>
