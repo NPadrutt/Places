@@ -6,6 +6,7 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Microsoft.Phone.Tasks;
 using Places.Resources;
+using Places.Src;
 using Telerik.Windows.Controls;
 using GestureEventArgs = System.Windows.Input.GestureEventArgs;
 
@@ -28,6 +29,14 @@ namespace Places.Views
 
         private void AdjustListsIfAdCollapsed()
         {
+            switch (ResolutionHelper.CurrentResolution)
+            {
+                case Resolutions.HD720p:
+                    ControllScrollViewer.Height += 80;
+                    ContentPanel.Height += 80;
+                    break;
+            }
+
             if (Ad.Visibility == Visibility.Collapsed)
             {
                 ControllScrollViewer.Height += 80;

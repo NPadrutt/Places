@@ -50,21 +50,6 @@ namespace Places
             ((ApplicationBarMenuItem)ApplicationBar.MenuItems[3]).Text = AppResources.RemoveAdsLabel;
             ((ApplicationBarMenuItem)ApplicationBar.MenuItems[4]).Text = AppResources.AboutLabel;
         }
-        
-        private void LoadCities()
-        {
-            App.ViewModel.LoadCities();
-            if (App.ViewModel.AllCities.Count <= 2)
-            {
-                LoadLocations(AppResources.AllLabel);
-            }
-            else
-            {
-                ListboxCities.Visibility = Visibility.Visible;
-                listpickerFilter.Visibility = Visibility.Collapsed;
-                ListboxLocations.Visibility = Visibility.Collapsed;
-            }
-        }
 
         private void AdjustLists()
         {
@@ -139,6 +124,22 @@ namespace Places
                 App.ViewModel.SelectedLocation = ListboxLocations.SelectedItem as Location;
                 ((PhoneApplicationFrame)Application.Current.RootVisual).Navigate(new Uri("/Views/DetailsLocation.xaml", UriKind.Relative));
                 ListboxLocations.SelectedItem = null;
+            }
+        }
+
+        private void LoadCities()
+        {
+            PageTitle.Text = AppResources.CitiesTitle;
+            App.ViewModel.LoadCities();
+            if (App.ViewModel.AllCities.Count <= 2)
+            {
+                LoadLocations(AppResources.AllLabel);
+            }
+            else
+            {
+                ListboxCities.Visibility = Visibility.Visible;
+                listpickerFilter.Visibility = Visibility.Collapsed;
+                ListboxLocations.Visibility = Visibility.Collapsed;
             }
         }
 
