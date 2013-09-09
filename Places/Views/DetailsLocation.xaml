@@ -78,7 +78,7 @@
 				</StackPanel>
 
 			</ScrollViewer>
-			<UserControls:CustomAdControl x:Name="Ad" HorizontalAlignment="Left" VerticalAlignment="Top" Height="Auto" Visibility="Visible" Margin="-12,0"/>
+			<UserControls:CustomAdControl x:Name="Ad" VerticalAlignment="Bottom" Height="Auto" Visibility="Visible" Margin="-12,0"/>
 
 		</StackPanel>
 

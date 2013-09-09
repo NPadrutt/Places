@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Windows;
 using System.Windows.Navigation;
-using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Microsoft.Phone.Tasks;
 using Places.Resources;
@@ -32,15 +31,13 @@ namespace Places.Views
             switch (ResolutionHelper.CurrentResolution)
             {
                 case Resolutions.HD720p:
-                    ControllScrollViewer.Height += 80;
-                    ContentPanel.Height += 80;
+                    ControllScrollViewer.Height += 52;
                     break;
             }
 
             if (Ad.Visibility == Visibility.Collapsed)
             {
                 ControllScrollViewer.Height += 80;
-                ContentPanel.Height += 80;
             }
         }
 
