@@ -257,6 +257,7 @@ namespace Places.Views
 
                 App.ViewModel = new MainViewModel();
                 App.ViewModel.LoadLocations();
+                App.ViewModel.LoadTags();
                 result = MessageBox.Show(AppResources.RestoreCompletedMessage, AppResources.DoneMessageTitle, MessageBoxButton.OKCancel);
                 if (result == MessageBoxResult.OK)
                 {

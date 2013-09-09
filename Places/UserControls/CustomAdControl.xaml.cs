@@ -2,13 +2,12 @@
 using System.IO.IsolatedStorage;
 using System.Linq;
 using System.Windows;
-using System.Windows.Controls;
 using Places.Src;
 using Windows.ApplicationModel.Store;
 
 namespace Places.UserControls
 {
-    public partial class CustomAdControl : UserControl
+    public partial class CustomAdControl
     {
         public CustomAdControl()
         {
