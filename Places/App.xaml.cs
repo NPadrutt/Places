@@ -118,8 +118,8 @@ namespace Places
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
 #if !DEBUG
-            Api.SetVersion(Utilities.GetVersion());
             Api.StartSession("CDM6ZNWY5VQGCX5DMQK6");
+            Api.SetVersion(Utilities.GetVersion());
 #endif
             ApplicationUsageHelper.Init(Utilities.GetVersion());
             SetRateReminderMessage();

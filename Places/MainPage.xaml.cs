@@ -62,7 +62,8 @@ namespace Places
                     break;
             }
 
-            if (Ad.Visibility == Visibility.Collapsed)
+            if (IsolatedStorageSettings.ApplicationSettings.Contains(Product.RemoveAds().Id) &&
+                    (bool) IsolatedStorageSettings.ApplicationSettings[Product.RemoveAds().Id])
             {
                 ContentPanel.Height += 80;
                 ListboxCities.Height += 80;
@@ -260,34 +261,40 @@ namespace Places
         {
             try
             {
-            var listing = await CurrentApp.LoadListingInformationAsync();
-            var removedAds = listing.ProductListings.FirstOrDefault(p => p.Value.ProductId == Product.RemoveAds().Id);
-
-           await CurrentApp.RequestProductPurchaseAsync(removedAds.Key, true);
-
-                if (CurrentApp.LicenseInformation.ProductLicenses[removedAds.Key].IsActive)
+                if (MessageBox.Show(AppResources.ConfirmPurchaseRemoveAdsMessage, AppResources.ConfirmPurchaseRemoveAdsTitle, MessageBoxButton.OK) 
+                    == MessageBoxResult.OK)
                 {
-                    if (!IsolatedStorageSettings.ApplicationSettings.Contains(removedAds.Key))
+                    var listing = await CurrentApp.LoadListingInformationAsync();
+                    var removedAds =
+                        listing.ProductListings.FirstOrDefault(p => p.Value.ProductId == Product.RemoveAds().Id);
+
+                    await CurrentApp.RequestProductPurchaseAsync(removedAds.Key, true);
+
+                    if (CurrentApp.LicenseInformation.ProductLicenses[removedAds.Key].IsActive)
                     {
-                        IsolatedStorageSettings.ApplicationSettings.Add(removedAds.Key,
-                                                                        CurrentApp.LicenseInformation.ProductLicenses[
-                                                                            removedAds.Key].IsActive);
+                        if (!IsolatedStorageSettings.ApplicationSettings.Contains(removedAds.Key))
+                        {
+                            IsolatedStorageSettings.ApplicationSettings.Add(removedAds.Key,
+                                                                            CurrentApp.LicenseInformation
+                                                                                      .ProductLicenses[
+                                                                                          removedAds.Key].IsActive);
+                        }
+                        else if (IsolatedStorageSettings.ApplicationSettings.Contains(removedAds.Key))
+                        {
+                            IsolatedStorageSettings.ApplicationSettings[removedAds.Key] =
+                                CurrentApp.LicenseInformation.ProductLicenses[removedAds.Key].IsActive;
+                        }
+                        Ad.Visibility = Visibility.Collapsed;
+                        AdjustLists();
+                        MessageBox.Show(AppResources.PurchaseSuccessfulMessage, AppResources.PurchaseSuccessfulTitle,
+                                        MessageBoxButton.OK);
                     }
-                    else if (IsolatedStorageSettings.ApplicationSettings.Contains(removedAds.Key))
-                    {
-                        IsolatedStorageSettings.ApplicationSettings[removedAds.Key] =
-                            CurrentApp.LicenseInformation.ProductLicenses[removedAds.Key].IsActive;
-                    }
-                    Ad.Visibility = Visibility.Collapsed;
-                    AdjustLists();
-                    MessageBox.Show(AppResources.PurchaseSuccessfulMessage, AppResources.PurchaseSuccessfulTitle,
-                                    MessageBoxButton.OK);
                 }
             }
             catch (Exception)
             {
-
-                MessageBox.Show(AppResources.ConfirmPurchaseRemoveAdsMessage, AppResources.ConfirmPurchaseRemoveAdsTitle, MessageBoxButton.OK);
+                MessageBox.Show(AppResources.PurchaseWentWrongMessage, AppResources.PurchaseWentWrongTitle,
+                                MessageBoxButton.OK);
             }
 
 
