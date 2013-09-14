@@ -261,7 +261,7 @@ namespace Places
         {
             try
             {
-                if (MessageBox.Show(AppResources.ConfirmPurchaseRemoveAdsMessage, AppResources.ConfirmPurchaseRemoveAdsTitle, MessageBoxButton.OK) 
+                if (MessageBox.Show(AppResources.ConfirmPurchaseRemoveAdsMessage, AppResources.ConfirmPurchaseRemoveAdsTitle, MessageBoxButton.OKCancel) 
                     == MessageBoxResult.OK)
                 {
                     var listing = await CurrentApp.LoadListingInformationAsync();

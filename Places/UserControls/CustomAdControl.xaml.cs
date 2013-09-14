@@ -20,15 +20,7 @@ namespace Places.UserControls
         {
             try
             {
-                if (IsolatedStorageSettings.ApplicationSettings.Contains(Product.RemoveAds().Id) &&
-                    (bool) IsolatedStorageSettings.ApplicationSettings[Product.RemoveAds().Id])
-                {
-                    Dispatcher.BeginInvoke(() =>
-                    {
-                        Visibility = Visibility.Collapsed;
-                    });
-                }
-                else
+                if (!IsolatedStorageSettings.ApplicationSettings.Contains(Product.RemoveAds().Id))
                 {
                     var listing = await CurrentApp.LoadListingInformationAsync();
                     var removedAds =
@@ -37,6 +29,22 @@ namespace Places.UserControls
                     IsolatedStorageSettings.ApplicationSettings.Add(removedAds.Key,
                                                                     CurrentApp.LicenseInformation.ProductLicenses[
                                                                         removedAds.Key].IsActive);
+                }
+
+
+                if ((bool) IsolatedStorageSettings.ApplicationSettings[Product.RemoveAds().Id])
+                {
+                    Dispatcher.BeginInvoke(() =>
+                    {
+                        Visibility = Visibility.Collapsed;
+                    });
+                }
+                else
+                {
+                    Dispatcher.BeginInvoke(() =>
+                    {
+                        Visibility = Visibility.Visible;
+                    });
                 }
             }
             catch (Exception ex)
