@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.IO;
+using System.IO.IsolatedStorage;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Navigation;
@@ -50,10 +51,26 @@ namespace Places.Views
                     break;
             }
 
-            if (Ad.Visibility == Visibility.Collapsed)
+            if (IsolatedStorageSettings.ApplicationSettings.Contains(Product.RemoveAds().Id) &&
+                (bool)IsolatedStorageSettings.ApplicationSettings[Product.RemoveAds().Id])
             {
-                ControllScrollViewer.Height += 80;
-                ContentPanel.Height += 80;
+
+
+                Dispatcher.BeginInvoke(() =>
+                {
+                    ControllScrollViewer.Height += 80;
+                    ContentPanel.Height += 80;
+                    Ad.Visibility = Visibility.Collapsed;
+                });
+            }
+            else
+            {
+                Dispatcher.BeginInvoke(() =>
+                {
+                    ControllScrollViewer.Height -= 80;
+                    ContentPanel.Height -= 80;
+                    Ad.Visibility = Visibility.Visible;
+                });
             }
         }
 

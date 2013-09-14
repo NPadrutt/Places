@@ -39,8 +39,6 @@ namespace Places
 
             listpickerFilter.ItemsSource = App.ViewModel.AllTags;
 
-            AdjustLists();
-
             ((ApplicationBarIconButton)ApplicationBar.Buttons[0]).Text = AppResources.AddLabel;
             ((ApplicationBarIconButton)ApplicationBar.Buttons[1]).Text = AppResources.ImportImageLabel;
 
@@ -63,11 +61,25 @@ namespace Places
             }
 
             if (IsolatedStorageSettings.ApplicationSettings.Contains(Product.RemoveAds().Id) &&
-                    (bool) IsolatedStorageSettings.ApplicationSettings[Product.RemoveAds().Id])
+                (bool)IsolatedStorageSettings.ApplicationSettings[Product.RemoveAds().Id])
             {
-                ContentPanel.Height += 80;
-                ListboxCities.Height += 80;
-                ListboxLocations.Height += 80;
+                Dispatcher.BeginInvoke(() =>
+                {                
+                    ContentPanel.Height += 80;
+                    ListboxCities.Height += 80;
+                    ListboxLocations.Height += 80;
+                    Ad.Visibility = Visibility.Collapsed;
+                });
+            }
+            else
+            {
+                Dispatcher.BeginInvoke(() =>
+                {
+                    ContentPanel.Height -= 80;
+                    ListboxCities.Height -= 80;
+                    ListboxLocations.Height -= 80;
+                    Ad.Visibility = Visibility.Visible;
+                });
             }
         }
 
@@ -89,6 +101,8 @@ namespace Places
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
+
+            AdjustLists();
 
             ((ApplicationBarIconButton) ApplicationBar.Buttons[1]).IsEnabled = App.Settings.LocationServiceEnabled;
 

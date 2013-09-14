@@ -30,22 +30,6 @@ namespace Places.UserControls
                                                                     CurrentApp.LicenseInformation.ProductLicenses[
                                                                         removedAds.Key].IsActive);
                 }
-
-
-                if ((bool) IsolatedStorageSettings.ApplicationSettings[Product.RemoveAds().Id])
-                {
-                    Dispatcher.BeginInvoke(() =>
-                    {
-                        Visibility = Visibility.Collapsed;
-                    });
-                }
-                else
-                {
-                    Dispatcher.BeginInvoke(() =>
-                    {
-                        Visibility = Visibility.Visible;
-                    });
-                }
             }
             catch (Exception ex)
             {
