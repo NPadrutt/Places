@@ -38,6 +38,8 @@ namespace Places
             ((App)Application.Current).RateReminder.Notify();
 
             listpickerFilter.ItemsSource = App.ViewModel.AllTags;
+            
+            AdjustLists();
 
             ((ApplicationBarIconButton)ApplicationBar.Buttons[0]).Text = AppResources.AddLabel;
             ((ApplicationBarIconButton)ApplicationBar.Buttons[1]).Text = AppResources.ImportImageLabel;
@@ -101,8 +103,6 @@ namespace Places
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-
-            AdjustLists();
 
             ((ApplicationBarIconButton) ApplicationBar.Buttons[1]).IsEnabled = App.Settings.LocationServiceEnabled;
 
