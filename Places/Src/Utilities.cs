@@ -100,7 +100,19 @@ namespace Places.Src
             }
 
             App.ViewModel.CurrentAddress = locationAddress;
-        }        
+        }
+
+        public static double GetDistance()
+        {
+            if (App.ViewModel.CurrentPosition != null)
+            {
+                return new GeoCoordinate(App.ViewModel.CurrentPosition.Latitude, App.ViewModel.CurrentPosition.Longitude)
+                    .GetDistanceTo(new GeoCoordinate(App.ViewModel.SelectedLocation.Latitude,
+                        App.ViewModel.SelectedLocation.Longitude));
+            }
+
+            return 0;
+        }
 
         public static BitmapImage GetLocationImage()
         {

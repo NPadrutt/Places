@@ -47,19 +47,13 @@ namespace Places.Views
                     Ad.Visibility = Visibility.Collapsed;
                 });
             }
-            else
-            {
-                Dispatcher.BeginInvoke(() =>
-                {
-                    ControllScrollViewer.Height -= 80;
-                    Ad.Visibility = Visibility.Visible;
-                });
-            }
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
+
+            lblDistance.Text = Utilities.GetDistance().ToString();
 
             var queryStrings = NavigationContext.QueryString;
             if (e.NavigationMode != NavigationMode.Back)

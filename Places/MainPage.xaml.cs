@@ -73,16 +73,6 @@ namespace Places
                     Ad.Visibility = Visibility.Collapsed;
                 });
             }
-            else
-            {
-                Dispatcher.BeginInvoke(() =>
-                {
-                    ContentPanel.Height -= 80;
-                    ListboxCities.Height -= 80;
-                    ListboxLocations.Height -= 80;
-                    Ad.Visibility = Visibility.Visible;
-                });
-            }
         }
 
         private async void CheckLocationservices()

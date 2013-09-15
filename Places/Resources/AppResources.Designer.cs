@@ -399,6 +399,15 @@ namespace Places.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to distance: .
+        /// </summary>
+        public static string DistanceLabel {
+            get {
+                return ResourceManager.GetString("DistanceLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to done.
         /// </summary>
         public static string DoneLabel {

@@ -492,4 +492,7 @@ Do you wanna continue?</value>
   <data name="PurchaseSuccessfulTitle" xml:space="preserve">
     <value>Purchase successful</value>
   </data>
+  <data name="DistanceLabel" xml:space="preserve">
+    <value>distance: </value>
+  </data>
 </root>

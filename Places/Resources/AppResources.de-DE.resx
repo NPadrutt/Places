@@ -429,4 +429,7 @@ Möchtest du fortfahren?</value>
   <data name="PurchaseSuccessfulTitle" xml:space="preserve">
     <value>Kauf erfolgreich</value>
   </data>
+  <data name="DistanceLabel" xml:space="preserve">
+    <value>Distanz: </value>
+  </data>
 </root>

@@ -150,6 +150,23 @@ namespace Places.Models
             }
         }
 
+        private double distance;
+
+        [Column]
+        public double Distance
+        {
+            get { return distance; }
+            set
+            {
+                if (distance != value)
+                {
+                    NotifyPropertyChanging("Distance");
+                    distance = value;
+                    NotifyPropertyChanged("Distance");
+                }
+            }
+        }
+
         private string _comment;
 
         [Column]

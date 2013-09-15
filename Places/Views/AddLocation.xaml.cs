@@ -54,22 +54,11 @@ namespace Places.Views
             if (IsolatedStorageSettings.ApplicationSettings.Contains(Product.RemoveAds().Id) &&
                 (bool)IsolatedStorageSettings.ApplicationSettings[Product.RemoveAds().Id])
             {
-
-
                 Dispatcher.BeginInvoke(() =>
                 {
                     ControllScrollViewer.Height += 80;
                     ContentPanel.Height += 80;
                     Ad.Visibility = Visibility.Collapsed;
-                });
-            }
-            else
-            {
-                Dispatcher.BeginInvoke(() =>
-                {
-                    ControllScrollViewer.Height -= 80;
-                    ContentPanel.Height -= 80;
-                    Ad.Visibility = Visibility.Visible;
                 });
             }
         }
