@@ -18,9 +18,6 @@ namespace Places.Src
                     schemaUpdate.DatabaseSchemaVersion = db.SCHEMAVERSION;
                     schemaUpdate.Execute();
                 }
-
-                schemaUpdate.DatabaseSchemaVersion = db.SCHEMAVERSION;
-                schemaUpdate.Execute();
             }
         }
     }

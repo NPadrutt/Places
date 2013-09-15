@@ -150,10 +150,10 @@ namespace Places.Models
             }
         }
 
-        private double distance;
+        private double? distance;
 
         [Column]
-        public double Distance
+        public double? Distance
         {
             get { return distance; }
             set

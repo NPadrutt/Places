@@ -57,7 +57,7 @@
 						<TextBlock x:Name="lblAccuracy" Text="{Binding Accuracy}" HorizontalAlignment="Left" Style="{StaticResource PhoneTextSubtleStyle}" Margin="0" VerticalAlignment="Bottom"/>
 						<TextBlock x:Name="lblM" HorizontalAlignment="Left" Style="{StaticResource PhoneTextSmallStyle}" Margin="2,0,0,0" Text="m" VerticalAlignment="Bottom"/>
 					</StackPanel>
-					<StackPanel Orientation="Horizontal" Margin="12,0,0,12">
+					<StackPanel Orientation="Horizontal" Margin="12,0,0,12" Visibility="Collapsed">
 						<TextBlock x:Name="lblDistanceCaption" Text="{Binding LocalizedResources.DistanceLabel, Source={StaticResource LocalizedStrings}}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Style="{StaticResource PhoneTextSubtleStyle}" Margin="0,0,2,0"/>
 						<TextBlock x:Name="lblDistance" Text="{Binding Distance}" HorizontalAlignment="Left" Style="{StaticResource PhoneTextSubtleStyle}" Margin="0" VerticalAlignment="Bottom"/>
 						<TextBlock x:Name="lblM1" HorizontalAlignment="Left" Style="{StaticResource PhoneTextSmallStyle}" Margin="2,0,0,0" Text="m" VerticalAlignment="Bottom"/>
