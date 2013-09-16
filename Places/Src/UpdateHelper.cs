@@ -15,9 +15,10 @@ namespace Places.Src
                 if (schemaUpdate.DatabaseSchemaVersion == 1)
                 {
                     schemaUpdate.AddColumn<Location>("Distance");
-                    schemaUpdate.DatabaseSchemaVersion = db.SCHEMAVERSION;
-                    schemaUpdate.Execute();
                 }
+
+                schemaUpdate.DatabaseSchemaVersion = db.SCHEMAVERSION;
+                schemaUpdate.Execute();
             }
         }
     }
