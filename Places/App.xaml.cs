@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
+using System.IO.IsolatedStorage;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Navigation;
@@ -12,6 +14,7 @@ using Places.Src;
 using Places.ViewModels;
 using Telerik.Windows.Controls;
 using Telerik.Windows.Controls.Reminders;
+using Windows.ApplicationModel.Store;
 
 namespace Places
 {
@@ -107,10 +110,34 @@ namespace Places
 
             settings = new SettingViewModel();
 
-            Action updateTile = () => Deployment.Current.Dispatcher.BeginInvoke(Utilities.CreateTile);
+            Task.Factory.StartNew(() =>
+            {
+                Deployment.Current.Dispatcher.BeginInvoke(Utilities.CreateTile);
+            });
 
-            Task.Factory.StartNew(updateTile);
             Utilities.GetPosition();
+            CheckLicense();
+        }
+
+        private async void CheckLicense()
+        {
+            try
+            {
+                var listing = await CurrentApp.LoadListingInformationAsync();
+                    var removedAds =
+                        listing.ProductListings.FirstOrDefault(p => p.Value.ProductId == Product.RemoveAds().Id);
+
+                    IsolatedStorageSettings.ApplicationSettings.Add(removedAds.Key,
+                                                                    CurrentApp.LicenseInformation.ProductLicenses[
+                                                                        removedAds.Key].IsActive);
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message.Contains("0x805A0194"))
+                {
+                    FlurryWP8SDK.Api.LogError("Task couldn't coulnd't finish with a result.", ex);
+                }
+            }
         }
 
         // Code to execute when the application is launching (eg, from Start)

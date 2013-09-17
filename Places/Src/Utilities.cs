@@ -102,15 +102,23 @@ namespace Places.Src
             App.ViewModel.CurrentAddress = locationAddress;
         }
 
-        public static double GetDistance()
+        public async static Task<double> GetDistance()
         {
-            if (App.ViewModel.CurrentPosition != null)
+            try
             {
+                if (App.ViewModel.CurrentPosition == null)
+                {
+                    await GetPosition();
+                }
+
                 return new GeoCoordinate(App.ViewModel.CurrentPosition.Latitude, App.ViewModel.CurrentPosition.Longitude)
                     .GetDistanceTo(new GeoCoordinate(App.ViewModel.SelectedLocation.Latitude,
-                        App.ViewModel.SelectedLocation.Longitude));
+                                                     App.ViewModel.SelectedLocation.Longitude));
             }
-
+            catch (Exception ex)
+            {
+                Api.LogError(ex.Message, ex);
+            }
             return 0;
         }
 

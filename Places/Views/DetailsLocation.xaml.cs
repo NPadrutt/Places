@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO.IsolatedStorage;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Navigation;
 using Microsoft.Phone.Shell;
@@ -52,8 +53,6 @@ namespace Places.Views
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-
-            lblDistance.Text = Utilities.GetDistance().ToString();
 
             var queryStrings = NavigationContext.QueryString;
             if (e.NavigationMode != NavigationMode.Back)
