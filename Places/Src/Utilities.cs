@@ -238,6 +238,7 @@ namespace Places.Src
                 var locationList =
                     dbLIst.Where(
                         x => !String.IsNullOrEmpty(x.ImageUri) && !String.IsNullOrEmpty(x.ImageName))
+                        .Reverse()
                         .Take(9)
                         .ToList();
 

@@ -116,13 +116,16 @@ namespace Places
         {
             try
             {
-                var listing = await CurrentApp.LoadListingInformationAsync();
+                if (!IsolatedStorageSettings.ApplicationSettings.Contains(Product.RemoveAds().Id))
+                {
+                    var listing = await CurrentApp.LoadListingInformationAsync();
                     var removedAds =
                         listing.ProductListings.FirstOrDefault(p => p.Value.ProductId == Product.RemoveAds().Id);
 
                     IsolatedStorageSettings.ApplicationSettings.Add(removedAds.Key,
-                                                                    CurrentApp.LicenseInformation.ProductLicenses[
-                                                                        removedAds.Key].IsActive);
+                        CurrentApp.LicenseInformation.ProductLicenses[
+                            removedAds.Key].IsActive);
+                }
             }
             catch (Exception ex)
             {
