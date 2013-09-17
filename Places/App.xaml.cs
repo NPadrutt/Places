@@ -93,8 +93,6 @@ namespace Places
             //Creates an instance of the Diagnostics component.
             Diagnostics = new RadDiagnostics { EmailTo = "support@apply-solutions.ch" };
 
-            //Defines the default email where the diagnostics info will be send.
-
             //Initializes this instance.
             Diagnostics.Init();
 
@@ -109,11 +107,6 @@ namespace Places
             viewModel.LoadTags();
 
             settings = new SettingViewModel();
-
-            Task.Factory.StartNew(() =>
-            {
-                Deployment.Current.Dispatcher.BeginInvoke(Utilities.CreateTile);
-            });
 
             Utilities.GetPosition();
             CheckLicense();
