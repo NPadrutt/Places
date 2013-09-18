@@ -133,10 +133,8 @@
     <value>Änderungen</value>
   </data>
   <data name="ChangelogText" xml:space="preserve">
-    <value>- Du kannst nun den Erfassendialog direkt auf von deiner Startseite aufrufen
-- In der Kartenansicht sind nun verschiedene Karten Modi verfügbar
-- Korrigiert den Fehler beim öffenen eines an den Start gepinnten Ortes
-- Ergänzt fehlende Deutsch übersetzungen
+    <value>- Werbung eingefügt und das App permanent kostenlos gemacht
+- In App Produkt eingefügt zum entfernen der Ads
 - Kleinere Verbesserungen und Korrekturen</value>
   </data>
   <data name="DeveloperLabel" xml:space="preserve">
@@ -152,9 +150,7 @@
     <value>Nachricht des Entwicklers</value>
   </data>
   <data name="ReleaseMessageText" xml:space="preserve">
-    <value>Ich muss mit diesem Update leider den Namen des Apps aufgrund von Namenskonflikten ändern. Ausserdem werden wieder einige Fehler korrigiert.
-
-Wenn dir die App gefällt, unterstütze die Entwickler und bewerte es im Marketplace! Ich freue mich auf eure Rückmeldungen</value>
+    <value>Wenn dir die App gefällt, unterstütze die Entwickler und bewerte es im Marketplace! Ich freue mich auf eure Rückmeldungen</value>
   </data>
   <data name="SupportAddressLabel" xml:space="preserve">
     <value>Supportadresse:</value>

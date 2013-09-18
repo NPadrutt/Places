@@ -241,10 +241,8 @@ namespace Places.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to - you are now able to pin the add dialog to your startscreen
-        ///- in the map view there are now different map modes supported
-        ///- fix error if open a pinned location
-        ///- add somed missed german translation
+        ///   Looks up a localized string similar to - added ads and made the app permanently free
+        ///- added in-app purchase to remove ads
         ///- small improvements and fixes.
         /// </summary>
         public static string ChangelogText {
@@ -883,9 +881,7 @@ namespace Places.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to I had to change the application name since there are other apps who already use it. Also this update fixes several bugs in the app.
-        ///
-        ///If you like this app please rate it in the Windows Phone Marketplace!
+        ///   Looks up a localized string similar to If you like this app please rate it in the Windows Phone Marketplace!
         ///I&apos;m looking forward to receive your feedback! =).
         /// </summary>
         public static string ReleaseMessageText {

@@ -172,10 +172,8 @@
     <value>changelog:</value>
   </data>
   <data name="ChangelogText" xml:space="preserve">
-    <value>- you are now able to pin the add dialog to your startscreen
-- in the map view there are now different map modes supported
-- fix error if open a pinned location
-- add somed missed german translation
+    <value>- added ads and made the app permanently free
+- added in-app purchase to remove ads
 - small improvements and fixes</value>
   </data>
   <data name="CitiesTitle" xml:space="preserve">
@@ -360,9 +358,7 @@ Do you want to rate it now?</value>
     <value>Message of the developer:</value>
   </data>
   <data name="ReleaseMessageText" xml:space="preserve">
-    <value>I had to change the application name since there are other apps who already use it. Also this update fixes several bugs in the app.
-
-If you like this app please rate it in the Windows Phone Marketplace!
+    <value>If you like this app please rate it in the Windows Phone Marketplace!
 I'm looking forward to receive your feedback! =)</value>
   </data>
   <data name="RenameTagMessage" xml:space="preserve">
