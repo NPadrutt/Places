@@ -972,6 +972,24 @@ namespace Places.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to select tags.
+        /// </summary>
+        public static string SelectTagsHeader {
+            get {
+                return ResourceManager.GetString("SelectTagsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to set filter.
+        /// </summary>
+        public static string SetFilterHeader {
+            get {
+                return ResourceManager.GetString("SetFilterHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to settings.
         /// </summary>
         public static string SettingsLabel {

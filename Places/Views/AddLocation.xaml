@@ -75,7 +75,16 @@
 						<TextBlock x:Name="lblDistrict" Text="{Binding District}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextNormalStyle}" Margin="0"/>
 						<TextBlock x:Name="lblCountry" Text="{Binding Country}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextNormalStyle}" Margin="0"/>
 					</StackPanel>
-					<telerikInput:RadListPicker x:Name="listpickerTag" Margin="12,0,12,12" Header="{Binding LocalizedResources.TagTitle, Source={StaticResource LocalizedStrings}}" SelectionMode="Multiple" DisplayMemberPath="TagName" CancelButtonIconUri="/Toolkit.Content/ApplicationBar.Cancel.png" OkButtonIconUri="/Toolkit.Content/ApplicationBar.Check.png" />
+					<telerikInput:RadListPicker x:Name="listpickerTag" Margin="12,0,12,12" Header="{Binding LocalizedResources.TagTitle, Source={StaticResource LocalizedStrings}}" SelectionMode="Multiple" DisplayMemberPath="TagName" CancelButtonIconUri="/Toolkit.Content/ApplicationBar.Cancel.png" OkButtonIconUri="/Toolkit.Content/ApplicationBar.Check.png" PopupHeader="{Binding LocalizedResources.SelectTagsHeader, Source={StaticResource LocalizedStrings}}" >
+						<telerikInput:RadListPicker.Resources>
+							<Style x:Key="TagStyle" TargetType="telerikPrimitives:RadDataBoundListBoxItem">
+								<Setter Property="Padding" Value="12,12,0,12" />
+							</Style>
+						</telerikInput:RadListPicker.Resources>
+						<telerikInput:RadListPicker.PopupItemStyle>
+							<StaticResource ResourceKey="TagStyle"/>
+						</telerikInput:RadListPicker.PopupItemStyle>
+					</telerikInput:RadListPicker>
 					<telerikPrimitives:RadTextBox x:Name="txtComment" Text="{Binding Comment}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Header="{Binding LocalizedResources.CommentLabel, Source={StaticResource LocalizedStrings}}" InputScope="Text" TextOptions.TextHintingMode="Animated" TextWrapping="Wrap"/>
 				</StackPanel>
 

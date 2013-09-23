@@ -491,4 +491,10 @@ Do you wanna continue?</value>
   <data name="DistanceLabel" xml:space="preserve">
     <value>distance: </value>
   </data>
+  <data name="SelectTagsHeader" xml:space="preserve">
+    <value>select tags</value>
+  </data>
+  <data name="SetFilterHeader" xml:space="preserve">
+    <value>set filter</value>
+  </data>
 </root>

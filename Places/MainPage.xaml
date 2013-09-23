@@ -216,8 +216,17 @@
 			<TextBlock x:Name="PageTitle" Text="{Binding LocalizedResources.CitiesTitle, Source={StaticResource LocalizedStrings}}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
 		</StackPanel>
 		<StackPanel x:Name="ContentPanel" MinWidth="450" VerticalAlignment="Top" Margin="12,116,12,0" Height="500">
-			<telerikInput:RadListPicker x:Name="listpickerFilter" SelectionMode="Multiple"  DisplayMemberPath="TagName" CancelButtonIconUri="/Toolkit.Content/ApplicationBar.Cancel.png" OkButtonIconUri="/Toolkit.Content/ApplicationBar.Check.png" Margin="0" NoSelectionContent="{Binding LocalizedResources.AllLabel, Source={StaticResource LocalizedStrings}}" Style="{StaticResource RadListPickerFilterStyle}" SelectionChanged="listpickerFilter_SelectionChanged" ActionButtonVisibility="Visible" Visibility="Collapsed" />
-			<telerikPrimitives:RadDataBoundListBox Margin="0" x:Name="ListboxLocations" ItemTemplate="{StaticResource AllLocationsItemTemplate}" ItemsSource="{Binding AllLocations}" SelectionChanged="ListboxLocations_SelectionChanged" Height="450">
+            <telerikInput:RadListPicker x:Name="listpickerFilter" SelectionMode="Multiple"  DisplayMemberPath="TagName" CancelButtonIconUri="/Toolkit.Content/ApplicationBar.Cancel.png" OkButtonIconUri="/Toolkit.Content/ApplicationBar.Check.png" Margin="0" NoSelectionContent="{Binding LocalizedResources.AllLabel, Source={StaticResource LocalizedStrings}}" Style="{StaticResource RadListPickerFilterStyle}" SelectionChanged="listpickerFilter_SelectionChanged" ActionButtonVisibility="Visible" Visibility="Collapsed" PopupHeader="{Binding LocalizedResources.SelectTagsHeader, Source={StaticResource LocalizedStrings}}" >
+                <telerikInput:RadListPicker.Resources>
+                    <Style x:Key="TagStyle" TargetType="telerikPrimitives:RadDataBoundListBoxItem">
+                        <Setter Property="Padding" Value="12,12,0,12" />
+                    </Style>
+                </telerikInput:RadListPicker.Resources>
+                <telerikInput:RadListPicker.PopupItemStyle>
+                    <StaticResource ResourceKey="TagStyle"/>
+                </telerikInput:RadListPicker.PopupItemStyle>
+            </telerikInput:RadListPicker>
+            <telerikPrimitives:RadDataBoundListBox Margin="0" x:Name="ListboxLocations" ItemTemplate="{StaticResource AllLocationsItemTemplate}" ItemsSource="{Binding AllLocations}" SelectionChanged="ListboxLocations_SelectionChanged" Height="450">
 				<telerikPrimitives:RadDataBoundListBox.ItemAddedAnimation>
 					<telerik:RadMoveAnimation StartPoint="500, 0" EndPoint="0, 0" Duration="0:0:1">
 						<telerik:RadMoveAnimation.Easing>
