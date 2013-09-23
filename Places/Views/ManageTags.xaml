@@ -16,8 +16,9 @@
     shell:SystemTray.IsVisible="True">
 	<phone:PhoneApplicationPage.Resources>
 		<DataTemplate x:Key="AllTagsItemTemplate">
-			<StackPanel Width="455" Background="{StaticResource PhoneAccentBrush}" Margin="0,0,0,12">
+			<StackPanel Width="455" Margin="0,0,12,10">
 				<TextBlock Text="{Binding TagName}" Style="{StaticResource PhoneTextLargeStyle}" Margin="12,0,0,-1"/>
+				<Path Data="M9,242 L456,242" Fill="#FFF4F4F5" Height="5" Stretch="Fill" UseLayoutRounding="False" Stroke="{StaticResource PhoneAccentBrush}" StrokeThickness="2" Margin="12,0,0,0"/>
 			</StackPanel>
 		</DataTemplate>
 	</phone:PhoneApplicationPage.Resources>
