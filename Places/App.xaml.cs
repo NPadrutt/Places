@@ -96,13 +96,6 @@ namespace Places
             //Initializes this instance.
             Diagnostics.Init();
 
-            //Creates a new instance of the RadRateApplicationReminder component.
-            RateReminder = new RadRateApplicationReminder
-            {
-                RecurrencePerUsageCount = 3,
-                AllowUsersToSkipFurtherReminders = true
-            };
-
             viewModel = new MainViewModel();
             viewModel.LoadTags();
 
@@ -142,11 +135,17 @@ namespace Places
             Api.SetVersion(Utilities.GetVersion());
 #endif
             ApplicationUsageHelper.Init(Utilities.GetVersion());
-            SetRateReminderMessage();
+            InitRateReminder();
         }
 
-        private void SetRateReminderMessage()
+        private void InitRateReminder()
         {
+            RateReminder = new RadRateApplicationReminder
+            {
+                RecurrencePerUsageCount = 3,
+                AllowUsersToSkipFurtherReminders = true
+            };
+
             RateReminder.MessageBoxInfo = new MessageBoxInfoModel
             {
                 Buttons = MessageBoxButtons.YesNo,
