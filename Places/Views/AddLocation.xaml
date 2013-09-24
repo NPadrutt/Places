@@ -91,7 +91,6 @@
 			</ScrollViewer>
 			<UserControls:CustomAdControl x:Name="Ad" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="Auto" Visibility="Visible"/>
 		</StackPanel>
-		<telerikPrimitives:RadBusyIndicator Background="#CC000000" x:Name="busyProceedAction" AnimationStyle="AnimationStyle8" Content="{Binding LocalizedResources.UpdateTileLabel, Source={StaticResource LocalizedStrings}}" Margin="0,0,0,-75" Grid.RowSpan="2" />
 
 		<!--ContentPanel - place additional content here-->
 	</Grid>

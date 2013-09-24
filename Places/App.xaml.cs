@@ -103,7 +103,10 @@ namespace Places
             settings = new SettingViewModel();
 
             Action actionGetPosition = () => Deployment.Current.Dispatcher.BeginInvoke(() => Utilities.GetPosition(PositionAccuracy.Default));
-            Task.Factory.StartNew(actionGetPosition);
+            Task.Factory.StartNew(actionGetPosition, TaskCreationOptions.LongRunning);
+
+            Action actionUpdateTile = () => Deployment.Current.Dispatcher.BeginInvoke(Utilities.CreateTile);
+            Task.Factory.StartNew(actionUpdateTile, TaskCreationOptions.LongRunning);
 
             CheckLicense();
         }

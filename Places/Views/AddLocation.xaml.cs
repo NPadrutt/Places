@@ -46,8 +46,8 @@ namespace Places.Views
             switch (ResolutionHelper.CurrentResolution)
             {
                 case Resolutions.HD720p:
-                    ControllScrollViewer.Height += 80;
-                    ContentPanel.Height += 80;
+                    ControllScrollViewer.Height += 50;
+                    ContentPanel.Height += 50;
                     break;
             }
 
@@ -253,12 +253,6 @@ namespace Places.Views
         {
             if (lblLatitude.Text != string.Empty && lblLongtitude.Text != String.Empty)
             {
-                Action actionBusyIndicator = () => Dispatcher.BeginInvoke(delegate
-                {
-                    busyProceedAction.IsRunning = true;
-                });
-                await Task.Factory.StartNew(actionBusyIndicator);
-
                 App.ViewModel.SelectedLocation.Name = txtName.Text == string.Empty ? AppResources.NoNameDefaultEntry : txtName.Text;
                 App.ViewModel.SelectedLocation.Latitude = double.Parse(lblLatitude.Text, CultureInfo.InvariantCulture);
                 App.ViewModel.SelectedLocation.Longitude = double.Parse(lblLongtitude.Text, CultureInfo.InvariantCulture);
@@ -301,11 +295,6 @@ namespace Places.Views
                     App.ViewModel.SaveChangesToDb();
                     NavigationService.GoBack();
                 }
-
-                Dispatcher.BeginInvoke(delegate
-                {
-                    busyProceedAction.IsRunning = false;
-                });
             }
             else
             {
