@@ -15,6 +15,7 @@ using Places.ViewModels;
 using Telerik.Windows.Controls;
 using Telerik.Windows.Controls.Reminders;
 using Windows.ApplicationModel.Store;
+using Windows.Devices.Geolocation;
 
 namespace Places
 {
@@ -101,7 +102,9 @@ namespace Places
 
             settings = new SettingViewModel();
 
-            Utilities.GetPosition();
+            Action actionGetPosition = () => Deployment.Current.Dispatcher.BeginInvoke(() => Utilities.GetPosition(PositionAccuracy.Default));
+            Task.Factory.StartNew(actionGetPosition);
+
             CheckLicense();
         }
 

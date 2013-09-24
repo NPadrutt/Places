@@ -228,7 +228,7 @@
             </telerikInput:RadListPicker>
             <telerikPrimitives:RadDataBoundListBox Margin="0" x:Name="ListboxLocations" ItemTemplate="{StaticResource AllLocationsItemTemplate}" ItemsSource="{Binding AllLocations}" SelectionChanged="ListboxLocations_SelectionChanged" Height="450">
 				<telerikPrimitives:RadDataBoundListBox.ItemAddedAnimation>
-					<telerik:RadMoveAnimation StartPoint="500, 0" EndPoint="0, 0" Duration="0:0:1">
+					<telerik:RadMoveAnimation StartPoint="500, 0" EndPoint="0, 0" Duration="0:0:0.5">
 						<telerik:RadMoveAnimation.Easing>
 							<CubicEase EasingMode="EaseOut"/>
 						</telerik:RadMoveAnimation.Easing>
@@ -237,7 +237,7 @@
 			</telerikPrimitives:RadDataBoundListBox>
 			<telerikPrimitives:RadDataBoundListBox Margin="0" x:Name="ListboxCities" ItemTemplate="{StaticResource AllCitiesItemTemplate}" ItemsSource="{Binding AllCities}" SelectionChanged="ListboxCities_OnSelectionChanged" Height="500">
 				<telerikPrimitives:RadDataBoundListBox.ItemAddedAnimation>
-					<telerik:RadMoveAnimation StartPoint="500, 0" EndPoint="0, 0" Duration="0:0:1">
+                    <telerik:RadMoveAnimation StartPoint="500, 0" EndPoint="0, 0" Duration="0:0:0.5">
 						<telerik:RadMoveAnimation.Easing>
 							<CubicEase EasingMode="EaseOut"/>
 						</telerik:RadMoveAnimation.Easing>

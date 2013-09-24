@@ -29,9 +29,14 @@ namespace Places.Src
 
         public static async Task GetPosition()
         {
+            await GetPosition(PositionAccuracy.Default);
+        }
+
+        public static async Task GetPosition(PositionAccuracy accuracy)
+        {
             if (App.Settings.LocationServiceEnabled)
             {
-                var geolocater = new Geolocator {DesiredAccuracy = PositionAccuracy.High};
+                var geolocater = new Geolocator {DesiredAccuracy = accuracy};
 
                 try
                 {
@@ -108,12 +113,12 @@ namespace Places.Src
             {
                 if (App.ViewModel.CurrentPosition == null)
                 {
-                    await GetPosition();
+                    await GetPosition(PositionAccuracy.Default);
                 }
 
-                return new GeoCoordinate(App.ViewModel.CurrentPosition.Latitude, App.ViewModel.CurrentPosition.Longitude)
+                return Math.Round(new GeoCoordinate(App.ViewModel.CurrentPosition.Latitude, App.ViewModel.CurrentPosition.Longitude)
                     .GetDistanceTo(new GeoCoordinate(App.ViewModel.SelectedLocation.Latitude,
-                                                     App.ViewModel.SelectedLocation.Longitude));
+                                                     App.ViewModel.SelectedLocation.Longitude)), 1);
             }
             catch (Exception ex)
             {

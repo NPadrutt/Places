@@ -76,6 +76,12 @@ namespace Places.Views
             {
                 LocationImage.Source = App.ViewModel.SelectedLocation.Thumbnail;
             }
+
+            Action actionGetDistance = () => Dispatcher.BeginInvoke(delegate
+            {
+                lblDistance.Text = Utilities.GetDistance().Result.ToString();
+            });
+            Task.Factory.StartNew(actionGetDistance);
             
             MiniMap.ShowOnMap(App.ViewModel.SelectedLocation.Latitude, App.ViewModel.SelectedLocation.Longitude);
             SetTags();
