@@ -81,7 +81,7 @@ namespace Places.Views
             {
                 lblDistance.Text = Utilities.GetDistance().Result.ToString();
             });
-            Task.Factory.StartNew(actionGetDistance);
+            Task.Factory.StartNew(actionGetDistance, TaskCreationOptions.LongRunning);
             
             MiniMap.ShowOnMap(App.ViewModel.SelectedLocation.Latitude, App.ViewModel.SelectedLocation.Longitude);
             SetTags();
