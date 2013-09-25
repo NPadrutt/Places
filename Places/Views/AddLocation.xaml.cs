@@ -288,7 +288,7 @@ namespace Places.Views
                     NavigationService.Navigate(new Uri("/Views/DetailsLocation.xaml?RemoveBackstack=true",
                         UriKind.Relative));
 
-                    Dispatcher.BeginInvoke(Utilities.CreateTile);
+                    Dispatcher.BeginInvoke(Utilities.UpdateTile);
                 }
                 else
                 {

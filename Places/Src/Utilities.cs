@@ -233,7 +233,7 @@ namespace Places.Src
             return bitmap;
         }
 
-        public static void CreateTile()
+        public static void UpdateTile()
         {
             try
             {
