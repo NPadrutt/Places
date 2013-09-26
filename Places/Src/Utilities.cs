@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media.Imaging;
+using Microsoft.Phone.Net.NetworkInformation;
 using Windows.Devices.Geolocation;
 using ExifLib;
 using FlurryWP8SDK;
@@ -237,16 +238,8 @@ namespace Places.Src
         {
             try
             {
-               var tileData = new RadCycleTileData();
-               var dbLIst = App.ViewModel.LoadTileLocations();
-
-                var locationList =
-                    dbLIst.Where(
-                        x => !String.IsNullOrEmpty(x.ImageUri) && !String.IsNullOrEmpty(x.ImageName))
-                        .Reverse()
-                        .Take(9)
-                        .ToList();
-
+                var tileData = new RadCycleTileData();
+                var locationList = App.ViewModel.LoadTileLocations();
                 var uriList = new List<Uri>();
                 var i = 0;
                 using (var file = IsolatedStorageFile.GetUserStoreForApplication())

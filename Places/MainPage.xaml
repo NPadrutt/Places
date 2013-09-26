@@ -11,7 +11,7 @@
     x:Class="Places.MainPage"
 	mc:Ignorable="d"
     SupportedOrientations="Portrait"  Orientation="Portrait"
-    shell:SystemTray.IsVisible="True" Loaded="PhoneApplicationPage_Loaded">
+    shell:SystemTray.IsVisible="True">
     
     <phone:PhoneApplicationPage.Resources>
 		<Style x:Key="PopupHeaderStyle" TargetType="ContentControl">

@@ -258,10 +258,11 @@ namespace Places.ViewModels
 
         public ObservableCollection<Location> LoadTileLocations()
         {
+            var skipCount = new Random().Next(0, db.Locations.Count() - 4);
+
             var locationItemsInDb = (from location in db.Locations
-                where location.ImageName != null
-                orderby location.LocationAddress.City
-                select location).Take(9);
+                                     where location.ImageName != null && location.ImageUri != null
+                                     select location).Skip(skipCount).Take(4);
 
             return new ObservableCollection<Location>(locationItemsInDb);
         }

@@ -175,14 +175,18 @@ namespace Places
         private void Application_Deactivated(object sender, DeactivatedEventArgs e)
         {
             // Ensure that required application state is persisted here.
+            Action actionUpdateTile = () => Deployment.Current.Dispatcher.BeginInvoke(Utilities.UpdateTile);
+            Task.Factory.StartNew(actionUpdateTile);
         }
 
         // Code to execute when the application is closing (eg, user hit Back)
         // This code will not execute when the application is deactivated
         private void Application_Closing(object sender, ClosingEventArgs e)
         {
+            Action actionUpdateTile = () => Deployment.Current.Dispatcher.BeginInvoke(Utilities.UpdateTile);
+            Task.Factory.StartNew(actionUpdateTile);
         }
-
+        
         // Code to execute if a navigation fails
         private void RootFrame_NavigationFailed(object sender, NavigationFailedEventArgs e)
         {

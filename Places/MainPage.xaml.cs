@@ -303,11 +303,5 @@ namespace Places
 
 
         }
-
-        private void PhoneApplicationPage_Loaded(object sender, System.Windows.RoutedEventArgs e)
-        {
-            Action actionUpdateTile = () => Deployment.Current.Dispatcher.BeginInvoke(Utilities.UpdateTile);
-            Task.Factory.StartNew(actionUpdateTile);
-        }
     }
 }
