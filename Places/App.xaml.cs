@@ -105,9 +105,6 @@ namespace Places
             Action actionGetPosition = () => Deployment.Current.Dispatcher.BeginInvoke(() => Utilities.GetPosition(PositionAccuracy.Default));
             Task.Factory.StartNew(actionGetPosition, TaskCreationOptions.LongRunning);
 
-            Action actionUpdateTile = () => Deployment.Current.Dispatcher.BeginInvoke(Utilities.UpdateTile);
-            Task.Factory.StartNew(actionUpdateTile);
-
             CheckLicense();
         }
 
