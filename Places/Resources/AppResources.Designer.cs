@@ -241,8 +241,9 @@ namespace Places.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to - added ads and made the app permanently free
-        ///- added in-app purchase to remove ads
+        ///   Looks up a localized string similar to - overworked the design of lists
+        ///- the live tile will now take more frequently new images on the live tile
+        ///- the live tile will update if you leave the app instead of if you add a new location
         ///- small improvements and fixes.
         /// </summary>
         public static string ChangelogText {

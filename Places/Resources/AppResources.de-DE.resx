@@ -133,8 +133,9 @@
     <value>Änderungen</value>
   </data>
   <data name="ChangelogText" xml:space="preserve">
-    <value>- Werbung eingefügt und das App permanent kostenlos gemacht
-- In App Produkt eingefügt zum entfernen der Ads
+    <value>- Design von Liste überarbeitet
+- Das LiveTile zeigt künftig häufiger neue Bilder an
+- Das LiveTile wird nun beim verlassen des Apps aktualisiert und nicht mehr beim hinzufügen von neuen Einträgen
 - Kleinere Verbesserungen und Korrekturen</value>
   </data>
   <data name="DeveloperLabel" xml:space="preserve">
