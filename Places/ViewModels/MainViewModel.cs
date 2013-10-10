@@ -36,8 +36,6 @@ namespace Places.ViewModels
 
                 LoadTags();
                 CreateDefaultEntries();
-
-
             }
             else
             {
