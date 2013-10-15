@@ -163,7 +163,7 @@ namespace Places.ViewModels
             {
                 LoadLocationsByCity(newLocation.LocationAddress.City);
             }
-            if (AllCities != null)
+            if (AllCities != null && newLocation.LocationAddress.City != null)
             {
                 AllCities.Add(newLocation.LocationAddress.City);
             }

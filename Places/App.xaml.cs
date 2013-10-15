@@ -5,7 +5,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Navigation;
-using System.Windows.Threading;
 using FlurryWP8SDK;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
