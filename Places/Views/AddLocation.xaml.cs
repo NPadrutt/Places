@@ -251,12 +251,6 @@ namespace Places.Views
             }
         }
 
-        private void btnRefreshPosition_Click(object sender, RoutedEventArgs e)
-        {
-            App.ViewModel.CurrentPosition = null;
-            GetPosition();
-        }
-
         private void btnDone_Click(object sender, EventArgs e)
         {
             if (App.ViewModel.CurrentAddress != null)
@@ -320,7 +314,8 @@ namespace Places.Views
 
         private void mRefreshPosition_Click(object sender, System.EventArgs e)
         {
-        	// TODO: Add event handler implementation here.
+            App.ViewModel.CurrentPosition = null;
+            GetPosition();
         }
     }
 }
