@@ -125,14 +125,6 @@ namespace Places.Views
             }
         }
 
-        private void OnTextBoxTextChanged(object sender, TextChangedEventArgs e)
-        {
-            var textBox = sender as TextBox;
-            // Update the binding source
-            BindingExpression bindingExpr = textBox.GetBindingExpression(TextBox.TextProperty);
-            bindingExpr.UpdateSource();
-        }
-
         private void Grid_Tap(object sender, GestureEventArgs e)
         {
             photoChooserTask = new PhotoChooserTask { ShowCamera = true };

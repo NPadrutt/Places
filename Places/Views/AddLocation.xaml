@@ -45,7 +45,7 @@
 						<Image x:Name="LocationImage" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="0" Loaded="LocationImage_Loaded"/>
 						<TextBlock x:Name="lblAddImage" VerticalAlignment="Bottom" TextWrapping="Wrap" Text="{Binding LocalizedResources.AddImageLabel, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextTitle3Style}" Margin="0"/>
 					</Grid>
-                    <telerikPrimitives:RadTextBox x:Name="txtName" Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=Default}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0" Header="{Binding LocalizedResources.NameLabel, Source={StaticResource LocalizedStrings}}" TextChanged="OnTextBoxTextChanged"/>
+                    <telerikPrimitives:RadTextBox x:Name="txtName" Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=Default}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0" Header="{Binding LocalizedResources.NameLabel, Source={StaticResource LocalizedStrings}}"/>
 					<TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Text="{Binding LocalizedResources.CurrentPositionLabel, Source={StaticResource LocalizedStrings}}" Margin="12,0,0,0" Style="{StaticResource PhoneTextSmallStyle}"/>
 					<UserControls:MiniMapControl x:Name="MiniMap" Height="112"/>
 					<ProgressBar x:Name="progressionbarGetLocation" Height="10" Margin="0" IsIndeterminate="True"/>
@@ -73,7 +73,7 @@
 							<StaticResource ResourceKey="TagStyle"/>
 						</telerikInput:RadListPicker.PopupItemStyle>
 					</telerikInput:RadListPicker>
-                    <telerikPrimitives:RadTextBox x:Name="txtComment" Text="{Binding Path=Comment, Mode=TwoWay, UpdateSourceTrigger=Explicit}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Header="{Binding LocalizedResources.CommentLabel, Source={StaticResource LocalizedStrings}}" InputScope="Text" TextOptions.TextHintingMode="Animated" TextWrapping="Wrap" TextChanged="OnTextBoxTextChanged"/>
+                    <telerikPrimitives:RadTextBox x:Name="txtComment" Text="{Binding Path=Comment, Mode=TwoWay, UpdateSourceTrigger=Explicit}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Header="{Binding LocalizedResources.CommentLabel, Source={StaticResource LocalizedStrings}}" InputScope="Text" TextOptions.TextHintingMode="Animated" TextWrapping="Wrap"/>
 				</StackPanel>
 
 			</ScrollViewer>
