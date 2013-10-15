@@ -4,6 +4,8 @@ using System.IO;
 using System.IO.IsolatedStorage;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Navigation;
 using FlurryWP8SDK;
 using Microsoft.Phone.Shell;
@@ -38,7 +40,8 @@ namespace Places.Views
             ((ApplicationBarIconButton)ApplicationBar.Buttons[0]).Text = AppResources.DoneLabel;
             ((ApplicationBarIconButton)ApplicationBar.Buttons[1]).Text = AppResources.CancelLabel;
 
-            ((ApplicationBarMenuItem)ApplicationBar.MenuItems[0]).Text = AppResources.PintToStartLabel;
+            ((ApplicationBarMenuItem)ApplicationBar.MenuItems[0]).Text = AppResources.RefreshCurrentPositionLabel;
+            ((ApplicationBarMenuItem)ApplicationBar.MenuItems[1]).Text = AppResources.PintToStartLabel;
         }
 
         private void AdjustListsIfAdCollapsed()
@@ -68,9 +71,8 @@ namespace Places.Views
             base.OnNavigatedTo(e);
 
             var queryStrings = NavigationContext.QueryString;
-            if (App.ViewModel.SelectedLocation == null)
+            if (queryStrings.ContainsKey("new") && Convert.ToBoolean(queryStrings["new"]))
             {
-                App.ViewModel.SelectedLocation = new Location();
                 PageTitle.Text = AppResources.AddTitle;
                 newElement = true;
 
@@ -123,6 +125,14 @@ namespace Places.Views
             }
         }
 
+        private void OnTextBoxTextChanged(object sender, TextChangedEventArgs e)
+        {
+            var textBox = sender as TextBox;
+            // Update the binding source
+            BindingExpression bindingExpr = textBox.GetBindingExpression(TextBox.TextProperty);
+            bindingExpr.UpdateSource();
+        }
+
         private void Grid_Tap(object sender, GestureEventArgs e)
         {
             photoChooserTask = new PhotoChooserTask { ShowCamera = true };
@@ -147,7 +157,6 @@ namespace Places.Views
             var position = Utilities.GetPositionFromImage(photoStream);
             App.ViewModel.SelectedLocation.Latitude = position.Latitude;
             App.ViewModel.SelectedLocation.Longitude = position.Longitude;
-            stackpanelPosition.DataContext = App.ViewModel.SelectedLocation;
             SaveImage(photoStream, path);
 
             if (App.ViewModel.SelectedLocation.Latitude == 0 && App.ViewModel.SelectedLocation.Longitude == 0)
@@ -201,7 +210,6 @@ namespace Places.Views
                     App.ViewModel.SelectedLocation.Latitude = App.ViewModel.CurrentPosition.Latitude;
                     App.ViewModel.SelectedLocation.Longitude = App.ViewModel.CurrentPosition.Longitude;
                     App.ViewModel.SelectedLocation.Accuracy = App.ViewModel.CurrentPosition.Accuracy;
-                    stackpanelPosition.DataContext = App.ViewModel.SelectedLocation;
                 }
                 await GetAddress();
             }
@@ -249,56 +257,40 @@ namespace Places.Views
             GetPosition();
         }
 
-        private async void btnDone_Click(object sender, EventArgs e)
+        private void btnDone_Click(object sender, EventArgs e)
         {
-            if (lblLatitude.Text != string.Empty && lblLongtitude.Text != String.Empty)
+            if (App.ViewModel.CurrentAddress != null)
             {
-                App.ViewModel.SelectedLocation.Name = txtName.Text == string.Empty ? AppResources.NoNameDefaultEntry : txtName.Text;
-                App.ViewModel.SelectedLocation.Latitude = double.Parse(lblLatitude.Text, CultureInfo.InvariantCulture);
-                App.ViewModel.SelectedLocation.Longitude = double.Parse(lblLongtitude.Text, CultureInfo.InvariantCulture);
+                App.ViewModel.SelectedLocation.LocationAddress = App.ViewModel.CurrentAddress;
+            }
+            App.ViewModel.SelectedLocation.Tags.Clear();
+            foreach (var item in listpickerTag.SelectedItems)
+            {
+                App.ViewModel.SelectedLocation.Tags.Add(item as Tag);
+            }
 
-                if (lblAccuracy.Text != String.Empty)
-                {
-                    App.ViewModel.SelectedLocation.Accuracy = Convert.ToDouble(lblAccuracy.Text);
-                }
-                App.ViewModel.SelectedLocation.Comment = txtComment.Text;
-                if (App.ViewModel.CurrentAddress != null)
-                {
-                    App.ViewModel.SelectedLocation.LocationAddress = App.ViewModel.CurrentAddress;
-                }
-                App.ViewModel.SelectedLocation.Tags.Clear();
-                foreach (var item in listpickerTag.SelectedItems)
-                {
-                    App.ViewModel.SelectedLocation.Tags.Add(item as Tag);
-                }
+            if (imageName != null)
+            {
+                App.ViewModel.SelectedLocation.ImageName = imageName;
+                App.ViewModel.SelectedLocation.Thumbnail = Utilities.GetThumbnail(imageName);
+            }
+            if (imageUri != null)
+            {
+                App.ViewModel.SelectedLocation.ImageUri = imageUri;
+            }
 
-                if (imageName != null)
-                {
-                    App.ViewModel.SelectedLocation.ImageName = imageName;
-                    App.ViewModel.SelectedLocation.Thumbnail = Utilities.GetThumbnail(imageName);
-                }
-                if (imageUri != null)
-                {
-                    App.ViewModel.SelectedLocation.ImageUri = imageUri;
-                }
+            if (newElement)
+            {
+                App.ViewModel.AddLocation(App.ViewModel.SelectedLocation);
+                NavigationService.Navigate(new Uri("/Views/DetailsLocation.xaml?RemoveBackstack=true",
+                    UriKind.Relative));
 
-                if (newElement)
-                {
-                    App.ViewModel.AddLocation(App.ViewModel.SelectedLocation);
-                    NavigationService.Navigate(new Uri("/Views/DetailsLocation.xaml?RemoveBackstack=true",
-                        UriKind.Relative));
-
-                    Dispatcher.BeginInvoke(Utilities.UpdateTile);
-                }
-                else
-                {
-                    App.ViewModel.SaveChangesToDb();
-                    NavigationService.GoBack();
-                }
+                Dispatcher.BeginInvoke(Utilities.UpdateTile);
             }
             else
             {
-                MessageBox.Show(AppResources.NoPositionMessage, AppResources.NoPositionMessageTitle, MessageBoxButton.OK);
+                App.ViewModel.SaveChangesToDb();
+                NavigationService.GoBack();
             }
         }
 
@@ -324,6 +316,11 @@ namespace Places.Views
             };
 
             LiveTileHelper.CreateOrUpdateTile(tileData, new Uri("/Views/AddLocation.xaml", UriKind.RelativeOrAbsolute));
+        }
+
+        private void mRefreshPosition_Click(object sender, System.EventArgs e)
+        {
+        	// TODO: Add event handler implementation here.
         }
     }
 }

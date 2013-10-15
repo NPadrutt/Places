@@ -1,12 +1,11 @@
 ﻿using System.Device.Location;
-using System.Windows.Controls;
 using Microsoft.Phone.Maps;
 using Microsoft.Phone.Maps.Controls;
 using Microsoft.Phone.Maps.Toolkit;
 
 namespace Places.UserControls
 {
-    public partial class MiniMapControl : UserControl
+    public partial class MiniMapControl
     {
         private MapOverlay mapOverlay;
         private UserLocationMarker userMarker;

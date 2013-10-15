@@ -172,9 +172,9 @@ namespace Places
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            App.ViewModel.SelectedLocation = null;
+            App.ViewModel.SelectedLocation = new Location();
 
-        	NavigationService.Navigate(new Uri("/Views/AddLocation.xaml", UriKind.Relative));
+        	NavigationService.Navigate(new Uri("/Views/AddLocation.xaml?new=true", UriKind.Relative));
         }
 
         private void mAbout_Click(object sender, EventArgs e)

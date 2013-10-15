@@ -30,10 +30,10 @@ namespace Places.Src
 
         public static async Task GetPosition()
         {
-            await GetPosition(PositionAccuracy.Default);
+            await GetPosition(PositionAccuracy.Default, 80);
         }
 
-        public static async Task GetPosition(PositionAccuracy accuracy)
+        public static async Task GetPosition(PositionAccuracy accuracy, int timeout)
         {
             if (App.Settings.LocationServiceEnabled)
             {
@@ -42,7 +42,7 @@ namespace Places.Src
                 try
                 {
                     var geoposition =
-                        await geolocater.GetGeopositionAsync(TimeSpan.FromMinutes(2), TimeSpan.FromSeconds(60)
+                        await geolocater.GetGeopositionAsync(TimeSpan.FromMinutes(2), TimeSpan.FromSeconds(timeout)
                                   );
 
                     App.ViewModel.CurrentPosition = new Position
@@ -114,7 +114,7 @@ namespace Places.Src
             {
                 if (App.ViewModel.CurrentPosition == null)
                 {
-                    await GetPosition(PositionAccuracy.Default);
+                    await GetPosition(PositionAccuracy.Default, 3);
                 }
 
                 return Math.Round(new GeoCoordinate(App.ViewModel.CurrentPosition.Latitude, App.ViewModel.CurrentPosition.Longitude)

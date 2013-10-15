@@ -10,9 +10,7 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     d:DesignHeight="150" d:DesignWidth="432">
     
-	<Grid x:Name="LayoutRoot" Background="Transparent">
-
+	<Grid x:Name="LayoutRoot" Background="Transparent" Loaded="myMap_Loaded">
 		<maps:Map x:Name="myMap" Width="432" HorizontalAlignment="Center" LandmarksEnabled="True" IsEnabled="False" Margin="0,0,0,12"/>
-
 	</Grid>
 </UserControl>
