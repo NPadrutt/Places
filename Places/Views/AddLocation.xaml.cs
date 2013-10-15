@@ -230,12 +230,9 @@ namespace Places.Views
                 var image = Utilities.GetThumbnail(App.ViewModel.SelectedLocation.ImageName);
                 LocationImage.Source = image;
                 lblAddImage.Visibility = image.PixelHeight == 0 &&
-                    image.PixelWidth == 0
-                    ? Visibility.Visible : Visibility.Collapsed;
-                gridImage.Height = image.PixelHeight == 0
-                    ? 175 : LocationImage.Height;
-                gridImage.Width = image.PixelWidth == 0
-                    ? 175 : LocationImage.Width;
+                    image.PixelWidth == 0 ? Visibility.Visible : Visibility.Collapsed;
+                gridImage.Height = image.PixelHeight == 0 ? 175 : LocationImage.Height;
+                gridImage.Width = image.PixelWidth == 0 ? 175 : LocationImage.Width;
             }
             else if(!_sharePicture)
             {
@@ -245,6 +242,8 @@ namespace Places.Views
 
         private void btnDone_Click(object sender, EventArgs e)
         {
+            App.ViewModel.SelectedLocation.Name = txtName.Text;
+            
             if (App.ViewModel.CurrentAddress != null)
             {
                 App.ViewModel.SelectedLocation.LocationAddress = App.ViewModel.CurrentAddress;
@@ -264,6 +263,8 @@ namespace Places.Views
             {
                 App.ViewModel.SelectedLocation.ImageUri = _imageUri;
             }
+
+            App.ViewModel.SelectedLocation.Comment = txtComment.Text;
 
             if (_newElement)
             {
