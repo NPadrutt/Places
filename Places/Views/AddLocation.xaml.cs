@@ -21,10 +21,10 @@ namespace Places.Views
 {
     public partial class AddLocation 
     {
-        private bool newElement;
-        private bool sharePicture;
-        private string imageUri;
-        private string imageName;
+        private bool _newElement;
+        private bool _sharePicture;
+        private string _imageUri;
+        private string _imageName;
 
         private PhotoChooserTask photoChooserTask;
 
@@ -74,18 +74,18 @@ namespace Places.Views
             if (queryStrings.ContainsKey("new") && Convert.ToBoolean(queryStrings["new"]))
             {
                 PageTitle.Text = AppResources.AddTitle;
-                newElement = true;
+                _newElement = true;
 
                 if (queryStrings.ContainsKey("FileId"))
                 {
                     App.ViewModel.LoadLocationsByCity(lblCity.Text);
-                    sharePicture = true;
+                    _sharePicture = true;
                     var picture = Utilities.GetPictureByToken(queryStrings["FileId"]);
                     ImportPicture(picture.GetImage(), picture.GetPath());
                 }
                 else if (queryStrings.ContainsKey("import") && queryStrings.ContainsKey("imagePath"))
                 {
-                    newElement = true;
+                    _newElement = true;
                     ImportPicture(App.ViewModel.SelectedImageStream, queryStrings["imagePath"]);
                 }
                 else
@@ -172,12 +172,12 @@ namespace Places.Views
         {
             try
             {
-                imageUri = Path;
-                imageName = Utilities.GetImageName(photoStream);
+                _imageUri = Path;
+                _imageName = Utilities.GetImageName(photoStream);
 
-                LocationImage.Source = Utilities.GetThumbnail(imageName);
+                LocationImage.Source = Utilities.GetThumbnail(_imageName);
                 //set true that AddImageLabel don't get visible again
-                sharePicture = true;
+                _sharePicture = true;
                 lblAddImage.Visibility = Visibility.Collapsed;
                 gridImage.Height = LocationImage.Height;
                 gridImage.Width = LocationImage.Width;
@@ -233,7 +233,7 @@ namespace Places.Views
 
         private void LocationImage_Loaded(object sender, RoutedEventArgs e)
         {
-            if (!newElement && App.ViewModel.SelectedLocation.ImageName != null)
+            if (!_newElement && App.ViewModel.SelectedLocation.ImageName != null)
             {
                 var image = Utilities.GetThumbnail(App.ViewModel.SelectedLocation.ImageName);
                 LocationImage.Source = image;
@@ -245,7 +245,7 @@ namespace Places.Views
                 gridImage.Width = image.PixelWidth == 0
                     ? 175 : LocationImage.Width;
             }
-            else if(!sharePicture)
+            else if(!_sharePicture)
             {
                 lblAddImage.Visibility = Visibility.Visible;
             }
@@ -263,17 +263,17 @@ namespace Places.Views
                 App.ViewModel.SelectedLocation.Tags.Add(item as Tag);
             }
 
-            if (imageName != null)
+            if (_imageName != null)
             {
-                App.ViewModel.SelectedLocation.ImageName = imageName;
-                App.ViewModel.SelectedLocation.Thumbnail = Utilities.GetThumbnail(imageName);
+                App.ViewModel.SelectedLocation.ImageName = _imageName;
+                App.ViewModel.SelectedLocation.Thumbnail = Utilities.GetThumbnail(_imageName);
             }
-            if (imageUri != null)
+            if (_imageUri != null)
             {
-                App.ViewModel.SelectedLocation.ImageUri = imageUri;
+                App.ViewModel.SelectedLocation.ImageUri = _imageUri;
             }
 
-            if (newElement)
+            if (_newElement)
             {
                 App.ViewModel.AddLocation(App.ViewModel.SelectedLocation);
                 NavigationService.Navigate(new Uri("/Views/DetailsLocation.xaml?RemoveBackstack=true",
