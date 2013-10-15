@@ -112,14 +112,15 @@ namespace Places.Src
         {
             try
             {
-                if (App.ViewModel.CurrentPosition == null)
+                double dist = 0;
+                if (App.ViewModel.CurrentPosition != null)
                 {
-                    await GetPosition(PositionAccuracy.Default, 3);
-                }
-
-                return Math.Round(new GeoCoordinate(App.ViewModel.CurrentPosition.Latitude, App.ViewModel.CurrentPosition.Longitude)
+                    dist = Math.Round(new GeoCoordinate(App.ViewModel.CurrentPosition.Latitude, App.ViewModel.CurrentPosition.Longitude)
                     .GetDistanceTo(new GeoCoordinate(App.ViewModel.SelectedLocation.Latitude,
                                                      App.ViewModel.SelectedLocation.Longitude)), 1);
+                }
+
+                return dist;
             }
             catch (Exception ex)
             {
