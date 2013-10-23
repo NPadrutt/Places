@@ -5,7 +5,7 @@ using System.Data.Linq.Mapping;
 namespace Places.Models
 {
     [Table]
-    public class LocationAddress : INotifyPropertyChanged, INotifyPropertyChanging
+    public class LocationAddress : INotifyPropertyChanged
     {
         private int _id;
 
@@ -17,7 +17,6 @@ namespace Places.Models
             {
                 if (_id != value)
                 {
-                    NotifyPropertyChanging("Id");
                     _id = value;
                     NotifyPropertyChanged("Id");
                 }
@@ -34,7 +33,6 @@ namespace Places.Models
             {
                 if (_street != value)
                 {
-                    NotifyPropertyChanging("Street");
                     _street = value;
                     NotifyPropertyChanged("Street");
                 }
@@ -51,7 +49,6 @@ namespace Places.Models
             {
                 if (_houseNumber != value)
                 {
-                    NotifyPropertyChanging("HouseNumber");
                     _houseNumber = value;
                     NotifyPropertyChanged("HouseNumber");
                 }
@@ -68,7 +65,6 @@ namespace Places.Models
             {
                 if (_postalCode != value)
                 {
-                    NotifyPropertyChanging("PostalCode");
                     _postalCode = value;
                     NotifyPropertyChanged("PostalCode");
                 }
@@ -85,7 +81,6 @@ namespace Places.Models
             {
                 if (_city != value)
                 {
-                    NotifyPropertyChanging("City");
                     _city = value;
                     NotifyPropertyChanged("City");
                 }
@@ -102,7 +97,6 @@ namespace Places.Models
             {
                 if (_district != value)
                 {
-                    NotifyPropertyChanging("District");
                     _district = value;
                     NotifyPropertyChanged("District");
                 }
@@ -119,7 +113,6 @@ namespace Places.Models
             {
                 if (_state != value)
                 {
-                    NotifyPropertyChanging("State");
                     _state = value;
                     NotifyPropertyChanged("State");
                 }
@@ -136,7 +129,6 @@ namespace Places.Models
             {
                 if (_country != value)
                 {
-                    NotifyPropertyChanging("Country");
                     _country = value;
                     NotifyPropertyChanged("Country");
                 }
@@ -190,21 +182,6 @@ namespace Places.Models
             if (PropertyChanged != null)
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-
-        #endregion
-
-        #region INotifyPropertyChanging Members
-
-        public event PropertyChangingEventHandler PropertyChanging;
-
-        // Used to notify that a property is about to change
-        private void NotifyPropertyChanging(string propertyName)
-        {
-            if (PropertyChanging != null)
-            {
-                PropertyChanging(this, new PropertyChangingEventArgs(propertyName));
             }
         }
 

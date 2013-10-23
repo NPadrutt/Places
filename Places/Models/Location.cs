@@ -9,7 +9,7 @@ using Places.Src;
 namespace Places.Models
 {
     [Table]
-    public class Location : INotifyPropertyChanged, INotifyPropertyChanging, IComparable
+    public class Location : INotifyPropertyChanged, IComparable
     {
         private int _id;
 
@@ -21,7 +21,6 @@ namespace Places.Models
             {
                 if (_id != value)
                 {
-                    NotifyPropertyChanging("Id");
                     _id = value;
                     NotifyPropertyChanged("Id");
                 }
@@ -38,7 +37,6 @@ namespace Places.Models
             {
                 if (_imageName != value)
                 {
-                    NotifyPropertyChanging("LocationImageName");
                     _imageName = value;
                     NotifyPropertyChanged("LocationImageName");
                 }
@@ -55,7 +53,6 @@ namespace Places.Models
             {
                 if (_imageUri != value)
                 {
-                    NotifyPropertyChanging("ImageUri");
                     _imageUri = value;
                     NotifyPropertyChanged("ImageUri");
                 }
@@ -75,7 +72,6 @@ namespace Places.Models
             {
                 if (_thumbnail != value)
                 {
-                    NotifyPropertyChanging("Thumbnail");
                     _thumbnail = value;
                     NotifyPropertyChanged("Thumbnail");
                 }
@@ -92,7 +88,6 @@ namespace Places.Models
             {
                 if (_name != value)
                 {
-                    NotifyPropertyChanging("Name");
                     _name = value;
                     NotifyPropertyChanged("Name");
                 }
@@ -109,7 +104,6 @@ namespace Places.Models
             {
                 if (_latitude != value)
                 {
-                    NotifyPropertyChanging("Latitude");
                     _latitude = value;
                     NotifyPropertyChanged("Latitude");
                 }
@@ -126,7 +120,6 @@ namespace Places.Models
             {
                 if (_longitude != value)
                 {
-                    NotifyPropertyChanging("Longitude");
                     _longitude = value;
                     NotifyPropertyChanged("Longitude");
                 }
@@ -143,25 +136,23 @@ namespace Places.Models
             {
                 if (_accuracy != value)
                 {
-                    NotifyPropertyChanging("Accuracy");
                     _accuracy = value;
                     NotifyPropertyChanged("Accuracy");
                 }
             }
         }
 
-        private double? distance;
+        private double? _distance;
 
         [Column]
         public double? Distance
         {
-            get { return distance; }
+            get { return _distance; }
             set
             {
-                if (distance != value)
+                if (_distance != value)
                 {
-                    NotifyPropertyChanging("Distance");
-                    distance = value;
+                    _distance = value;
                     NotifyPropertyChanged("Distance");
                 }
             }
@@ -177,7 +168,6 @@ namespace Places.Models
             {
                 if (_comment != value)
                 {
-                    NotifyPropertyChanging("Comment");
                     _comment = value;
                     NotifyPropertyChanged("Comment");
                 }
@@ -240,21 +230,6 @@ namespace Places.Models
             if (PropertyChanged != null)
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-
-        #endregion
-
-        #region INotifyPropertyChanging Members
-
-        public event PropertyChangingEventHandler PropertyChanging;
-
-        // Used to notify that a property is about to change
-        private void NotifyPropertyChanging(string propertyName)
-        {
-            if (PropertyChanging != null)
-            {
-                PropertyChanging(this, new PropertyChangingEventArgs(propertyName));
             }
         }
 

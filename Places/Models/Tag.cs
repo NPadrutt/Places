@@ -5,7 +5,7 @@ using System.Data.Linq.Mapping;
 namespace Places.Models
 {
     [Table]
-    public class Tag : INotifyPropertyChanged, INotifyPropertyChanging
+    public class Tag : INotifyPropertyChanged
     {
         private int _id;
 
@@ -17,7 +17,6 @@ namespace Places.Models
             {
                 if (_id != value)
                 {
-                    NotifyPropertyChanging("Id");
                     _id = value;
                     NotifyPropertyChanged("Id");
                 }
@@ -34,7 +33,6 @@ namespace Places.Models
             {
                 if (_tagName != value)
                 {
-                    NotifyPropertyChanging("TagName");
                     _tagName = value;
                     NotifyPropertyChanged("TagName");
                 }
@@ -81,21 +79,6 @@ namespace Places.Models
             if (PropertyChanged != null)
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-
-        #endregion
-
-        #region INotifyPropertyChanging Members
-
-        public event PropertyChangingEventHandler PropertyChanging;
-
-        // Used to notify that a property is about to change
-        private void NotifyPropertyChanging(string propertyName)
-        {
-            if (PropertyChanging != null)
-            {
-                PropertyChanging(this, new PropertyChangingEventArgs(propertyName));
             }
         }
 
