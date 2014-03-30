@@ -1,4 +1,10 @@
-﻿using System;
+﻿using Microsoft.Phone.Controls;
+using Microsoft.Phone.Shell;
+using Microsoft.Phone.Tasks;
+using Places.Models;
+using Places.Resources;
+using Places.Src;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -8,21 +14,15 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
-using Microsoft.Phone.Controls;
-using Microsoft.Phone.Shell;
-using Microsoft.Phone.Tasks;
-using Places.Models;
-using Places.Resources;
-using Places.Src;
 using Telerik.Windows.Controls;
 using Windows.ApplicationModel.Store;
 
 namespace Places
 {
-    public partial class MainPage : PhoneApplicationPage
+    public partial class MainPage
     {
         private PhotoChooserTask photoChooserTask;
-        private ObservableCollection<Location> list = new ObservableCollection<Location>();
+        private readonly ObservableCollection<Location> _list = new ObservableCollection<Location>();
 
         // Constructor
         public MainPage()
@@ -38,7 +38,7 @@ namespace Places
             ((App)Application.Current).RateReminder.Notify();
 
             listpickerFilter.ItemsSource = App.ViewModel.AllTags;
-            
+
             AdjustLists();
 
             ((ApplicationBarIconButton)ApplicationBar.Buttons[0]).Text = AppResources.AddLabel;
@@ -66,7 +66,7 @@ namespace Places
                 (bool)IsolatedStorageSettings.ApplicationSettings[Product.RemoveAds().Id])
             {
                 Dispatcher.BeginInvoke(() =>
-                {                
+                {
                     ContentPanel.Height += 80;
                     ListboxCities.Height += 80;
                     ListboxLocations.Height += 80;
@@ -94,10 +94,10 @@ namespace Places
         {
             base.OnNavigatedTo(e);
 
-            ((ApplicationBarIconButton) ApplicationBar.Buttons[1]).IsEnabled = App.Settings.LocationServiceEnabled;
+            ((ApplicationBarIconButton)ApplicationBar.Buttons[1]).IsEnabled = App.Settings.LocationServiceEnabled;
 
             if (IsolatedStorageSettings.ApplicationSettings.Contains(Product.RemoveAds().Id) &&
-                (bool) IsolatedStorageSettings.ApplicationSettings[Product.RemoveAds().Id])
+                (bool)IsolatedStorageSettings.ApplicationSettings[Product.RemoveAds().Id])
             {
                 if (ApplicationBar.MenuItems.Count >= 5)
                 {
@@ -174,7 +174,7 @@ namespace Places
         {
             App.ViewModel.SelectedLocation = new Location();
 
-        	NavigationService.Navigate(new Uri("/Views/AddLocation.xaml?new=true", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/Views/AddLocation.xaml?new=true", UriKind.Relative));
         }
 
         private void mAbout_Click(object sender, EventArgs e)
@@ -187,12 +187,12 @@ namespace Places
             NavigationService.Navigate(new Uri("/Views/Backup.xaml", UriKind.Relative));
         }
 
-        private void mManageTags_Click(object sender, System.EventArgs e)
+        private void mManageTags_Click(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/Views/ManageTags.xaml", UriKind.Relative));
         }
 
-        private void listpickerFilter_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        private void listpickerFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var tagList = listpickerFilter.SelectedItems.Cast<Tag>().ToList();
             SetFilter(tagList);
@@ -200,7 +200,7 @@ namespace Places
 
         private void SetFilter(List<Tag> tagList)
         {
-            list.Clear();
+            _list.Clear();
 
             foreach (var location in App.ViewModel.AllLocations)
             {
@@ -210,23 +210,23 @@ namespace Places
                     {
                         if (tagList.Contains(tag))
                         {
-                            if (!list.Contains(location))
+                            if (!_list.Contains(location))
                             {
-                                list.Add(location);
+                                _list.Add(location);
                             }
                         }
                     }
                 }
                 else
                 {
-                    list.Add(location);
+                    _list.Add(location);
                 }
             }
 
-            ListboxLocations.ItemsSource = list;
+            ListboxLocations.ItemsSource = _list;
         }
 
-        private void btnImportImage_Click(object sender, System.EventArgs e)
+        private void btnImportImage_Click(object sender, EventArgs e)
         {
             photoChooserTask = new PhotoChooserTask();
             photoChooserTask.Completed += PhotoImportTask_Completed;
@@ -259,13 +259,13 @@ namespace Places
         private void mSettings_Click(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/Views/Settings.xaml", UriKind.Relative));
-            }
+        }
 
-        private async void mRemoveAds_Click(object sender, System.EventArgs e)
+        private async void mRemoveAds_Click(object sender, EventArgs e)
         {
             try
             {
-                if (MessageBox.Show(AppResources.ConfirmPurchaseRemoveAdsMessage, AppResources.ConfirmPurchaseRemoveAdsTitle, MessageBoxButton.OKCancel) 
+                if (MessageBox.Show(AppResources.ConfirmPurchaseRemoveAdsMessage, AppResources.ConfirmPurchaseRemoveAdsTitle, MessageBoxButton.OKCancel)
                     == MessageBoxResult.OK)
                 {
                     var listing = await CurrentApp.LoadListingInformationAsync();
@@ -300,8 +300,6 @@ namespace Places
                 MessageBox.Show(AppResources.PurchaseWentWrongMessage, AppResources.PurchaseWentWrongTitle,
                                 MessageBoxButton.OK);
             }
-
-
         }
     }
 }

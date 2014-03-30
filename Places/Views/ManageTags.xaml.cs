@@ -1,10 +1,10 @@
-﻿using System;
-using System.Linq;
-using System.Windows;
-using Microsoft.Phone.Controls;
+﻿using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Places.Models;
 using Places.Resources;
+using System;
+using System.Linq;
+using System.Windows;
 using Telerik.Windows.Controls;
 
 namespace Places.Views
@@ -57,7 +57,7 @@ namespace Places.Views
             if (args.Result == DialogResult.OK)
             {
                 App.ViewModel.AddTag(new Tag() { TagName = args.Text });
-            }                    
+            }
         }
 
         private void btnMultipleSelect_Click(object sender, System.EventArgs e)
@@ -80,7 +80,7 @@ namespace Places.Views
             }
         }
 
-        private void ListBoxTags_IsCheckModeActiveChanged(object sender, Telerik.Windows.Controls.IsCheckModeActiveChangedEventArgs e)
+        private void ListBoxTags_IsCheckModeActiveChanged(object sender, IsCheckModeActiveChangedEventArgs e)
         {
             if (ListBoxTags.IsCheckModeActive)
             {
@@ -112,7 +112,7 @@ namespace Places.Views
                 if (args.Result == DialogResult.OK)
                 {
                     if (tag != null) tag.TagName = args.Text;
-                }                    
+                }
                 ListBoxTags.SelectedItem = null;
 
                 App.ViewModel.SaveChangesToDb();
