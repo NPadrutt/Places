@@ -20,33 +20,32 @@
             <!--Pivot item one-->
             <phone:PivotItem Header="{Binding Path=LocalizedResources.AboutTitle, Source={StaticResource LocalizedStrings}}">
                 <StackPanel>
-                    <TextBlock x:Name="lblDeveloperCaption" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding LocalizedResources.DeveloperLabel, Source={StaticResource LocalizedStrings}}" VerticalAlignment="Top" Style="{StaticResource PhoneTextSubtleStyle}"/>
-                    <TextBlock x:Name="lblDeveloper" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Apply Solutions" VerticalAlignment="Top" Style="{StaticResource PhoneTextLargeStyle}" Margin="12,0,12,10"/>
-                    <TextBlock x:Name="lblVersionCaption" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding LocalizedResources.VersionLabel, Source={StaticResource LocalizedStrings}}" VerticalAlignment="Top" Style="{StaticResource PhoneTextSubtleStyle}"/>
-                    <TextBlock x:Name="lblVersion" HorizontalAlignment="Left" TextWrapping="Wrap" Text="1.0" VerticalAlignment="Top" Margin="12,0,0,10" Style="{StaticResource PhoneTextLargeStyle}"/>
-                    <TextBlock x:Name="lblSupportAddressCaption" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding LocalizedResources.SupportAddressLabel, Source={StaticResource LocalizedStrings}}" VerticalAlignment="Top" Style="{StaticResource PhoneTextSubtleStyle}"/>
-                    <TextBlock x:Name="lblSupportAddress" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding LocalizedResources.SupportAddressMail, Source={StaticResource LocalizedStrings}}" VerticalAlignment="Top" Margin="12,0,0,10" Style="{StaticResource PhoneTextLargeStyle}" FontSize="32" Tap="lblSupportAddress_Tap" FontFamily="Segoe WP SemiLight" Foreground="{StaticResource PhoneAccentBrush}"/>
-                    <Button x:Name="btnRateApp" Content="{Binding LocalizedResources.RateAppLabel, Source={StaticResource LocalizedStrings}}" Click="btnRateApp_Click"/>
-                    <Button x:Name="btnPurchase" Content="{Binding LocalizedResources.PurchaseFullVersionLabel, Mode=OneWay, Source={StaticResource LocalizedStrings}}" Click="btnPurchase_Click"/>
+                    <TextBlock x:Name="lblDeveloperCaption" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding LocalizedResources.DeveloperLabel, Source={StaticResource LocalizedStrings}}" VerticalAlignment="Top" Style="{StaticResource PhoneTextSubtleStyle}" />
+                    <TextBlock x:Name="lblDeveloper" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Apply Solutions" VerticalAlignment="Top" Style="{StaticResource PhoneTextLargeStyle}" Margin="12,0,12,10" />
+                    <TextBlock x:Name="lblVersionCaption" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding LocalizedResources.VersionLabel, Source={StaticResource LocalizedStrings}}" VerticalAlignment="Top" Style="{StaticResource PhoneTextSubtleStyle}" />
+                    <TextBlock x:Name="lblVersion" HorizontalAlignment="Left" TextWrapping="Wrap" Text="1.0" VerticalAlignment="Top" Margin="12,0,0,10" Style="{StaticResource PhoneTextLargeStyle}" />
+                    <TextBlock x:Name="lblSupportAddressCaption" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding LocalizedResources.SupportAddressLabel, Source={StaticResource LocalizedStrings}}" VerticalAlignment="Top" Style="{StaticResource PhoneTextSubtleStyle}" />
+                    <TextBlock x:Name="lblSupportAddress" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding LocalizedResources.SupportAddressMail, Source={StaticResource LocalizedStrings}}" VerticalAlignment="Top" Margin="12,0,0,10" Style="{StaticResource PhoneTextLargeStyle}" FontSize="32" Tap="lblSupportAddress_Tap" FontFamily="Segoe WP SemiLight" Foreground="{StaticResource PhoneAccentBrush}" />
+                    <Button x:Name="btnRateApp" Content="{Binding LocalizedResources.RateAppLabel, Source={StaticResource LocalizedStrings}}" Click="btnRateApp_Click" />
+                    <Button x:Name="btnPurchase" Content="{Binding LocalizedResources.PurchaseFullVersionLabel, Mode=OneWay, Source={StaticResource LocalizedStrings}}" Click="btnPurchase_Click" />
                 </StackPanel>
             </phone:PivotItem>
 
             <!--Pivot item two-->
             <phone:PivotItem Header="{Binding Path=LocalizedResources.WhatsNewTitle, Source={StaticResource LocalizedStrings}}">
                 <ScrollViewer Margin="0,0,0,-117">
-            		<StackPanel>
-            			<Grid Height="32" Margin="0" Background="{StaticResource PhoneAccentBrush}" VerticalAlignment="Top">
-                            <TextBlock TextWrapping="Wrap" HorizontalAlignment="Left" Width="456" Style="{StaticResource PhoneTextNormalStyle}" Margin="0" Text="{Binding Path=LocalizedResources.ReleaseMessageLabel, Source={StaticResource LocalizedStrings}}" FontSize="24" FontFamily="Segoe WP" FontWeight="Bold" d:LayoutOverrides="Height"/>
-            			</Grid>
-                        <TextBlock TextWrapping="Wrap" Text="{Binding Path=LocalizedResources.ReleaseMessageText, Source={StaticResource LocalizedStrings}}" HorizontalAlignment="Left" Width="456"/>
-            			<Grid Margin="0,30,0,0" Background="{StaticResource PhoneAccentBrush}">
-                            <TextBlock TextWrapping="Wrap" Style="{StaticResource PhoneTextNormalStyle}" Margin="0" Text="{Binding Path=LocalizedResources.ChangelogLabel, Source={StaticResource LocalizedStrings}}" FontSize="24" d:LayoutOverrides="Height" FontWeight="Bold"/>
-            			</Grid>
-                        <TextBlock TextWrapping="Wrap" Text="{Binding Path=LocalizedResources.ChangelogText, Source={StaticResource LocalizedStrings}}" HorizontalAlignment="Left" Width="456"/>
-            		</StackPanel>
-            	</ScrollViewer>
+                    <StackPanel>
+                        <Grid Height="32" Margin="0" Background="{StaticResource PhoneAccentBrush}" VerticalAlignment="Top">
+                            <TextBlock TextWrapping="Wrap" HorizontalAlignment="Left" Width="456" Style="{StaticResource PhoneTextNormalStyle}" Margin="0" Text="{Binding Path=LocalizedResources.ReleaseMessageLabel, Source={StaticResource LocalizedStrings}}" FontSize="24" FontFamily="Segoe WP" FontWeight="Bold" d:LayoutOverrides="Height" />
+                        </Grid>
+                        <TextBlock TextWrapping="Wrap" Text="{Binding Path=LocalizedResources.ReleaseMessageText, Source={StaticResource LocalizedStrings}}" HorizontalAlignment="Left" Width="456" />
+                        <Grid Margin="0,30,0,0" Background="{StaticResource PhoneAccentBrush}">
+                            <TextBlock TextWrapping="Wrap" Style="{StaticResource PhoneTextNormalStyle}" Margin="0" Text="{Binding Path=LocalizedResources.ChangelogLabel, Source={StaticResource LocalizedStrings}}" FontSize="24" d:LayoutOverrides="Height" FontWeight="Bold" />
+                        </Grid>
+                        <TextBlock TextWrapping="Wrap" Text="{Binding Path=LocalizedResources.ChangelogText, Source={StaticResource LocalizedStrings}}" HorizontalAlignment="Left" Width="456" />
+                    </StackPanel>
+                </ScrollViewer>
             </phone:PivotItem>
         </phone:Pivot>
     </Grid>
-    
 </phone:PhoneApplicationPage>

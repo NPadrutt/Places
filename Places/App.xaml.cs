@@ -104,29 +104,6 @@ namespace Places
 
             Action actionGetPosition = () => Deployment.Current.Dispatcher.BeginInvoke(() => Utilities.GetPosition(PositionAccuracy.Default, 4));
             Task.Factory.StartNew(actionGetPosition, TaskCreationOptions.LongRunning);
-
-            CheckLicense();
-        }
-
-        private async void CheckLicense()
-        {
-            try
-            {
-                var listing = await CurrentApp.LoadListingInformationAsync();
-                var removedAds =
-                    listing.ProductListings.FirstOrDefault(p => p.Value.ProductId == Product.RemoveAds().Id);
-
-                IsolatedStorageSettings.ApplicationSettings.Add(removedAds.Key,
-                    CurrentApp.LicenseInformation.ProductLicenses[
-                            removedAds.Key].IsActive);
-            }
-            catch (Exception ex)
-            {
-                if (ex.Message.Contains("0x805A0194"))
-                {
-                    BugSenseHandler.Instance.LogException(ex);
-                }
-            }
         }
 
         // Code to execute when the application is launching (eg, from Start)

@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Places.Models;
+using System;
 using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
-using Places.Models;
 
 namespace Places.ViewModels
 {
@@ -10,11 +10,11 @@ namespace Places.ViewModels
     {
         #region Settings and Default Definition
 
-        const string LocationServiceEnabledKeyName = "LocationServiceEnabled";
+        private const string LocationServiceEnabledKeyName = "LocationServiceEnabled";
 
-        const bool LocationServiceEnabledKeyDefault = false;
+        private const bool LocationServiceEnabledKeyDefault = false;
 
-        #endregion
+        #endregion Settings and Default Definition
 
         private void AddOrUpdateValue(string key, Object value)
         {
@@ -76,6 +76,7 @@ namespace Places.ViewModels
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
-        #endregion
+
+        #endregion INotifyPropertyChanged Members
     }
 }

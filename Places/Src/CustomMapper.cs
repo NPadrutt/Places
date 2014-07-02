@@ -3,7 +3,7 @@ using System.Windows.Navigation;
 
 namespace Places.Src
 {
-    class CustomUriMapper : UriMapperBase
+    internal class CustomUriMapper : UriMapperBase
     {
         public override Uri MapUri(Uri uri)
         {

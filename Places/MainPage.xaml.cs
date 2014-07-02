@@ -267,30 +267,7 @@ namespace Places
                 if (MessageBox.Show(AppResources.ConfirmPurchaseRemoveAdsMessage, AppResources.ConfirmPurchaseRemoveAdsTitle, MessageBoxButton.OKCancel)
                     == MessageBoxResult.OK)
                 {
-                    var listing = await CurrentApp.LoadListingInformationAsync();
-                    var removedAds =
-                        listing.ProductListings.FirstOrDefault(p => p.Value.ProductId == Product.RemoveAds().Id);
-
-                    await CurrentApp.RequestProductPurchaseAsync(removedAds.Key, true);
-
-                    if (CurrentApp.LicenseInformation.ProductLicenses[removedAds.Key].IsActive)
-                    {
-                        if (!IsolatedStorageSettings.ApplicationSettings.Contains(removedAds.Key))
-                        {
-                            IsolatedStorageSettings.ApplicationSettings.Add(removedAds.Key,
-                                                                            CurrentApp.LicenseInformation
-                                                                                      .ProductLicenses[
-                                                                                          removedAds.Key].IsActive);
-                        }
-                        else if (IsolatedStorageSettings.ApplicationSettings.Contains(removedAds.Key))
-                        {
-                            IsolatedStorageSettings.ApplicationSettings[removedAds.Key] =
-                                CurrentApp.LicenseInformation.ProductLicenses[removedAds.Key].IsActive;
-                        }
-                        AdjustLists();
-                        MessageBox.Show(AppResources.PurchaseSuccessfulMessage, AppResources.PurchaseSuccessfulTitle,
-                                        MessageBoxButton.OK);
-                    }
+                    //TODO: Reimplement In App Purchase
                 }
             }
             catch (Exception)

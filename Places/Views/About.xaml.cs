@@ -1,9 +1,9 @@
-﻿using System.Windows;
-using System.Windows.Navigation;
-using Microsoft.Phone.Controls;
+﻿using Microsoft.Phone.Controls;
 using Microsoft.Phone.Tasks;
 using Places.Resources;
 using Places.Src;
+using System.Windows;
+using System.Windows.Navigation;
 using GestureEventArgs = System.Windows.Input.GestureEventArgs;
 
 namespace Places.Views

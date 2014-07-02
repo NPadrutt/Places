@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Windows;
+﻿using BugSense;
 using Microsoft.Phone.Data.Linq;
 using Places.Models;
 using Places.Resources;
 using Places.Src;
+using System;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.IO;
+using System.Linq;
+using System.Windows;
 using StringComparer = Places.Src.StringComparer;
 
 namespace Places.ViewModels
@@ -88,6 +87,7 @@ namespace Places.ViewModels
         #region Address
 
         private ObservableCollection<string> allCities;
+
         public ObservableCollection<string> AllCities
         {
             get { return allCities; }
@@ -109,11 +109,12 @@ namespace Places.ViewModels
             AllCities.Insert(0, AppResources.AllLabel);
         }
 
-        #endregion
+        #endregion Address
 
         #region Location
 
         private Location selectedLocation;
+
         public Location SelectedLocation
         {
             get { return selectedLocation; }
@@ -125,6 +126,7 @@ namespace Places.ViewModels
         }
 
         private Stream selectedImageStream;
+
         public Stream SelectedImageStream
         {
             get { return selectedImageStream; }
@@ -136,6 +138,7 @@ namespace Places.ViewModels
         }
 
         private string selectedCity;
+
         public string SelectedCity
         {
             get { return selectedCity; }
@@ -147,6 +150,7 @@ namespace Places.ViewModels
         }
 
         private ObservableCollection<Location> allLocations;
+
         public ObservableCollection<Location> AllLocations
         {
             get { return allLocations; }
@@ -191,7 +195,7 @@ namespace Places.ViewModels
             }
             AllLocations.Remove(LocationToDelete);
             db.Locations.DeleteOnSubmit(LocationToDelete);
-            db.LocationAddresses.DeleteOnSubmit(LocationToDelete.LocationAddress);  
+            db.LocationAddresses.DeleteOnSubmit(LocationToDelete.LocationAddress);
 
             db.SubmitChanges();
         }
@@ -199,10 +203,10 @@ namespace Places.ViewModels
         public void LoadLocations()
         {
             var locationItemsInDb = from location in db.Locations
-                join LocationAddress adr in db.LocationAddresses
-                    on new {location.LocationAddress.Id} equals new {adr.Id}
-                orderby location.Name
-                select location;
+                                    join LocationAddress adr in db.LocationAddresses
+                                        on new { location.LocationAddress.Id } equals new { adr.Id }
+                                    orderby location.Name
+                                    select location;
 
             AllLocations = new ObservableCollection<Location>(locationItemsInDb);
 
@@ -218,11 +222,11 @@ namespace Places.ViewModels
         public void LoadLocationsByCity(string city)
         {
             var locationItemsInDb = from location in db.Locations
-                join LocationAddress adr in db.LocationAddresses
-                    on new {location.LocationAddress.Id} equals new {adr.Id}
-                where location.LocationAddress.City == city
-                orderby location.LocationAddress.City
-                select location;
+                                    join LocationAddress adr in db.LocationAddresses
+                                        on new { location.LocationAddress.Id } equals new { adr.Id }
+                                    where location.LocationAddress.City == city
+                                    orderby location.LocationAddress.City
+                                    select location;
 
             AllLocations = new ObservableCollection<Location>(locationItemsInDb);
 
@@ -247,6 +251,7 @@ namespace Places.ViewModels
             }
             catch (Exception ex)
             {
+                BugSenseHandler.Instance.LogException(ex);
                 MessageBox.Show(AppResources.LocationNoExistingMessage, AppResources.LocationNotExistingTitle,
                     MessageBoxButton.OK);
             }
@@ -265,11 +270,12 @@ namespace Places.ViewModels
             return new ObservableCollection<Location>(locationItemsInDb);
         }
 
-        #endregion
+        #endregion Location
 
         #region Tags
 
         private ObservableCollection<Tag> _allTags;
+
         public ObservableCollection<Tag> AllTags
         {
             get { return _allTags; }
@@ -308,17 +314,18 @@ namespace Places.ViewModels
         public void LoadTags()
         {
             var tagsItemsInDb = from Tag tag in db.Tags
-                                    orderby tag.TagName
-                                    select tag;
+                                orderby tag.TagName
+                                select tag;
 
-           AllTags = new ObservableCollection<Tag>(tagsItemsInDb);
+            AllTags = new ObservableCollection<Tag>(tagsItemsInDb);
         }
 
-        #endregion
+        #endregion Tags
 
         #region Position
 
         private Position _currentPosition;
+
         public Position CurrentPosition
         {
             get { return _currentPosition; }
@@ -330,6 +337,7 @@ namespace Places.ViewModels
         }
 
         private LocationAddress _currentAddress;
+
         public LocationAddress CurrentAddress
         {
             get { return _currentAddress; }
@@ -340,7 +348,7 @@ namespace Places.ViewModels
             }
         }
 
-        #endregion
+        #endregion Position
 
         #region INotifyPropertyChanged Members
 
@@ -354,6 +362,7 @@ namespace Places.ViewModels
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
-        #endregion
+
+        #endregion INotifyPropertyChanged Members
     }
 }

@@ -5,54 +5,53 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives" 
-	xmlns:telerik="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Core" 
-    x:Class="Places.Views.ManageTags" 
+	xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
+	xmlns:telerik="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Core"
+    x:Class="Places.Views.ManageTags"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
     shell:SystemTray.IsVisible="True">
-	<phone:PhoneApplicationPage.Resources>
-		<DataTemplate x:Key="AllTagsItemTemplate">
-			<StackPanel Width="455" Margin="0,0,12,10">
-				<TextBlock Text="{Binding TagName}" Style="{StaticResource PhoneTextLargeStyle}" Margin="12,0,0,-1"/>
-				<Path Data="M9,242 L456,242" Fill="#FFF4F4F5" Height="5" Stretch="Fill" UseLayoutRounding="False" Stroke="{StaticResource PhoneAccentBrush}" StrokeThickness="2" Margin="12,0,0,0"/>
-			</StackPanel>
-		</DataTemplate>
-	</phone:PhoneApplicationPage.Resources>
-	<phone:PhoneApplicationPage.ApplicationBar>
-		<shell:ApplicationBar>
-			<shell:ApplicationBarIconButton x:Name="btnAddTag" IconUri="/Assets/AppBar/add.png" Text="button" Click="btnAddTag_Click"/>
-		</shell:ApplicationBar>
-	</phone:PhoneApplicationPage.ApplicationBar>
+    <phone:PhoneApplicationPage.Resources>
+        <DataTemplate x:Key="AllTagsItemTemplate">
+            <StackPanel Width="455" Margin="0,0,12,10">
+                <TextBlock Text="{Binding TagName}" Style="{StaticResource PhoneTextLargeStyle}" Margin="12,0,0,-1" />
+                <Path Data="M9,242 L456,242" Fill="#FFF4F4F5" Height="5" Stretch="Fill" UseLayoutRounding="False" Stroke="{StaticResource PhoneAccentBrush}" StrokeThickness="2" Margin="12,0,0,0" />
+            </StackPanel>
+        </DataTemplate>
+    </phone:PhoneApplicationPage.Resources>
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar>
+            <shell:ApplicationBarIconButton x:Name="btnAddTag" IconUri="/Assets/AppBar/add.png" Text="button" Click="btnAddTag_Click" />
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
 
     <!--LayoutRoot is the root grid where all page content is placed-->
-	<Grid x:Name="LayoutRoot" Background="Transparent">
-		<Grid.RowDefinitions>
-			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="*"/>
-		</Grid.RowDefinitions>
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
-		<!--TitlePanel contains the name of the application and page title-->
-		<StackPanel Grid.Row="0" Margin="12,17,0,28">
-			<TextBlock Text="{Binding LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}"/>
-			<TextBlock Text="{Binding LocalizedResources.TagTitle, Source={StaticResource LocalizedStrings}}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
-		</StackPanel>
-		<Grid x:Name="ContentPanel" Grid.Row="1">
-    		<telerikPrimitives:RadDataBoundListBox x:Name="ListBoxTags" ItemTemplate="{StaticResource AllTagsItemTemplate}" ItemsSource="{Binding AllTags}" IsCheckModeEnabled="True" IsCheckModeActiveChanged="ListBoxTags_IsCheckModeActiveChanged" SelectionChanged="ListBoxTags_SelectionChanged">
-    			<telerikPrimitives:RadDataBoundListBox.ItemAddedAnimation>
-					<telerik:RadMoveAnimation StartPoint="500, 0" EndPoint="0, 0" Duration="0:0:1">
-						<telerik:RadMoveAnimation.Easing>
-							<CubicEase EasingMode="EaseOut"/>
-						</telerik:RadMoveAnimation.Easing>
-					</telerik:RadMoveAnimation>
-				</telerikPrimitives:RadDataBoundListBox.ItemAddedAnimation>
-			</telerikPrimitives:RadDataBoundListBox>
-		</Grid>
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock Text="{Binding LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}" />
+            <TextBlock Text="{Binding LocalizedResources.TagTitle, Source={StaticResource LocalizedStrings}}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" />
+        </StackPanel>
+        <Grid x:Name="ContentPanel" Grid.Row="1">
+            <telerikPrimitives:RadDataBoundListBox x:Name="ListBoxTags" ItemTemplate="{StaticResource AllTagsItemTemplate}" ItemsSource="{Binding AllTags}" IsCheckModeEnabled="True" IsCheckModeActiveChanged="ListBoxTags_IsCheckModeActiveChanged" SelectionChanged="ListBoxTags_SelectionChanged">
+                <telerikPrimitives:RadDataBoundListBox.ItemAddedAnimation>
+                    <telerik:RadMoveAnimation StartPoint="500, 0" EndPoint="0, 0" Duration="0:0:1">
+                        <telerik:RadMoveAnimation.Easing>
+                            <CubicEase EasingMode="EaseOut" />
+                        </telerik:RadMoveAnimation.Easing>
+                    </telerik:RadMoveAnimation>
+                </telerikPrimitives:RadDataBoundListBox.ItemAddedAnimation>
+            </telerikPrimitives:RadDataBoundListBox>
+        </Grid>
 
-		<!--ContentPanel - place additional content here-->
-	</Grid>
-
+        <!--ContentPanel - place additional content here-->
+    </Grid>
 </phone:PhoneApplicationPage>

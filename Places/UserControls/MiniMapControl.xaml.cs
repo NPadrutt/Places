@@ -1,7 +1,7 @@
-﻿using System.Device.Location;
-using Microsoft.Phone.Maps;
+﻿using Microsoft.Phone.Maps;
 using Microsoft.Phone.Maps.Controls;
 using Microsoft.Phone.Maps.Toolkit;
+using System.Device.Location;
 
 namespace Places.UserControls
 {

@@ -1,7 +1,6 @@
 ﻿using Places.Src;
 using PropertyChanged;
 using System;
-using System.ComponentModel;
 using System.Data.Linq;
 using System.Data.Linq.Mapping;
 using System.Windows.Media.Imaging;

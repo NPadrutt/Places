@@ -12,63 +12,60 @@
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
     shell:SystemTray.IsVisible="True">
-	
-	<phone:PhoneApplicationPage.FontFamily>
-		<StaticResource ResourceKey="PhoneFontFamilyNormal"/>
-	</phone:PhoneApplicationPage.FontFamily>
-	<phone:PhoneApplicationPage.FontSize>
-		<StaticResource ResourceKey="PhoneFontSizeNormal"/>
-	</phone:PhoneApplicationPage.FontSize>
-	<phone:PhoneApplicationPage.Foreground>
-		<StaticResource ResourceKey="PhoneForegroundBrush"/>
-	</phone:PhoneApplicationPage.Foreground>
-	<phone:PhoneApplicationPage.ApplicationBar>
-		<shell:ApplicationBar>
-			<shell:ApplicationBar.MenuItems>
-				<shell:ApplicationBarMenuItem x:Name="menuRefreshPosition" Text="refresh position" Click="menuRefreshPosition_Click"/>
-				<shell:ApplicationBarMenuItem x:Name="menuDownloadMaps" Text="Download Maps" Click="menuDownloadMaps_Click"/>
-			</shell:ApplicationBar.MenuItems>
-			<shell:ApplicationBarIconButton x:Name="btnSwapPosition" IconUri="/Assets/swapPosition.png" Text="swap Position" Click="btnSwapPosition_Click"/>
-			<shell:ApplicationBarIconButton x:Name="btnNavigation" IconUri="/Assets/Navigation.png" Text="Navigation" Click="btnNavigation_Click"/>
-            <shell:ApplicationBarIconButton x:Name="btnLayers" IconUri="/Assets/Layers.png" Text="button" Click="btnLayers_Click"/>
-		</shell:ApplicationBar>
-	</phone:PhoneApplicationPage.ApplicationBar>
+
+    <phone:PhoneApplicationPage.FontFamily>
+        <StaticResource ResourceKey="PhoneFontFamilyNormal" />
+    </phone:PhoneApplicationPage.FontFamily>
+    <phone:PhoneApplicationPage.FontSize>
+        <StaticResource ResourceKey="PhoneFontSizeNormal" />
+    </phone:PhoneApplicationPage.FontSize>
+    <phone:PhoneApplicationPage.Foreground>
+        <StaticResource ResourceKey="PhoneForegroundBrush" />
+    </phone:PhoneApplicationPage.Foreground>
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar>
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem x:Name="menuRefreshPosition" Text="refresh position" Click="menuRefreshPosition_Click" />
+                <shell:ApplicationBarMenuItem x:Name="menuDownloadMaps" Text="Download Maps" Click="menuDownloadMaps_Click" />
+            </shell:ApplicationBar.MenuItems>
+            <shell:ApplicationBarIconButton x:Name="btnSwapPosition" IconUri="/Assets/swapPosition.png" Text="swap Position" Click="btnSwapPosition_Click" />
+            <shell:ApplicationBarIconButton x:Name="btnNavigation" IconUri="/Assets/Navigation.png" Text="Navigation" Click="btnNavigation_Click" />
+            <shell:ApplicationBarIconButton x:Name="btnLayers" IconUri="/Assets/Layers.png" Text="button" Click="btnLayers_Click" />
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
 
     <shell:SystemTray.ProgressIndicator>
         <shell:ProgressIndicator x:Name="ProgressionbarGetLocation" Text="{Binding LocalizedResources.GettingYourPositionLabel, Source={StaticResource LocalizedStrings}}" IsIndeterminate="true" IsVisible="True" />
     </shell:SystemTray.ProgressIndicator>
 
     <Grid x:Name="LayoutRoot" Background="Transparent">
-		<Grid.RowDefinitions>
-			<RowDefinition Height="*"/>
-		</Grid.RowDefinitions>
-    	<Grid x:Name="ContentPanel" Grid.Row="0" Margin="12,0,12,0">
-    		<telerikPrimitives:RadWindow x:Name="WindowLayers" IsClosedOnOutsideTap="True" Placement="CenterCenter" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="86,216,70,180" Width="400" Visibility="Collapsed">
-                <Border Background="{StaticResource PhoneTextBoxReadOnlyBrush}" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid x:Name="ContentPanel" Grid.Row="0" Margin="12,0,12,0">
+            <telerikPrimitives:RadWindow x:Name="WindowLayers" IsClosedOnOutsideTap="True" Placement="CenterCenter" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="86,216,70,180" Width="400" Visibility="Collapsed">
+                <Border Background="{StaticResource PhoneTextBoxReadOnlyBrush}">
                     <StackPanel>
-                        <RadioButton x:Name="RadioBtnRoad" GroupName="CartographicMode" Content="{Binding LocalizedResources.RoadLabel, Source={StaticResource LocalizedStrings}}" Checked="RadioBtnRoad_Checked"/>
-                        <RadioButton x:Name="RadioBtnAerial" GroupName="CartographicMode" Content="{Binding LocalizedResources.AerialLabel, Source={StaticResource LocalizedStrings}}" Checked="RadioBtnAerial_Checked"/>
-                        <RadioButton x:Name="RadioBtnHybrid" GroupName="CartographicMode" Content="{Binding LocalizedResources.HybridLabel, Source={StaticResource LocalizedStrings}}" Checked="RadioBtnHybrid_Checked"/>
-                        <RadioButton x:Name="RadioBtnTerrain" GroupName="CartographicMode" Content="{Binding LocalizedResources.TerrainLabel, Source={StaticResource LocalizedStrings}}" Checked="RadioBtnTerrain_Checked"/>
-                	</StackPanel>
+                        <RadioButton x:Name="RadioBtnRoad" GroupName="CartographicMode" Content="{Binding LocalizedResources.RoadLabel, Source={StaticResource LocalizedStrings}}" Checked="RadioBtnRoad_Checked" />
+                        <RadioButton x:Name="RadioBtnAerial" GroupName="CartographicMode" Content="{Binding LocalizedResources.AerialLabel, Source={StaticResource LocalizedStrings}}" Checked="RadioBtnAerial_Checked" />
+                        <RadioButton x:Name="RadioBtnHybrid" GroupName="CartographicMode" Content="{Binding LocalizedResources.HybridLabel, Source={StaticResource LocalizedStrings}}" Checked="RadioBtnHybrid_Checked" />
+                        <RadioButton x:Name="RadioBtnTerrain" GroupName="CartographicMode" Content="{Binding LocalizedResources.TerrainLabel, Source={StaticResource LocalizedStrings}}" Checked="RadioBtnTerrain_Checked" />
+                    </StackPanel>
                 </Border>
             </telerikPrimitives:RadWindow>
-    		<maps:Map x:Name="MyMap" LandmarksEnabled="True" Loaded="Map_Loaded" PedestrianFeaturesEnabled="True" Grid.Row="0" Margin="-12,0" >
-    			<toolkit:MapExtensions.Children>
-    				<toolkit:MapItemsControl x:Name="LocationItems">
-    					<toolkit:MapItemsControl.ItemTemplate>
-    						<DataTemplate>
-    							<toolkit:Pushpin GeoCoordinate="{Binding Coordinate}" Content="{Binding Name}" />
-    						</DataTemplate>
-    					</toolkit:MapItemsControl.ItemTemplate>
-    				</toolkit:MapItemsControl>
-    			</toolkit:MapExtensions.Children>
-    		</maps:Map>
-    	</Grid>
+            <maps:Map x:Name="MyMap" LandmarksEnabled="True" Loaded="Map_Loaded" PedestrianFeaturesEnabled="True" Grid.Row="0" Margin="-12,0">
+                <toolkit:MapExtensions.Children>
+                    <toolkit:MapItemsControl x:Name="LocationItems">
+                        <toolkit:MapItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <toolkit:Pushpin GeoCoordinate="{Binding Coordinate}" Content="{Binding Name}" />
+                            </DataTemplate>
+                        </toolkit:MapItemsControl.ItemTemplate>
+                    </toolkit:MapItemsControl>
+                </toolkit:MapExtensions.Children>
+            </maps:Map>
+        </Grid>
 
-
-
-		<!--ContentPanel - place additional content here-->
-	</Grid>
-
+        <!--ContentPanel - place additional content here-->
+    </Grid>
 </phone:PhoneApplicationPage>

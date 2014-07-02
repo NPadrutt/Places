@@ -4,96 +4,96 @@
       changes to this file can cause errors.
 -->
 <SampleData:LocationSampleDataSource xmlns:SampleData="clr-namespace:Expression.Blend.SampleData.LocationSampleDataSource" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-  <SampleData:LocationSampleDataSource.AllLocations>
-    <SampleData:AllLocationsItem Name="Aenean class curae" Latitude="4567 Main St., Buffalo, NY 98052" Longtitude="Cras duis maecenas aenean">
-      <SampleData:AllLocationsItem.Address>
-        <SampleData:AddressItem Street="4567 Main St., Buffalo, NY 98052" HouseNumber="178" PostalCode="6385" City="A. Datum Corporation" District="Nam sed" State="Class" />
-        <SampleData:AddressItem Street="1234 Main St., Buffalo, NY 98052" HouseNumber="439" PostalCode="3156" City="Adventure Works" District="Maecenas" State="Curae" />
-        <SampleData:AddressItem Street="2345 Main St., Buffalo, NY 98052" HouseNumber="730" PostalCode="9884" City="Adventure Works" District="Aliquam" State="Nam" />
-        <SampleData:AddressItem Street="789 Main St., Buffalo, NY 98052" HouseNumber="251" PostalCode="1669" City="Alpine Ski House" District="Dis integer" State="Sed" />
-        <SampleData:AddressItem Street="4567 Front St., Seattle, WA 12345" HouseNumber="813" PostalCode="4229" City="Baldwin Museum of Science" District="Aenean mauris" State="Dis" />
-      </SampleData:AllLocationsItem.Address>
-    </SampleData:AllLocationsItem>
-    <SampleData:AllLocationsItem Name="Nam cras aliquam sed" Latitude="1234 Main St., Buffalo, NY 98052" Longtitude="Nunc class praesent nam">
-      <SampleData:AllLocationsItem.Address>
-        <SampleData:AddressItem Street="1234 Front St., Seattle, WA 12345" HouseNumber="369" PostalCode="2586" City="Blue Yonder Airlines" District="Class" State="Cras" />
-        <SampleData:AddressItem Street="2345 Front St., Seattle, WA 12345" HouseNumber="917" PostalCode="1815" City="City Power &amp; Light" District="Nullam" State="Aliquam" />
-        <SampleData:AddressItem Street="789 Front St., Seattle, WA 12345" HouseNumber="298" PostalCode="4681" City="Coho Vineyard" District="Cras" State="Maecenas" />
-        <SampleData:AddressItem Street="4567 Main St., Seattle, WA 12345" HouseNumber="221" PostalCode="9918" City="Coho Winery" District="Aptent" State="Duis" />
-        <SampleData:AddressItem Street="1234 1st Ave, San Francisco, CA 99999" HouseNumber="673" PostalCode="9431" City="Coho Vineyard &amp; Winery" District="Duis" State="Donec" />
-      </SampleData:AllLocationsItem.Address>
-    </SampleData:AllLocationsItem>
-    <SampleData:AllLocationsItem Name="Donec duis" Latitude="2345 Main St., Buffalo, NY 98052" Longtitude="Accumsan mauris curae">
-      <SampleData:AllLocationsItem.Address>
-        <SampleData:AddressItem Street="2345 1st Ave, San Francisco, CA 99999" HouseNumber="695" PostalCode="2577" City="Contoso, Ltd" District="Curae est" State="Etiam" />
-        <SampleData:AddressItem Street="789 1st Ave, San Francisco, CA 99999" HouseNumber="241" PostalCode="6376" City="Contoso Pharmaceuticals" District="Hac nunc" State="Integer" />
-        <SampleData:AddressItem Street="4567 1st Ave, San Francisco, CA 99999" HouseNumber="311" PostalCode="3066" City="Consolidated Messenger" District="Amet auctor" State="Praesent" />
-        <SampleData:AddressItem Street="1234 Main St., San Francisco, CA 99999" HouseNumber="844" PostalCode="1864" City="Fabrikam, Inc." District="Leo ante" State="Nunc" />
-        <SampleData:AddressItem Street="2345 Front St., San Francisco, CA 99999" HouseNumber="432" PostalCode="7894" City="Fourth Coffee" District="Praesent donec" State="Fusce" />
-      </SampleData:AllLocationsItem.Address>
-    </SampleData:AllLocationsItem>
-    <SampleData:AllLocationsItem Name="Integer maecenas etiam mauris" Latitude="789 Main St., Buffalo, NY 98052" Longtitude="Bibendum aliquam nullam sed">
-      <SampleData:AllLocationsItem.Address>
-        <SampleData:AddressItem Street="789 22nd St NE, Miami, FL 98052" HouseNumber="603" PostalCode="5548" City="Graphic Design Institute" District="Congue" State="Quisque" />
-        <SampleData:AddressItem Street="4567 22nd St NE, Miami, FL 98052" HouseNumber="161" PostalCode="2336" City="Humongous Insurance" District="Quisque etiam" State="Accumsan" />
-        <SampleData:AddressItem Street="1234 22nd St NE, Miami, FL 98052" HouseNumber="491" PostalCode="8874" City="Litware, Inc." District="Mus accumsan" State="Lorem" />
-        <SampleData:AddressItem Street="2345 22nd St NE, Miami, FL 98052" HouseNumber="265" PostalCode="2940" City="Lucerne Publishing" District="Nec" State="Amet" />
-        <SampleData:AddressItem Street="4567 Main St., Buffalo, NY 98052" HouseNumber="282" PostalCode="6131" City="Margie's Travel" District="Cursus" State="Morbi" />
-      </SampleData:AllLocationsItem.Address>
-    </SampleData:AllLocationsItem>
-    <SampleData:AllLocationsItem Name="Quisque praesent" Latitude="4567 Front St., Seattle, WA 12345" Longtitude="Aptent auctor">
-      <SampleData:AllLocationsItem.Address>
-        <SampleData:AddressItem Street="1234 Main St., Buffalo, NY 98052" HouseNumber="282" PostalCode="1761" City="Northwind Traders" District="Dictum bibendum" State="Bibendum" />
-        <SampleData:AddressItem Street="2345 Main St., Buffalo, NY 98052" HouseNumber="274" PostalCode="7041" City="Proseware, Inc." District="Non" State="Nulla" />
-        <SampleData:AddressItem Street="789 Main St., Buffalo, NY 98052" HouseNumber="164" PostalCode="1007" City="School of Fine Art" District="Per" State="Proin" />
-        <SampleData:AddressItem Street="4567 Front St., Seattle, WA 12345" HouseNumber="487" PostalCode="6014" City="Southridge Video" District="Lectus" State="Est" />
-        <SampleData:AddressItem Street="1234 Front St., Seattle, WA 12345" HouseNumber="980" PostalCode="9596" City="Tailspin Toys" District="Sed dictumst" State="Aenean" />
-      </SampleData:AllLocationsItem.Address>
-    </SampleData:AllLocationsItem>
-    <SampleData:AllLocationsItem Name="Dis fusce accumsan est" Latitude="1234 Front St., Seattle, WA 12345" Longtitude="Integer amet">
-      <SampleData:AllLocationsItem.Address>
-        <SampleData:AddressItem Street="2345 Front St., Seattle, WA 12345" HouseNumber="709" PostalCode="7419" City="Trey Research" District="Libero" State="Hac" />
-        <SampleData:AddressItem Street="789 Front St., Seattle, WA 12345" HouseNumber="230" PostalCode="4951" City="The Phone Company" District="Fusce eleifend" State="Vivamus" />
-        <SampleData:AddressItem Street="4567 Main St., Seattle, WA 12345" HouseNumber="951" PostalCode="4083" City="Wide World Importers" District="Sem lorem" State="Leo" />
-        <SampleData:AddressItem Street="1234 1st Ave, San Francisco, CA 99999" HouseNumber="241" PostalCode="1837" City="Wingtip Toys" District="Vivamus morbi" State="Augue" />
-        <SampleData:AddressItem Street="2345 1st Ave, San Francisco, CA 99999" HouseNumber="241" PostalCode="4217" City="Woodgrove Bank" District="Arcu" State="Aliquam" />
-      </SampleData:AllLocationsItem.Address>
-    </SampleData:AllLocationsItem>
-    <SampleData:AllLocationsItem Name="Hac nunc" Latitude="2345 Front St., Seattle, WA 12345" Longtitude="Dictumst eleifend donec facilisi">
-      <SampleData:AllLocationsItem.Address>
-        <SampleData:AddressItem Street="789 1st Ave, San Francisco, CA 99999" HouseNumber="772" PostalCode="1856" City="A. Datum Corporation" District="Facilisi" State="Mus" />
-        <SampleData:AddressItem Street="4567 1st Ave, San Francisco, CA 99999" HouseNumber="232" PostalCode="6839" City="Adventure Works" District="Aliquam" State="Dolor" />
-        <SampleData:AddressItem Street="1234 Main St., San Francisco, CA 99999" HouseNumber="170" PostalCode="2046" City="Adventure Works" District="Aliquet sit" State="Fames" />
-        <SampleData:AddressItem Street="2345 Front St., San Francisco, CA 99999" HouseNumber="614" PostalCode="4411" City="Alpine Ski House" District="Diam" State="Felis" />
-        <SampleData:AddressItem Street="789 22nd St NE, Miami, FL 98052" HouseNumber="966" PostalCode="1641" City="Baldwin Museum of Science" District="Nulla ligula" State="Mauris" />
-      </SampleData:AllLocationsItem.Address>
-    </SampleData:AllLocationsItem>
-    <SampleData:AllLocationsItem Name="Bibendum leo vivamus" Latitude="789 Front St., Seattle, WA 12345" Longtitude="Congue ante etiam">
-      <SampleData:AllLocationsItem.Address>
-        <SampleData:AddressItem Street="4567 22nd St NE, Miami, FL 98052" HouseNumber="806" PostalCode="6750" City="Blue Yonder Airlines" District="Proin" State="Ipsum" />
-        <SampleData:AddressItem Street="1234 22nd St NE, Miami, FL 98052" HouseNumber="754" PostalCode="5526" City="City Power &amp; Light" District="Augue litora" State="Nec" />
-        <SampleData:AddressItem Street="2345 22nd St NE, Miami, FL 98052" HouseNumber="310" PostalCode="6051" City="Coho Vineyard" District="Vel luctus" State="Aliquet" />
-        <SampleData:AddressItem Street="4567 Main St., Buffalo, NY 98052" HouseNumber="515" PostalCode="6775" City="Coho Winery" District="Dolor" State="Dictumst" />
-        <SampleData:AddressItem Street="1234 Main St., Buffalo, NY 98052" HouseNumber="354" PostalCode="8887" City="Coho Vineyard &amp; Winery" District="Nam blandit" State="Blandit" />
-      </SampleData:AllLocationsItem.Address>
-    </SampleData:AllLocationsItem>
-    <SampleData:AllLocationsItem Name="Dictumst eleifend" Latitude="4567 Main St., Seattle, WA 12345" Longtitude="Dis est hac quisque">
-      <SampleData:AllLocationsItem.Address>
-        <SampleData:AddressItem Street="2345 Main St., Buffalo, NY 98052" HouseNumber="262" PostalCode="2463" City="Contoso, Ltd" District="Commodo magnis" State="Nullam" />
-        <SampleData:AddressItem Street="789 Main St., Buffalo, NY 98052" HouseNumber="163" PostalCode="2681" City="Contoso Pharmaceuticals" District="Fames" State="Non" />
-        <SampleData:AddressItem Street="4567 Front St., Seattle, WA 12345" HouseNumber="505" PostalCode="5780" City="Consolidated Messenger" District="Faucibus" State="Commodo" />
-        <SampleData:AddressItem Street="1234 Front St., Seattle, WA 12345" HouseNumber="599" PostalCode="3066" City="Fabrikam, Inc." District="Sed eget" State="Conubia" />
-        <SampleData:AddressItem Street="2345 Front St., Seattle, WA 12345" HouseNumber="541" PostalCode="5864" City="Fourth Coffee" District="Mattis" State="Per" />
-      </SampleData:AllLocationsItem.Address>
-    </SampleData:AllLocationsItem>
-    <SampleData:AllLocationsItem Name="Aliquam nullam mus facilisi" Latitude="1234 1st Ave, San Francisco, CA 99999" Longtitude="Arcu faucibus vivamus aliquam">
-      <SampleData:AllLocationsItem.Address>
-        <SampleData:AddressItem Street="789 Front St., Seattle, WA 12345" HouseNumber="685" PostalCode="3538" City="Graphic Design Institute" District="Elit conubia" State="Ante" />
-        <SampleData:AddressItem Street="4567 Main St., Seattle, WA 12345" HouseNumber="567" PostalCode="6617" City="Humongous Insurance" District="Dis enim" State="Arcu" />
-        <SampleData:AddressItem Street="1234 1st Ave, San Francisco, CA 99999" HouseNumber="725" PostalCode="5044" City="Litware, Inc." District="Cubilia dapibus" State="Justo" />
-        <SampleData:AddressItem Street="2345 1st Ave, San Francisco, CA 99999" HouseNumber="353" PostalCode="3007" City="Lucerne Publishing" District="Mauris" State="Cubilia" />
-        <SampleData:AddressItem Street="789 1st Ave, San Francisco, CA 99999" HouseNumber="355" PostalCode="1778" City="Margie's Travel" District="Habitant" State="Lacus" />
-      </SampleData:AllLocationsItem.Address>
-    </SampleData:AllLocationsItem>
-  </SampleData:LocationSampleDataSource.AllLocations>
+    <SampleData:LocationSampleDataSource.AllLocations>
+        <SampleData:AllLocationsItem Name="Aenean class curae" Latitude="4567 Main St., Buffalo, NY 98052" Longtitude="Cras duis maecenas aenean">
+            <SampleData:AllLocationsItem.Address>
+                <SampleData:AddressItem Street="4567 Main St., Buffalo, NY 98052" HouseNumber="178" PostalCode="6385" City="A. Datum Corporation" District="Nam sed" State="Class" />
+                <SampleData:AddressItem Street="1234 Main St., Buffalo, NY 98052" HouseNumber="439" PostalCode="3156" City="Adventure Works" District="Maecenas" State="Curae" />
+                <SampleData:AddressItem Street="2345 Main St., Buffalo, NY 98052" HouseNumber="730" PostalCode="9884" City="Adventure Works" District="Aliquam" State="Nam" />
+                <SampleData:AddressItem Street="789 Main St., Buffalo, NY 98052" HouseNumber="251" PostalCode="1669" City="Alpine Ski House" District="Dis integer" State="Sed" />
+                <SampleData:AddressItem Street="4567 Front St., Seattle, WA 12345" HouseNumber="813" PostalCode="4229" City="Baldwin Museum of Science" District="Aenean mauris" State="Dis" />
+            </SampleData:AllLocationsItem.Address>
+        </SampleData:AllLocationsItem>
+        <SampleData:AllLocationsItem Name="Nam cras aliquam sed" Latitude="1234 Main St., Buffalo, NY 98052" Longtitude="Nunc class praesent nam">
+            <SampleData:AllLocationsItem.Address>
+                <SampleData:AddressItem Street="1234 Front St., Seattle, WA 12345" HouseNumber="369" PostalCode="2586" City="Blue Yonder Airlines" District="Class" State="Cras" />
+                <SampleData:AddressItem Street="2345 Front St., Seattle, WA 12345" HouseNumber="917" PostalCode="1815" City="City Power &amp; Light" District="Nullam" State="Aliquam" />
+                <SampleData:AddressItem Street="789 Front St., Seattle, WA 12345" HouseNumber="298" PostalCode="4681" City="Coho Vineyard" District="Cras" State="Maecenas" />
+                <SampleData:AddressItem Street="4567 Main St., Seattle, WA 12345" HouseNumber="221" PostalCode="9918" City="Coho Winery" District="Aptent" State="Duis" />
+                <SampleData:AddressItem Street="1234 1st Ave, San Francisco, CA 99999" HouseNumber="673" PostalCode="9431" City="Coho Vineyard &amp; Winery" District="Duis" State="Donec" />
+            </SampleData:AllLocationsItem.Address>
+        </SampleData:AllLocationsItem>
+        <SampleData:AllLocationsItem Name="Donec duis" Latitude="2345 Main St., Buffalo, NY 98052" Longtitude="Accumsan mauris curae">
+            <SampleData:AllLocationsItem.Address>
+                <SampleData:AddressItem Street="2345 1st Ave, San Francisco, CA 99999" HouseNumber="695" PostalCode="2577" City="Contoso, Ltd" District="Curae est" State="Etiam" />
+                <SampleData:AddressItem Street="789 1st Ave, San Francisco, CA 99999" HouseNumber="241" PostalCode="6376" City="Contoso Pharmaceuticals" District="Hac nunc" State="Integer" />
+                <SampleData:AddressItem Street="4567 1st Ave, San Francisco, CA 99999" HouseNumber="311" PostalCode="3066" City="Consolidated Messenger" District="Amet auctor" State="Praesent" />
+                <SampleData:AddressItem Street="1234 Main St., San Francisco, CA 99999" HouseNumber="844" PostalCode="1864" City="Fabrikam, Inc." District="Leo ante" State="Nunc" />
+                <SampleData:AddressItem Street="2345 Front St., San Francisco, CA 99999" HouseNumber="432" PostalCode="7894" City="Fourth Coffee" District="Praesent donec" State="Fusce" />
+            </SampleData:AllLocationsItem.Address>
+        </SampleData:AllLocationsItem>
+        <SampleData:AllLocationsItem Name="Integer maecenas etiam mauris" Latitude="789 Main St., Buffalo, NY 98052" Longtitude="Bibendum aliquam nullam sed">
+            <SampleData:AllLocationsItem.Address>
+                <SampleData:AddressItem Street="789 22nd St NE, Miami, FL 98052" HouseNumber="603" PostalCode="5548" City="Graphic Design Institute" District="Congue" State="Quisque" />
+                <SampleData:AddressItem Street="4567 22nd St NE, Miami, FL 98052" HouseNumber="161" PostalCode="2336" City="Humongous Insurance" District="Quisque etiam" State="Accumsan" />
+                <SampleData:AddressItem Street="1234 22nd St NE, Miami, FL 98052" HouseNumber="491" PostalCode="8874" City="Litware, Inc." District="Mus accumsan" State="Lorem" />
+                <SampleData:AddressItem Street="2345 22nd St NE, Miami, FL 98052" HouseNumber="265" PostalCode="2940" City="Lucerne Publishing" District="Nec" State="Amet" />
+                <SampleData:AddressItem Street="4567 Main St., Buffalo, NY 98052" HouseNumber="282" PostalCode="6131" City="Margie's Travel" District="Cursus" State="Morbi" />
+            </SampleData:AllLocationsItem.Address>
+        </SampleData:AllLocationsItem>
+        <SampleData:AllLocationsItem Name="Quisque praesent" Latitude="4567 Front St., Seattle, WA 12345" Longtitude="Aptent auctor">
+            <SampleData:AllLocationsItem.Address>
+                <SampleData:AddressItem Street="1234 Main St., Buffalo, NY 98052" HouseNumber="282" PostalCode="1761" City="Northwind Traders" District="Dictum bibendum" State="Bibendum" />
+                <SampleData:AddressItem Street="2345 Main St., Buffalo, NY 98052" HouseNumber="274" PostalCode="7041" City="Proseware, Inc." District="Non" State="Nulla" />
+                <SampleData:AddressItem Street="789 Main St., Buffalo, NY 98052" HouseNumber="164" PostalCode="1007" City="School of Fine Art" District="Per" State="Proin" />
+                <SampleData:AddressItem Street="4567 Front St., Seattle, WA 12345" HouseNumber="487" PostalCode="6014" City="Southridge Video" District="Lectus" State="Est" />
+                <SampleData:AddressItem Street="1234 Front St., Seattle, WA 12345" HouseNumber="980" PostalCode="9596" City="Tailspin Toys" District="Sed dictumst" State="Aenean" />
+            </SampleData:AllLocationsItem.Address>
+        </SampleData:AllLocationsItem>
+        <SampleData:AllLocationsItem Name="Dis fusce accumsan est" Latitude="1234 Front St., Seattle, WA 12345" Longtitude="Integer amet">
+            <SampleData:AllLocationsItem.Address>
+                <SampleData:AddressItem Street="2345 Front St., Seattle, WA 12345" HouseNumber="709" PostalCode="7419" City="Trey Research" District="Libero" State="Hac" />
+                <SampleData:AddressItem Street="789 Front St., Seattle, WA 12345" HouseNumber="230" PostalCode="4951" City="The Phone Company" District="Fusce eleifend" State="Vivamus" />
+                <SampleData:AddressItem Street="4567 Main St., Seattle, WA 12345" HouseNumber="951" PostalCode="4083" City="Wide World Importers" District="Sem lorem" State="Leo" />
+                <SampleData:AddressItem Street="1234 1st Ave, San Francisco, CA 99999" HouseNumber="241" PostalCode="1837" City="Wingtip Toys" District="Vivamus morbi" State="Augue" />
+                <SampleData:AddressItem Street="2345 1st Ave, San Francisco, CA 99999" HouseNumber="241" PostalCode="4217" City="Woodgrove Bank" District="Arcu" State="Aliquam" />
+            </SampleData:AllLocationsItem.Address>
+        </SampleData:AllLocationsItem>
+        <SampleData:AllLocationsItem Name="Hac nunc" Latitude="2345 Front St., Seattle, WA 12345" Longtitude="Dictumst eleifend donec facilisi">
+            <SampleData:AllLocationsItem.Address>
+                <SampleData:AddressItem Street="789 1st Ave, San Francisco, CA 99999" HouseNumber="772" PostalCode="1856" City="A. Datum Corporation" District="Facilisi" State="Mus" />
+                <SampleData:AddressItem Street="4567 1st Ave, San Francisco, CA 99999" HouseNumber="232" PostalCode="6839" City="Adventure Works" District="Aliquam" State="Dolor" />
+                <SampleData:AddressItem Street="1234 Main St., San Francisco, CA 99999" HouseNumber="170" PostalCode="2046" City="Adventure Works" District="Aliquet sit" State="Fames" />
+                <SampleData:AddressItem Street="2345 Front St., San Francisco, CA 99999" HouseNumber="614" PostalCode="4411" City="Alpine Ski House" District="Diam" State="Felis" />
+                <SampleData:AddressItem Street="789 22nd St NE, Miami, FL 98052" HouseNumber="966" PostalCode="1641" City="Baldwin Museum of Science" District="Nulla ligula" State="Mauris" />
+            </SampleData:AllLocationsItem.Address>
+        </SampleData:AllLocationsItem>
+        <SampleData:AllLocationsItem Name="Bibendum leo vivamus" Latitude="789 Front St., Seattle, WA 12345" Longtitude="Congue ante etiam">
+            <SampleData:AllLocationsItem.Address>
+                <SampleData:AddressItem Street="4567 22nd St NE, Miami, FL 98052" HouseNumber="806" PostalCode="6750" City="Blue Yonder Airlines" District="Proin" State="Ipsum" />
+                <SampleData:AddressItem Street="1234 22nd St NE, Miami, FL 98052" HouseNumber="754" PostalCode="5526" City="City Power &amp; Light" District="Augue litora" State="Nec" />
+                <SampleData:AddressItem Street="2345 22nd St NE, Miami, FL 98052" HouseNumber="310" PostalCode="6051" City="Coho Vineyard" District="Vel luctus" State="Aliquet" />
+                <SampleData:AddressItem Street="4567 Main St., Buffalo, NY 98052" HouseNumber="515" PostalCode="6775" City="Coho Winery" District="Dolor" State="Dictumst" />
+                <SampleData:AddressItem Street="1234 Main St., Buffalo, NY 98052" HouseNumber="354" PostalCode="8887" City="Coho Vineyard &amp; Winery" District="Nam blandit" State="Blandit" />
+            </SampleData:AllLocationsItem.Address>
+        </SampleData:AllLocationsItem>
+        <SampleData:AllLocationsItem Name="Dictumst eleifend" Latitude="4567 Main St., Seattle, WA 12345" Longtitude="Dis est hac quisque">
+            <SampleData:AllLocationsItem.Address>
+                <SampleData:AddressItem Street="2345 Main St., Buffalo, NY 98052" HouseNumber="262" PostalCode="2463" City="Contoso, Ltd" District="Commodo magnis" State="Nullam" />
+                <SampleData:AddressItem Street="789 Main St., Buffalo, NY 98052" HouseNumber="163" PostalCode="2681" City="Contoso Pharmaceuticals" District="Fames" State="Non" />
+                <SampleData:AddressItem Street="4567 Front St., Seattle, WA 12345" HouseNumber="505" PostalCode="5780" City="Consolidated Messenger" District="Faucibus" State="Commodo" />
+                <SampleData:AddressItem Street="1234 Front St., Seattle, WA 12345" HouseNumber="599" PostalCode="3066" City="Fabrikam, Inc." District="Sed eget" State="Conubia" />
+                <SampleData:AddressItem Street="2345 Front St., Seattle, WA 12345" HouseNumber="541" PostalCode="5864" City="Fourth Coffee" District="Mattis" State="Per" />
+            </SampleData:AllLocationsItem.Address>
+        </SampleData:AllLocationsItem>
+        <SampleData:AllLocationsItem Name="Aliquam nullam mus facilisi" Latitude="1234 1st Ave, San Francisco, CA 99999" Longtitude="Arcu faucibus vivamus aliquam">
+            <SampleData:AllLocationsItem.Address>
+                <SampleData:AddressItem Street="789 Front St., Seattle, WA 12345" HouseNumber="685" PostalCode="3538" City="Graphic Design Institute" District="Elit conubia" State="Ante" />
+                <SampleData:AddressItem Street="4567 Main St., Seattle, WA 12345" HouseNumber="567" PostalCode="6617" City="Humongous Insurance" District="Dis enim" State="Arcu" />
+                <SampleData:AddressItem Street="1234 1st Ave, San Francisco, CA 99999" HouseNumber="725" PostalCode="5044" City="Litware, Inc." District="Cubilia dapibus" State="Justo" />
+                <SampleData:AddressItem Street="2345 1st Ave, San Francisco, CA 99999" HouseNumber="353" PostalCode="3007" City="Lucerne Publishing" District="Mauris" State="Cubilia" />
+                <SampleData:AddressItem Street="789 1st Ave, San Francisco, CA 99999" HouseNumber="355" PostalCode="1778" City="Margie's Travel" District="Habitant" State="Lacus" />
+            </SampleData:AllLocationsItem.Address>
+        </SampleData:AllLocationsItem>
+    </SampleData:LocationSampleDataSource.AllLocations>
 </SampleData:LocationSampleDataSource>

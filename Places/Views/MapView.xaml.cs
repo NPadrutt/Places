@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Device.Location;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Media;
-using Microsoft.Phone.Controls;
+﻿using Microsoft.Phone.Controls;
 using Microsoft.Phone.Maps;
 using Microsoft.Phone.Maps.Controls;
 using Microsoft.Phone.Maps.Toolkit;
@@ -12,12 +6,17 @@ using Microsoft.Phone.Shell;
 using Microsoft.Phone.Tasks;
 using Places.Resources;
 using Places.Src;
+using System;
+using System.Collections.Generic;
+using System.Device.Location;
+using System.Threading.Tasks;
+using System.Windows;
 
 namespace Places.Views
 {
     public partial class MapView : PhoneApplicationPage
     {
-        readonly List<GeoCoordinate> myCoordinates = new List<GeoCoordinate>();
+        private readonly List<GeoCoordinate> myCoordinates = new List<GeoCoordinate>();
         private GeoCoordinate selectedCoordinate;
 
         private UserLocationMarker marker;
@@ -48,9 +47,9 @@ namespace Places.Views
         private void PinCurrentPosition()
         {
             var currentPosition = new GeoCoordinate(App.ViewModel.CurrentPosition.Latitude, App.ViewModel.CurrentPosition.Longitude);
-            
-            marker = new UserLocationMarker(){ GeoCoordinate = currentPosition };
-            mapOverlay = new MapOverlay() {Content = this.marker, GeoCoordinate = currentPosition};
+
+            marker = new UserLocationMarker() { GeoCoordinate = currentPosition };
+            mapOverlay = new MapOverlay() { Content = this.marker, GeoCoordinate = currentPosition };
 
             var mapLayer = new MapLayer { this.mapOverlay };
             MyMap.Layers.Add(mapLayer);
@@ -74,7 +73,7 @@ namespace Places.Views
         }
 
         private void btnNavigation_Click(object sender, EventArgs e)
-        {            
+        {
             var bingMapsDirectionsTask = new BingMapsDirectionsTask();
             var location = new LabeledMapLocation(App.ViewModel.SelectedLocation.Name, new GeoCoordinate(App.ViewModel.SelectedLocation.Latitude, App.ViewModel.SelectedLocation.Longitude));
             bingMapsDirectionsTask.End = location;
@@ -120,18 +119,21 @@ namespace Places.Views
         private void btnLayers_Click(object sender, EventArgs e)
         {
             WindowLayers.IsOpen = !WindowLayers.IsOpen;
-            
+
             switch (MyMap.CartographicMode)
             {
                 case MapCartographicMode.Road:
                     RadioBtnRoad.IsChecked = true;
                     break;
+
                 case MapCartographicMode.Aerial:
                     RadioBtnAerial.IsChecked = true;
                     break;
+
                 case MapCartographicMode.Hybrid:
                     RadioBtnHybrid.IsChecked = true;
                     break;
+
                 case MapCartographicMode.Terrain:
                     RadioBtnTerrain.IsChecked = true;
                     break;
@@ -157,6 +159,5 @@ namespace Places.Views
         {
             MyMap.CartographicMode = MapCartographicMode.Terrain;
         }
-
     }
 }

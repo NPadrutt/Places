@@ -44,7 +44,8 @@ namespace ExifLib
         /// </summary>
         private uint ifd1Offset;
 
-        public ExifReader(string fileName) : this(new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+        public ExifReader(string fileName)
+            : this(new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
         {
         }
 
@@ -101,23 +102,27 @@ namespace ExifLib
                 case 7:
                 case 6:
                     return 1;
+
                 case 3:
                 case 8:
                     return 2;
+
                 case 4:
                 case 9:
                 case 11:
                     return 4;
+
                 case 5:
                 case 10:
                 case 12:
                     return 8;
+
                 default:
                     throw new ExifLibException(string.Format("Unknown TIFF datatype: {0}", tiffDataType));
             }
         }
 
-        #endregion
+        #endregion TIFF methods
 
         #region Methods for reading data directly from the filestream
 
@@ -172,7 +177,7 @@ namespace ExifLib
             return data;
         }
 
-        #endregion
+        #endregion Methods for reading data directly from the filestream
 
         #region Data conversion methods for interpreting datatypes from a byte array
 
@@ -205,7 +210,7 @@ namespace ExifLib
             uint numerator = ToUint(numeratorData);
             uint denominator = ToUint(denominatorData);
 
-            return numerator/(double) denominator;
+            return numerator / (double)denominator;
         }
 
         /// <summary>
@@ -228,7 +233,7 @@ namespace ExifLib
             int numerator = ToInt(numeratorData);
             int denominator = ToInt(denominatorData);
 
-            return numerator/(double) denominator;
+            return numerator / (double)denominator;
         }
 
         /// <summary>
@@ -282,7 +287,7 @@ namespace ExifLib
         private sbyte ToSByte(byte[] data)
         {
             // An sbyte should just be a byte with an offset range.
-            return (sbyte) (data[0] - byte.MaxValue);
+            return (sbyte)(data[0] - byte.MaxValue);
         }
 
         /// <summary>
@@ -295,15 +300,15 @@ namespace ExifLib
         /// <returns></returns>
         private static Array GetArray<T>(byte[] data, int elementLengthBytes, ConverterMethod<T> converter)
         {
-            Array convertedData = new T[data.Length/elementLengthBytes];
+            Array convertedData = new T[data.Length / elementLengthBytes];
 
             var buffer = new byte[elementLengthBytes];
 
             // Read each element from the array
-            for (int elementCount = 0; elementCount < data.Length/elementLengthBytes; elementCount++)
+            for (int elementCount = 0; elementCount < data.Length / elementLengthBytes; elementCount++)
             {
                 // Place the data for the current element into the buffer
-                Array.Copy(data, elementCount*elementLengthBytes, buffer, 0, elementLengthBytes);
+                Array.Copy(data, elementCount * elementLengthBytes, buffer, 0, elementLengthBytes);
 
                 // Process the data and place it into the output array
                 convertedData.SetValue(converter(buffer), elementCount);
@@ -320,7 +325,7 @@ namespace ExifLib
         /// <remarks>Although this could be defined as covariant, it wouldn't work on Windows Phone</remarks>
         private delegate T ConverterMethod<T>(byte[] data);
 
-        #endregion
+        #endregion Data conversion methods for interpreting datatypes from a byte array
 
         #region Stream seek methods - used to get to locations within the JPEG
 
@@ -421,13 +426,14 @@ namespace ExifLib
                 CatalogueIFD(ref ifd1Catalogue);
             }
         }
-        #endregion
+
+        #endregion Stream seek methods - used to get to locations within the JPEG
 
         #region Exif data catalog and retrieval methods
 
         public bool GetTagValue<T>(ExifTags tag, out T result)
         {
-            return GetTagValue((ushort) tag, out result);
+            return GetTagValue((ushort)tag, out result);
         }
 
         public bool GetTagValue<T>(ushort tagID, out T result)
@@ -460,10 +466,11 @@ namespace ExifLib
                 case 1:
                     // unsigned byte
                     if (numberOfComponents == 1)
-                        result = (T) (object) tagData[0];
+                        result = (T)(object)tagData[0];
                     else
-                        result = (T) (object) tagData;
+                        result = (T)(object)tagData;
                     return true;
+
                 case 2:
                     // ascii string
                     string str = Encoding.UTF8.GetString(tagData, 0, tagData.Length);
@@ -474,88 +481,98 @@ namespace ExifLib
                         str = str.Substring(0, nullCharIndex);
 
                     // Special processing for dates.
-                    if (typeof (T) == typeof (DateTime))
+                    if (typeof(T) == typeof(DateTime))
                     {
                         DateTime dateResult;
                         bool success = ToDateTime(str, out dateResult);
-                        
-                        result = (T)(object) dateResult;
-                        return success;
 
+                        result = (T)(object)dateResult;
+                        return success;
                     }
 
-                    result = (T) (object) str;
+                    result = (T)(object)str;
                     return true;
+
                 case 3:
                     // unsigned short
                     if (numberOfComponents == 1)
-                        result = (T) (object) ToUShort(tagData);
+                        result = (T)(object)ToUShort(tagData);
                     else
-                        result = (T) (object) GetArray(tagData, fieldLength, ToUShort);
+                        result = (T)(object)GetArray(tagData, fieldLength, ToUShort);
                     return true;
+
                 case 4:
                     // unsigned long
                     if (numberOfComponents == 1)
-                        result = (T) (object) ToUint(tagData);
+                        result = (T)(object)ToUint(tagData);
                     else
-                        result = (T) (object) GetArray(tagData, fieldLength, ToUint);
+                        result = (T)(object)GetArray(tagData, fieldLength, ToUint);
                     return true;
+
                 case 5:
                     // unsigned rational
                     if (numberOfComponents == 1)
-                        result = (T) (object) ToURational(tagData);
+                        result = (T)(object)ToURational(tagData);
                     else
-                        result = (T) (object) GetArray(tagData, fieldLength, ToURational);
+                        result = (T)(object)GetArray(tagData, fieldLength, ToURational);
                     return true;
+
                 case 6:
                     // signed byte
                     if (numberOfComponents == 1)
-                        result = (T) (object) ToSByte(tagData);
+                        result = (T)(object)ToSByte(tagData);
                     else
-                        result = (T) (object) GetArray(tagData, fieldLength, ToSByte);
+                        result = (T)(object)GetArray(tagData, fieldLength, ToSByte);
                     return true;
+
                 case 7:
                     // undefined. Treat it as a byte.
                     if (numberOfComponents == 1)
-                        result = (T) (object)tagData[0];
+                        result = (T)(object)tagData[0];
                     else
-                        result = (T) (object) tagData;
+                        result = (T)(object)tagData;
                     return true;
+
                 case 8:
                     // Signed short
                     if (numberOfComponents == 1)
-                        result = (T) (object) ToShort(tagData);
+                        result = (T)(object)ToShort(tagData);
                     else
-                        result = (T) (object) GetArray(tagData, fieldLength, ToShort);
+                        result = (T)(object)GetArray(tagData, fieldLength, ToShort);
                     return true;
+
                 case 9:
                     // Signed long
                     if (numberOfComponents == 1)
-                        result = (T) (object) ToInt(tagData);
+                        result = (T)(object)ToInt(tagData);
                     else
-                        result = (T) (object) GetArray(tagData, fieldLength, ToInt);
+                        result = (T)(object)GetArray(tagData, fieldLength, ToInt);
                     return true;
+
                 case 10:
                     // signed rational
                     if (numberOfComponents == 1)
-                        result = (T) (object) ToRational(tagData);
+                        result = (T)(object)ToRational(tagData);
                     else
-                        result = (T) (object) GetArray(tagData, fieldLength, ToRational);
+                        result = (T)(object)GetArray(tagData, fieldLength, ToRational);
                     return true;
+
                 case 11:
                     // single float
                     if (numberOfComponents == 1)
-                        result = (T) (object) ToSingle(tagData);
+                        result = (T)(object)ToSingle(tagData);
                     else
-                        result = (T) (object) GetArray(tagData, fieldLength, ToSingle);
+                        result = (T)(object)GetArray(tagData, fieldLength, ToSingle);
                     return true;
+
                 case 12:
                     // double float
                     if (numberOfComponents == 1)
-                        result = (T) (object) ToDouble(tagData);
+                        result = (T)(object)ToDouble(tagData);
                     else
-                        result = (T) (object) GetArray(tagData, fieldLength, ToDouble);
+                        result = (T)(object)GetArray(tagData, fieldLength, ToDouble);
                     return true;
+
                 default:
                     throw new ExifLibException(string.Format("Unknown TIFF datatype: {0}", tiffDataType));
             }
@@ -563,9 +580,9 @@ namespace ExifLib
 
         private static bool ToDateTime(string str, out DateTime result)
         {
-            // From page 28 of the Exif 2.2 spec (http://www.exif.org/Exif2-2.PDF): 
+            // From page 28 of the Exif 2.2 spec (http://www.exif.org/Exif2-2.PDF):
 
-            // "When the field is left blank, it is treated as unknown ... When the date and time are unknown, 
+            // "When the field is left blank, it is treated as unknown ... When the date and time are unknown,
             // all the character spaces except colons (":") may be filled with blank characters"
             if (string.IsNullOrEmpty(str) || _nullDateTimeMatcher.IsMatch(str))
             {
@@ -622,7 +639,7 @@ namespace ExifLib
             // If the total space taken up by the field is longer than the
             // 2 bytes afforded by the tagData, tagData will contain an offset
             // to the actual data.
-            var dataSize = (int) (numberOfComponents*GetTIFFFieldLength(tiffDataType));
+            var dataSize = (int)(numberOfComponents * GetTIFFFieldLength(tiffDataType));
 
             if (dataSize > 4)
             {
@@ -659,13 +676,14 @@ namespace ExifLib
             }
         }
 
-        #endregion
+        #endregion Exif data catalog and retrieval methods
 
         #region Thumbnail retrieval
+
         /// <summary>
         /// Retrieves a JPEG thumbnail from the image if one is present. Note that this method cannot retrieve thumbnails encoded in other formats,
         /// but since the DCF specification specifies that thumbnails must be JPEG, this method will be sufficient for most purposes
-        /// See http://gvsoft.homedns.org/exif/exif-explanation.html#TIFFThumbs or http://partners.adobe.com/public/developer/en/tiff/TIFF6.pdf for 
+        /// See http://gvsoft.homedns.org/exif/exif-explanation.html#TIFFThumbs or http://partners.adobe.com/public/developer/en/tiff/TIFF6.pdf for
         /// details on the encoding of TIFF thumbnails
         /// </summary>
         /// <returns></returns>
@@ -676,7 +694,7 @@ namespace ExifLib
 
             // Get the thumbnail encoding
             ushort compression;
-            if (!GetTagValue(ifd1Catalogue, (ushort) ExifTags.Compression, out compression))
+            if (!GetTagValue(ifd1Catalogue, (ushort)ExifTags.Compression, out compression))
                 return null;
 
             // This method only handles JPEG thumbnails (compression type 6)
@@ -685,12 +703,12 @@ namespace ExifLib
 
             // Get the location of the thumbnail
             uint offset;
-            if (!GetTagValue(ifd1Catalogue, (ushort) ExifTags.JPEGInterchangeFormat, out offset))
+            if (!GetTagValue(ifd1Catalogue, (ushort)ExifTags.JPEGInterchangeFormat, out offset))
                 return null;
 
             // Get the length of the thumbnail data
             uint length;
-            if (!GetTagValue(ifd1Catalogue, (ushort) ExifTags.JPEGInterchangeFormatLength, out length))
+            if (!GetTagValue(ifd1Catalogue, (ushort)ExifTags.JPEGInterchangeFormatLength, out length))
                 return null;
 
             _stream.Position = offset;
@@ -704,7 +722,6 @@ namespace ExifLib
                     break;
 
                 previousByte = currentByte;
-
             }
 
             if (currentByte != 0xD8)
@@ -714,7 +731,7 @@ namespace ExifLib
             _stream.Position -= 2;
 
             var imageBytes = new byte[length];
-            _stream.Read(imageBytes, 0, (int) length);
+            _stream.Read(imageBytes, 0, (int)length);
 
             // A valid JPEG stream ends with 0xFFD9
             if (imageBytes.Length < 2 || imageBytes[length - 1] != 0xD9 || imageBytes[length - 2] != 0xFF)
@@ -722,7 +739,8 @@ namespace ExifLib
 
             return imageBytes;
         }
-        #endregion
+
+        #endregion Thumbnail retrieval
 
         #region IDisposable Members
 
@@ -735,7 +753,7 @@ namespace ExifLib
                 _stream.Close();
         }
 
-        #endregion
+        #endregion IDisposable Members
     }
 
     public class ExifLibException : Exception
@@ -744,11 +762,13 @@ namespace ExifLib
         {
         }
 
-        public ExifLibException(string message) : base(message)
+        public ExifLibException(string message)
+            : base(message)
         {
         }
 
-        public ExifLibException(string message, Exception innerException) : base(message, innerException)
+        public ExifLibException(string message, Exception innerException)
+            : base(message, innerException)
         {
         }
     }

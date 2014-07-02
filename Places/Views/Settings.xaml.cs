@@ -1,5 +1,5 @@
-﻿using System.Windows.Navigation;
-using Places.Resources;
+﻿using Places.Resources;
+using System.Windows.Navigation;
 
 namespace Places.Views
 {

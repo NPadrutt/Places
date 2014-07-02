@@ -3,9 +3,9 @@ using Places.Models;
 
 namespace Places.Src
 {
-    class UpdateHelper
+    internal class UpdateHelper
     {
-        DatabaseSchemaUpdater schemaUpdate;
+        private DatabaseSchemaUpdater schemaUpdate;
 
         public void UpdateDatabase(MainDataContext db)
         {

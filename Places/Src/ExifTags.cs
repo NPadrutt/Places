@@ -1,6 +1,4 @@
-﻿        using System.Diagnostics.CodeAnalysis;
-
-namespace ExifLib
+﻿namespace ExifLib
 {
     /// <summary>
     /// All exif tags as per the Exif standard 2.2, JEITA CP-2451
@@ -9,6 +7,7 @@ namespace ExifLib
     {
         // IFD0 items
         ImageWidth = 0x100,
+
         ImageLength = 0x101,
         BitsPerSample = 0x102,
         Compression = 0x103,
@@ -41,6 +40,7 @@ namespace ExifLib
 
         // SubIFD items
         ExposureTime = 0x829A,
+
         FNumber = 0x829D,
         ExposureProgram = 0x8822,
         SpectralSensitivity = 0x8824,
@@ -99,6 +99,7 @@ namespace ExifLib
 
         // GPS subifd items
         GPSVersionID = 0x0,
+
         GPSLatitudeRef = 0x1,
         GPSLatitude = 0x2,
         GPSLongitudeRef = 0x3,

@@ -3,7 +3,6 @@ using Microsoft.Phone.Tasks;
 using Places.Resources;
 using Places.Src;
 using System;
-using System.IO.IsolatedStorage;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
