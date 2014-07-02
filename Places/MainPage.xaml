@@ -5,249 +5,243 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	xmlns:UserControls="clr-namespace:Places.UserControls"
     xmlns:telerikInput="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Input"
     xmlns:ListPicker="clr-namespace:Telerik.Windows.Controls.ListPicker;assembly=Telerik.Windows.Controls.Input" xmlns:PhoneTextBox="clr-namespace:Telerik.Windows.Controls.PhoneTextBox;assembly=Telerik.Windows.Controls.Primitives" xmlns:telerik="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Core" xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
     x:Class="Places.MainPage"
 	mc:Ignorable="d"
     SupportedOrientations="Portrait"  Orientation="Portrait"
     shell:SystemTray.IsVisible="True">
-    
+
     <phone:PhoneApplicationPage.Resources>
-		<Style x:Key="PopupHeaderStyle" TargetType="ContentControl">
-			<Setter Property="FontSize" Value="{StaticResource PhoneFontSizeMedium}"/>
-			<Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilySemiBold}"/>
-			<Setter Property="Margin" Value="24,55,0,35"/>
-			<Setter Property="HorizontalContentAlignment" Value="Left"/>
-		</Style>
-		<ListPicker:SelectionModeToBooleanConverter x:Key="SelectionModeToBooleanConverter"/>
-		<Style x:Key="RadListPickerFilterStyle" TargetType="telerikInput:RadListPicker">
-			<Setter Property="HorizontalAlignment" Value="Stretch"/>
-			<Setter Property="VerticalAlignment" Value="Top"/>
-			<Setter Property="HeaderStyle">
-				<Setter.Value>
-					<Style TargetType="ContentControl">
-						<Setter Property="Foreground" Value="{StaticResource PhoneSubtleBrush}"/>
-						<Setter Property="FontSize" Value="{StaticResource PhoneFontSizeNormal}"/>
-						<Setter Property="Padding" Value="0, 0,0,8"/>
-						<Setter Property="HorizontalAlignment" Value="Left"/>
-					</Style>
-				</Setter.Value>
-			</Setter>
-			<Setter Property="Background" Value="Transparent"/>
-			<Setter Property="Foreground" Value="{StaticResource PhoneForegroundBrush}"/>
-			<Setter Property="FontSize" Value="{StaticResource PhoneFontSizeMediumLarge}"/>
-			<Setter Property="PopupHeaderStyle" Value="{StaticResource PopupHeaderStyle}"/>
-			<Setter Property="Margin" Value="{StaticResource PhoneTouchTargetOverhang}"/>
-			<Setter Property="MinHeight" Value="44"/>
-			<Setter Property="BorderThickness" Value="3"/>
-			<Setter Property="BorderBrush" Value="{StaticResource PhoneForegroundBrush}"/>
-			<Setter Property="ActionButtonVisibility" Value="Collapsed"/>
-			<Setter Property="ActionButtonStyle">
-				<Setter.Value>
-					<Style TargetType="PhoneTextBox:TextBoxSecondaryButton">
-						<Setter Property="Foreground" Value="{StaticResource PhoneForegroundBrush}"/>
-					</Style>
-				</Setter.Value>
-			</Setter>
-			<Setter Property="PopupOpenAnimation">
-				<Setter.Value>
-					<telerik:RadTileAnimation Duration="0:0:.2" InitialDelay="0:0:.08" IsTranslationEnabled="False" InOutAnimationMode="In" PerspectiveAngleX="90" PerspectiveAngleY="0" SequentialMode="FirstToLast"/>
-				</Setter.Value>
-			</Setter>
-			<Setter Property="PopupCloseAnimation">
-				<Setter.Value>
-					<telerik:RadTileAnimation Duration="0:0:.2" IsTranslationEnabled="False" InOutAnimationMode="Out" PerspectiveAngleX="90" PerspectiveAngleY="0" SequentialMode="FirstToLast" SequentialItemDelay="0"/>
-				</Setter.Value>
-			</Setter>
-			<Setter Property="Template">
-				<Setter.Value>
-					<ControlTemplate TargetType="telerikInput:RadListPicker">
-						<Grid x:Name="LayoutRoot">
-							<Grid.RowDefinitions>
-								<RowDefinition Height="Auto"/>
-								<RowDefinition Height="*"/>
-							</Grid.RowDefinitions>
-							<VisualStateManager.VisualStateGroups>
-								<VisualStateGroup x:Name="CommonStates">
-									<VisualState x:Name="Normal"/>
-									<VisualState x:Name="Pressed">
-										<Storyboard>
-											<ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetProperty="Background" Storyboard.TargetName="border">
-												<DiscreteObjectKeyFrame KeyTime="0" Value="White"/>
-											</ObjectAnimationUsingKeyFrames>
-										</Storyboard>
-									</VisualState>
-									<VisualState x:Name="Expanded">
-										<Storyboard>
-											<ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetProperty="Background" Storyboard.TargetName="border">
-												<DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PhoneTextBoxEditBackgroundBrush}"/>
-											</ObjectAnimationUsingKeyFrames>
-										</Storyboard>
-									</VisualState>
-									<VisualState x:Name="Disabled">
-										<Storyboard>
-											<ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetProperty="Background" Storyboard.TargetName="border">
-												<DiscreteObjectKeyFrame KeyTime="0" Value="Transparent"/>
-											</ObjectAnimationUsingKeyFrames>
-										</Storyboard>
-									</VisualState>
-								</VisualStateGroup>
-							</VisualStateManager.VisualStateGroups>
-							<ContentControl x:Name="HeaderPresenter" CacheMode="BitmapCache" ContentTemplate="{TemplateBinding HeaderTemplate}" Content="{TemplateBinding Header}" Grid.Row="0" Style="{TemplateBinding HeaderStyle}"/>
-							<Border x:Name="border" Background="{TemplateBinding Background}" Grid.ColumnSpan="2" CacheMode="BitmapCache" Grid.Row="1">
-								<Grid x:Name="mainLayout">
-									<Grid.ColumnDefinitions>
-										<ColumnDefinition/>
-										<ColumnDefinition Width="Auto"/>
-									</Grid.ColumnDefinitions>
-									<telerikInput:RadListPickerItem x:Name="PopupModeLabel" HorizontalAlignment="Stretch" MinHeight="{TemplateBinding MinHeight}" Style="{TemplateBinding ItemStyle}" VerticalAlignment="Stretch" Foreground="{StaticResource PhoneAccentBrush}" FontSize="21.333" FontWeight="Bold"/>
-									<Canvas x:Name="ItemsParent"/>
-									<PhoneTextBox:TextBoxSecondaryButton x:Name="ActionButton" Grid.Column="1" MinWidth="38" MinHeight="38" Style="{TemplateBinding ActionButtonStyle}" Visibility="{TemplateBinding ActionButtonVisibility}" Foreground="{StaticResource TransparentBrush}"/>
-								</Grid>
-							</Border>
-							<telerikPrimitives:RadWindow x:Name="Popup" CloseAnimation="{TemplateBinding PopupCloseAnimation}" IsFullScreen="True" IsAnimationEnabled="{TemplateBinding IsAnimationEnabled}" OpenAnimation="{TemplateBinding PopupOpenAnimation}">
-								<telerikPrimitives:RadWindow.ApplicationBarInfo>
-									<telerikPrimitives:ApplicationBarInfo x:Name="PART_AppBarInfo">
-										<telerikPrimitives:ApplicationBarButton x:Name="PART_OKButton"/>
-										<telerikPrimitives:ApplicationBarButton x:Name="PART_CancelButton"/>
-									</telerikPrimitives:ApplicationBarInfo>
-								</telerikPrimitives:RadWindow.ApplicationBarInfo>
-								<Grid Background="{StaticResource PhoneChromeBrush}" telerik:RadTileAnimation.ContainerToAnimate="{Binding ., ElementName=PopupList}">
-									<Grid.RowDefinitions>
-										<RowDefinition Height="Auto"/>
-										<RowDefinition Height="*"/>
-									</Grid.RowDefinitions>
-									<ContentControl CacheMode="BitmapCache" ContentTemplate="{TemplateBinding PopupHeaderTemplate}" Content="{TemplateBinding PopupHeader}" Grid.Row="0" Style="{TemplateBinding PopupHeaderStyle}"/>
-									<telerikPrimitives:RadDataBoundListBox x:Name="PopupList" CheckModeDeactivatedOnBackButton="False" DisplayMemberPath="{TemplateBinding DisplayMemberPath}" IsCheckModeActive="{Binding SelectionMode, Converter={StaticResource SelectionModeToBooleanConverter}, RelativeSource={RelativeSource TemplatedParent}}" telerik:InteractionEffectManager.IsInteractionEnabled="True" ItemContainerStyle="{TemplateBinding PopupItemStyle}" Grid.Row="1" Style="{TemplateBinding PopupStyle}"/>
-								</Grid>
-							</telerikPrimitives:RadWindow>
-						</Grid>
-					</ControlTemplate>
-				</Setter.Value>
-			</Setter>
-			<Setter Property="PopupItemStyle">
-				<Setter.Value>
-					<Style TargetType="telerikPrimitives:RadDataBoundListBoxItem">
-						<Setter Property="Padding" Value="24, 26, 0, 26"/>
-					</Style>
-				</Setter.Value>
-			</Setter>
-			<Setter Property="PopupStyle">
-				<Setter.Value>
-					<Style TargetType="telerikPrimitives:RadDataBoundListBox">
-						<Setter Property="FontSize" Value="{StaticResource PhoneFontSizeExtraLarge}"/>
-						<Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilySemiLight}"/>
-						<Setter Property="Background" Value="{StaticResource PhoneChromeBrush}"/>
-						<Setter Property="HorizontalAlignment" Value="Stretch"/>
-						<Setter Property="VerticalAlignment" Value="Stretch"/>
-						<Setter Property="CheckBoxStyle">
-							<Setter.Value>
-								<Style TargetType="telerikPrimitives:ItemCheckBox">
-									<Setter Property="VerticalAlignment" Value="Center"/>
-									<Setter Property="Margin" Value="0, 0, -18, 0"/>
-								</Style>
-							</Setter.Value>
-						</Setter>
-					</Style>
-				</Setter.Value>
-			</Setter>
-		</Style>
+        <Style x:Key="PopupHeaderStyle" TargetType="ContentControl">
+            <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeMedium}" />
+            <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilySemiBold}" />
+            <Setter Property="Margin" Value="24,55,0,35" />
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+        </Style>
+        <ListPicker:SelectionModeToBooleanConverter x:Key="SelectionModeToBooleanConverter" />
+        <Style x:Key="RadListPickerFilterStyle" TargetType="telerikInput:RadListPicker">
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="HeaderStyle">
+                <Setter.Value>
+                    <Style TargetType="ContentControl">
+                        <Setter Property="Foreground" Value="{StaticResource PhoneSubtleBrush}" />
+                        <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeNormal}" />
+                        <Setter Property="Padding" Value="0, 0,0,8" />
+                        <Setter Property="HorizontalAlignment" Value="Left" />
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="{StaticResource PhoneForegroundBrush}" />
+            <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeMediumLarge}" />
+            <Setter Property="PopupHeaderStyle" Value="{StaticResource PopupHeaderStyle}" />
+            <Setter Property="Margin" Value="{StaticResource PhoneTouchTargetOverhang}" />
+            <Setter Property="MinHeight" Value="44" />
+            <Setter Property="BorderThickness" Value="3" />
+            <Setter Property="BorderBrush" Value="{StaticResource PhoneForegroundBrush}" />
+            <Setter Property="ActionButtonVisibility" Value="Collapsed" />
+            <Setter Property="ActionButtonStyle">
+                <Setter.Value>
+                    <Style TargetType="PhoneTextBox:TextBoxSecondaryButton">
+                        <Setter Property="Foreground" Value="{StaticResource PhoneForegroundBrush}" />
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="PopupOpenAnimation">
+                <Setter.Value>
+                    <telerik:RadTileAnimation Duration="0:0:.2" InitialDelay="0:0:.08" IsTranslationEnabled="False" InOutAnimationMode="In" PerspectiveAngleX="90" PerspectiveAngleY="0" SequentialMode="FirstToLast" />
+                </Setter.Value>
+            </Setter>
+            <Setter Property="PopupCloseAnimation">
+                <Setter.Value>
+                    <telerik:RadTileAnimation Duration="0:0:.2" IsTranslationEnabled="False" InOutAnimationMode="Out" PerspectiveAngleX="90" PerspectiveAngleY="0" SequentialMode="FirstToLast" SequentialItemDelay="0" />
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="telerikInput:RadListPicker">
+                        <Grid x:Name="LayoutRoot">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetProperty="Background" Storyboard.TargetName="border">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="White" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Expanded">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetProperty="Background" Storyboard.TargetName="border">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PhoneTextBoxEditBackgroundBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetProperty="Background" Storyboard.TargetName="border">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="Transparent" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <ContentControl x:Name="HeaderPresenter" CacheMode="BitmapCache" ContentTemplate="{TemplateBinding HeaderTemplate}" Content="{TemplateBinding Header}" Grid.Row="0" Style="{TemplateBinding HeaderStyle}" />
+                            <Border x:Name="border" Background="{TemplateBinding Background}" Grid.ColumnSpan="2" CacheMode="BitmapCache" Grid.Row="1">
+                                <Grid x:Name="mainLayout">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <telerikInput:RadListPickerItem x:Name="PopupModeLabel" HorizontalAlignment="Stretch" MinHeight="{TemplateBinding MinHeight}" Style="{TemplateBinding ItemStyle}" VerticalAlignment="Stretch" Foreground="{StaticResource PhoneAccentBrush}" FontSize="21.333" FontWeight="Bold" />
+                                    <Canvas x:Name="ItemsParent" />
+                                    <PhoneTextBox:TextBoxSecondaryButton x:Name="ActionButton" Grid.Column="1" MinWidth="38" MinHeight="38" Style="{TemplateBinding ActionButtonStyle}" Visibility="{TemplateBinding ActionButtonVisibility}" Foreground="{StaticResource TransparentBrush}" />
+                                </Grid>
+                            </Border>
+                            <telerikPrimitives:RadWindow x:Name="Popup" CloseAnimation="{TemplateBinding PopupCloseAnimation}" IsFullScreen="True" IsAnimationEnabled="{TemplateBinding IsAnimationEnabled}" OpenAnimation="{TemplateBinding PopupOpenAnimation}">
+                                <telerikPrimitives:RadWindow.ApplicationBarInfo>
+                                    <telerikPrimitives:ApplicationBarInfo x:Name="PART_AppBarInfo">
+                                        <telerikPrimitives:ApplicationBarButton x:Name="PART_OKButton" />
+                                        <telerikPrimitives:ApplicationBarButton x:Name="PART_CancelButton" />
+                                    </telerikPrimitives:ApplicationBarInfo>
+                                </telerikPrimitives:RadWindow.ApplicationBarInfo>
+                                <Grid Background="{StaticResource PhoneChromeBrush}" telerik:RadTileAnimation.ContainerToAnimate="{Binding ., ElementName=PopupList}">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <ContentControl CacheMode="BitmapCache" ContentTemplate="{TemplateBinding PopupHeaderTemplate}" Content="{TemplateBinding PopupHeader}" Grid.Row="0" Style="{TemplateBinding PopupHeaderStyle}" />
+                                    <telerikPrimitives:RadDataBoundListBox x:Name="PopupList" CheckModeDeactivatedOnBackButton="False" DisplayMemberPath="{TemplateBinding DisplayMemberPath}" IsCheckModeActive="{Binding SelectionMode, Converter={StaticResource SelectionModeToBooleanConverter}, RelativeSource={RelativeSource TemplatedParent}}" telerik:InteractionEffectManager.IsInteractionEnabled="True" ItemContainerStyle="{TemplateBinding PopupItemStyle}" Grid.Row="1" Style="{TemplateBinding PopupStyle}" />
+                                </Grid>
+                            </telerikPrimitives:RadWindow>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="PopupItemStyle">
+                <Setter.Value>
+                    <Style TargetType="telerikPrimitives:RadDataBoundListBoxItem">
+                        <Setter Property="Padding" Value="24, 26, 0, 26" />
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="PopupStyle">
+                <Setter.Value>
+                    <Style TargetType="telerikPrimitives:RadDataBoundListBox">
+                        <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeExtraLarge}" />
+                        <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilySemiLight}" />
+                        <Setter Property="Background" Value="{StaticResource PhoneChromeBrush}" />
+                        <Setter Property="HorizontalAlignment" Value="Stretch" />
+                        <Setter Property="VerticalAlignment" Value="Stretch" />
+                        <Setter Property="CheckBoxStyle">
+                            <Setter.Value>
+                                <Style TargetType="telerikPrimitives:ItemCheckBox">
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                    <Setter Property="Margin" Value="0, 0, -18, 0" />
+                                </Style>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
         <DataTemplate x:Key="AllCitiesItemTemplate">
-        	<StackPanel Width="455" Margin="0,0,0,10">
-        		<TextBlock Text="{Binding}" Style="{StaticResource PhoneTextTitle2Style}" Margin="12,0,0,0"/>
-        		<Path Data="M9,242 L456,242" Fill="#FFF4F4F5" Height="5" Stretch="Fill" UseLayoutRounding="False" Stroke="{StaticResource PhoneAccentBrush}" StrokeThickness="2" Margin="12,0,0,0"/>
-        	</StackPanel>
+            <StackPanel Width="455" Margin="0,0,0,10">
+                <TextBlock Text="{Binding}" Style="{StaticResource PhoneTextTitle2Style}" Margin="12,0,0,0" />
+                <Path Data="M9,242 L456,242" Fill="#FFF4F4F5" Height="5" Stretch="Fill" UseLayoutRounding="False" Stroke="{StaticResource PhoneAccentBrush}" StrokeThickness="2" Margin="12,0,0,0" />
+            </StackPanel>
         </DataTemplate>
         <DataTemplate x:Key="AllLocationsItemTemplate">
-        	<StackPanel Width="455" Margin="0,0,0,15">
-        		<StackPanel Orientation="Horizontal">
-        			<Grid Height="76" Width="68" Background="#FF595959" Margin="0,0,5,0">
-        				<Image Source="{Binding Thumbnail}" MaxHeight="76" MaxWidth="68" Stretch="Fill" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="68" Height="76" />
-        			</Grid>
-        			<StackPanel>
-        				<TextBlock Text="{Binding Name}" Style="{StaticResource PhoneTextLargeStyle}" Margin="0" FontSize="32"/>
-        				<StackPanel Orientation="Horizontal">
-        					<TextBlock Text="{Binding LocationAddress.City}" Style="{StaticResource PhoneTextSmallStyle}" Margin="-2,0,0,0" />
-        					<TextBlock Text=", "  Style="{StaticResource PhoneTextSmallStyle}" Margin="2,0,0,0" />
-        					<TextBlock Text="{Binding LocationAddress.Country}" Style="{StaticResource PhoneTextSmallStyle}" Margin="0" />
-        				</StackPanel>
-        			</StackPanel>
-        		</StackPanel>
-        		<Path Data="M9,242 L456,242" Fill="#FFF4F4F5" Height="8" Stretch="Fill" UseLayoutRounding="False" Stroke="{StaticResource PhoneAccentBrush}" StrokeThickness="2" Margin="0"/>
-        	</StackPanel>
+            <StackPanel Width="455" Margin="0,0,0,15">
+                <StackPanel Orientation="Horizontal">
+                    <Grid Height="76" Width="68" Background="#FF595959" Margin="0,0,5,0">
+                        <Image Source="{Binding Thumbnail}" MaxHeight="76" MaxWidth="68" Stretch="Fill" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="68" Height="76" />
+                    </Grid>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Name}" Style="{StaticResource PhoneTextLargeStyle}" Margin="0" FontSize="32" />
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding LocationAddress.City}" Style="{StaticResource PhoneTextSmallStyle}" Margin="-2,0,0,0" />
+                            <TextBlock Text=", "  Style="{StaticResource PhoneTextSmallStyle}" Margin="2,0,0,0" />
+                            <TextBlock Text="{Binding LocationAddress.Country}" Style="{StaticResource PhoneTextSmallStyle}" Margin="0" />
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+                <Path Data="M9,242 L456,242" Fill="#FFF4F4F5" Height="8" Stretch="Fill" UseLayoutRounding="False" Stroke="{StaticResource PhoneAccentBrush}" StrokeThickness="2" Margin="0" />
+            </StackPanel>
         </DataTemplate>
     </phone:PhoneApplicationPage.Resources>
-	<phone:PhoneApplicationPage.FontFamily>
-		<StaticResource ResourceKey="PhoneFontFamilyNormal"/>
-	</phone:PhoneApplicationPage.FontFamily>
-	<phone:PhoneApplicationPage.FontSize>
-		<StaticResource ResourceKey="PhoneFontSizeNormal"/>
-	</phone:PhoneApplicationPage.FontSize>
-	<phone:PhoneApplicationPage.Foreground>
-		<StaticResource ResourceKey="PhoneForegroundBrush"/>
-	</phone:PhoneApplicationPage.Foreground>
+    <phone:PhoneApplicationPage.FontFamily>
+        <StaticResource ResourceKey="PhoneFontFamilyNormal" />
+    </phone:PhoneApplicationPage.FontFamily>
+    <phone:PhoneApplicationPage.FontSize>
+        <StaticResource ResourceKey="PhoneFontSizeNormal" />
+    </phone:PhoneApplicationPage.FontSize>
+    <phone:PhoneApplicationPage.Foreground>
+        <StaticResource ResourceKey="PhoneForegroundBrush" />
+    </phone:PhoneApplicationPage.Foreground>
 
-    
-	<!--Sample code showing usage of ApplicationBar-->
-	<phone:PhoneApplicationPage.ApplicationBar>
-		<shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-			<shell:ApplicationBar.MenuItems>
-				<shell:ApplicationBarMenuItem x:Name="mManageTags" Text="manageTags" Click="mManageTags_Click"/>
-				<shell:ApplicationBarMenuItem x:Name="mBackup" Text="backup" Click="mBackup_Click"/>
-				<shell:ApplicationBarMenuItem x:Name="mSettings" Text="settings" Click="mSettings_Click"/>
-				<shell:ApplicationBarMenuItem x:Name="mRemoveAds" Text="remove ads" Click="mRemoveAds_Click"/>
-				<shell:ApplicationBarMenuItem x:Name="mAbout" Text="About" Click="mAbout_Click"/>
-			</shell:ApplicationBar.MenuItems>
-			<shell:ApplicationBarIconButton x:Name="btnAdd" IconUri="/Assets/AppBar/add.png" Text="add" Click="btnAdd_Click"/>
-			<shell:ApplicationBarIconButton x:Name="btnImportImage" IconUri="/Assets/Import.png" Text="button" Click="btnImportImage_Click"/>
-		</shell:ApplicationBar>
-	</phone:PhoneApplicationPage.ApplicationBar>
+    <!--Sample code showing usage of ApplicationBar-->
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem x:Name="mManageTags" Text="manageTags" Click="mManageTags_Click" />
+                <shell:ApplicationBarMenuItem x:Name="mBackup" Text="backup" Click="mBackup_Click" />
+                <shell:ApplicationBarMenuItem x:Name="mSettings" Text="settings" Click="mSettings_Click" />
+                <shell:ApplicationBarMenuItem x:Name="mRemoveAds" Text="remove ads" Click="mRemoveAds_Click" />
+                <shell:ApplicationBarMenuItem x:Name="mAbout" Text="About" Click="mAbout_Click" />
+            </shell:ApplicationBar.MenuItems>
+            <shell:ApplicationBarIconButton x:Name="btnAdd" IconUri="/Assets/AppBar/add.png" Text="add" Click="btnAdd_Click" />
+            <shell:ApplicationBarIconButton x:Name="btnImportImage" IconUri="/Assets/Import.png" Text="button" Click="btnImportImage_Click" />
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
 
-	<Grid x:Name="LayoutRoot" Background="Transparent" d:DataContext="{Binding Source={StaticResource LocationSampleDataSource}}">
-<!--TitlePanel contains the name of the application and page title-->
-<!--TitlePanel contains the name of the application and page title-->
-<!--TitlePanel contains the name of the application and page title-->
-		<StackPanel x:Name="TitlePanel" Margin="12,0,0,580">
-			<TextBlock x:Name="ApplicationTitle" Text="{Binding LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}"/>
-			<TextBlock x:Name="PageTitle" Text="{Binding LocalizedResources.CitiesTitle, Source={StaticResource LocalizedStrings}}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
-		</StackPanel>
-		<StackPanel x:Name="ContentPanel" MinWidth="450" VerticalAlignment="Top" Margin="12,116,12,0" Height="500">
-            <telerikInput:RadListPicker x:Name="listpickerFilter" SelectionMode="Multiple"  DisplayMemberPath="TagName" CancelButtonIconUri="/Toolkit.Content/ApplicationBar.Cancel.png" OkButtonIconUri="/Toolkit.Content/ApplicationBar.Check.png" Margin="0" NoSelectionContent="{Binding LocalizedResources.AllLabel, Source={StaticResource LocalizedStrings}}" Style="{StaticResource RadListPickerFilterStyle}" SelectionChanged="listpickerFilter_SelectionChanged" ActionButtonVisibility="Visible" Visibility="Collapsed" PopupHeader="{Binding LocalizedResources.SelectTagsHeader, Source={StaticResource LocalizedStrings}}" >
+    <Grid x:Name="LayoutRoot" Background="Transparent" d:DataContext="{Binding Source={StaticResource LocationSampleDataSource}}">
+        <!--TitlePanel contains the name of the application and page title-->
+        <!--TitlePanel contains the name of the application and page title-->
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel x:Name="TitlePanel" Margin="12,0,0,580">
+            <TextBlock x:Name="ApplicationTitle" Text="{Binding LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}" />
+            <TextBlock x:Name="PageTitle" Text="{Binding LocalizedResources.CitiesTitle, Source={StaticResource LocalizedStrings}}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" />
+        </StackPanel>
+        <StackPanel x:Name="ContentPanel" MinWidth="450" VerticalAlignment="Top" Margin="12,116,12,0">
+            <telerikInput:RadListPicker x:Name="listpickerFilter" SelectionMode="Multiple"  DisplayMemberPath="TagName" CancelButtonIconUri="/Toolkit.Content/ApplicationBar.Cancel.png" OkButtonIconUri="/Toolkit.Content/ApplicationBar.Check.png" Margin="0" NoSelectionContent="{Binding LocalizedResources.AllLabel, Source={StaticResource LocalizedStrings}}" Style="{StaticResource RadListPickerFilterStyle}" SelectionChanged="listpickerFilter_SelectionChanged" ActionButtonVisibility="Visible" Visibility="Collapsed" PopupHeader="{Binding LocalizedResources.SelectTagsHeader, Source={StaticResource LocalizedStrings}}">
                 <telerikInput:RadListPicker.Resources>
                     <Style x:Key="TagStyle" TargetType="telerikPrimitives:RadDataBoundListBoxItem">
                         <Setter Property="Padding" Value="12,12,0,12" />
                     </Style>
                 </telerikInput:RadListPicker.Resources>
                 <telerikInput:RadListPicker.PopupItemStyle>
-                    <StaticResource ResourceKey="TagStyle"/>
+                    <StaticResource ResourceKey="TagStyle" />
                 </telerikInput:RadListPicker.PopupItemStyle>
             </telerikInput:RadListPicker>
-            <telerikPrimitives:RadDataBoundListBox Margin="0" x:Name="ListboxLocations" ItemTemplate="{StaticResource AllLocationsItemTemplate}" ItemsSource="{Binding AllLocations}" SelectionChanged="ListboxLocations_SelectionChanged" Height="450">
-				<telerikPrimitives:RadDataBoundListBox.ItemAddedAnimation>
-					<telerik:RadMoveAnimation StartPoint="500, 0" EndPoint="0, 0" Duration="0:0:0.5">
-						<telerik:RadMoveAnimation.Easing>
-							<CubicEase EasingMode="EaseOut"/>
-						</telerik:RadMoveAnimation.Easing>
-					</telerik:RadMoveAnimation>
-				</telerikPrimitives:RadDataBoundListBox.ItemAddedAnimation>
-			</telerikPrimitives:RadDataBoundListBox>
-			<telerikPrimitives:RadDataBoundListBox Margin="0" x:Name="ListboxCities" ItemTemplate="{StaticResource AllCitiesItemTemplate}" ItemsSource="{Binding AllCities}" SelectionChanged="ListboxCities_OnSelectionChanged" Height="500">
-				<telerikPrimitives:RadDataBoundListBox.ItemAddedAnimation>
+            <telerikPrimitives:RadDataBoundListBox Margin="0" x:Name="ListboxLocations" ItemTemplate="{StaticResource AllLocationsItemTemplate}" ItemsSource="{Binding AllLocations}" SelectionChanged="ListboxLocations_SelectionChanged">
+                <telerikPrimitives:RadDataBoundListBox.ItemAddedAnimation>
                     <telerik:RadMoveAnimation StartPoint="500, 0" EndPoint="0, 0" Duration="0:0:0.5">
-						<telerik:RadMoveAnimation.Easing>
-							<CubicEase EasingMode="EaseOut"/>
-						</telerik:RadMoveAnimation.Easing>
-					</telerik:RadMoveAnimation>
-				</telerikPrimitives:RadDataBoundListBox.ItemAddedAnimation>
-			</telerikPrimitives:RadDataBoundListBox>
-			<Grid x:Name="listGrid"/>
-		</StackPanel>
-		<UserControls:CustomAdControl x:Name="Ad" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0" Visibility="Visible"/>
-		<telerikPrimitives:RadBusyIndicator Background="#CC000000" x:Name="busyProceedAction" AnimationStyle="AnimationStyle8" Content="{Binding LocalizedResources.LoadLocationsLabel, Source={StaticResource LocalizedStrings}}" Margin="0" />
-
-	</Grid>
-
+                        <telerik:RadMoveAnimation.Easing>
+                            <CubicEase EasingMode="EaseOut" />
+                        </telerik:RadMoveAnimation.Easing>
+                    </telerik:RadMoveAnimation>
+                </telerikPrimitives:RadDataBoundListBox.ItemAddedAnimation>
+            </telerikPrimitives:RadDataBoundListBox>
+            <telerikPrimitives:RadDataBoundListBox Margin="0" x:Name="ListboxCities" ItemTemplate="{StaticResource AllCitiesItemTemplate}" ItemsSource="{Binding AllCities}" SelectionChanged="ListboxCities_OnSelectionChanged">
+                <telerikPrimitives:RadDataBoundListBox.ItemAddedAnimation>
+                    <telerik:RadMoveAnimation StartPoint="500, 0" EndPoint="0, 0" Duration="0:0:0.5">
+                        <telerik:RadMoveAnimation.Easing>
+                            <CubicEase EasingMode="EaseOut" />
+                        </telerik:RadMoveAnimation.Easing>
+                    </telerik:RadMoveAnimation>
+                </telerikPrimitives:RadDataBoundListBox.ItemAddedAnimation>
+            </telerikPrimitives:RadDataBoundListBox>
+            <Grid x:Name="listGrid" />
+        </StackPanel>
+        <telerikPrimitives:RadBusyIndicator Background="#CC000000" x:Name="busyProceedAction" AnimationStyle="AnimationStyle8" Content="{Binding LocalizedResources.LoadLocationsLabel, Source={StaticResource LocalizedStrings}}" Margin="0" />
+    </Grid>
 </phone:PhoneApplicationPage>
-

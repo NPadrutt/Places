@@ -70,7 +70,6 @@ namespace Places
                     ContentPanel.Height += 80;
                     ListboxCities.Height += 80;
                     ListboxLocations.Height += 80;
-                    Ad.Visibility = Visibility.Collapsed;
                 });
             }
         }
@@ -288,7 +287,6 @@ namespace Places
                             IsolatedStorageSettings.ApplicationSettings[removedAds.Key] =
                                 CurrentApp.LicenseInformation.ProductLicenses[removedAds.Key].IsActive;
                         }
-                        Ad.Visibility = Visibility.Collapsed;
                         AdjustLists();
                         MessageBox.Show(AppResources.PurchaseSuccessfulMessage, AppResources.PurchaseSuccessfulTitle,
                                         MessageBoxButton.OK);

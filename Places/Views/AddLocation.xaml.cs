@@ -29,8 +29,6 @@ namespace Places.Views
         {
             InitializeComponent();
 
-            AdjustListsIfAdCollapsed();
-
             DataContext = App.ViewModel.SelectedLocation;
             listpickerTag.ItemsSource = App.ViewModel.AllTags;
 
@@ -39,28 +37,6 @@ namespace Places.Views
 
             ((ApplicationBarMenuItem)ApplicationBar.MenuItems[0]).Text = AppResources.RefreshCurrentPositionLabel;
             ((ApplicationBarMenuItem)ApplicationBar.MenuItems[1]).Text = AppResources.PintToStartLabel;
-        }
-
-        private void AdjustListsIfAdCollapsed()
-        {
-            switch (ResolutionHelper.CurrentResolution)
-            {
-                case Resolutions.HD720p:
-                    ControllScrollViewer.Height += 50;
-                    ContentPanel.Height += 50;
-                    break;
-            }
-
-            if (IsolatedStorageSettings.ApplicationSettings.Contains(Product.RemoveAds().Id) &&
-                (bool)IsolatedStorageSettings.ApplicationSettings[Product.RemoveAds().Id])
-            {
-                Dispatcher.BeginInvoke(() =>
-                {
-                    ControllScrollViewer.Height += 80;
-                    ContentPanel.Height += 80;
-                    Ad.Visibility = Visibility.Collapsed;
-                });
-            }
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)

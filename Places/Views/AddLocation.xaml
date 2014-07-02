@@ -15,72 +15,69 @@
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
     shell:SystemTray.IsVisible="True">
-	<phone:PhoneApplicationPage.ApplicationBar>
-		<shell:ApplicationBar>
-			<shell:ApplicationBar.MenuItems>
-				<shell:ApplicationBarMenuItem x:Name="mRefreshPosition" Text="refresh current position" Click="mRefreshPosition_Click"/>
-				<shell:ApplicationBarMenuItem x:Name="mPinToStart" Text="pin to start" Click="mPinToStart_Click"/>
-			</shell:ApplicationBar.MenuItems>
-			<shell:ApplicationBarIconButton x:Name="btnDone" IconUri="/Assets/AppBar/check.png" Text="Fertig" Click="btnDone_Click"/>
-			<shell:ApplicationBarIconButton x:Name="btnCancel" IconUri="/Assets/AppBar/cancel.png" Text="Abbrechen" Click="btnCancel_Click"/>
-		</shell:ApplicationBar>
-	</phone:PhoneApplicationPage.ApplicationBar>
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar>
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem x:Name="mRefreshPosition" Text="refresh current position" Click="mRefreshPosition_Click" />
+                <shell:ApplicationBarMenuItem x:Name="mPinToStart" Text="pin to start" Click="mPinToStart_Click" />
+            </shell:ApplicationBar.MenuItems>
+            <shell:ApplicationBarIconButton x:Name="btnDone" IconUri="/Assets/AppBar/check.png" Text="Fertig" Click="btnDone_Click" />
+            <shell:ApplicationBarIconButton x:Name="btnCancel" IconUri="/Assets/AppBar/cancel.png" Text="Abbrechen" Click="btnCancel_Click" />
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
 
     <!--LayoutRoot is the root grid where all page content is placed-->
-	<Grid x:Name="LayoutRoot" Background="Transparent" d:DataContext="{Binding Source={StaticResource LocationSampleDataSource}}">
-		<Grid.RowDefinitions>
-			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="*"/>
-		</Grid.RowDefinitions>
+    <Grid x:Name="LayoutRoot" Background="Transparent" d:DataContext="{Binding Source={StaticResource LocationSampleDataSource}}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
-		<!--TitlePanel contains the name of the application and page title-->
-		<StackPanel Grid.Row="0" Margin="12,17,0,28">
-			<TextBlock Text="{Binding LocalizedResources.LocationTitle, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}"/>
-			<TextBlock x:Name="PageTitle" Text="Add / Edit" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
-		</StackPanel>
-		<StackPanel Orientation="Vertical" Grid.Row="1">
-			<ScrollViewer x:Name="ControllScrollViewer" Margin="10,0,14,0" Height="455" >
-				<StackPanel x:Name="ContentPanel" d:DataContext="{Binding AllLocations[0]}">
-					<Grid x:Name="gridImage" Margin="12,0,0,0" Tap="Grid_Tap" HorizontalAlignment="Left" Background="{StaticResource PhoneAccentBrush}" Width="171" Height="171" MaxWidth="171" MaxHeight="171">
-						<Image x:Name="LocationImage" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="0" Loaded="LocationImage_Loaded"/>
-						<TextBlock x:Name="lblAddImage" VerticalAlignment="Bottom" TextWrapping="Wrap" Text="{Binding LocalizedResources.AddImageLabel, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextTitle3Style}" Margin="0"/>
-					</Grid>
-                    <telerikPrimitives:RadTextBox x:Name="txtName" Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=Default}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0" Header="{Binding LocalizedResources.NameLabel, Source={StaticResource LocalizedStrings}}"/>
-					<TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Text="{Binding LocalizedResources.CurrentPositionLabel, Source={StaticResource LocalizedStrings}}" Margin="12,0,0,0" Style="{StaticResource PhoneTextSmallStyle}"/>
-					<UserControls:MiniMapControl x:Name="MiniMap" Height="112"/>
-					<ProgressBar x:Name="progressionbarGetLocation" Height="10" Margin="0" IsIndeterminate="True"/>
-					<TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Text="{Binding LocalizedResources.AddressLabel, Mode=OneWay, Source={StaticResource LocalizedStrings}}" Margin="12,0,0,0" Style="{StaticResource PhoneTextSmallStyle}"/>
-					<StackPanel x:Name="stackpanelAddress" Margin="12,0,12,12" Visibility="Collapsed" >
-						<StackPanel Margin="0" Orientation="Horizontal">
-							<TextBlock x:Name="lblStreet" Text="{Binding Street}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextNormalStyle}" Margin="0,0,5,0"/>
-							<TextBlock x:Name="lblHousenumber" Text="{Binding HouseNumber}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextNormalStyle}" Margin="0"/>
-						</StackPanel>
-						<StackPanel Margin="0" Orientation="Horizontal">
-							<TextBlock x:Name="lblPostalCode" Text="{Binding PostalCode}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextNormalStyle}" Margin="0,0,5,0"/>
-							<TextBlock x:Name="lblCity" Text="{Binding City}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextNormalStyle}" Margin="0"/>
-						</StackPanel>
-						<TextBlock x:Name="lblState" Text="{Binding State}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextNormalStyle}" Margin="0"/>
-						<TextBlock x:Name="lblDistrict" Text="{Binding District}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextNormalStyle}" Margin="0"/>
-						<TextBlock x:Name="lblCountry" Text="{Binding Country}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextNormalStyle}" Margin="0"/>
-					</StackPanel>
-					<telerikInput:RadListPicker x:Name="listpickerTag" Margin="12,0,12,12" Header="{Binding LocalizedResources.TagTitle, Source={StaticResource LocalizedStrings}}" SelectionMode="Multiple" DisplayMemberPath="TagName" CancelButtonIconUri="/Toolkit.Content/ApplicationBar.Cancel.png" OkButtonIconUri="/Toolkit.Content/ApplicationBar.Check.png" PopupHeader="{Binding LocalizedResources.SelectTagsHeader, Source={StaticResource LocalizedStrings}}" >
-						<telerikInput:RadListPicker.Resources>
-							<Style x:Key="TagStyle" TargetType="telerikPrimitives:RadDataBoundListBoxItem">
-								<Setter Property="Padding" Value="12,12,0,12" />
-							</Style>
-						</telerikInput:RadListPicker.Resources>
-						<telerikInput:RadListPicker.PopupItemStyle>
-							<StaticResource ResourceKey="TagStyle"/>
-						</telerikInput:RadListPicker.PopupItemStyle>
-					</telerikInput:RadListPicker>
-                    <telerikPrimitives:RadTextBox x:Name="txtComment" Text="{Binding Path=Comment, Mode=TwoWay, UpdateSourceTrigger=Explicit}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Header="{Binding LocalizedResources.CommentLabel, Source={StaticResource LocalizedStrings}}" InputScope="Text" TextOptions.TextHintingMode="Animated" TextWrapping="Wrap"/>
-				</StackPanel>
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock Text="{Binding LocalizedResources.LocationTitle, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}" />
+            <TextBlock x:Name="PageTitle" Text="Add / Edit" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" />
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Grid.Row="1">
+            <ScrollViewer x:Name="ControllScrollViewer" Margin="10,0,14,0">
+                <StackPanel x:Name="ContentPanel" d:DataContext="{Binding AllLocations[0]}">
+                    <Grid x:Name="gridImage" Margin="12,0,0,0" Tap="Grid_Tap" HorizontalAlignment="Left" Background="{StaticResource PhoneAccentBrush}" Width="171" Height="171" MaxWidth="171" MaxHeight="171">
+                        <Image x:Name="LocationImage" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="0" Loaded="LocationImage_Loaded" />
+                        <TextBlock x:Name="lblAddImage" VerticalAlignment="Bottom" TextWrapping="Wrap" Text="{Binding LocalizedResources.AddImageLabel, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextTitle3Style}" Margin="0" />
+                    </Grid>
+                    <telerikPrimitives:RadTextBox x:Name="txtName" Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=Default}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0" Header="{Binding LocalizedResources.NameLabel, Source={StaticResource LocalizedStrings}}" />
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Text="{Binding LocalizedResources.CurrentPositionLabel, Source={StaticResource LocalizedStrings}}" Margin="12,0,0,0" Style="{StaticResource PhoneTextSmallStyle}" />
+                    <UserControls:MiniMapControl x:Name="MiniMap" Height="112" />
+                    <ProgressBar x:Name="progressionbarGetLocation" Height="10" Margin="0" IsIndeterminate="True" />
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Text="{Binding LocalizedResources.AddressLabel, Mode=OneWay, Source={StaticResource LocalizedStrings}}" Margin="12,0,0,0" Style="{StaticResource PhoneTextSmallStyle}" />
+                    <StackPanel x:Name="stackpanelAddress" Margin="12,0,12,12" Visibility="Collapsed">
+                        <StackPanel Margin="0" Orientation="Horizontal">
+                            <TextBlock x:Name="lblStreet" Text="{Binding Street}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextNormalStyle}" Margin="0,0,5,0" />
+                            <TextBlock x:Name="lblHousenumber" Text="{Binding HouseNumber}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextNormalStyle}" Margin="0" />
+                        </StackPanel>
+                        <StackPanel Margin="0" Orientation="Horizontal">
+                            <TextBlock x:Name="lblPostalCode" Text="{Binding PostalCode}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextNormalStyle}" Margin="0,0,5,0" />
+                            <TextBlock x:Name="lblCity" Text="{Binding City}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextNormalStyle}" Margin="0" />
+                        </StackPanel>
+                        <TextBlock x:Name="lblState" Text="{Binding State}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextNormalStyle}" Margin="0" />
+                        <TextBlock x:Name="lblDistrict" Text="{Binding District}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextNormalStyle}" Margin="0" />
+                        <TextBlock x:Name="lblCountry" Text="{Binding Country}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource PhoneTextNormalStyle}" Margin="0" />
+                    </StackPanel>
+                    <telerikInput:RadListPicker x:Name="listpickerTag" Margin="12,0,12,12" Header="{Binding LocalizedResources.TagTitle, Source={StaticResource LocalizedStrings}}" SelectionMode="Multiple" DisplayMemberPath="TagName" CancelButtonIconUri="/Toolkit.Content/ApplicationBar.Cancel.png" OkButtonIconUri="/Toolkit.Content/ApplicationBar.Check.png" PopupHeader="{Binding LocalizedResources.SelectTagsHeader, Source={StaticResource LocalizedStrings}}">
+                        <telerikInput:RadListPicker.Resources>
+                            <Style x:Key="TagStyle" TargetType="telerikPrimitives:RadDataBoundListBoxItem">
+                                <Setter Property="Padding" Value="12,12,0,12" />
+                            </Style>
+                        </telerikInput:RadListPicker.Resources>
+                        <telerikInput:RadListPicker.PopupItemStyle>
+                            <StaticResource ResourceKey="TagStyle" />
+                        </telerikInput:RadListPicker.PopupItemStyle>
+                    </telerikInput:RadListPicker>
+                    <telerikPrimitives:RadTextBox x:Name="txtComment" Text="{Binding Path=Comment, Mode=TwoWay, UpdateSourceTrigger=Explicit}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Header="{Binding LocalizedResources.CommentLabel, Source={StaticResource LocalizedStrings}}" InputScope="Text" TextOptions.TextHintingMode="Animated" TextWrapping="Wrap" />
+                </StackPanel>
+            </ScrollViewer>
+        </StackPanel>
 
-			</ScrollViewer>
-			<UserControls:CustomAdControl x:Name="Ad" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="Auto" Visibility="Visible"/>
-		</StackPanel>
-
-		<!--ContentPanel - place additional content here-->
-	</Grid>
-
+        <!--ContentPanel - place additional content here-->
+    </Grid>
 </phone:PhoneApplicationPage>
