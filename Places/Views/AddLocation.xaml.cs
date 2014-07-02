@@ -1,25 +1,22 @@
-﻿using System;
-using System.Globalization;
-using System.IO;
-using System.IO.IsolatedStorage;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Navigation;
-using FlurryWP8SDK;
+﻿using BugSense;
 using Microsoft.Phone.Shell;
 using Microsoft.Phone.Tasks;
 using Microsoft.Xna.Framework.Media.PhoneExtensions;
 using Places.Models;
 using Places.Resources;
 using Places.Src;
+using System;
+using System.IO;
+using System.IO.IsolatedStorage;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Navigation;
 using Telerik.Windows.Controls;
 using GestureEventArgs = System.Windows.Input.GestureEventArgs;
 
 namespace Places.Views
 {
-    public partial class AddLocation 
+    public partial class AddLocation
     {
         private bool _newElement;
         private bool _sharePicture;
@@ -98,7 +95,7 @@ namespace Places.Views
                     GetPosition();
                 }
             }
-            else if(e.NavigationMode != NavigationMode.Back)
+            else if (e.NavigationMode != NavigationMode.Back)
             {
                 TransformGuiForEditMode();
                 App.ViewModel.CurrentAddress = null;
@@ -132,7 +129,7 @@ namespace Places.Views
             photoChooserTask.Show();
         }
 
-        void PhotoChooserTask_Completed(object sender, PhotoResult e)
+        private void PhotoChooserTask_Completed(object sender, PhotoResult e)
         {
             if (e.TaskResult == TaskResult.OK)
             {
@@ -144,7 +141,7 @@ namespace Places.Views
             }
         }
 
-        private void ImportPicture(Stream photoStream, string path)
+        private async void ImportPicture(Stream photoStream, string path)
         {
             var position = Utilities.GetPositionFromImage(photoStream);
             App.ViewModel.SelectedLocation.Latitude = position.Latitude;
@@ -156,7 +153,7 @@ namespace Places.Views
                 MessageBox.Show(AppResources.NoExifDataMessage, AppResources.NoExifDataMessageTitle, MessageBoxButton.OK);
                 return;
             }
-            GetAddress();
+            await GetAddress();
             MiniMap.ShowOnMap(App.ViewModel.SelectedLocation.Latitude, App.ViewModel.SelectedLocation.Longitude);
         }
 
@@ -174,12 +171,9 @@ namespace Places.Views
                 gridImage.Height = LocationImage.Height;
                 gridImage.Width = LocationImage.Width;
             }
-            catch (OutOfMemoryException ex)
+            catch (Exception ex)
             {
-                Api.LogError(ex.Message +
-                    Microsoft.Phone.Info.DeviceStatus.ApplicationCurrentMemoryUsage + "Peak: " +
-                    Microsoft.Phone.Info.DeviceStatus.ApplicationPeakMemoryUsage, ex);
-                MessageBox.Show(AppResources.OutOfMemoryMessage, AppResources.OutOfMemoryTitle, MessageBoxButton.OK);
+                BugSenseHandler.Instance.LogException(ex);
             }
         }
 
@@ -234,7 +228,7 @@ namespace Places.Views
                 gridImage.Height = image.PixelHeight == 0 ? 175 : LocationImage.Height;
                 gridImage.Width = image.PixelWidth == 0 ? 175 : LocationImage.Width;
             }
-            else if(!_sharePicture)
+            else if (!_sharePicture)
             {
                 lblAddImage.Visibility = Visibility.Visible;
             }
@@ -243,7 +237,7 @@ namespace Places.Views
         private void btnDone_Click(object sender, EventArgs e)
         {
             App.ViewModel.SelectedLocation.Name = txtName.Text;
-            
+
             if (App.ViewModel.CurrentAddress != null)
             {
                 App.ViewModel.SelectedLocation.LocationAddress = App.ViewModel.CurrentAddress;

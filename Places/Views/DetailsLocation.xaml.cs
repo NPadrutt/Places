@@ -1,13 +1,13 @@
-﻿using System;
+﻿using Microsoft.Phone.Shell;
+using Microsoft.Phone.Tasks;
+using Places.Resources;
+using Places.Src;
+using System;
 using System.IO.IsolatedStorage;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Navigation;
-using Microsoft.Phone.Shell;
-using Microsoft.Phone.Tasks;
-using Places.Resources;
-using Places.Src;
 using Telerik.Windows.Controls;
 using GestureEventArgs = System.Windows.Input.GestureEventArgs;
 
@@ -23,9 +23,9 @@ namespace Places.Views
 
             ((ApplicationBarIconButton)ApplicationBar.Buttons[0]).Text = AppResources.EditLabel;
             ((ApplicationBarIconButton)ApplicationBar.Buttons[1]).Text = AppResources.ShareImageLabel;
-            
-			((ApplicationBarMenuItem)ApplicationBar.MenuItems[0]).Text = AppResources.PintToStartLabel;
-			((ApplicationBarMenuItem)ApplicationBar.MenuItems[1]).Text = AppResources.DeleteLabel; 
+
+            ((ApplicationBarMenuItem)ApplicationBar.MenuItems[0]).Text = AppResources.PintToStartLabel;
+            ((ApplicationBarMenuItem)ApplicationBar.MenuItems[1]).Text = AppResources.DeleteLabel;
         }
 
         private void AdjustListsIfAdCollapsed()
@@ -40,8 +40,6 @@ namespace Places.Views
             if (IsolatedStorageSettings.ApplicationSettings.Contains(Product.RemoveAds().Id) &&
                 (bool)IsolatedStorageSettings.ApplicationSettings[Product.RemoveAds().Id])
             {
-
-
                 Dispatcher.BeginInvoke(() =>
                 {
                     ControllScrollViewer.Height += 80;
@@ -66,7 +64,7 @@ namespace Places.Views
                 {
                     App.ViewModel.SelectedLocation =
                         App.ViewModel.LoadPinnedLocation(Convert.ToInt32(NavigationContext.QueryString["id"]));
-                }            
+                }
                 MiniMap.ShowOnMap(App.ViewModel.SelectedLocation.Latitude, App.ViewModel.SelectedLocation.Longitude);
             }
 
@@ -79,10 +77,10 @@ namespace Places.Views
 
             Action actionGetDistance = () => Dispatcher.BeginInvoke(delegate
             {
-                lblDistance.Text = Utilities.GetDistance().Result.ToString();
+                lblDistance.Text = Utilities.GetDistance().ToString();
             });
             Task.Factory.StartNew(actionGetDistance);
-            
+
             MiniMap.ShowOnMap(App.ViewModel.SelectedLocation.Latitude, App.ViewModel.SelectedLocation.Longitude);
             SetTags();
             HideEmptyControlls();
@@ -139,8 +137,8 @@ namespace Places.Views
                 App.ViewModel.DeleteLocation(App.ViewModel.SelectedLocation);
             }
 
-            NavigationService.GoBack();        
-		}
+            NavigationService.GoBack();
+        }
 
         private void mPinToStart_Click(object sender, EventArgs e)
         {
@@ -163,7 +161,7 @@ namespace Places.Views
 
         private void MiniMap_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-        	NavigationService.Navigate(new Uri("/Views/MapView.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/Views/MapView.xaml", UriKind.Relative));
         }
 
         private void ImageViewer_WindowOpening(object sender, System.ComponentModel.CancelEventArgs e)
@@ -181,7 +179,7 @@ namespace Places.Views
 
         private void btnShare_Click(object sender, System.EventArgs e)
         {
-            var shareMediaTask = new ShareMediaTask {FilePath = App.ViewModel.SelectedLocation.ImageUri};
+            var shareMediaTask = new ShareMediaTask { FilePath = App.ViewModel.SelectedLocation.ImageUri };
             shareMediaTask.Show();
         }
     }

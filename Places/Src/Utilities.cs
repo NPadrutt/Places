@@ -1,4 +1,11 @@
-﻿using System;
+﻿using BugSense;
+using ExifLib;
+using Microsoft.Phone.Maps.Services;
+using Microsoft.Phone.Shell;
+using Microsoft.Xna.Framework.Media;
+using Places.Models;
+using Places.Resources;
+using System;
 using System.Collections.Generic;
 using System.Device.Location;
 using System.IO;
@@ -8,16 +15,8 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media.Imaging;
-using Microsoft.Phone.Net.NetworkInformation;
-using Windows.Devices.Geolocation;
-using ExifLib;
-using FlurryWP8SDK;
-using Microsoft.Phone.Maps.Services;
-using Microsoft.Phone.Shell;
-using Microsoft.Xna.Framework.Media;
-using Places.Models;
-using Places.Resources;
 using Telerik.Windows.Controls;
+using Windows.Devices.Geolocation;
 
 namespace Places.Src
 {
@@ -37,7 +36,7 @@ namespace Places.Src
         {
             if (App.Settings.LocationServiceEnabled)
             {
-                var geolocater = new Geolocator {DesiredAccuracy = accuracy};
+                var geolocater = new Geolocator { DesiredAccuracy = accuracy };
 
                 try
                 {
@@ -55,19 +54,19 @@ namespace Places.Src
                 }
                 catch (TimeoutException ex)
                 {
-                    Api.LogError("timeout", ex);
+                    BugSenseHandler.Instance.LogException(ex);
                 }
                 catch (Exception ex)
                 {
-                    if ((uint) ex.HResult == 0x80004004)
+                    if ((uint)ex.HResult == 0x80004004)
                     {
                         // the application does not have the right capability or the location master switch is off
-                        Api.LogError("location  is disabled in phone settings.", ex);
+                        BugSenseHandler.Instance.LogException(ex);
                     }
-                    if ((uint) ex.HResult == 0x800705B4)
+                    if ((uint)ex.HResult == 0x800705B4)
                     {
                         // the application does not have the right capability or the location master switch is off
-                        Api.LogError("Timeout expired.", ex);
+                        BugSenseHandler.Instance.LogException(ex);
                     }
                 }
             }
@@ -84,31 +83,30 @@ namespace Places.Src
                     };
                 IList<MapLocation> locations = await myReverseGeocodeQuery.GetMapLocationsAsync();
 
-
                 if (locations.Count > 0)
                 {
                     var address = locations.First().Information.Address;
                     locationAddress = new LocationAddress
                                           {
-                        Street = address.Street,
-                        HouseNumber = address.HouseNumber,
-                        PostalCode = address.PostalCode,
-                        City = address.City,
-                        District = address.District,
-                        State = address.State,
-                        Country = address.Country
-                    };
+                                              Street = address.Street,
+                                              HouseNumber = address.HouseNumber,
+                                              PostalCode = address.PostalCode,
+                                              City = address.City,
+                                              District = address.District,
+                                              State = address.State,
+                                              Country = address.Country
+                                          };
                 }
             }
             catch (Exception ex)
             {
-                Api.LogError(ex.Message, ex);
+                BugSenseHandler.Instance.LogException(ex);
             }
 
             App.ViewModel.CurrentAddress = locationAddress;
         }
 
-        public async static Task<double> GetDistance()
+        public static double GetDistance()
         {
             try
             {
@@ -124,7 +122,7 @@ namespace Places.Src
             }
             catch (Exception ex)
             {
-                Api.LogError(ex.Message, ex);
+                BugSenseHandler.Instance.LogException(ex);
             }
             return 0;
         }
@@ -162,7 +160,7 @@ namespace Places.Src
             }
             catch (Exception ex)
             {
-                Api.LogError(ex.Message, ex);
+                BugSenseHandler.Instance.LogException(ex);
             }
 
             return bitmap;
@@ -215,7 +213,7 @@ namespace Places.Src
             }
             catch (Exception ex)
             {
-                Api.LogError(ex.Message, ex);
+                BugSenseHandler.Instance.LogException(ex);
                 MessageBox.Show(AppResources.GeneralErrorMessage, AppResources.GeneralErrorMessageTitle, MessageBoxButton.OK);
             }
 
@@ -258,24 +256,18 @@ namespace Places.Src
                                 uriList.Add(new Uri("isostore:/shared/ShellContent/" + i + ".jpg", UriKind.Absolute));
                                 i++;
                             }
-                        } catch (Exception) {}
+                        }
+                        catch (Exception) { }
                     }
                 }
 
                 tileData.CycleImages = uriList;
                 LiveTileHelper.UpdateTile(ShellTile.ActiveTiles.FirstOrDefault(), tileData);
             }
-            catch (OutOfMemoryException ex)
-            {
-                Api.LogError(
-                    "Zuviel Speicherverbrauch beim Tile Aktualisieren. Aktueller Memory Verbrauch: " +
-                    Microsoft.Phone.Info.DeviceStatus.ApplicationCurrentMemoryUsage + "Peak: " +
-                    Microsoft.Phone.Info.DeviceStatus.ApplicationPeakMemoryUsage, ex);
-            }
             catch (Exception ex)
             {
-                Api.LogError(ex.Message, ex);
-            } 
+                BugSenseHandler.Instance.LogException(ex);
+            }
         }
 
         public static string GetImageName(Stream choosenStream)

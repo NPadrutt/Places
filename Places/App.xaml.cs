@@ -1,16 +1,16 @@
-﻿using System;
+﻿using BugSense;
+using Microsoft.Phone.Controls;
+using Microsoft.Phone.Shell;
+using Places.Resources;
+using Places.Src;
+using Places.ViewModels;
+using System;
 using System.Diagnostics;
 using System.IO.IsolatedStorage;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Navigation;
-using FlurryWP8SDK;
-using Microsoft.Phone.Controls;
-using Microsoft.Phone.Shell;
-using Places.Resources;
-using Places.Src;
-using Places.ViewModels;
 using Telerik.Windows.Controls;
 using Telerik.Windows.Controls.Reminders;
 using Windows.ApplicationModel.Store;
@@ -21,6 +21,7 @@ namespace Places
     public partial class App
     {
         private static MainViewModel viewModel;
+
         public static MainViewModel ViewModel
         {
             get { return viewModel; }
@@ -31,6 +32,7 @@ namespace Places
         }
 
         private static SettingViewModel settings;
+
         public static SettingViewModel Settings
         {
             get { return settings; }
@@ -50,7 +52,6 @@ namespace Places
         /// </summary>
         public RadRateApplicationReminder RateReminder;
 
-
         /// <summary>
         /// Provides easy access to the root frame of the Phone Application.
         /// </summary>
@@ -62,7 +63,7 @@ namespace Places
         /// </summary>
         public App()
         {
-            // Global handler for uncaught exceptions. 
+            // Global handler for uncaught exceptions.
             UnhandledException += Application_UnhandledException;
 
             // Standard Silverlight initialization
@@ -80,7 +81,7 @@ namespace Places
                 // Show the areas of the app that are being redrawn in each frame.
                 //Application.Current.Host.Settings.EnableRedrawRegions = true;
 
-                // Enable non-production analysis visualization mode, 
+                // Enable non-production analysis visualization mode,
                 // which shows areas of a page that are being GPU accelerated with a colored overlay.
                 //Application.Current.Host.Settings.EnableCacheVisualization = true;
 
@@ -123,7 +124,7 @@ namespace Places
             {
                 if (ex.Message.Contains("0x805A0194"))
                 {
-                    FlurryWP8SDK.Api.LogError("Task couldn't coulnd't finish with a result.", ex);
+                    BugSenseHandler.Instance.LogException(ex);
                 }
             }
         }
@@ -166,7 +167,6 @@ namespace Places
                 //This will ensure that the ApplicationUsageHelper is initialized again if the application has been in Tombstoned state.
                 ApplicationUsageHelper.OnApplicationActivated();
             }
-
         }
 
         // Code to execute when the application is deactivated (sent to background)
@@ -185,7 +185,7 @@ namespace Places
             Action actionUpdateTile = () => Deployment.Current.Dispatcher.BeginInvoke(Utilities.UpdateTile);
             Task.Factory.StartNew(actionUpdateTile);
         }
-        
+
         // Code to execute if a navigation fails
         private void RootFrame_NavigationFailed(object sender, NavigationFailedEventArgs e)
         {
@@ -199,7 +199,7 @@ namespace Places
         // Code to execute on Unhandled Exceptions
         private void Application_UnhandledException(object sender, ApplicationUnhandledExceptionEventArgs e)
         {
-            Api.LogError(e.ExceptionObject.Message, e.ExceptionObject.InnerException);
+            BugSenseHandler.Instance.LogException(e.ExceptionObject);
 
             if (Debugger.IsAttached)
             {
@@ -212,6 +212,7 @@ namespace Places
 
         // Avoid double-initialization
         private bool phoneApplicationInitialized;
+
         private bool reset;
 
         // Do not add any additional code to this method
@@ -255,7 +256,7 @@ namespace Places
             RootFrame.Navigated -= CompleteInitializePhoneApplication;
         }
 
-        void RootFrame_Navigating(object sender, NavigatingCancelEventArgs e)
+        private void RootFrame_Navigating(object sender, NavigatingCancelEventArgs e)
         {
             if (reset && e.IsCancelable && e.Uri.OriginalString == "/MainPage.xaml")
             {
@@ -264,11 +265,11 @@ namespace Places
             }
         }
 
-        void RootFrame_Navigated(object sender, NavigationEventArgs e)
+        private void RootFrame_Navigated(object sender, NavigationEventArgs e)
         {
             reset = e.NavigationMode == NavigationMode.Reset;
         }
 
-        #endregion
+        #endregion Phone application initialization
     }
 }

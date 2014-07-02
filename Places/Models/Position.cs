@@ -1,79 +1,17 @@
-﻿using System;
-using System.ComponentModel;
+﻿using PropertyChanged;
+using System;
 
 namespace Places.Models
 {
-    public class Position : INotifyPropertyChanged
+    [ImplementPropertyChanged]
+    public class Position
     {
-        private double _latitude;
-        public double Latitude
-        {
-            get { return _latitude; }
-            set
-            {
-                if (_latitude != value)
-                {
-                    _latitude = value;
-                    NotifyPropertyChanged("Latitude");
-                }
-            }
-        }
+        public double Latitude { get; set; }
 
-        private double _longitude;
-        public double Longitude
-        {
-            get { return _longitude; }
-            set
-            {
-                if (_longitude != value)
-                {
-                    _longitude = value;
-                    NotifyPropertyChanged("Longitude");
-                }
-            }
-        }
+        public double Longitude { get; set; }
 
-        private double _accuracy;
-        public double Accuracy
-        {
-            get { return _accuracy; }
-            set
-            {
-                if (_accuracy != value)
-                {
-                    _accuracy = value;
-                    NotifyPropertyChanged("Accuracy");
-                }
-            }
-        }
+        public double Accuracy { get; set; }
 
-        private DateTime _timeStamp;
-        public DateTime Timestamp
-        {
-            get { return _timeStamp; }
-            set
-            {
-                if (_timeStamp != value)
-                {
-                    _timeStamp = value;
-                    NotifyPropertyChanged("TimeStamp");
-                }
-            }
-        }
-
-        #region INotifyPropertyChanged Members
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        // Used to notify that a property changed
-        private void NotifyPropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-
-        #endregion
+        public DateTime Timestamp { get; set; }
     }
 }

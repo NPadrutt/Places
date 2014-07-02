@@ -1,181 +1,53 @@
-﻿using System;
+﻿using Places.Src;
+using PropertyChanged;
+using System;
 using System.ComponentModel;
 using System.Data.Linq;
 using System.Data.Linq.Mapping;
 using System.Windows.Media.Imaging;
-using FlurryWP8SDK;
-using Places.Src;
 
 namespace Places.Models
 {
     [Table]
-    public class Location : INotifyPropertyChanged, IComparable
+    [ImplementPropertyChanged]
+    public class Location : IComparable
     {
-        private int _id;
-
         [Column(IsPrimaryKey = true, IsDbGenerated = true, DbType = "INT NOT NULL Identity", CanBeNull = false, AutoSync = AutoSync.OnInsert)]
-        public int Id
-        {
-            get { return _id; }
-            set
-            {
-                if (_id != value)
-                {
-                    _id = value;
-                    NotifyPropertyChanged("Id");
-                }
-            }
-        }
-
-        private string _imageName;
+        public int Id { get; set; }
 
         [Column]
-        public string ImageName
-        {
-            get { return _imageName; }
-            set
-            {
-                if (_imageName != value)
-                {
-                    _imageName = value;
-                    NotifyPropertyChanged("LocationImageName");
-                }
-            }
-        }
-
-        private string _imageUri;
+        public string ImageName { get; set; }
 
         [Column]
-        public string ImageUri
-        {
-            get { return _imageUri; }
-            set
-            {
-                if (_imageUri != value)
-                {
-                    _imageUri = value;
-                    NotifyPropertyChanged("ImageUri");
-                }
-            }
-        }
+        public string ImageUri { get; set; }
 
         public BitmapImage LocationImage
         {
-            get { return Utilities.GetLocationImage(_imageName); }
+            get { return Utilities.GetLocationImage(ImageName); }
         }
 
-        private BitmapImage _thumbnail;
-        public BitmapImage Thumbnail
-        {
-            get { return _thumbnail; }
-            set
-            {
-                if (_thumbnail != value)
-                {
-                    _thumbnail = value;
-                    NotifyPropertyChanged("Thumbnail");
-                }
-            }
-        }
-
-        private string _name;
+        public BitmapImage Thumbnail { get; set; }
 
         [Column]
-        public string Name
-        {
-            get { return _name; }
-            set
-            {
-                if (_name != value)
-                {
-                    _name = value;
-                    NotifyPropertyChanged("Name");
-                }
-            }
-        }
-
-        private double _latitude;
+        public string Name { get; set; }
 
         [Column]
-        public double Latitude
-        {
-            get { return _latitude; }
-            set
-            {
-                if (_latitude != value)
-                {
-                    _latitude = value;
-                    NotifyPropertyChanged("Latitude");
-                }
-            }
-        }
-
-        private double _longitude;
+        public double Latitude { get; set; }
 
         [Column]
-        public double Longitude
-        {
-            get { return _longitude; }
-            set
-            {
-                if (_longitude != value)
-                {
-                    _longitude = value;
-                    NotifyPropertyChanged("Longitude");
-                }
-            }
-        }
-
-        private double _accuracy;
+        public double Longitude { get; set; }
 
         [Column]
-        public double Accuracy
-        {
-            get { return _accuracy; }
-            set
-            {
-                if (_accuracy != value)
-                {
-                    _accuracy = value;
-                    NotifyPropertyChanged("Accuracy");
-                }
-            }
-        }
-
-        private double? _distance;
+        public double Accuracy { get; set; }
 
         [Column]
-        public double? Distance
-        {
-            get { return _distance; }
-            set
-            {
-                if (_distance != value)
-                {
-                    _distance = value;
-                    NotifyPropertyChanged("Distance");
-                }
-            }
-        }
-
-        private string _comment;
+        public double? Distance { get; set; }
 
         [Column]
-        public string Comment
-        {
-            get { return _comment; }
-            set
-            {
-                if (_comment != value)
-                {
-                    _comment = value;
-                    NotifyPropertyChanged("Comment");
-                }
-            }
-        }
+        public string Comment { get; set; }
 
         #region Foreign Keys
-        
+
         [Column]
         private int? _addressId;
 
@@ -187,15 +59,12 @@ namespace Places.Models
             get { return _locationAddress.Entity; }
             set
             {
-                NotifyPropertyChanging("LocationAddress");
                 _locationAddress.Entity = value;
 
                 if (value != null)
                 {
                     _addressId = value.Id;
                 }
-
-                NotifyPropertyChanging("LocationAddress");
             }
         }
 
@@ -207,7 +76,7 @@ namespace Places.Models
             get { return _tag; }
             set { _tag.Assign(value); }
         }
- 
+
         public Location()
         {
             _tag = new EntitySet<Tag>(
@@ -215,25 +84,10 @@ namespace Places.Models
                 tag => tag.Location = null);
         }
 
-        #endregion
+        #endregion Foreign Keys
 
         [Column(IsVersion = true)]
         private Binary _version;
-
-        #region INotifyPropertyChanged Members
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        // Used to notify that a property changed
-        private void NotifyPropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-
-        #endregion
 
         public int CompareTo(object obj)
         {

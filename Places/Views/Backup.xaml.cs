@@ -1,19 +1,19 @@
-﻿using System;
+﻿using BugSense;
+using Microsoft.Live;
+using Microsoft.Live.Controls;
+using Places.Resources;
+using Places.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.IO.IsolatedStorage;
 using System.Threading.Tasks;
 using System.Windows;
-using FlurryWP8SDK;
-using Microsoft.Live;
-using Microsoft.Live.Controls;
-using Places.Resources;
-using Places.ViewModels;
 
 namespace Places.Views
 {
-    public partial class Backup 
+    public partial class Backup
     {
         private LiveConnectClient liveClient;
         private static string folderId;
@@ -29,9 +29,6 @@ namespace Places.Views
 
             busyProceedAction.Content = AppResources.LoadBackupLabel;
             busyProceedAction.IsRunning = true;
-
-            Api.LogEvent("CreateBackUp()");
-            Api.LogEvent("RestoreBackUp()");
         }
 
         private async void SignInButton_SessionChanged(object sender, LiveConnectSessionChangedEventArgs e)
@@ -50,7 +47,6 @@ namespace Places.Views
                 lblLoginInfo.Visibility = Visibility.Visible;
                 btnBackup.IsEnabled = false;
                 btnRestore.IsEnabled = false;
-
             }
             busyProceedAction.IsRunning = false;
         }
@@ -62,7 +58,6 @@ namespace Places.Views
                 await GetBackupId();
                 if (backupId != null)
                 {
-
                     btnRestore.IsEnabled = true;
                     await GetBackupCreationDate();
                 }
@@ -98,9 +93,9 @@ namespace Places.Views
                     }
                 }
             }
-            catch (LiveConnectException exception)
+            catch (LiveConnectException ex)
             {
-                Api.LogError(exception.Message, exception);
+                BugSenseHandler.Instance.LogException(ex);
             }
         }
 
@@ -143,12 +138,12 @@ namespace Places.Views
             }
             catch (TaskCanceledException ex)
             {
-                Api.LogError(ex.Message, ex);
+                BugSenseHandler.Instance.LogException(ex);
                 MessageBox.Show(AppResources.TaskCancelledErrorMessage, AppResources.TaskCancelledErrorTitle, MessageBoxButton.OK);
             }
             catch (Exception ex)
             {
-                Api.LogError(ex.Message, ex);
+                BugSenseHandler.Instance.LogException(ex);
                 MessageBox.Show(AppResources.GeneralErrorMessage, AppResources.GeneralErrorMessageTitle, MessageBoxButton.OK);
             }
         }
@@ -174,9 +169,9 @@ namespace Places.Views
                     }
                 }
             }
-            catch (LiveConnectException exception)
+            catch (LiveConnectException ex)
             {
-                Api.LogError(exception.Message, exception);
+                BugSenseHandler.Instance.LogException(ex);
             }
         }
 
@@ -192,9 +187,9 @@ namespace Places.Views
                     DateTime createdAt = Convert.ToDateTime(result.created_time);
                     lblLastBackupDate.Text = createdAt.ToString("f", new CultureInfo(CultureInfo.CurrentCulture.TwoLetterISOLanguageName));
                 }
-                catch (LiveConnectException exception)
+                catch (LiveConnectException ex)
                 {
-                    Api.LogError("Error getting file info: " + exception.Message, exception);
+                    BugSenseHandler.Instance.LogException(ex);
                 }
             }
         }
@@ -210,9 +205,9 @@ namespace Places.Views
                     dynamic result = operationResult.Result;
                     folderId = result.id;
                 }
-                catch (LiveConnectException exception)
+                catch (LiveConnectException ex)
                 {
-                    Api.LogError(exception.Message, exception);
+                    BugSenseHandler.Instance.LogException(ex);
                 }
             }
         }
@@ -264,10 +259,10 @@ namespace Places.Views
                     NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
                 }
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
+                BugSenseHandler.Instance.LogException(ex);
                 MessageBox.Show(AppResources.GeneralErrorMessage);
-                Api.LogError(exception.Message, exception);
             }
             finally
             {
