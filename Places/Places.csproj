@@ -118,6 +118,7 @@
     <Compile Include="Src\CustomMapper.cs" />
     <Compile Include="Src\ExifReader.cs" />
     <Compile Include="Src\ExifTags.cs" />
+    <Compile Include="Src\LicenseHelper.cs" />
     <Compile Include="Src\Product.cs" />
     <Compile Include="Src\ResolutionHelper.cs" />
     <Compile Include="Src\StringComparer.cs" />
@@ -336,7 +337,7 @@
   -->
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_ConfigurationName="Debug" BuildVersion_BuildVersioningStyle="None.None.None.Increment" BuildVersion_UseGlobalSettings="True" />
+      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_BuildVersioningStyle="None.None.None.Increment" BuildVersion_ConfigurationName="Debug" />
     </VisualStudio>
   </ProjectExtensions>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

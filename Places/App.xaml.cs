@@ -114,7 +114,6 @@ namespace Places
             Api.StartSession("CDM6ZNWY5VQGCX5DMQK6");
             Api.SetVersion(Utilities.GetVersion());
 #endif
-            ApplicationUsageHelper.Init(Utilities.GetVersion());
             InitRateReminder();
         }
 
