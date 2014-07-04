@@ -1,6 +1,9 @@
-﻿using Places.Models;
+﻿using BugSense;
+using Places.Models;
 using Places.Resources;
+using Places.Src;
 using System;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 using Windows.ApplicationModel.Store;
@@ -14,6 +17,8 @@ namespace Places.UserControls
             InitializeComponent();
             RenderStoreItems();
         }
+
+        public ObservableCollection<ProductItem> picItems = new ObservableCollection<ProductItem>();
 
         private async void RenderStoreItems()
         {
@@ -62,7 +67,7 @@ namespace Places.UserControls
                     var li = await CurrentApp.LoadListingInformationAsync();
                     string pID = li.ProductListings[key].ProductId;
 
-                    await CurrentApp.RequestProductPurchaseAsync(pID);
+                    await CurrentApp.RequestProductPurchaseAsync(pID, true);
                     await LicenseHelper.CheckLicenceFeaturepack();
                 }
             }
@@ -70,8 +75,9 @@ namespace Places.UserControls
             {
                 if (ex.Message.Contains("0x80004005"))
                 {
-                    MessageBox.Show(AppResources.PurchasedFailedText, AppResources.PurchasedFailedText,
-                        MessageBoxButton.OK);
+                    //TODO: add these textes
+                    //MessageBox.Show(AppResources.PurchasedFailedText, AppResources.PurchasedFailedText,
+                    //    MessageBoxButton.OK);
                 }
                 else
                 {

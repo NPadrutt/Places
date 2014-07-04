@@ -435,4 +435,7 @@ Möchtest du fortfahren?</value>
   <data name="SetFilterHeader" xml:space="preserve">
     <value>Filter setzen</value>
   </data>
+  <data name="PurchasedLabel" xml:space="preserve">
+    <value>Gekauft</value>
+  </data>
 </root>

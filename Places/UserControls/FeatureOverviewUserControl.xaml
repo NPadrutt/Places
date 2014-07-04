@@ -3,16 +3,16 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:converters="clr-namespace:Coding4Fun.Toolkit.Controls.Converters;assembly=Coding4Fun.Toolkit.Controls"
     mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     d:DesignHeight="480" d:DesignWidth="480">
 
-    <phone:PhoneApplicationPage.Resources>
+    <UserControl.Resources>
         <converters:ThemedImageConverter x:Key="ThemedImageConverter" />
-    </phone:PhoneApplicationPage.Resources>
+    </UserControl.Resources>
 
     <Grid x:Name="LayoutRoot">
         <ScrollViewer HorizontalAlignment="Left" Margin="12,0,12,0" Grid.Row="1">

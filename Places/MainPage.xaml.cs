@@ -39,8 +39,6 @@ namespace Places
 
             listpickerFilter.ItemsSource = App.ViewModel.AllTags;
 
-            AdjustLists();
-
             ((ApplicationBarIconButton)ApplicationBar.Buttons[0]).Text = AppResources.AddLabel;
             ((ApplicationBarIconButton)ApplicationBar.Buttons[1]).Text = AppResources.ImportImageLabel;
 
@@ -49,29 +47,6 @@ namespace Places
             ((ApplicationBarMenuItem)ApplicationBar.MenuItems[2]).Text = AppResources.SettingsLabel;
             ((ApplicationBarMenuItem)ApplicationBar.MenuItems[3]).Text = AppResources.RemoveAdsLabel;
             ((ApplicationBarMenuItem)ApplicationBar.MenuItems[4]).Text = AppResources.AboutLabel;
-        }
-
-        private void AdjustLists()
-        {
-            switch (ResolutionHelper.CurrentResolution)
-            {
-                case Resolutions.HD720p:
-                    ContentPanel.Height += 50;
-                    ListboxCities.Height += 50;
-                    ListboxLocations.Height += 50;
-                    break;
-            }
-
-            if (IsolatedStorageSettings.ApplicationSettings.Contains(Product.RemoveAds().Id) &&
-                (bool)IsolatedStorageSettings.ApplicationSettings[Product.RemoveAds().Id])
-            {
-                Dispatcher.BeginInvoke(() =>
-                {
-                    ContentPanel.Height += 80;
-                    ListboxCities.Height += 80;
-                    ListboxLocations.Height += 80;
-                });
-            }
         }
 
         private async void CheckLocationservices()
@@ -95,8 +70,8 @@ namespace Places
 
             ((ApplicationBarIconButton)ApplicationBar.Buttons[1]).IsEnabled = App.Settings.LocationServiceEnabled;
 
-            if (IsolatedStorageSettings.ApplicationSettings.Contains(Product.RemoveAds().Id) &&
-                (bool)IsolatedStorageSettings.ApplicationSettings[Product.RemoveAds().Id])
+            if (IsolatedStorageSettings.ApplicationSettings.Contains("10000") &&
+                (bool)IsolatedStorageSettings.ApplicationSettings["10000"])
             {
                 if (ApplicationBar.MenuItems.Count >= 5)
                 {

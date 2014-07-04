@@ -498,4 +498,7 @@ Do you wanna continue?</value>
   <data name="SetFilterHeader" xml:space="preserve">
     <value>set filter</value>
   </data>
+  <data name="PurchasedLabel" xml:space="preserve">
+    <value>purchased</value>
+  </data>
 </root>
