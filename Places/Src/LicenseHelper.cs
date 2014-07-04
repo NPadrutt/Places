@@ -31,7 +31,7 @@ namespace Places.Src
             try
             {
                 var listing = await CurrentApp.LoadListingInformationAsync();
-                var featurepackLicence = listing.ProductListings.FirstOrDefault(p => p.Value.ProductId == Product.RemoveAds().Id);
+                var featurepackLicence = listing.ProductListings.FirstOrDefault(p => p.Value.ProductId == "10000");
 
                 if (CurrentApp.LicenseInformation.ProductLicenses != null)
                 {

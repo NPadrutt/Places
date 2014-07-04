@@ -103,6 +103,7 @@
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\MainDataContext.cs" />
     <Compile Include="Models\Position.cs" />
+    <Compile Include="Models\ProductItem.cs" />
     <Compile Include="Models\Setting.cs" />
     <Compile Include="Models\Tag.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -119,11 +120,12 @@
     <Compile Include="Src\ExifReader.cs" />
     <Compile Include="Src\ExifTags.cs" />
     <Compile Include="Src\LicenseHelper.cs" />
-    <Compile Include="Src\Product.cs" />
-    <Compile Include="Src\ResolutionHelper.cs" />
     <Compile Include="Src\StringComparer.cs" />
     <Compile Include="Src\UpdateHelper.cs" />
     <Compile Include="Src\Utilities.cs" />
+    <Compile Include="UserControls\FeatureOverviewUserControl.xaml.cs">
+      <DependentUpon>FeatureOverviewUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\MiniMapControl.xaml.cs">
       <DependentUpon>MiniMapControl.xaml</DependentUpon>
     </Compile>
@@ -163,6 +165,10 @@
     <Page Include="SampleData\LocationSampleDataSource\LocationSampleDataSource.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\FeatureOverviewUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\MiniMapControl.xaml">
       <Generator>MSBuild:Compile</Generator>
