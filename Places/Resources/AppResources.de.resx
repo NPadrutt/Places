@@ -438,4 +438,10 @@ Möchtest du fortfahren?</value>
   <data name="PurchasedLabel" xml:space="preserve">
     <value>Gekauft</value>
   </data>
+  <data name="PurchasedFailedText" xml:space="preserve">
+    <value>Der Einkauf konnte nicht abgeschlossen werden. Bitte vergewissere dich dass du eine Internetverbindung hast und versuche es nochmals.</value>
+  </data>
+  <data name="PurchasedFailedTitle" xml:space="preserve">
+    <value>Einkauf fehlgeschlagen</value>
+  </data>
 </root>

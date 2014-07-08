@@ -788,6 +788,24 @@ namespace Places.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The purchased couldn&apos;t be completed. Please be sure that you have a internet connection and try it again..
+        /// </summary>
+        public static string PurchasedFailedText {
+            get {
+                return ResourceManager.GetString("PurchasedFailedText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to purchase failed!.
+        /// </summary>
+        public static string PurchasedFailedTitle {
+            get {
+                return ResourceManager.GetString("PurchasedFailedTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to purchased.
         /// </summary>
         public static string PurchasedLabel {

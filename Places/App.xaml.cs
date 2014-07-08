@@ -110,10 +110,6 @@ namespace Places
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
-#if !DEBUG
-            Api.StartSession("CDM6ZNWY5VQGCX5DMQK6");
-            Api.SetVersion(Utilities.GetVersion());
-#endif
             InitRateReminder();
         }
 

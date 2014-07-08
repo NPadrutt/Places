@@ -75,9 +75,8 @@ namespace Places.UserControls
             {
                 if (ex.Message.Contains("0x80004005"))
                 {
-                    //TODO: add these textes
-                    //MessageBox.Show(AppResources.PurchasedFailedText, AppResources.PurchasedFailedText,
-                    //    MessageBoxButton.OK);
+                    MessageBox.Show(AppResources.PurchasedFailedText, AppResources.PurchasedFailedTitle,
+                        MessageBoxButton.OK);
                 }
                 else
                 {

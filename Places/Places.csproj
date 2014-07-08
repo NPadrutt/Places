@@ -209,6 +209,7 @@
     <None Include="Properties\WMAppManifest.xml">
       <SubType>Designer</SubType>
     </None>
+    <None Include="RateMyAppGuide_v1 1.pdf" />
     <None Include="SampleData\LocationSampleDataSource\LocationSampleDataSource.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -312,6 +313,9 @@
       <HintPath>..\packages\PropertyChanged.Fody.1.48.2.0\Lib\portable-net4+sl4+wp8+win8+wpa81+MonoAndroid16+MonoTouch40\PropertyChanged.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="RateMyApp">
+      <HintPath>..\packages\RateMyApp.1.1.0\lib\sl4-wp71\RateMyApp.dll</HintPath>
+    </Reference>
     <Reference Include="System.Net.Http">
       <HintPath>..\packages\Microsoft.Net.Http.2.2.27-beta\lib\sl4-windowsphone71\System.Net.Http.dll</HintPath>
     </Reference>
@@ -346,7 +350,7 @@
   -->
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_BuildVersioningStyle="None.None.None.Increment" BuildVersion_ConfigurationName="Debug" />
+      <UserProperties BuildVersion_ConfigurationName="Debug" BuildVersion_BuildVersioningStyle="None.None.None.Increment" BuildVersion_UseGlobalSettings="True" />
     </VisualStudio>
   </ProjectExtensions>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

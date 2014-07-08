@@ -501,4 +501,10 @@ Do you wanna continue?</value>
   <data name="PurchasedLabel" xml:space="preserve">
     <value>purchased</value>
   </data>
+  <data name="PurchasedFailedText" xml:space="preserve">
+    <value>The purchased couldn't be completed. Please be sure that you have a internet connection and try it again.</value>
+  </data>
+  <data name="PurchasedFailedTitle" xml:space="preserve">
+    <value>purchase failed!</value>
+  </data>
 </root>
