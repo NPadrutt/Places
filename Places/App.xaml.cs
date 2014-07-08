@@ -111,6 +111,7 @@ namespace Places
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
             InitRateReminder();
+            ApplicationUsageHelper.Init(Utilities.GetVersion());
         }
 
         private void InitRateReminder()
@@ -134,6 +135,7 @@ namespace Places
         // This code will not execute when the application is first launched
         private void Application_Activated(object sender, ActivatedEventArgs e)
         {
+            ApplicationUsageHelper.OnApplicationActivated();
             if (!e.IsApplicationInstancePreserved)
             {
                 //This will ensure that the ApplicationUsageHelper is initialized again if the application has been in Tombstoned state.

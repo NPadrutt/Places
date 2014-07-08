@@ -16,6 +16,7 @@ namespace Places.Models
 
         #region Foreign Keys
 
+        [Column]
         private int? _locationId;
 
         private EntityRef<Location> _location;
