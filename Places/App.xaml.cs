@@ -1,19 +1,14 @@
 ﻿using BugSense;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
-using Places.Resources;
 using Places.Src;
 using Places.ViewModels;
 using System;
 using System.Diagnostics;
-using System.IO.IsolatedStorage;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Navigation;
 using Telerik.Windows.Controls;
-using Telerik.Windows.Controls.Reminders;
-using Windows.ApplicationModel.Store;
 using Windows.Devices.Geolocation;
 
 namespace Places
@@ -41,16 +36,6 @@ namespace Places
                 settings = value;
             }
         }
-
-        /// <summary>
-        /// Component used to handle unhandle exceptions, to collect runtime info and to send email to developer.
-        /// </summary>
-        public RadDiagnostics Diagnostics;
-
-        /// <summary>
-        /// Component used to raise a notification to the end users to rate the application on the marketplace.
-        /// </summary>
-        public RadRateApplicationReminder RateReminder;
 
         /// <summary>
         /// Provides easy access to the root frame of the Phone Application.
@@ -91,12 +76,6 @@ namespace Places
                 // and consume battery power when the user is not using the phone.
                 PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Disabled;
             }
-            //Creates an instance of the Diagnostics component.
-            Diagnostics = new RadDiagnostics { EmailTo = "support@apply-solutions.ch" };
-
-            //Initializes this instance.
-            Diagnostics.Init();
-
             viewModel = new MainViewModel();
             viewModel.LoadTags();
 
@@ -110,32 +89,13 @@ namespace Places
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
-            InitRateReminder();
             ApplicationUsageHelper.Init(Utilities.GetVersion());
-        }
-
-        private void InitRateReminder()
-        {
-            RateReminder = new RadRateApplicationReminder
-            {
-                RecurrencePerUsageCount = 3,
-                AllowUsersToSkipFurtherReminders = true
-            };
-
-            RateReminder.MessageBoxInfo = new MessageBoxInfoModel
-            {
-                Buttons = MessageBoxButtons.YesNo,
-                Content = AppResources.RateApplicationMessage,
-                Title = AppResources.RateApplicationTitel,
-                SkipFurtherRemindersMessage = AppResources.RateApplicationSkipFurtherMessage
-            };
         }
 
         // Code to execute when the application is activated (brought to foreground)
         // This code will not execute when the application is first launched
         private void Application_Activated(object sender, ActivatedEventArgs e)
         {
-            ApplicationUsageHelper.OnApplicationActivated();
             if (!e.IsApplicationInstancePreserved)
             {
                 //This will ensure that the ApplicationUsageHelper is initialized again if the application has been in Tombstoned state.
