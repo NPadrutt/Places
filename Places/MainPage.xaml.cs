@@ -15,6 +15,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
 using Telerik.Windows.Controls;
+using Telerik.Windows.Controls.Reminders;
 using Windows.ApplicationModel.Store;
 
 namespace Places
@@ -34,8 +35,7 @@ namespace Places
             LoadCities();
             CheckLocationservices();
 
-            //Shows the rate reminder message, according to the settings of the RateReminder.
-            ((App)Application.Current).RateReminder.Notify();
+            InitRateReminder();
 
             listpickerFilter.ItemsSource = App.ViewModel.AllTags;
 
@@ -47,6 +47,29 @@ namespace Places
             ((ApplicationBarMenuItem)ApplicationBar.MenuItems[2]).Text = AppResources.SettingsLabel;
             ((ApplicationBarMenuItem)ApplicationBar.MenuItems[3]).Text = AppResources.RemoveAdsLabel;
             ((ApplicationBarMenuItem)ApplicationBar.MenuItems[4]).Text = AppResources.AboutLabel;
+        }
+
+        private void InitRateReminder()
+        {
+            var rateReminder = new RadRateApplicationReminder()
+            {
+                RecurrencePerUsageCount = 10,
+                AllowUsersToSkipFurtherReminders = true,
+                MessageBoxInfo = GetRateReminderMessage()
+            };
+
+            rateReminder.Notify();
+        }
+
+        private MessageBoxInfoModel GetRateReminderMessage()
+        {
+            return new MessageBoxInfoModel()
+            {
+                Buttons = MessageBoxButtons.YesNo,
+                Content = AppResources.RateApplicationMessage,
+                Title = AppResources.RateApplicationTitel,
+                SkipFurtherRemindersMessage = AppResources.RateApplicationSkipFurtherMessage
+            };
         }
 
         private async void CheckLocationservices()
