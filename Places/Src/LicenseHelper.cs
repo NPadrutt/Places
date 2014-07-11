@@ -15,7 +15,7 @@ namespace Places.Src
 
         private static bool isFeaturepackLicensed;
 
-        public static bool IsFeaturepackLicensed
+        private static bool IsFeaturepackLicensed
         {
             get
             {

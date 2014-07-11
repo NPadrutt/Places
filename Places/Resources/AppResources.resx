@@ -513,4 +513,10 @@ Do you wanna continue?</value>
   <data name="AdditionalFeaturesLabel" xml:space="preserve">
     <value>additional features</value>
   </data>
+  <data name="LimitExceededMessage" xml:space="preserve">
+    <value>You've reached the limit of the free version. To support further developments please purchase the removal of this limitation under additional features.</value>
+  </data>
+  <data name="LimitExceededMessageTitle" xml:space="preserve">
+    <value>Limit Exceeded</value>
+  </data>
 </root>

@@ -223,6 +223,13 @@ namespace Places.Views
 
         private void btnDone_Click(object sender, EventArgs e)
         {
+            if (LicenseHelper.IsLimitExceeded)
+            {
+                MessageBox.Show(AppResources.LimitExceededMessage, AppResources.LimitExceededMessageTitle,
+                    MessageBoxButton.OK);
+                return;
+            }
+
             App.ViewModel.SelectedLocation.Name = txtName.Text;
 
             if (App.ViewModel.CurrentAddress != null)

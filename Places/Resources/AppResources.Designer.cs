@@ -578,6 +578,24 @@ namespace Places.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You&apos;ve reached the limit of the free version. To support further developments please purchase the removal of this limitation under additional features..
+        /// </summary>
+        public static string LimitExceededMessage {
+            get {
+                return ResourceManager.GetString("LimitExceededMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Limit Exceeded.
+        /// </summary>
+        public static string LimitExceededMessageTitle {
+            get {
+                return ResourceManager.GetString("LimitExceededMessageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to load backup.
         /// </summary>
         public static string LoadBackupLabel {

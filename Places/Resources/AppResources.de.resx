@@ -450,4 +450,10 @@ Möchtest du fortfahren?</value>
   <data name="AdditionalFeaturesLabel" xml:space="preserve">
     <value>Zusätzliche Features</value>
   </data>
+  <data name="LimitExceededMessage" xml:space="preserve">
+    <value>Du hast das Limit erreicht. Um die weitere Entwicklung zu unterstützen, erwerbe bitte die Entfernung dieser Beschränkung unter zusätzliche Funktionen.</value>
+  </data>
+  <data name="LimitExceededMessageTitle" xml:space="preserve">
+    <value>Limit erreicht</value>
+  </data>
 </root>
