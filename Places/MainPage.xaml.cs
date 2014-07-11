@@ -3,7 +3,6 @@ using Microsoft.Phone.Shell;
 using Microsoft.Phone.Tasks;
 using Places.Models;
 using Places.Resources;
-using Places.Src;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -16,7 +15,6 @@ using System.Windows.Controls;
 using System.Windows.Navigation;
 using Telerik.Windows.Controls;
 using Telerik.Windows.Controls.Reminders;
-using Windows.ApplicationModel.Store;
 
 namespace Places
 {
@@ -45,7 +43,7 @@ namespace Places
             ((ApplicationBarMenuItem)ApplicationBar.MenuItems[0]).Text = AppResources.TagLabel;
             ((ApplicationBarMenuItem)ApplicationBar.MenuItems[1]).Text = AppResources.BackupLabel;
             ((ApplicationBarMenuItem)ApplicationBar.MenuItems[2]).Text = AppResources.SettingsLabel;
-            ((ApplicationBarMenuItem)ApplicationBar.MenuItems[3]).Text = AppResources.RemoveAdsLabel;
+            ((ApplicationBarMenuItem)ApplicationBar.MenuItems[3]).Text = AppResources.AdditionalFeaturesLabel;
             ((ApplicationBarMenuItem)ApplicationBar.MenuItems[4]).Text = AppResources.AboutLabel;
         }
 

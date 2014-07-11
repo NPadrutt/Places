@@ -106,6 +106,15 @@ namespace Places.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to additional features.
+        /// </summary>
+        public static string AdditionalFeaturesLabel {
+            get {
+                return ResourceManager.GetString("AdditionalFeaturesLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to add.
         /// </summary>
         public static string AddLabel {

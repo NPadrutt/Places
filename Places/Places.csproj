@@ -217,7 +217,6 @@
     <None Include="Properties\WMAppManifest.xml">
       <SubType>Designer</SubType>
     </None>
-    <None Include="RateMyAppGuide_v1 1.pdf" />
     <None Include="SampleData\LocationSampleDataSource\LocationSampleDataSource.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -254,9 +253,7 @@
     <Content Include="Assets\ApplicationIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\dark\UnlockFeatures.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Assets\dark\UnlockFeatures.png" />
     <Content Include="Assets\Import.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

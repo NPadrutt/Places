@@ -510,4 +510,7 @@ Do you wanna continue?</value>
   <data name="FeaturesTitle" xml:space="preserve">
     <value>features</value>
   </data>
+  <data name="AdditionalFeaturesLabel" xml:space="preserve">
+    <value>additional features</value>
+  </data>
 </root>
