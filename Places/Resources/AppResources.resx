@@ -507,4 +507,7 @@ Do you wanna continue?</value>
   <data name="PurchasedFailedTitle" xml:space="preserve">
     <value>purchase failed!</value>
   </data>
+  <data name="FeaturesTitle" xml:space="preserve">
+    <value>features</value>
+  </data>
 </root>

@@ -1,4 +1,5 @@
 ﻿using BugSense;
+using BugSense.Core.Model;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Places.Src;
@@ -48,6 +49,11 @@ namespace Places
         /// </summary>
         public App()
         {
+            BugSenseHandler.Instance.InitAndStartSession(new ExceptionManager(Current), RootFrame, "7cbded60");
+#if DEBUG
+            BugSenseHandler.Instance.HandleWhileDebugging = false;
+#endif
+
             // Global handler for uncaught exceptions.
             UnhandledException += Application_UnhandledException;
 

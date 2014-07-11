@@ -444,4 +444,7 @@ Möchtest du fortfahren?</value>
   <data name="PurchasedFailedTitle" xml:space="preserve">
     <value>Einkauf fehlgeschlagen</value>
   </data>
+  <data name="FeaturesTitle" xml:space="preserve">
+    <value>Funktionen</value>
+  </data>
 </root>

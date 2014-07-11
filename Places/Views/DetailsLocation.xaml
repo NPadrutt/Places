@@ -78,7 +78,5 @@
                 </StackPanel>
             </ScrollViewer>
         </StackPanel>
-
-        <!--ContentPanel - place additional content here-->
     </Grid>
 </phone:PhoneApplicationPage>

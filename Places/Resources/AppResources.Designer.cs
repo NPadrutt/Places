@@ -461,6 +461,15 @@ namespace Places.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to features.
+        /// </summary>
+        public static string FeaturesTitle {
+            get {
+                return ResourceManager.GetString("FeaturesTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to friends.
         /// </summary>
         public static string FriendsLabel {

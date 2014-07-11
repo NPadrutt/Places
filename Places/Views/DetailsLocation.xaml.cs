@@ -3,6 +3,7 @@ using Microsoft.Phone.Tasks;
 using Places.Resources;
 using Places.Src;
 using System;
+using System.IO.IsolatedStorage;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -18,11 +19,21 @@ namespace Places.Views
         {
             InitializeComponent();
 
+            AdjustListsIfAdCollapsed();
+
             ((ApplicationBarIconButton)ApplicationBar.Buttons[0]).Text = AppResources.EditLabel;
             ((ApplicationBarIconButton)ApplicationBar.Buttons[1]).Text = AppResources.ShareImageLabel;
 
             ((ApplicationBarMenuItem)ApplicationBar.MenuItems[0]).Text = AppResources.PintToStartLabel;
             ((ApplicationBarMenuItem)ApplicationBar.MenuItems[1]).Text = AppResources.DeleteLabel;
+        }
+
+        private void AdjustListsIfAdCollapsed()
+        {
+            if (ResolutionHelper.Is720p)
+            {
+                ControllScrollViewer.Height += 52;
+            }
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)

@@ -36,7 +36,7 @@ namespace Places.UserControls
                     picItems.Add(
                         new ProductItem
                         {
-                            imgLink = key.Equals("10001") ? "/Images/{0}/UnlockFeatures.png" : "/Images/add.png.png",
+                            imgLink = key.Equals("10001") ? "/Assets/{0}/UnlockFeatures.png" : "/Assets/add.png.png",
                             Name = pListing.Name,
                             Status = status,
                             key = key,

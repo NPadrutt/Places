@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Navigation;
 using Telerik.Windows.Controls;
+using Telerik.Windows.Data;
 using GestureEventArgs = System.Windows.Input.GestureEventArgs;
 
 namespace Places.Views
@@ -28,6 +29,8 @@ namespace Places.Views
         {
             InitializeComponent();
 
+            AdjustListsIfAdCollapsed();
+
             DataContext = App.ViewModel.SelectedLocation;
             listpickerTag.ItemsSource = App.ViewModel.AllTags;
 
@@ -36,6 +39,15 @@ namespace Places.Views
 
             ((ApplicationBarMenuItem)ApplicationBar.MenuItems[0]).Text = AppResources.RefreshCurrentPositionLabel;
             ((ApplicationBarMenuItem)ApplicationBar.MenuItems[1]).Text = AppResources.PintToStartLabel;
+        }
+
+        private void AdjustListsIfAdCollapsed()
+        {
+            if (ResolutionHelper.Is720p) { }
+            {
+                ControllScrollViewer.Height += 50;
+                ContentPanel.Height += 50;
+            }
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)

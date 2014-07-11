@@ -258,21 +258,9 @@ namespace Places
             NavigationService.Navigate(new Uri("/Views/Settings.xaml", UriKind.Relative));
         }
 
-        private async void mRemoveAds_Click(object sender, EventArgs e)
+        private void MenuPlugins_OnClick(object sender, EventArgs e)
         {
-            try
-            {
-                if (MessageBox.Show(AppResources.ConfirmPurchaseRemoveAdsMessage, AppResources.ConfirmPurchaseRemoveAdsTitle, MessageBoxButton.OKCancel)
-                    == MessageBoxResult.OK)
-                {
-                    //TODO: Reimplement In App Purchase
-                }
-            }
-            catch (Exception)
-            {
-                MessageBox.Show(AppResources.PurchaseWentWrongMessage, AppResources.PurchaseWentWrongTitle,
-                                MessageBoxButton.OK);
-            }
+            NavigationService.Navigate(new Uri("/Views/FeatureOverview.xaml", UriKind.Relative));
         }
     }
 }

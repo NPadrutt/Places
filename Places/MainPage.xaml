@@ -5,6 +5,7 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:UserControls="clr-namespace:Places.UserControls"
     xmlns:telerikInput="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Input"
     xmlns:ListPicker="clr-namespace:Telerik.Windows.Controls.ListPicker;assembly=Telerik.Windows.Controls.Input" xmlns:PhoneTextBox="clr-namespace:Telerik.Windows.Controls.PhoneTextBox;assembly=Telerik.Windows.Controls.Primitives" xmlns:telerik="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Core" xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
     x:Class="Places.MainPage"
@@ -192,11 +193,11 @@
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
             <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem x:Name="mManageTags" Text="manageTags" Click="mManageTags_Click" />
-                <shell:ApplicationBarMenuItem x:Name="mBackup" Text="backup" Click="mBackup_Click" />
-                <shell:ApplicationBarMenuItem x:Name="mSettings" Text="settings" Click="mSettings_Click" />
-                <shell:ApplicationBarMenuItem x:Name="mRemoveAds" Text="remove ads" Click="mRemoveAds_Click" />
-                <shell:ApplicationBarMenuItem x:Name="mAbout" Text="About" Click="mAbout_Click" />
+                <shell:ApplicationBarMenuItem x:Name="MenuManageTags" Text="manageTags" Click="mManageTags_Click" />
+                <shell:ApplicationBarMenuItem x:Name="MenuBackup" Text="backup" Click="mBackup_Click" />
+                <shell:ApplicationBarMenuItem x:Name="MenuSettings" Text="settings" Click="mSettings_Click" />
+                <shell:ApplicationBarMenuItem x:Name="MenuPlugins" Text="plugins" Click="MenuPlugins_OnClick" />
+                <shell:ApplicationBarMenuItem x:Name="MenuAbout" Text="About" Click="mAbout_Click" />
             </shell:ApplicationBar.MenuItems>
             <shell:ApplicationBarIconButton x:Name="btnAdd" IconUri="/Assets/AppBar/add.png" Text="add" Click="btnAdd_Click" />
             <shell:ApplicationBarIconButton x:Name="btnImportImage" IconUri="/Assets/Import.png" Text="button" Click="btnImportImage_Click" />
@@ -204,14 +205,11 @@
     </phone:PhoneApplicationPage.ApplicationBar>
 
     <Grid x:Name="LayoutRoot" Background="Transparent" d:DataContext="{Binding Source={StaticResource LocationSampleDataSource}}">
-        <!--TitlePanel contains the name of the application and page title-->
-        <!--TitlePanel contains the name of the application and page title-->
-        <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" Margin="12,0,0,580">
             <TextBlock x:Name="ApplicationTitle" Text="{Binding LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}" />
             <TextBlock x:Name="PageTitle" Text="{Binding LocalizedResources.CitiesTitle, Source={StaticResource LocalizedStrings}}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" />
         </StackPanel>
-        <StackPanel x:Name="ContentPanel" MinWidth="450" VerticalAlignment="Top" Margin="12,116,12,0">
+        <StackPanel x:Name="ContentPanel" MinWidth="450" VerticalAlignment="Top" Margin="12,116,12,0" Height="580">
             <telerikInput:RadListPicker x:Name="listpickerFilter" SelectionMode="Multiple"  DisplayMemberPath="TagName" CancelButtonIconUri="/Toolkit.Content/ApplicationBar.Cancel.png" OkButtonIconUri="/Toolkit.Content/ApplicationBar.Check.png" Margin="0" NoSelectionContent="{Binding LocalizedResources.AllLabel, Source={StaticResource LocalizedStrings}}" Style="{StaticResource RadListPickerFilterStyle}" SelectionChanged="listpickerFilter_SelectionChanged" ActionButtonVisibility="Visible" Visibility="Collapsed" PopupHeader="{Binding LocalizedResources.SelectTagsHeader, Source={StaticResource LocalizedStrings}}">
                 <telerikInput:RadListPicker.Resources>
                     <Style x:Key="TagStyle" TargetType="telerikPrimitives:RadDataBoundListBoxItem">
@@ -222,7 +220,7 @@
                     <StaticResource ResourceKey="TagStyle" />
                 </telerikInput:RadListPicker.PopupItemStyle>
             </telerikInput:RadListPicker>
-            <telerikPrimitives:RadDataBoundListBox Margin="0" x:Name="ListboxLocations" ItemTemplate="{StaticResource AllLocationsItemTemplate}" ItemsSource="{Binding AllLocations}" SelectionChanged="ListboxLocations_SelectionChanged">
+            <telerikPrimitives:RadDataBoundListBox Margin="0" x:Name="ListboxLocations" ItemTemplate="{StaticResource AllLocationsItemTemplate}" ItemsSource="{Binding AllLocations}" SelectionChanged="ListboxLocations_SelectionChanged" Height="540">
                 <telerikPrimitives:RadDataBoundListBox.ItemAddedAnimation>
                     <telerik:RadMoveAnimation StartPoint="500, 0" EndPoint="0, 0" Duration="0:0:0.5">
                         <telerik:RadMoveAnimation.Easing>
@@ -231,7 +229,7 @@
                     </telerik:RadMoveAnimation>
                 </telerikPrimitives:RadDataBoundListBox.ItemAddedAnimation>
             </telerikPrimitives:RadDataBoundListBox>
-            <telerikPrimitives:RadDataBoundListBox Margin="0" x:Name="ListboxCities" ItemTemplate="{StaticResource AllCitiesItemTemplate}" ItemsSource="{Binding AllCities}" SelectionChanged="ListboxCities_OnSelectionChanged">
+            <telerikPrimitives:RadDataBoundListBox Margin="0" x:Name="ListboxCities" ItemTemplate="{StaticResource AllCitiesItemTemplate}" ItemsSource="{Binding AllCities}" SelectionChanged="ListboxCities_OnSelectionChanged" Height="562">
                 <telerikPrimitives:RadDataBoundListBox.ItemAddedAnimation>
                     <telerik:RadMoveAnimation StartPoint="500, 0" EndPoint="0, 0" Duration="0:0:0.5">
                         <telerik:RadMoveAnimation.Easing>

@@ -120,6 +120,7 @@
     <Compile Include="Src\ExifReader.cs" />
     <Compile Include="Src\ExifTags.cs" />
     <Compile Include="Src\LicenseHelper.cs" />
+    <Compile Include="Src\ResolutionHelper.cs" />
     <Compile Include="Src\StringComparer.cs" />
     <Compile Include="Src\UpdateHelper.cs" />
     <Compile Include="Src\Utilities.cs" />
@@ -142,6 +143,9 @@
     </Compile>
     <Compile Include="Views\DetailsLocation.xaml.cs">
       <DependentUpon>DetailsLocation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FeatureOverview.xaml.cs">
+      <DependentUpon>FeatureOverview.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ManageTags.xaml.cs">
       <DependentUpon>ManageTags.xaml</DependentUpon>
@@ -189,6 +193,10 @@
     <Page Include="Views\DetailsLocation.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\FeatureOverview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ManageTags.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -246,7 +254,13 @@
     <Content Include="Assets\ApplicationIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\dark\UnlockFeatures.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\Import.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\light\UnlockFeatures.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Map.png">
@@ -347,7 +361,7 @@
   -->
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_ConfigurationName="Debug" BuildVersion_BuildVersioningStyle="None.None.None.Increment" BuildVersion_UseGlobalSettings="True" />
+      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_BuildVersioningStyle="None.None.None.Increment" BuildVersion_ConfigurationName="Debug" />
     </VisualStudio>
   </ProjectExtensions>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
