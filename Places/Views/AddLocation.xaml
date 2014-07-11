@@ -77,5 +77,6 @@
                 </StackPanel>
             </ScrollViewer>
         </StackPanel>
+        <telerikPrimitives:RadBusyIndicator  Background="#CC000000" x:Name="busyProceedAction" AnimationStyle="AnimationStyle8" Content="{Binding LocalizedResources.SaveLocationLabel, Source={StaticResource LocalizedStrings}}" Grid.RowSpan="2" />
     </Grid>
 </phone:PhoneApplicationPage>

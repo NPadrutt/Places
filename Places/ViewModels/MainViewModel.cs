@@ -3,9 +3,9 @@ using Microsoft.Phone.Data.Linq;
 using Places.Models;
 using Places.Resources;
 using Places.Src;
+using PropertyChanged;
 using System;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Windows;
@@ -13,7 +13,8 @@ using StringComparer = Places.Src.StringComparer;
 
 namespace Places.ViewModels
 {
-    public class MainViewModel : INotifyPropertyChanged
+    [ImplementPropertyChanged]
+    public class MainViewModel
     {
         private readonly MainDataContext db;
 
@@ -25,7 +26,6 @@ namespace Places.ViewModels
 
         private void CreateDbIfNotExist()
         {
-            // Create the database if it does not exist.
             if (!db.DatabaseExists())
             {
                 db.CreateDatabase();
@@ -84,19 +84,7 @@ namespace Places.ViewModels
             }
         }
 
-        #region Address
-
-        private ObservableCollection<string> allCities;
-
-        public ObservableCollection<string> AllCities
-        {
-            get { return allCities; }
-            set
-            {
-                allCities = value;
-                NotifyPropertyChanged("AllCities");
-            }
-        }
+        public ObservableCollection<string> AllCities { get; set; }
 
         public void LoadCities()
         {
@@ -109,57 +97,17 @@ namespace Places.ViewModels
             AllCities.Insert(0, AppResources.AllLabel);
         }
 
-        #endregion Address
-
-        #region Location
-
         private Location selectedLocation;
 
-        public Location SelectedLocation
-        {
-            get { return selectedLocation; }
-            set
-            {
-                selectedLocation = value;
-                NotifyPropertyChanged("SelectedLocation");
-            }
-        }
+        public Location SelectedLocation { get; set; }
 
-        private Stream selectedImageStream;
+        public Stream SelectedImageStream { get; set; }
 
-        public Stream SelectedImageStream
-        {
-            get { return selectedImageStream; }
-            set
-            {
-                selectedImageStream = value;
-                NotifyPropertyChanged("SelectedImageStream");
-            }
-        }
+        public string SelectedCity { get; set; }
 
-        private string selectedCity;
+        public ObservableCollection<Location> AllLocations { get; set; }
 
-        public string SelectedCity
-        {
-            get { return selectedCity; }
-            set
-            {
-                selectedCity = value;
-                NotifyPropertyChanged("SelectedCity");
-            }
-        }
-
-        private ObservableCollection<Location> allLocations;
-
-        public ObservableCollection<Location> AllLocations
-        {
-            get { return allLocations; }
-            set
-            {
-                allLocations = value;
-                NotifyPropertyChanged("AllLocations");
-            }
-        }
+        public int LocationCount { get { return db.Locations.Count(); } }
 
         public void AddLocation(Location newLocation)
         {
@@ -271,21 +219,7 @@ namespace Places.ViewModels
             return new ObservableCollection<Location>(locationItemsInDb);
         }
 
-        #endregion Location
-
-        #region Tags
-
-        private ObservableCollection<Tag> _allTags;
-
-        public ObservableCollection<Tag> AllTags
-        {
-            get { return _allTags; }
-            set
-            {
-                _allTags = value;
-                NotifyPropertyChanged("AllTags");
-            }
-        }
+        public ObservableCollection<Tag> AllTags { get; set; }
 
         public void AddTag(Tag newTag)
         {
@@ -321,49 +255,8 @@ namespace Places.ViewModels
             AllTags = new ObservableCollection<Tag>(tagsItemsInDb);
         }
 
-        #endregion Tags
+        public Position CurrentPosition { get; set; }
 
-        #region Position
-
-        private Position _currentPosition;
-
-        public Position CurrentPosition
-        {
-            get { return _currentPosition; }
-            set
-            {
-                _currentPosition = value;
-                NotifyPropertyChanged("CurrentPosition");
-            }
-        }
-
-        private LocationAddress _currentAddress;
-
-        public LocationAddress CurrentAddress
-        {
-            get { return _currentAddress; }
-            set
-            {
-                _currentAddress = value;
-                NotifyPropertyChanged("CurrentAddress");
-            }
-        }
-
-        #endregion Position
-
-        #region INotifyPropertyChanged Members
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        // Used to notify Silverlight that a property has changed.
-        private void NotifyPropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-
-        #endregion INotifyPropertyChanged Members
+        public LocationAddress CurrentAddress { get; set; }
     }
 }

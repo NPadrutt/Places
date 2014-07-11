@@ -10,7 +10,10 @@ namespace Places.Src
     {
         public static bool IsLimitExceeded
         {
-            get { return App.ViewModel.AllLocations.Count >= 10 && !IsFeaturepackLicensed; }
+            get
+            {
+                return App.ViewModel.LocationCount >= 15 && !IsFeaturepackLicensed;
+            }
         }
 
         private static bool isFeaturepackLicensed;

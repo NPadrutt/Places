@@ -519,4 +519,7 @@ Do you wanna continue?</value>
   <data name="LimitExceededMessageTitle" xml:space="preserve">
     <value>Limit Exceeded</value>
   </data>
+  <data name="SaveLocationLabel" xml:space="preserve">
+    <value>save location...</value>
+  </data>
 </root>

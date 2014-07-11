@@ -1027,6 +1027,15 @@ namespace Places.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to save location....
+        /// </summary>
+        public static string SaveLocationLabel {
+            get {
+                return ResourceManager.GetString("SaveLocationLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to select.
         /// </summary>
         public static string SelectLabel {

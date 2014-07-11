@@ -456,4 +456,7 @@ Möchtest du fortfahren?</value>
   <data name="LimitExceededMessageTitle" xml:space="preserve">
     <value>Limit erreicht</value>
   </data>
+  <data name="SaveLocationLabel" xml:space="preserve">
+    <value>Ort am speichern..</value>
+  </data>
 </root>

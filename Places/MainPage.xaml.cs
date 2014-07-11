@@ -90,15 +90,6 @@ namespace Places
             base.OnNavigatedTo(e);
 
             ((ApplicationBarIconButton)ApplicationBar.Buttons[1]).IsEnabled = App.Settings.LocationServiceEnabled;
-
-            if (IsolatedStorageSettings.ApplicationSettings.Contains("10000") &&
-                (bool)IsolatedStorageSettings.ApplicationSettings["10000"])
-            {
-                if (ApplicationBar.MenuItems.Count >= 5)
-                {
-                    ApplicationBar.MenuItems.RemoveAt(3);
-                }
-            }
         }
 
         private async void ListboxCities_OnSelectionChanged(object sender, SelectionChangedEventArgs e)

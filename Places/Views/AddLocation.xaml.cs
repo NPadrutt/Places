@@ -11,7 +11,6 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Navigation;
 using Telerik.Windows.Controls;
-using Telerik.Windows.Data;
 using GestureEventArgs = System.Windows.Input.GestureEventArgs;
 
 namespace Places.Views
@@ -221,7 +220,7 @@ namespace Places.Views
             }
         }
 
-        private void btnDone_Click(object sender, EventArgs e)
+        private async void btnDone_Click(object sender, EventArgs e)
         {
             if (LicenseHelper.IsLimitExceeded)
             {
@@ -229,6 +228,13 @@ namespace Places.Views
                     MessageBoxButton.OK);
                 return;
             }
+
+            Action actionBusyIndicator = () => Dispatcher.BeginInvoke(delegate
+            {
+                busyProceedAction.IsRunning = true;
+            });
+
+            await Task.Factory.StartNew(actionBusyIndicator);
 
             App.ViewModel.SelectedLocation.Name = txtName.Text;
 
