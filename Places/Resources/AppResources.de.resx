@@ -459,4 +459,10 @@ Möchtest du fortfahren?</value>
   <data name="SaveLocationLabel" xml:space="preserve">
     <value>Ort am speichern..</value>
   </data>
+  <data name="ErrorLocationTitle" xml:space="preserve">
+    <value>Wir konnten deine Position nicht finden. Bitte vergewissere dich dass die Positionsdienste auf deinem Telefon unter Einstellungen &gt; Ortung aktiviert sind.</value>
+  </data>
+  <data name="ErrorTitle" xml:space="preserve">
+    <value>Es trat ein Problem auf...</value>
+  </data>
 </root>

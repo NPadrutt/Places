@@ -522,4 +522,10 @@ Do you wanna continue?</value>
   <data name="SaveLocationLabel" xml:space="preserve">
     <value>save location...</value>
   </data>
+  <data name="ErrorLocationTitle" xml:space="preserve">
+    <value>We coulnd't get your position. Please be sure that you have activated the location services on your phone under settings &gt; Location.</value>
+  </data>
+  <data name="ErrorTitle" xml:space="preserve">
+    <value>There was a problem..</value>
+  </data>
 </root>

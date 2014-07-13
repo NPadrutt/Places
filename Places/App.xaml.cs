@@ -2,6 +2,7 @@
 using BugSense.Core.Model;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using Places.Resources;
 using Places.Src;
 using Places.ViewModels;
 using System;
@@ -140,6 +141,9 @@ namespace Places
         private void Application_UnhandledException(object sender, ApplicationUnhandledExceptionEventArgs e)
         {
             BugSenseHandler.Instance.LogException(e.ExceptionObject);
+
+            MessageBox.Show(AppResources.GeneralErrorMessage, AppResources.GeneralErrorMessageTitle, MessageBoxButton.OK);
+            e.Handled = true;
 
             if (Debugger.IsAttached)
             {

@@ -461,6 +461,24 @@ namespace Places.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to We coulnd&apos;t get your position. Please be sure that you have activated the location services on your phone under settings &gt; Location..
+        /// </summary>
+        public static string ErrorLocationTitle {
+            get {
+                return ResourceManager.GetString("ErrorLocationTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There was a problem...
+        /// </summary>
+        public static string ErrorTitle {
+            get {
+                return ResourceManager.GetString("ErrorTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to family.
         /// </summary>
         public static string FamilyLabel {

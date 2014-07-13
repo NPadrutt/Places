@@ -58,16 +58,7 @@ namespace Places.Src
                 }
                 catch (Exception ex)
                 {
-                    if ((uint)ex.HResult == 0x80004004)
-                    {
-                        // the application does not have the right capability or the location master switch is off
-                        BugSenseHandler.Instance.LogException(ex);
-                    }
-                    if ((uint)ex.HResult == 0x800705B4)
-                    {
-                        // the application does not have the right capability or the location master switch is off
-                        BugSenseHandler.Instance.LogException(ex);
-                    }
+                    MessageBox.Show(AppResources.ErrorLocationTitle, AppResources.ErrorTitle, MessageBoxButton.OK);
                 }
             }
         }
