@@ -117,17 +117,59 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ApplicationTitle" xml:space="preserve">
-    <value>FavoritePlaces</value>
-  </data>
-  <data name="AddLabel" xml:space="preserve">
-    <value>Hinzufügen</value>
-  </data>
   <data name="AboutLabel" xml:space="preserve">
     <value>Über</value>
   </data>
   <data name="AboutTitle" xml:space="preserve">
     <value>Über</value>
+  </data>
+  <data name="AccuracyLabel" xml:space="preserve">
+    <value>Genauigkeit: </value>
+  </data>
+  <data name="AddImageLabel" xml:space="preserve">
+    <value>Bild hinzufügen</value>
+  </data>
+  <data name="AdditionalFeaturesLabel" xml:space="preserve">
+    <value>Zusätzliche Features</value>
+  </data>
+  <data name="AddLabel" xml:space="preserve">
+    <value>Hinzufügen</value>
+  </data>
+  <data name="AddLocationTitle" xml:space="preserve">
+    <value>Ort hinzufügen</value>
+  </data>
+  <data name="AddressLabel" xml:space="preserve">
+    <value>Adresse</value>
+  </data>
+  <data name="AddTag" xml:space="preserve">
+    <value>Tag hinzufügen</value>
+  </data>
+  <data name="AddTagMessage" xml:space="preserve">
+    <value>Gib den Namen deines Tags ein:</value>
+  </data>
+  <data name="AddTitle" xml:space="preserve">
+    <value>Hinzufügen</value>
+  </data>
+  <data name="AerialLabel" xml:space="preserve">
+    <value>Luftansicht</value>
+  </data>
+  <data name="ApplicationTitle" xml:space="preserve">
+    <value>FavoritePlaces</value>
+  </data>
+  <data name="BackupCreatedMessage" xml:space="preserve">
+    <value>Deine Sicherung wurde erfolgreich erstellt!</value>
+  </data>
+  <data name="BackupLabel" xml:space="preserve">
+    <value>Sichern / Wiederherstellen</value>
+  </data>
+  <data name="BackupTitle" xml:space="preserve">
+    <value>Sichern / Wiederherstellen</value>
+  </data>
+  <data name="BarLabel" xml:space="preserve">
+    <value>Bar</value>
+  </data>
+  <data name="CancelLabel" xml:space="preserve">
+    <value>Abbrechen</value>
   </data>
   <data name="ChangelogLabel" xml:space="preserve">
     <value>Änderungen</value>
@@ -138,11 +180,194 @@
 - Das LiveTile wird nun beim verlassen des Apps aktualisiert und nicht mehr beim hinzufügen von neuen Einträgen
 - Kleinere Verbesserungen und Korrekturen</value>
   </data>
+  <data name="CitiesTitle" xml:space="preserve">
+    <value>Städte</value>
+  </data>
+  <data name="ClubLabel" xml:space="preserve">
+    <value>Club</value>
+  </data>
+  <data name="CommentLabel" xml:space="preserve">
+    <value>Bemerkung</value>
+  </data>
+  <data name="ConfirmPurchaseRemoveAdsMessage" xml:space="preserve">
+    <value>Um FavoritePlaces ohne Werbung benutzen zu können, musst du die dazugehörige Lizenz im Marketplace erwerben.
+Möchtest du fortfahren?</value>
+  </data>
+  <data name="ConfirmPurchaseRemoveAdsTitle" xml:space="preserve">
+    <value>Werbung entfernen</value>
+  </data>
+  <data name="ConfirmRestoreBackupMessage" xml:space="preserve">
+    <value>Möchtest du deine Sicherung wiederherstellen? Dein aktueller Datenstand wird überschrieben.</value>
+  </data>
+  <data name="ConfirmRestoreBackupMessageTitle" xml:space="preserve">
+    <value>Sicherung wiederstellen?</value>
+  </data>
+  <data name="CreateBackupLabel" xml:space="preserve">
+    <value>Sicherung erstellen</value>
+  </data>
+  <data name="CurrentPositionLabel" xml:space="preserve">
+    <value>Deine aktuelle Position</value>
+  </data>
+  <data name="DeleteLabel" xml:space="preserve">
+    <value>Löschen</value>
+  </data>
+  <data name="DeleteMessageLocation" xml:space="preserve">
+    <value>Möchtest du diesen Ort wirklich löschen?</value>
+  </data>
+  <data name="DeleteMessageTag  Do you really want to delete this tags?" xml:space="preserve">
+    <value>Möchtest du diese Tags wirklich löschen?</value>
+  </data>
+  <data name="DeleteMessageTitle" xml:space="preserve">
+    <value>Löschen?</value>
+  </data>
+  <data name="DetailsTitle" xml:space="preserve">
+    <value>Details</value>
+  </data>
   <data name="DeveloperLabel" xml:space="preserve">
     <value>Entwickler:</value>
   </data>
+  <data name="DistanceLabel" xml:space="preserve">
+    <value>Distanz: </value>
+  </data>
   <data name="DoneLabel" xml:space="preserve">
     <value>fertig</value>
+  </data>
+  <data name="DoneMessageTitle" xml:space="preserve">
+    <value>Fertig!</value>
+  </data>
+  <data name="EditLabel" xml:space="preserve">
+    <value>Bearbeiten</value>
+  </data>
+  <data name="EditTitle" xml:space="preserve">
+    <value>Bearbeiten</value>
+  </data>
+  <data name="ErrorLocationTitle" xml:space="preserve">
+    <value>Wir konnten deine Position nicht finden. Bitte vergewissere dich dass die Positionsdienste auf deinem Telefon unter Einstellungen &gt; Ortung aktiviert sind.</value>
+  </data>
+  <data name="ErrorTitle" xml:space="preserve">
+    <value>Es trat ein Problem auf...</value>
+  </data>
+  <data name="FamilyLabel" xml:space="preserve">
+    <value>Familie</value>
+  </data>
+  <data name="FeaturesTitle" xml:space="preserve">
+    <value>Funktionen</value>
+  </data>
+  <data name="FriendsLabel" xml:space="preserve">
+    <value>Freunde</value>
+  </data>
+  <data name="GeneralErrorMessage" xml:space="preserve">
+    <value>Entschuldige, da lief was schief..</value>
+  </data>
+  <data name="GeneralErrorMessageTitle" xml:space="preserve">
+    <value>Hoppla...</value>
+  </data>
+  <data name="GettingYourPositionLabel" xml:space="preserve">
+    <value>Beziehen deine Position..</value>
+  </data>
+  <data name="HotelLabel" xml:space="preserve">
+    <value>Hotel</value>
+  </data>
+  <data name="HybridLabel" xml:space="preserve">
+    <value>Hybrid</value>
+  </data>
+  <data name="ImportImageLabel" xml:space="preserve">
+    <value>Bild importieren</value>
+  </data>
+  <data name="LastBackupLabel" xml:space="preserve">
+    <value>Deine letzte Sicherung wurde erstellt am:</value>
+  </data>
+  <data name="LayersLabel" xml:space="preserve">
+    <value>Kartenansichten</value>
+  </data>
+  <data name="LimitExceededMessage" xml:space="preserve">
+    <value>Du hast das Limit erreicht. Um die weitere Entwicklung zu unterstützen, erwerbe bitte die Entfernung dieser Beschränkung unter zusätzliche Funktionen.</value>
+  </data>
+  <data name="LimitExceededMessageTitle" xml:space="preserve">
+    <value>Limit erreicht</value>
+  </data>
+  <data name="LoadBackupLabel" xml:space="preserve">
+    <value>Sicherung laden</value>
+  </data>
+  <data name="LocationLabel" xml:space="preserve">
+    <value>Ort</value>
+  </data>
+  <data name="LocationNoExistingMessage" xml:space="preserve">
+    <value>Wir konnten den angepinnten Ort nicht finden. Möglicherweise wurde er in de Zwischenzeit gelöscht. Bitte entferne das Tile und pinne dir den entsprechend Ort erneut.</value>
+  </data>
+  <data name="LocationNotExistingTitle" xml:space="preserve">
+    <value>Ort existiert nicht!</value>
+  </data>
+  <data name="LocationserviceDisabledMessage" xml:space="preserve">
+    <value>Du hast den Zugriff auf den Windows Phone Positionierungsdienst nicht erlaubt. Daher können wir deine Position nicht bestimmen. Bitte erlaube uns zuerst den Zugriff in den Appeinstellungen und versuche es dann erneut.</value>
+  </data>
+  <data name="LocationserviceDisabledTitle" xml:space="preserve">
+    <value>Positionierungsdienst deaktiviert!</value>
+  </data>
+  <data name="LocationsTitle" xml:space="preserve">
+    <value>Alle Orte</value>
+  </data>
+  <data name="LocationTitle" xml:space="preserve">
+    <value>Ort</value>
+  </data>
+  <data name="MuseumLabel" xml:space="preserve">
+    <value>Museum</value>
+  </data>
+  <data name="NameLabel" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="NavigateLabel" xml:space="preserve">
+    <value>Navigieren</value>
+  </data>
+  <data name="NoNameDefaultEntry" xml:space="preserve">
+    <value>[leerer Name]</value>
+  </data>
+  <data name="NoPositionMessage" xml:space="preserve">
+    <value>Wir sind noch am deine Position ermitteln. Bitte warte einen Moment bevor du deinen Eintrag speicherst.</value>
+  </data>
+  <data name="NoPositionMessageTitle" xml:space="preserve">
+    <value>Unbekannte Position!</value>
+  </data>
+  <data name="OverwriteBackupMessage" xml:space="preserve">
+    <value>Wenn du fortfährst wird deine bestehende Sicherung auf OneDrive überschrieben. Möchtest du weitermachen?</value>
+  </data>
+  <data name="OverwriteBackupTitle" xml:space="preserve">
+    <value>Sicherung Überschreiben?</value>
+  </data>
+  <data name="PintToStartLabel" xml:space="preserve">
+    <value>An den Start heften</value>
+  </data>
+  <data name="PleaseLogInText" xml:space="preserve">
+    <value>Du musst eingeloggt sein um Sicherungen erstellen oder wiederherstellen zu können.</value>
+  </data>
+  <data name="PrivacyPolicyMessage" xml:space="preserve">
+    <value>FavoritePlaces benötigt Zugriff auf den Windows Phone Positionsierungsdienst um richtig zu funktionieren. Wenn dieser nicht aktiviert ist, sind die meisten Funktionen deaktiviert und können nicht verwendet werden.
+
+Möchtest du den Zugriff erlauben?</value>
+  </data>
+  <data name="PrivacyPolicyTitle" xml:space="preserve">
+    <value>Positionsdienste</value>
+  </data>
+  <data name="PurchasedFailedText" xml:space="preserve">
+    <value>Der Einkauf konnte nicht abgeschlossen werden. Bitte vergewissere dich dass du eine Internetverbindung hast und versuche es nochmals.</value>
+  </data>
+  <data name="PurchasedFailedTitle" xml:space="preserve">
+    <value>Einkauf fehlgeschlagen</value>
+  </data>
+  <data name="PurchasedLabel" xml:space="preserve">
+    <value>Gekauft</value>
+  </data>
+  <data name="PurchaseSuccessfulMessage" xml:space="preserve">
+    <value>Vielen Dank dass Sie die Lizenz für FavoritePlaces ohne Werbung erworben haben!</value>
+  </data>
+  <data name="PurchaseSuccessfulTitle" xml:space="preserve">
+    <value>Kauf erfolgreich</value>
+  </data>
+  <data name="PurchaseWentWrongMessage" xml:space="preserve">
+    <value>Der Windows Phone Marketplace ist im Moment nicht erreichbar. Gegebenenfalls kann ein neustart des Telefons dieses Problem beheben.</value>
+  </data>
+  <data name="PurchaseWentWrongTitle" xml:space="preserve">
+    <value>Marketplace nicht erreichbar</value>
   </data>
   <data name="RateAppLabel" xml:space="preserve">
     <value>Bewerte FavoritePlaces</value>
@@ -153,208 +378,8 @@
   <data name="ReleaseMessageText" xml:space="preserve">
     <value>Wenn dir die App gefällt, unterstütze die Entwickler und bewerte es im Marketplace! Ich freue mich auf eure Rückmeldungen</value>
   </data>
-  <data name="SupportAddressLabel" xml:space="preserve">
-    <value>Supportadresse:</value>
-  </data>
-  <data name="VersionLabel" xml:space="preserve">
-    <value>Version:</value>
-  </data>
-  <data name="WhatsNewTitle" xml:space="preserve">
-    <value>Was ist neu?</value>
-  </data>
-  <data name="LocationTitle" xml:space="preserve">
-    <value>Ort</value>
-  </data>
-  <data name="LocationsTitle" xml:space="preserve">
-    <value>Alle Orte</value>
-  </data>
-  <data name="AddTitle" xml:space="preserve">
-    <value>Hinzufügen</value>
-  </data>
-  <data name="EditTitle" xml:space="preserve">
-    <value>Bearbeiten</value>
-  </data>
-  <data name="CurrentPositionLabel" xml:space="preserve">
-    <value>Deine aktuelle Position</value>
-  </data>
-  <data name="NameLabel" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="DetailsTitle" xml:space="preserve">
-    <value>Details</value>
-  </data>
-  <data name="DeleteMessageLocation" xml:space="preserve">
-    <value>Möchtest du diesen Ort wirklich löschen?</value>
-  </data>
-  <data name="DeleteMessageTitle" xml:space="preserve">
-    <value>Löschen?</value>
-  </data>
-  <data name="ShowAllOnMapLabel" xml:space="preserve">
-    <value>Alle auf der Karte anzeigen</value>
-  </data>
-  <data name="CancelLabel" xml:space="preserve">
-    <value>Abbrechen</value>
-  </data>
-  <data name="DeleteLabel" xml:space="preserve">
-    <value>Löschen</value>
-  </data>
-  <data name="EditLabel" xml:space="preserve">
-    <value>Bearbeiten</value>
-  </data>
-  <data name="BackupTitle" xml:space="preserve">
-    <value>Sichern / Wiederherstellen</value>
-  </data>
-  <data name="BackupLabel" xml:space="preserve">
-    <value>Sichern / Wiederherstellen</value>
-  </data>
-  <data name="CreateBackupLabel" xml:space="preserve">
-    <value>Sicherung erstellen</value>
-  </data>
-  <data name="LoadBackupLabel" xml:space="preserve">
-    <value>Sicherung laden</value>
-  </data>
-  <data name="RestoreBackupLabel" xml:space="preserve">
-    <value>Sicherung wiederherstellen</value>
-  </data>
-  <data name="RestoreTitle" xml:space="preserve">
-    <value>wiederherstellen</value>
-  </data>
-  <data name="BackupCreatedMessage" xml:space="preserve">
-    <value>Deine Sicherung wurde erfolgreich erstellt!</value>
-  </data>
-  <data name="ConfirmRestoreBackupMessage" xml:space="preserve">
-    <value>Möchtest du deine Sicherung wiederherstellen? Dein aktueller Datenstand wird überschrieben.</value>
-  </data>
-  <data name="ConfirmRestoreBackupMessageTitle" xml:space="preserve">
-    <value>Sicherung wiederstellen?</value>
-  </data>
-  <data name="DoneMessageTitle" xml:space="preserve">
-    <value>Fertig!</value>
-  </data>
-  <data name="GeneralErrorMessage" xml:space="preserve">
-    <value>Entschuldige, da lief was schief..</value>
-  </data>
-  <data name="LastBackupLabel" xml:space="preserve">
-    <value>Deine letzte Sicherung wurde erstellt am:</value>
-  </data>
-  <data name="OverwriteBackupMessage" xml:space="preserve">
-    <value>Wenn du fortfährst wird deine bestehende Sicherung auf SkyDriver überschrieben. Möchtest du weitermachen?</value>
-  </data>
-  <data name="OverwriteBackupTitle" xml:space="preserve">
-    <value>Sicherung Überschreiben?</value>
-  </data>
-  <data name="RestoreCompletedMessage" xml:space="preserve">
-    <value>Sicherung erfolgreich wiederherstellt. Möchtest du zur Startseite wechseln?</value>
-  </data>
-  <data name="PleaseLogInText" xml:space="preserve">
-    <value>Du musst eingeloggt sein um Sicherungen erstellen oder wiederherstellen zu können.</value>
-  </data>
-  <data name="AddImageLabel" xml:space="preserve">
-    <value>Bild hinzufügen</value>
-  </data>
-  <data name="AddressLabel" xml:space="preserve">
-    <value>Adresse</value>
-  </data>
-  <data name="LocationLabel" xml:space="preserve">
-    <value>Ort</value>
-  </data>
-  <data name="NoPositionMessage" xml:space="preserve">
-    <value>Wir sind noch am deine Position ermitteln. Bitte warte einen Moment bevor du deinen Eintrag speicherst.</value>
-  </data>
-  <data name="NoPositionMessageTitle" xml:space="preserve">
-    <value>Unbekannte Positition!</value>
-  </data>
-  <data name="NoNameDefaultEntry" xml:space="preserve">
-    <value>[leerer Name]</value>
-  </data>
-  <data name="CommentLabel" xml:space="preserve">
-    <value>Bemerkung</value>
-  </data>
-  <data name="AccuracyLabel" xml:space="preserve">
-    <value>Genauigkeit: </value>
-  </data>
-  <data name="YouAreHereText" xml:space="preserve">
-    <value>Du bist hier</value>
-  </data>
-  <data name="NavigateLabel" xml:space="preserve">
-    <value>Navigieren</value>
-  </data>
-  <data name="PintToStartLabel" xml:space="preserve">
-    <value>An den start heften</value>
-  </data>
-  <data name="TaskCancelledErrorMessage" xml:space="preserve">
-    <value>Das Erstellen der Sicherung wurde abgebrochen und konnte nicht abgeschlossen werden. Bitte stelle sicher dass du eine gute Internetverbindung hast und versuche es dann nochmals.</value>
-  </data>
-  <data name="TaskCancelledErrorTitle" xml:space="preserve">
-    <value>Sichern abgebrochen</value>
-  </data>
-  <data name="GeneralErrorMessageTitle" xml:space="preserve">
-    <value>Hoppla...</value>
-  </data>
-  <data name="GettingYourPositionLabel" xml:space="preserve">
-    <value>Beziehen deine Position..</value>
-  </data>
-  <data name="AddTag" xml:space="preserve">
-    <value>Tag hinzufügen</value>
-  </data>
-  <data name="AddTagMessage" xml:space="preserve">
-    <value>Gib den Namen deines Tags ein:</value>
-  </data>
-  <data name="SettingsLabel" xml:space="preserve">
-    <value>Einstellungen</value>
-  </data>
-  <data name="SettingsTitle" xml:space="preserve">
-    <value>Einstellungen</value>
-  </data>
-  <data name="TagLabel" xml:space="preserve">
-    <value>Tags verwalten</value>
-  </data>
-  <data name="TagTitle" xml:space="preserve">
-    <value>tags</value>
-  </data>
-  <data name="DeleteMessageTag	Do you really want to delete this tags?" xml:space="preserve">
-    <value>Möchtest du diese Tags wirklich löschen?</value>
-  </data>
-  <data name="SelectLabel" xml:space="preserve">
-    <value>Auswählen</value>
-  </data>
-  <data name="BarLabel" xml:space="preserve">
-    <value>Bar</value>
-  </data>
-  <data name="CitiesTitle" xml:space="preserve">
-    <value>Städte</value>
-  </data>
-  <data name="ClubLabel" xml:space="preserve">
-    <value>Club</value>
-  </data>
-  <data name="FamilyLabel" xml:space="preserve">
-    <value>Familie</value>
-  </data>
-  <data name="FriendsLabel" xml:space="preserve">
-    <value>Freunde</value>
-  </data>
-  <data name="HotelLabel" xml:space="preserve">
-    <value>Hotel</value>
-  </data>
-  <data name="ImportImageLabel" xml:space="preserve">
-    <value>Bild importieren</value>
-  </data>
-  <data name="LocationserviceDisabledMessage" xml:space="preserve">
-    <value>Du hast den Zugriff auf den Windows Phone Positionierungsdienst nicht erlaubt. Daher können wir deine Position nicht bestimmen. Bitte erlaube uns zuerst den Zugriff in den Appeinstellungen und versuche es dann erneut.</value>
-  </data>
-  <data name="LocationserviceDisabledTitle" xml:space="preserve">
-    <value>Positionierungsdienst deaktiviert!</value>
-  </data>
-  <data name="MuseumLabel" xml:space="preserve">
-    <value>Museum</value>
-  </data>
-  <data name="PrivacyPolicyMessage" xml:space="preserve">
-    <value>MyPlaces benötigt Zugriff auf den Windows Phone Positionsierungsdienst um richtig zu funktionieren. Wenn dieser nicht aktiviert ist, sind die meisten Funktionen deaktiviert und können nicht verwendet werden.
-
-Möchtest du den Zugriff erlauben?</value>
-  </data>
-  <data name="PrivacyPolicyTitle" xml:space="preserve">
-    <value>Positionsdienste</value>
+  <data name="RemoveAdsLabel" xml:space="preserve">
+    <value>Entferne Werbebanner</value>
   </data>
   <data name="RenameTagMessage" xml:space="preserve">
     <value>Gib den neuen Namen für den ausgewählten Tag ein:</value>
@@ -365,69 +390,23 @@ Möchtest du den Zugriff erlauben?</value>
   <data name="RestaurantLabel" xml:space="preserve">
     <value>Restaurant</value>
   </data>
-  <data name="ShopLabel" xml:space="preserve">
-    <value>Einkaufscenter</value>
+  <data name="RestoreBackupLabel" xml:space="preserve">
+    <value>Sicherung wiederherstellen</value>
   </data>
-  <data name="WorkLabel" xml:space="preserve">
-    <value>Arbeit</value>
+  <data name="RestoreCompletedMessage" xml:space="preserve">
+    <value>Sicherung erfolgreich wiederherstellt. Möchtest du zur Startseite wechseln?</value>
   </data>
-  <data name="TouristAttractionLabel" xml:space="preserve">
-    <value>Touristenattraktion</value>
-  </data>
-  <data name="ViewpointLabel" xml:space="preserve">
-    <value>Aussichtspunkt</value>
-  </data>
-  <data name="UpdateTileLabel" xml:space="preserve">
-    <value>Tile aktualisieren..</value>
-  </data>
-  <data name="AddLocationTitle" xml:space="preserve">
-    <value>Ort hinzufügen</value>
-  </data>
-  <data name="AerialLabel" xml:space="preserve">
-    <value>Luftansicht</value>
-  </data>
-  <data name="HybridLabel" xml:space="preserve">
-    <value>Hybrid</value>
-  </data>
-  <data name="LocationNoExistingMessage" xml:space="preserve">
-    <value>Wir konnten den angepinnten Ort nicht finden. Möglicherweise wurde er in de Zwischenzeit gelöscht. Bitte entferne das Tile und pinne dir den entsprechend Ort erneut.</value>
-  </data>
-  <data name="LocationNotExistingTitle" xml:space="preserve">
-    <value>Ort existiert nicht!</value>
+  <data name="RestoreTitle" xml:space="preserve">
+    <value>wiederherstellen</value>
   </data>
   <data name="RoadLabel" xml:space="preserve">
     <value>Strasse</value>
   </data>
-  <data name="TerrainLabel" xml:space="preserve">
-    <value>Gelände</value>
+  <data name="SaveLocationLabel" xml:space="preserve">
+    <value>Ort am speichern..</value>
   </data>
-  <data name="LayersLabel" xml:space="preserve">
-    <value>Karten Layers</value>
-  </data>
-  <data name="RemoveAdsLabel" xml:space="preserve">
-    <value>Entferne Werbebanner</value>
-  </data>
-  <data name="ConfirmPurchaseRemoveAdsMessage" xml:space="preserve">
-    <value>Um Favorite Places ohne Werbung benutzen zu können, musst du die dazugehörige Lizenz im Marketplace erwerben. 
-Möchtest du fortfahren?</value>
-  </data>
-  <data name="ConfirmPurchaseRemoveAdsTitle" xml:space="preserve">
-    <value>Werbung entfernen</value>
-  </data>
-  <data name="PurchaseWentWrongMessage" xml:space="preserve">
-    <value>Der Windows Phone Marketplace ist im Moment nicht erreichbar. Gegebenenfalls kann ein neustart des Telefons dieses Problem beheben.</value>
-  </data>
-  <data name="PurchaseWentWrongTitle" xml:space="preserve">
-    <value>Marketplace nicht erreichbar</value>
-  </data>
-  <data name="PurchaseSuccessfulMessage" xml:space="preserve">
-    <value>Vielen Dank dass Sie die Lizenz für FavoritePlaces ohne Werbung erworben haben!</value>
-  </data>
-  <data name="PurchaseSuccessfulTitle" xml:space="preserve">
-    <value>Kauf erfolgreich</value>
-  </data>
-  <data name="DistanceLabel" xml:space="preserve">
-    <value>Distanz: </value>
+  <data name="SelectLabel" xml:space="preserve">
+    <value>Auswählen</value>
   </data>
   <data name="SelectTagsHeader" xml:space="preserve">
     <value>Wähle Tags</value>
@@ -435,34 +414,55 @@ Möchtest du fortfahren?</value>
   <data name="SetFilterHeader" xml:space="preserve">
     <value>Filter setzen</value>
   </data>
-  <data name="PurchasedLabel" xml:space="preserve">
-    <value>Gekauft</value>
+  <data name="SettingsLabel" xml:space="preserve">
+    <value>Einstellungen</value>
   </data>
-  <data name="PurchasedFailedText" xml:space="preserve">
-    <value>Der Einkauf konnte nicht abgeschlossen werden. Bitte vergewissere dich dass du eine Internetverbindung hast und versuche es nochmals.</value>
+  <data name="SettingsTitle" xml:space="preserve">
+    <value>Einstellungen</value>
   </data>
-  <data name="PurchasedFailedTitle" xml:space="preserve">
-    <value>Einkauf fehlgeschlagen</value>
+  <data name="ShopLabel" xml:space="preserve">
+    <value>Einkaufscenter</value>
   </data>
-  <data name="FeaturesTitle" xml:space="preserve">
-    <value>Funktionen</value>
+  <data name="ShowAllOnMapLabel" xml:space="preserve">
+    <value>Alle auf der Karte anzeigen</value>
   </data>
-  <data name="AdditionalFeaturesLabel" xml:space="preserve">
-    <value>Zusätzliche Features</value>
+  <data name="SupportAddressLabel" xml:space="preserve">
+    <value>Supportadresse:</value>
   </data>
-  <data name="LimitExceededMessage" xml:space="preserve">
-    <value>Du hast das Limit erreicht. Um die weitere Entwicklung zu unterstützen, erwerbe bitte die Entfernung dieser Beschränkung unter zusätzliche Funktionen.</value>
+  <data name="TagLabel" xml:space="preserve">
+    <value>Tags verwalten</value>
   </data>
-  <data name="LimitExceededMessageTitle" xml:space="preserve">
-    <value>Limit erreicht</value>
+  <data name="TagTitle" xml:space="preserve">
+    <value>tags</value>
   </data>
-  <data name="SaveLocationLabel" xml:space="preserve">
-    <value>Ort am speichern..</value>
+  <data name="TaskCancelledErrorMessage" xml:space="preserve">
+    <value>Das Erstellen der Sicherung wurde abgebrochen und konnte nicht abgeschlossen werden. Bitte stelle sicher dass du eine gute Internetverbindung hast und versuche es dann nochmals.</value>
   </data>
-  <data name="ErrorLocationTitle" xml:space="preserve">
-    <value>Wir konnten deine Position nicht finden. Bitte vergewissere dich dass die Positionsdienste auf deinem Telefon unter Einstellungen &gt; Ortung aktiviert sind.</value>
+  <data name="TaskCancelledErrorTitle" xml:space="preserve">
+    <value>Sichern abgebrochen</value>
   </data>
-  <data name="ErrorTitle" xml:space="preserve">
-    <value>Es trat ein Problem auf...</value>
+  <data name="TerrainLabel" xml:space="preserve">
+    <value>Gelände</value>
+  </data>
+  <data name="TouristAttractionLabel" xml:space="preserve">
+    <value>Touristenattraktion</value>
+  </data>
+  <data name="UpdateTileLabel" xml:space="preserve">
+    <value>Tile aktualisieren..</value>
+  </data>
+  <data name="VersionLabel" xml:space="preserve">
+    <value>Version:</value>
+  </data>
+  <data name="ViewpointLabel" xml:space="preserve">
+    <value>Aussichtspunkt</value>
+  </data>
+  <data name="WhatsNewTitle" xml:space="preserve">
+    <value>Was ist neu?</value>
+  </data>
+  <data name="WorkLabel" xml:space="preserve">
+    <value>Arbeit</value>
+  </data>
+  <data name="YouAreHereText" xml:space="preserve">
+    <value>Du bist hier</value>
   </data>
 </root>

@@ -196,7 +196,7 @@ namespace Places.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your backup was created succesfully!.
+        ///   Looks up a localized string similar to Your backup was created successfully!.
         /// </summary>
         public static string BackupCreatedMessage {
             get {
@@ -241,7 +241,7 @@ namespace Places.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to changelog:.
+        ///   Looks up a localized string similar to change log:.
         /// </summary>
         public static string ChangelogLabel {
             get {
@@ -289,8 +289,8 @@ namespace Places.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to To use FavoritePlaces withouth ads you have to purchase the licence in the marketplace.
-        ///Do you wanna continue?.
+        ///   Looks up a localized string similar to To use FavoritePlaces without ads you have to purchase the license in the marketplace.
+        ///Do you want to continue?.
         /// </summary>
         public static string ConfirmPurchaseRemoveAdsMessage {
             get {
@@ -308,7 +308,7 @@ namespace Places.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do you wanna restore your backup? Your current data will be overwritten.
+        ///   Looks up a localized string similar to Do you want to restore your backup? Your current data will be overwritten.
         /// </summary>
         public static string ConfirmRestoreBackupMessage {
             get {
@@ -371,7 +371,7 @@ namespace Places.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do you really want to delete this tags?.
+        ///   Looks up a localized string similar to Do you really want to delete this tag?.
         /// </summary>
         public static string DeleteMessageTag {
             get {
@@ -461,7 +461,7 @@ namespace Places.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to We coulnd&apos;t get your position. Please be sure that you have activated the location services on your phone under settings &gt; Location..
+        ///   Looks up a localized string similar to We couldn&apos;t get your position. Please be sure that you have activated the location services on your phone under settings &gt; Location..
         /// </summary>
         public static string ErrorLocationTitle {
             get {
@@ -470,7 +470,7 @@ namespace Places.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to There was a problem...
+        ///   Looks up a localized string similar to There was a problem....
         /// </summary>
         public static string ErrorTitle {
             get {
@@ -560,7 +560,7 @@ namespace Places.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Imageposition deactivated!.
+        ///   Looks up a localized string similar to Image position deactivated!.
         /// </summary>
         public static string ImagepositionDeactivatedTitle {
             get {
@@ -623,7 +623,7 @@ namespace Places.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to load locations...
+        ///   Looks up a localized string similar to Load locations....
         /// </summary>
         public static string LoadLocationsLabel {
             get {
@@ -641,7 +641,7 @@ namespace Places.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to We couldn&apos;t find that location in your database. Maybe it was removed in the meanwhile. Please unpin this location from the startscreen and pin the appropriate location again..
+        ///   Looks up a localized string similar to We couldn&apos;t find that location in your database. Maybe it was removed in the meanwhile. Please unpin this location from the start screen and pin the appropriate location again..
         /// </summary>
         public static string LocationNoExistingMessage {
             get {
@@ -659,7 +659,7 @@ namespace Places.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your locationservices are disabled. To allow us to get your position please activate them in the appsettings..
+        ///   Looks up a localized string similar to Your location services are disabled. To allow us to get your position please activate them in the app settings..
         /// </summary>
         public static string LocationserviceDisabledMessage {
             get {
@@ -668,7 +668,7 @@ namespace Places.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Locationservices disabled!.
+        ///   Looks up a localized string similar to Location services disabled!.
         /// </summary>
         public static string LocationserviceDisabledTitle {
             get {
@@ -785,8 +785,8 @@ namespace Places.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If you continue the existing backup on skydrive will be overwritten.
-        ///Do you wanna proceed?.
+        ///   Looks up a localized string similar to If you continue the existing backup on OneDrive will be overwritten.
+        ///Do you want to proceed?.
         /// </summary>
         public static string OverwriteBackupMessage {
             get {
@@ -822,9 +822,9 @@ namespace Places.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to FavoritePlaces needs the windows phone locationservice to determine you position and calculate the address of this position. Without this acces most of the features of the app will be inactive.
+        ///   Looks up a localized string similar to FavoritePlaces needs the windows phone location service to determine you position and calculate the address of this position. Without this permission most of the features of the app will be inactive.
         ///
-        ///Do you want do enable locationservices for Places?.
+        ///Do you want do enable location services for FavoritePlaces?.
         /// </summary>
         public static string PrivacyPolicyMessage {
             get {
@@ -842,7 +842,7 @@ namespace Places.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The purchased couldn&apos;t be completed. Please be sure that you have a internet connection and try it again..
+        ///   Looks up a localized string similar to The purchased couldn&apos;t be completed. Please be sure that you have an internet connection and try it again..
         /// </summary>
         public static string PurchasedFailedText {
             get {
@@ -851,7 +851,7 @@ namespace Places.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to purchase failed!.
+        ///   Looks up a localized string similar to Purchase failed!.
         /// </summary>
         public static string PurchasedFailedTitle {
             get {
@@ -869,7 +869,7 @@ namespace Places.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Thank you for purchasing the licence for using FavoritePlaces without Ads!.
+        ///   Looks up a localized string similar to Thank you for purchasing the license for using FavoritePlaces without Ads!.
         /// </summary>
         public static string PurchaseSuccessfulMessage {
             get {
@@ -905,7 +905,7 @@ namespace Places.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rate Places!.
+        ///   Looks up a localized string similar to Rate FavoritePlaces!.
         /// </summary>
         public static string RateAppLabel {
             get {
@@ -916,7 +916,7 @@ namespace Places.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Thanks for using FavoritePlaces!
         ///
-        ///If you like the programm, support the development with rating the programm in the Marketplace!
+        ///If you like this app, support the further development with rating it in the Marketplace!
         ///
         ///Do you want to rate it now?.
         /// </summary>
@@ -936,7 +936,7 @@ namespace Places.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rate MyPlaces!.
+        ///   Looks up a localized string similar to Rate FavoritePlaces!.
         /// </summary>
         public static string RateApplicationTitel {
             get {
@@ -1018,7 +1018,7 @@ namespace Places.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Backup successful restored! I will take you to your MainPage..
+        ///   Looks up a localized string similar to Backup successful restored! I will take you to your main page..
         /// </summary>
         public static string RestoreCompletedMessage {
             get {
@@ -1045,7 +1045,7 @@ namespace Places.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to save location....
+        ///   Looks up a localized string similar to Save location....
         /// </summary>
         public static string SaveLocationLabel {
             get {
@@ -1144,7 +1144,7 @@ namespace Places.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The tag {0} is still assigned by one or more locations. Please remove the assignement and try again..
+        ///   Looks up a localized string similar to The tag {0} is still assigned by one or more locations. Please remove the assignment and try again..
         /// </summary>
         public static string TagAssignedMessage {
             get {
@@ -1216,7 +1216,7 @@ namespace Places.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to update tile...
+        ///   Looks up a localized string similar to Update tile....
         /// </summary>
         public static string UpdateTileLabel {
             get {
@@ -1243,7 +1243,7 @@ namespace Places.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to what&apos;s new?.
+        ///   Looks up a localized string similar to What&apos;s new?.
         /// </summary>
         public static string WhatsNewTitle {
             get {

@@ -132,8 +132,14 @@
   <data name="AddImageLabel" xml:space="preserve">
     <value>add image</value>
   </data>
+  <data name="AdditionalFeaturesLabel" xml:space="preserve">
+    <value>additional features</value>
+  </data>
   <data name="AddLabel" xml:space="preserve">
     <value>add</value>
+  </data>
+  <data name="AddLocationTitle" xml:space="preserve">
+    <value>add location</value>
   </data>
   <data name="AddressLabel" xml:space="preserve">
     <value>address</value>
@@ -147,6 +153,9 @@
   <data name="AddTitle" xml:space="preserve">
     <value>add</value>
   </data>
+  <data name="AerialLabel" xml:space="preserve">
+    <value>Aerial</value>
+  </data>
   <data name="AllLabel" xml:space="preserve">
     <value>all</value>
   </data>
@@ -154,7 +163,7 @@
     <value>FavoritePlaces</value>
   </data>
   <data name="BackupCreatedMessage" xml:space="preserve">
-    <value>Your backup was created succesfully!</value>
+    <value>Your backup was created successfully!</value>
   </data>
   <data name="BackupLabel" xml:space="preserve">
     <value>backup / restore</value>
@@ -169,7 +178,7 @@
     <value>cancel</value>
   </data>
   <data name="ChangelogLabel" xml:space="preserve">
-    <value>changelog:</value>
+    <value>change log:</value>
   </data>
   <data name="ChangelogText" xml:space="preserve">
     <value>- overworked the design of lists
@@ -186,8 +195,15 @@
   <data name="CommentLabel" xml:space="preserve">
     <value>comment</value>
   </data>
+  <data name="ConfirmPurchaseRemoveAdsMessage" xml:space="preserve">
+    <value>To use FavoritePlaces without ads you have to purchase the license in the marketplace.
+Do you want to continue?</value>
+  </data>
+  <data name="ConfirmPurchaseRemoveAdsTitle" xml:space="preserve">
+    <value>Remove Ads</value>
+  </data>
   <data name="ConfirmRestoreBackupMessage" xml:space="preserve">
-    <value>Do you wanna restore your backup? Your current data will be overwritten</value>
+    <value>Do you want to restore your backup? Your current data will be overwritten</value>
   </data>
   <data name="ConfirmRestoreBackupMessageTitle" xml:space="preserve">
     <value>Restore Backup?</value>
@@ -208,7 +224,7 @@
     <value>Do you really want to delete this location?</value>
   </data>
   <data name="DeleteMessageTag" xml:space="preserve">
-    <value>Do you really want to delete this tags?</value>
+    <value>Do you really want to delete this tag?</value>
   </data>
   <data name="DeleteMessageTitle" xml:space="preserve">
     <value>Delete?</value>
@@ -218,6 +234,9 @@
   </data>
   <data name="DeveloperLabel" xml:space="preserve">
     <value>developer:</value>
+  </data>
+  <data name="DistanceLabel" xml:space="preserve">
+    <value>distance: </value>
   </data>
   <data name="DoneLabel" xml:space="preserve">
     <value>done</value>
@@ -234,8 +253,17 @@
   <data name="EditTitle" xml:space="preserve">
     <value>edit</value>
   </data>
+  <data name="ErrorLocationTitle" xml:space="preserve">
+    <value>We couldn't get your position. Please be sure that you have activated the location services on your phone under settings &gt; Location.</value>
+  </data>
+  <data name="ErrorTitle" xml:space="preserve">
+    <value>There was a problem...</value>
+  </data>
   <data name="FamilyLabel" xml:space="preserve">
     <value>family</value>
+  </data>
+  <data name="FeaturesTitle" xml:space="preserve">
+    <value>features</value>
   </data>
   <data name="FriendsLabel" xml:space="preserve">
     <value>friends</value>
@@ -252,11 +280,14 @@
   <data name="HotelLabel" xml:space="preserve">
     <value>hotel</value>
   </data>
+  <data name="HybridLabel" xml:space="preserve">
+    <value>Hybrid</value>
+  </data>
   <data name="ImagepositionDeactivatedMessage" xml:space="preserve">
     <value>For the selected picture was no location data found. Please make sure that you've activated the setting in the camera options.</value>
   </data>
   <data name="ImagepositionDeactivatedTitle" xml:space="preserve">
-    <value>Imageposition deactivated!</value>
+    <value>Image position deactivated!</value>
   </data>
   <data name="ImportImageLabel" xml:space="preserve">
     <value>import image</value>
@@ -264,20 +295,35 @@
   <data name="LastBackupLabel" xml:space="preserve">
     <value>Your last backup was created at: </value>
   </data>
+  <data name="LayersLabel" xml:space="preserve">
+    <value>layers</value>
+  </data>
+  <data name="LimitExceededMessage" xml:space="preserve">
+    <value>You've reached the limit of the free version. To support further developments please purchase the removal of this limitation under additional features.</value>
+  </data>
+  <data name="LimitExceededMessageTitle" xml:space="preserve">
+    <value>Limit Exceeded</value>
+  </data>
   <data name="LoadBackupLabel" xml:space="preserve">
     <value>load backup</value>
   </data>
   <data name="LoadLocationsLabel" xml:space="preserve">
-    <value>load locations..</value>
+    <value>Load locations...</value>
   </data>
   <data name="LocationLabel" xml:space="preserve">
     <value>location</value>
   </data>
+  <data name="LocationNoExistingMessage" xml:space="preserve">
+    <value>We couldn't find that location in your database. Maybe it was removed in the meanwhile. Please unpin this location from the start screen and pin the appropriate location again.</value>
+  </data>
+  <data name="LocationNotExistingTitle" xml:space="preserve">
+    <value>Location does not exist!</value>
+  </data>
   <data name="LocationserviceDisabledMessage" xml:space="preserve">
-    <value>Your locationservices are disabled. To allow us to get your position please activate them in the appsettings.</value>
+    <value>Your location services are disabled. To allow us to get your position please activate them in the app settings.</value>
   </data>
   <data name="LocationserviceDisabledTitle" xml:space="preserve">
-    <value>Locationservices disabled!</value>
+    <value>Location services disabled!</value>
   </data>
   <data name="LocationsTitle" xml:space="preserve">
     <value>all locations</value>
@@ -316,8 +362,8 @@
     <value>Out of memory</value>
   </data>
   <data name="OverwriteBackupMessage" xml:space="preserve">
-    <value>If you continue the existing backup on skydrive will be overwritten.
-Do you wanna proceed?</value>
+    <value>If you continue the existing backup on OneDrive will be overwritten.
+Do you want to proceed?</value>
   </data>
   <data name="OverwriteBackupTitle" xml:space="preserve">
     <value>Overwrite backup?</value>
@@ -329,20 +375,41 @@ Do you wanna proceed?</value>
     <value>You must be logged in to backup or restore your data.</value>
   </data>
   <data name="PrivacyPolicyMessage" xml:space="preserve">
-    <value>FavoritePlaces needs the windows phone locationservice to determine you position and calculate the address of this position. Without this acces most of the features of the app will be inactive.
+    <value>FavoritePlaces needs the windows phone location service to determine you position and calculate the address of this position. Without this permission most of the features of the app will be inactive.
 
-Do you want do enable locationservices for Places?</value>
+Do you want do enable location services for FavoritePlaces?</value>
   </data>
   <data name="PrivacyPolicyTitle" xml:space="preserve">
     <value>Privacy Statement</value>
   </data>
+  <data name="PurchasedFailedText" xml:space="preserve">
+    <value>The purchased couldn't be completed. Please be sure that you have an internet connection and try it again.</value>
+  </data>
+  <data name="PurchasedFailedTitle" xml:space="preserve">
+    <value>Purchase failed!</value>
+  </data>
+  <data name="PurchasedLabel" xml:space="preserve">
+    <value>purchased</value>
+  </data>
+  <data name="PurchaseSuccessfulMessage" xml:space="preserve">
+    <value>Thank you for purchasing the license for using FavoritePlaces without Ads!</value>
+  </data>
+  <data name="PurchaseSuccessfulTitle" xml:space="preserve">
+    <value>Purchase successful</value>
+  </data>
+  <data name="PurchaseWentWrongMessage" xml:space="preserve">
+    <value>The Marketplace is currently not available. Sometimes reboot your device solve this problems.</value>
+  </data>
+  <data name="PurchaseWentWrongTitle" xml:space="preserve">
+    <value>Marketplace not available</value>
+  </data>
   <data name="RateAppLabel" xml:space="preserve">
-    <value>Rate Places!</value>
+    <value>Rate FavoritePlaces!</value>
   </data>
   <data name="RateApplicationMessage" xml:space="preserve">
     <value>Thanks for using FavoritePlaces!
 
-If you like the programm, support the development with rating the programm in the Marketplace!
+If you like this app, support the further development with rating it in the Marketplace!
 
 Do you want to rate it now?</value>
   </data>
@@ -350,7 +417,7 @@ Do you want to rate it now?</value>
     <value>Skip further reminders!</value>
   </data>
   <data name="RateApplicationTitel" xml:space="preserve">
-    <value>Rate MyPlaces!</value>
+    <value>Rate FavoritePlaces!</value>
   </data>
   <data name="RefreshCurrentPositionLabel" xml:space="preserve">
     <value>refresh current position</value>
@@ -361,6 +428,9 @@ Do you want to rate it now?</value>
   <data name="ReleaseMessageText" xml:space="preserve">
     <value>If you like this app please rate it in the Windows Phone Marketplace!
 I'm looking forward to receive your feedback! =)</value>
+  </data>
+  <data name="RemoveAdsLabel" xml:space="preserve">
+    <value>remove ads</value>
   </data>
   <data name="RenameTagMessage" xml:space="preserve">
     <value>Enter the new name for the selected tag:</value>
@@ -375,13 +445,25 @@ I'm looking forward to receive your feedback! =)</value>
     <value>restore backup</value>
   </data>
   <data name="RestoreCompletedMessage" xml:space="preserve">
-    <value>Backup successful restored! I will take you to your MainPage.</value>
+    <value>Backup successful restored! I will take you to your main page.</value>
   </data>
   <data name="RestoreTitle" xml:space="preserve">
     <value>restore</value>
   </data>
+  <data name="RoadLabel" xml:space="preserve">
+    <value>Road</value>
+  </data>
+  <data name="SaveLocationLabel" xml:space="preserve">
+    <value>Save location...</value>
+  </data>
   <data name="SelectLabel" xml:space="preserve">
     <value>select</value>
+  </data>
+  <data name="SelectTagsHeader" xml:space="preserve">
+    <value>select tags</value>
+  </data>
+  <data name="SetFilterHeader" xml:space="preserve">
+    <value>set filter</value>
   </data>
   <data name="SettingsLabel" xml:space="preserve">
     <value>settings</value>
@@ -405,7 +487,7 @@ I'm looking forward to receive your feedback! =)</value>
     <value>swap position</value>
   </data>
   <data name="TagAssignedMessage" xml:space="preserve">
-    <value>The tag {0} is still assigned by one or more locations. Please remove the assignement and try again.</value>
+    <value>The tag {0} is still assigned by one or more locations. Please remove the assignment and try again.</value>
   </data>
   <data name="TagAssignedTitle" xml:space="preserve">
     <value>Tag assigned!</value>
@@ -422,8 +504,14 @@ I'm looking forward to receive your feedback! =)</value>
   <data name="TaskCancelledErrorTitle" xml:space="preserve">
     <value>Create Backup cancelled</value>
   </data>
+  <data name="TerrainLabel" xml:space="preserve">
+    <value>Terrain</value>
+  </data>
   <data name="TouristAttractionLabel" xml:space="preserve">
     <value>tourist attraction</value>
+  </data>
+  <data name="UpdateTileLabel" xml:space="preserve">
+    <value>Update tile...</value>
   </data>
   <data name="VersionLabel" xml:space="preserve">
     <value>version:</value>
@@ -432,100 +520,12 @@ I'm looking forward to receive your feedback! =)</value>
     <value>viewpoint</value>
   </data>
   <data name="WhatsNewTitle" xml:space="preserve">
-    <value>what's new?</value>
+    <value>What's new?</value>
   </data>
   <data name="WorkLabel" xml:space="preserve">
     <value>work</value>
   </data>
   <data name="YouAreHereText" xml:space="preserve">
     <value>you are here</value>
-  </data>
-  <data name="UpdateTileLabel" xml:space="preserve">
-    <value>update tile..</value>
-  </data>
-  <data name="AddLocationTitle" xml:space="preserve">
-    <value>add location</value>
-  </data>
-  <data name="AerialLabel" xml:space="preserve">
-    <value>Aerial</value>
-  </data>
-  <data name="HybridLabel" xml:space="preserve">
-    <value>Hybrid</value>
-  </data>
-  <data name="LocationNoExistingMessage" xml:space="preserve">
-    <value>We couldn't find that location in your database. Maybe it was removed in the meanwhile. Please unpin this location from the startscreen and pin the appropriate location again.</value>
-  </data>
-  <data name="LocationNotExistingTitle" xml:space="preserve">
-    <value>Location does not exist!</value>
-  </data>
-  <data name="RoadLabel" xml:space="preserve">
-    <value>Road</value>
-  </data>
-  <data name="TerrainLabel" xml:space="preserve">
-    <value>Terrain</value>
-  </data>
-  <data name="LayersLabel" xml:space="preserve">
-    <value>layers</value>
-  </data>
-  <data name="RemoveAdsLabel" xml:space="preserve">
-    <value>remove ads</value>
-  </data>
-  <data name="ConfirmPurchaseRemoveAdsMessage" xml:space="preserve">
-    <value>To use FavoritePlaces withouth ads you have to purchase the licence in the marketplace.
-Do you wanna continue?</value>
-  </data>
-  <data name="ConfirmPurchaseRemoveAdsTitle" xml:space="preserve">
-    <value>Remove Ads</value>
-  </data>
-  <data name="PurchaseWentWrongMessage" xml:space="preserve">
-    <value>The Marketplace is currently not available. Sometimes reboot your device solve this problems.</value>
-  </data>
-  <data name="PurchaseWentWrongTitle" xml:space="preserve">
-    <value>Marketplace not available</value>
-  </data>
-  <data name="PurchaseSuccessfulMessage" xml:space="preserve">
-    <value>Thank you for purchasing the licence for using FavoritePlaces without Ads!</value>
-  </data>
-  <data name="PurchaseSuccessfulTitle" xml:space="preserve">
-    <value>Purchase successful</value>
-  </data>
-  <data name="DistanceLabel" xml:space="preserve">
-    <value>distance: </value>
-  </data>
-  <data name="SelectTagsHeader" xml:space="preserve">
-    <value>select tags</value>
-  </data>
-  <data name="SetFilterHeader" xml:space="preserve">
-    <value>set filter</value>
-  </data>
-  <data name="PurchasedLabel" xml:space="preserve">
-    <value>purchased</value>
-  </data>
-  <data name="PurchasedFailedText" xml:space="preserve">
-    <value>The purchased couldn't be completed. Please be sure that you have a internet connection and try it again.</value>
-  </data>
-  <data name="PurchasedFailedTitle" xml:space="preserve">
-    <value>purchase failed!</value>
-  </data>
-  <data name="FeaturesTitle" xml:space="preserve">
-    <value>features</value>
-  </data>
-  <data name="AdditionalFeaturesLabel" xml:space="preserve">
-    <value>additional features</value>
-  </data>
-  <data name="LimitExceededMessage" xml:space="preserve">
-    <value>You've reached the limit of the free version. To support further developments please purchase the removal of this limitation under additional features.</value>
-  </data>
-  <data name="LimitExceededMessageTitle" xml:space="preserve">
-    <value>Limit Exceeded</value>
-  </data>
-  <data name="SaveLocationLabel" xml:space="preserve">
-    <value>save location...</value>
-  </data>
-  <data name="ErrorLocationTitle" xml:space="preserve">
-    <value>We coulnd't get your position. Please be sure that you have activated the location services on your phone under settings &gt; Location.</value>
-  </data>
-  <data name="ErrorTitle" xml:space="preserve">
-    <value>There was a problem..</value>
   </data>
 </root>
